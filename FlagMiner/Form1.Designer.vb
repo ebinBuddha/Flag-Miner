@@ -67,6 +67,7 @@ Partial Class Form1
         Me.SaveXmlDialog = New System.Windows.Forms.SaveFileDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolTip2 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.subtractButt = New System.Windows.Forms.Button()
         Me.PopUpMenu.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.TreeListView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,9 +76,9 @@ Partial Class Form1
         '
         'parseBtn
         '
-        Me.parseBtn.Location = New System.Drawing.Point(111, 77)
+        Me.parseBtn.Location = New System.Drawing.Point(108, 77)
         Me.parseBtn.Name = "parseBtn"
-        Me.parseBtn.Size = New System.Drawing.Size(74, 24)
+        Me.parseBtn.Size = New System.Drawing.Size(77, 24)
         Me.parseBtn.TabIndex = 1
         Me.parseBtn.Text = "Mine it!"
         Me.parseBtn.UseVisualStyleBackColor = True
@@ -168,9 +169,9 @@ Partial Class Form1
         '
         Me.clearbutt.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.clearbutt.Enabled = False
-        Me.clearbutt.Location = New System.Drawing.Point(649, 446)
+        Me.clearbutt.Location = New System.Drawing.Point(598, 446)
         Me.clearbutt.Name = "clearbutt"
-        Me.clearbutt.Size = New System.Drawing.Size(66, 23)
+        Me.clearbutt.Size = New System.Drawing.Size(50, 23)
         Me.clearbutt.TabIndex = 18
         Me.clearbutt.Text = "Clear"
         Me.clearbutt.UseVisualStyleBackColor = True
@@ -222,7 +223,7 @@ Partial Class Form1
         Me.CopyBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CopyBtn.Location = New System.Drawing.Point(381, 446)
         Me.CopyBtn.Name = "CopyBtn"
-        Me.CopyBtn.Size = New System.Drawing.Size(118, 23)
+        Me.CopyBtn.Size = New System.Drawing.Size(99, 23)
         Me.CopyBtn.TabIndex = 24
         Me.CopyBtn.Text = "Copy to clipboard"
         Me.CopyBtn.UseVisualStyleBackColor = True
@@ -321,9 +322,9 @@ Partial Class Form1
         '
         Me.purgebutt.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.purgebutt.Enabled = False
-        Me.purgebutt.Location = New System.Drawing.Point(577, 446)
+        Me.purgebutt.Location = New System.Drawing.Point(542, 446)
         Me.purgebutt.Name = "purgebutt"
-        Me.purgebutt.Size = New System.Drawing.Size(66, 23)
+        Me.purgebutt.Size = New System.Drawing.Size(50, 23)
         Me.purgebutt.TabIndex = 31
         Me.purgebutt.Text = "Purge"
         Me.ToolTip2.SetToolTip(Me.purgebutt, "Button is disabled. To enable it, open the Options dialog to properly configure t" & _
@@ -334,9 +335,9 @@ Partial Class Form1
         '
         Me.checkbutt.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.checkbutt.Enabled = False
-        Me.checkbutt.Location = New System.Drawing.Point(505, 446)
+        Me.checkbutt.Location = New System.Drawing.Point(486, 446)
         Me.checkbutt.Name = "checkbutt"
-        Me.checkbutt.Size = New System.Drawing.Size(66, 23)
+        Me.checkbutt.Size = New System.Drawing.Size(50, 23)
         Me.checkbutt.TabIndex = 32
         Me.checkbutt.Text = "Check"
         Me.ToolTip1.SetToolTip(Me.checkbutt, "Button is disabled. To enable it, open the Options dialog to properly configure t" & _
@@ -433,11 +434,23 @@ Partial Class Form1
         '
         Me.SaveXmlDialog.Filter = "Xml files|*.xml|All files|*.*"
         '
+        'subtractButt
+        '
+        Me.subtractButt.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.subtractButt.Enabled = False
+        Me.subtractButt.Location = New System.Drawing.Point(654, 446)
+        Me.subtractButt.Name = "subtractButt"
+        Me.subtractButt.Size = New System.Drawing.Size(60, 23)
+        Me.subtractButt.TabIndex = 35
+        Me.subtractButt.Text = "Subtract"
+        Me.subtractButt.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(870, 481)
+        Me.Controls.Add(Me.subtractButt)
         Me.Controls.Add(Me.aboutButt)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.importbutt)
@@ -512,5 +525,6 @@ Partial Class Form1
     Friend WithEvents SaveXmlDialog As System.Windows.Forms.SaveFileDialog
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents ToolTip2 As System.Windows.Forms.ToolTip
+    Friend WithEvents subtractButt As System.Windows.Forms.Button
 
 End Class

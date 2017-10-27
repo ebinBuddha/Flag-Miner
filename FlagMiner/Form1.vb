@@ -203,6 +203,7 @@ Public Class Form1
         ToolTip2.Active = False
         checkbutt.Enabled = False
         ToolTip1.Active = False
+        subtractButt.Enabled = False
         importbutt.Enabled = False
 
         GroupBox1.Enabled = False
@@ -234,6 +235,7 @@ Public Class Form1
             checkbutt.Enabled = False
             ToolTip1.Active = True
         End If
+        subtractButt.Enabled = True
         importbutt.Enabled = True
 
         GroupBox1.Enabled = True
@@ -315,7 +317,7 @@ Public Class Form1
         Me.TreeListView1.BaseSmallImageList = Me.ImageList1
     End Sub
 
-    Delegate Sub setRootsCallback(flagTree)
+    'Delegate Sub setRootsCallback(flagTree)
 
     Private Function loadArchive(board As String, ByRef rawResponse As String) As Integer
         Dim request As System.Net.HttpWebRequest
@@ -907,7 +909,7 @@ Public Class Form1
         Return Nothing
     End Function
 
-    Public Function queryFlag(ByVal imgurl) As PurgeEnum
+    Public Function queryFlag(ByVal imgurl As String) As PurgeEnum
         Dim request As HttpWebRequest
         Dim response As HttpWebResponse
         Try
@@ -1251,4 +1253,57 @@ Public Class Form1
             End If
         End If
     End Sub
+
+
+    ''' <summary>
+    ''' subtracts src from dest: dest = dest-src
+    ''' </summary>
+    ''' <param name="src">subtrahend</param>
+    ''' <param name="dest">minuend</param>
+    ''' <remarks></remarks>
+    Public Sub subtractFlegs(ByVal src As SerializableDictionary(Of String, RegionalFleg), ByVal dest As SerializableDictionary(Of String, RegionalFleg))
+        Dim curDestDict As SerializableDictionary(Of String, RegionalFleg) = dest
+        For Each ke In curDestDict
+            Dim Fleg As RegionalFleg = ke.Value
+            Dim curSrcDict As SerializableDictionary(Of String, RegionalFleg) = src
+
+            If Not curSrcDict.ContainsKey(ke.Key) Then
+                Continue For  ' nothing to subtract
+            Else
+                subtractFlegs(curSrcDict(ke.Key).children, curDestDict(ke.Key).children)
+                If Fleg.children.Count = 0 Then
+                    curDestDict(ke.Key).markedfordeletion = True
+                    Continue For
+                End If
+            End If
+        Next
+        curDestDict.Where(Function(pair As KeyValuePair(Of String, RegionalFleg)) pair.Value.markedfordeletion = True).ToArray(). _
+        Apply(Function(pair As KeyValuePair(Of String, RegionalFleg)) curDestDict.Remove(pair.Key)).Apply()
+    End Sub
+
+    Private Sub subtractButt_Click(sender As Object, e As EventArgs) Handles subtractButt.Click
+        If MsgBox("Import the flags to subtract from the current tree? The action cannot be undone.", MsgBoxStyle.YesNo, "Flag Miner") = MsgBoxResult.Yes Then
+            OpenXmlDialog.InitialDirectory = options.saveAndLoadFolder
+            If OpenXmlDialog.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                Dim currentFile As String = OpenXmlDialog.FileName
+                Dim temptree As SerializableDictionary(Of String, RegionalFleg)
+                Dim fs As FileStream
+                Try
+                    fs = New FileStream(currentFile, FileMode.Open)
+                    Dim treeSerializer As New XmlSerializer(GetType(SerializableDictionary(Of String, RegionalFleg)))
+                    temptree = treeSerializer.Deserialize(fs)
+                    subtractFlegs(temptree, MainTree)
+                Catch ex As Exception
+                Finally
+                    If fs IsNot Nothing Then fs.Close()
+                End Try
+
+                Task.Run(New Action(AddressOf CacheFlegs))
+
+                UpdateRoots()
+                TreeListView1.Invalidate()
+            End If
+        End If
+    End Sub
+
 End Class
