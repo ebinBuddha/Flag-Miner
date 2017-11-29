@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FlagMiner</name>
+    </assembly>
+    <members>
+        <member name="M:FlagMiner.ImageListHelper.#ctor(BrightIdeasSoftware.ObjectListView,System.Collections.Concurrent.ConcurrentQueue{System.String})">
+            <summary>
+            Create a SysImageListHelper that will fetch images for the given tree control
+            </summary>
+            <param name="listView">The tree view that will use the images</param>
+        </member>
+        <member name="M:FlagMiner.ImageListHelper.GetImageIndex(System.String)">
+            <summary>
+            Return the index of the image that has the Shell Icon for the given file/directory.
+            </summary>
+            <param name="path">The full path to the file/directory</param>
+            <returns>The index of the image or -1 if something goes wrong.</returns>
+        </member>
+        <member name="M:FlagMiner.Form1.subtractFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg},FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
+            <summary>
+            subtracts src from dest: dest = dest-src
+            </summary>
+            <param name="src">subtrahend</param>
+            <param name="dest">minuend</param>
+            <remarks></remarks>
+        </member>
+        <member name="F:FlagMiner.Form1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:FlagMiner.Form1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:FlagMiner.Form1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:FlagMiner.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.abort">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.check">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.clear">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.collapse">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.copy">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.copyflag">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.download">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.expand">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.link">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.open">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.opt">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.parse">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.purge">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.save">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.subtract">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="M:FlagMiner.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>
