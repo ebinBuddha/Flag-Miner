@@ -4,9 +4,9 @@ Do you want to parse the archives for yourself?
 You came to the right place!
 
 With Flag Miner you can:  
-1. **Mine** the archives of /int/, /pol/ and /sp/ to look for Extra Flags regionals  
+1. **Mine** the archives of 4chan's /int/, /pol/ and /sp/ boards to look for Extra Flags regionals  
 2. **Parse** flag dump posts  
-3. **Mark** all the flags you've already saved and **Purge** all wrong setup flags  
+3. **Check** all the flags you've already saved and **Purge** all wrong setup flags  
 
 <kbd><img src="https://github.com/ebinBuddha/Flag-Miner/raw/master/MinerUI.png" /></kbd>
 
@@ -29,7 +29,7 @@ With Flag Miner you can:
 * Uses ObjectListView: http://objectlistview.sourceforge.net/cs/index.html
 * Uses .Net Framework 4.5
 * Made for Windows
-* May™ work properly on Linux using Wine: there are some problems recognizing the folders
+* May™ not work properly on Linux using Wine: there are some problems recognizing the folders
 
 # How To
 ## 1. Get the program

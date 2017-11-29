@@ -243,6 +243,7 @@ namespace FlagMiner
             this.TitleColumn,
             this.ThreadColumn});
             this.TreeListView1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.TreeListView1.FullRowSelect = true;
             this.TreeListView1.Location = new System.Drawing.Point(375, 8);
             this.TreeListView1.Name = "TreeListView1";
             this.TreeListView1.ShowGroups = false;
@@ -258,6 +259,7 @@ namespace FlagMiner
             this.TreeListView1.VirtualMode = true;
             this.TreeListView1.CellRightClick += new System.EventHandler<BrightIdeasSoftware.CellRightClickEventArgs>(this.olv_CellRightClick);
             this.TreeListView1.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.FormatRow_EventHandler);
+            this.TreeListView1.SelectionChanged += new System.EventHandler(TreeListView1_SelectionChanged);
             // 
             // FlagsColumn
             // 
@@ -611,6 +613,7 @@ namespace FlagMiner
             this.clearmenuItem.Name = "clearmenuItem";
             this.clearmenuItem.Size = new System.Drawing.Size(126, 22);
             this.clearmenuItem.Text = "&Clear all";
+            this.clearmenuItem.Click += new System.EventHandler(this.clearbutt_Click);
             // 
             // toolStrip2
             // 
@@ -664,6 +667,7 @@ namespace FlagMiner
             this.subtractToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.subtractToolStripButton.Text = "toolStripButton2";
             this.subtractToolStripButton.ToolTipText = "Subtract file";
+            this.subtractToolStripButton.Click += new System.EventHandler(this.subtractButt_Click);
             // 
             // SaveToolStripButton
             // 
@@ -674,6 +678,7 @@ namespace FlagMiner
             this.SaveToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.SaveToolStripButton.Text = "toolStripButton3";
             this.SaveToolStripButton.ToolTipText = "Save to file...";
+            this.SaveToolStripButton.Click += new System.EventHandler(this.savebutt_Click);
             // 
             // toolStripSeparator7
             // 
@@ -697,6 +702,7 @@ namespace FlagMiner
             this.mineToolStripMenuItem.Name = "mineToolStripMenuItem";
             this.mineToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.mineToolStripMenuItem.Text = "Mine the archives";
+            this.mineToolStripMenuItem.Click += new System.EventHandler(this.parseBtn_Click);
             // 
             // parseToolStripMenuItem
             // 
@@ -704,6 +710,7 @@ namespace FlagMiner
             this.parseToolStripMenuItem.Name = "parseToolStripMenuItem";
             this.parseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.parseToolStripMenuItem.Text = "Parse flag dump...";
+            this.parseToolStripMenuItem.Click += new System.EventHandler(this.importbutt_Click);
             // 
             // abortToolStripButton
             // 
@@ -730,6 +737,7 @@ namespace FlagMiner
             this.settingsToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.settingsToolStripButton.Text = "toolStripButton5";
             this.settingsToolStripButton.ToolTipText = "Advanced settings";
+            this.settingsToolStripButton.Click += new System.EventHandler(this.optButt_Click);
             // 
             // toolStripSeparator9
             // 
@@ -745,6 +753,7 @@ namespace FlagMiner
             this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.copyToolStripButton.Text = "toolStripButton6";
             this.copyToolStripButton.ToolTipText = "Copy dump to clipboard";
+            this.copyToolStripButton.Click += new System.EventHandler(this.CopyBtn_Click);
             // 
             // toolStripSeparator11
             // 
@@ -761,6 +770,7 @@ namespace FlagMiner
             this.checkToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.checkToolStripButton.Text = "toolStripButton8";
             this.checkToolStripButton.ToolTipText = "Check flags";
+            this.checkToolStripButton.Click += new System.EventHandler(this.checkbutt_Click);
             // 
             // purgeToolStripButton
             // 
@@ -772,6 +782,7 @@ namespace FlagMiner
             this.purgeToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.purgeToolStripButton.Text = "toolStripButton9";
             this.purgeToolStripButton.ToolTipText = "Purge flags";
+            this.purgeToolStripButton.Click += new System.EventHandler(this.purgebutt_Click);
             // 
             // toolStripSeparator12
             // 
@@ -787,6 +798,7 @@ namespace FlagMiner
             this.clearToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.clearToolStripButton.Text = "toolStripButton10";
             this.clearToolStripButton.ToolTipText = "Clear all";
+            this.clearToolStripButton.Click += new System.EventHandler(this.clearbutt_Click);
             // 
             // toolStripSeparator10
             // 
@@ -802,6 +814,8 @@ namespace FlagMiner
             this.copyFlagToolStripButton.Name = "copyFlagToolStripButton";
             this.copyFlagToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.copyFlagToolStripButton.Text = "toolStripButton7";
+            this.copyFlagToolStripButton.ToolTipText = "Copy flag to clipboard";
+            this.copyFlagToolStripButton.Click += new System.EventHandler(this.CopyImageHandler);
             // 
             // saveFlagToolStripButton
             // 
@@ -812,6 +826,8 @@ namespace FlagMiner
             this.saveFlagToolStripButton.Name = "saveFlagToolStripButton";
             this.saveFlagToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.saveFlagToolStripButton.Text = "toolStripButton11";
+            this.saveFlagToolStripButton.ToolTipText = "Save flag...";
+            this.saveFlagToolStripButton.Click += new System.EventHandler(this.SaveImageHandler);
             // 
             // copyLinkToolStripButton
             // 
@@ -822,6 +838,8 @@ namespace FlagMiner
             this.copyLinkToolStripButton.Name = "copyLinkToolStripButton";
             this.copyLinkToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.copyLinkToolStripButton.Text = "toolStripButton12";
+            this.copyLinkToolStripButton.ToolTipText = "Copy link to clipboard";
+            this.copyLinkToolStripButton.Click += new System.EventHandler(this.CopyLinkHandler);
             // 
             // collapseToolStripButton
             // 

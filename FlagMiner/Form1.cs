@@ -1364,7 +1364,8 @@ namespace FlagMiner
 
 		private void CopyImageHandler(object sender, EventArgs e)
 		{
-			RegionalFleg regFlag = (RegionalFleg)((ToolStripMenuItem)sender).Owner.Tag;
+			//RegionalFleg regFlag = (RegionalFleg)((ToolStripMenuItem)sender).Owner.Tag;
+            RegionalFleg regFlag = ((KeyValuePair<string,RegionalFleg>)TreeListView1.SelectedItem.RowObject).Value;
 			try {
 				Image image = ImageListHelper.ScrapeImage(regFlag.imgurl);
 				Clipboard.SetImage(image);
@@ -1375,7 +1376,8 @@ namespace FlagMiner
 
 		private void SaveImageHandler(object sender, EventArgs e)
 		{
-			RegionalFleg regFlag = (RegionalFleg)((ToolStripMenuItem)sender).Owner.Tag;
+            //RegionalFleg regFlag = (RegionalFleg)((ToolStripMenuItem)sender).Owner.Tag;
+            RegionalFleg regFlag = ((KeyValuePair<string, RegionalFleg>)TreeListView1.SelectedItem.RowObject).Value;
 			try {
 				Image image = ImageListHelper.ScrapeImage(regFlag.imgurl);
 				string initString = null;
@@ -1403,7 +1405,8 @@ namespace FlagMiner
 
 		private void CopyLinkHandler(object sender, EventArgs e)
 		{
-			RegionalFleg regFlag = (RegionalFleg)((ToolStripMenuItem)sender).Owner.Tag;
+            //RegionalFleg regFlag = (RegionalFleg)((ToolStripMenuItem)sender).Owner.Tag;
+            RegionalFleg regFlag = ((KeyValuePair<string, RegionalFleg>)TreeListView1.SelectedItem.RowObject).Value;
 			Clipboard.SetText(regFlag.thread);
 		}
 
@@ -1480,6 +1483,19 @@ namespace FlagMiner
 			InitializeComponent();
 		}
 
+        void TreeListView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (((TreeListView)sender).SelectedObjects.Count !=0) {
+                copyFlagToolStripButton.Enabled = true;
+                saveFlagToolStripButton.Enabled = true;
+                copyLinkToolStripButton.Enabled = true;
+            } else {
+                copyFlagToolStripButton.Enabled = false;
+                saveFlagToolStripButton.Enabled = false;
+                copyLinkToolStripButton.Enabled = false;
+            }
+        }
+
         /// <summary>
         /// subtracts src from dest: dest = dest-src
         /// </summary>
@@ -1545,6 +1561,5 @@ namespace FlagMiner
                 }
             }
         }
-
 	}
 }
