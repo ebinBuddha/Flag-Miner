@@ -114,18 +114,6 @@ namespace FlagMiner
             this.copyLinkToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.collapseToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.expandToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.loadbutt = new System.Windows.Forms.Button();
-            this.savebutt = new System.Windows.Forms.Button();
-            this.subtractButt = new System.Windows.Forms.Button();
-            this.clearbutt = new System.Windows.Forms.Button();
-            this.purgebutt = new System.Windows.Forms.Button();
-            this.checkbutt = new System.Windows.Forms.Button();
-            this.CopyBtn = new System.Windows.Forms.Button();
-            this.optButt = new System.Windows.Forms.Button();
-            this.aboutButt = new System.Windows.Forms.Button();
-            this.parsebutt = new System.Windows.Forms.Button();
-            this.AbortButt = new System.Windows.Forms.Button();
-            this.mineBtn = new System.Windows.Forms.Button();
             this.GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TreeListView1)).BeginInit();
             this.GroupBox1.SuspendLayout();
@@ -164,7 +152,7 @@ namespace FlagMiner
             this.CheckBox2.AutoSize = true;
             this.CheckBox2.Checked = true;
             this.CheckBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CheckBox2.Location = new System.Drawing.Point(122, 18);
+            this.CheckBox2.Location = new System.Drawing.Point(6, 19);
             this.CheckBox2.Name = "CheckBox2";
             this.CheckBox2.Size = new System.Drawing.Size(139, 17);
             this.CheckBox2.TabIndex = 38;
@@ -174,7 +162,7 @@ namespace FlagMiner
             // CheckBox1
             // 
             this.CheckBox1.AutoSize = true;
-            this.CheckBox1.Location = new System.Drawing.Point(6, 18);
+            this.CheckBox1.Location = new System.Drawing.Point(6, 42);
             this.CheckBox1.Name = "CheckBox1";
             this.CheckBox1.Size = new System.Drawing.Size(118, 17);
             this.CheckBox1.TabIndex = 37;
@@ -216,7 +204,7 @@ namespace FlagMiner
             // 
             this.DateTimePicker1.CustomFormat = "yyyy/MM/dd HH:mm";
             this.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateTimePicker1.Location = new System.Drawing.Point(6, 37);
+            this.DateTimePicker1.Location = new System.Drawing.Point(6, 62);
             this.DateTimePicker1.Name = "DateTimePicker1";
             this.DateTimePicker1.Size = new System.Drawing.Size(159, 20);
             this.DateTimePicker1.TabIndex = 34;
@@ -224,16 +212,15 @@ namespace FlagMiner
             // 
             // GroupBox2
             // 
-            this.GroupBox2.Controls.Add(this.optButt);
             this.GroupBox2.Controls.Add(this.CheckBox2);
             this.GroupBox2.Controls.Add(this.CheckBox1);
             this.GroupBox2.Controls.Add(this.DateTimePicker1);
             this.GroupBox2.Location = new System.Drawing.Point(102, 6);
             this.GroupBox2.Name = "GroupBox2";
-            this.GroupBox2.Size = new System.Drawing.Size(267, 59);
+            this.GroupBox2.Size = new System.Drawing.Size(267, 89);
             this.GroupBox2.TabIndex = 42;
             this.GroupBox2.TabStop = false;
-            this.GroupBox2.Text = "options";
+            this.GroupBox2.Text = "Options";
             // 
             // TitleColumn
             // 
@@ -324,10 +311,11 @@ namespace FlagMiner
             // 
             // ProgressBar1
             // 
-            this.ProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ProgressBar1.Location = new System.Drawing.Point(6, 409);
             this.ProgressBar1.Name = "ProgressBar1";
-            this.ProgressBar1.Size = new System.Drawing.Size(363, 23);
+            this.ProgressBar1.Size = new System.Drawing.Size(853, 23);
             this.ProgressBar1.TabIndex = 38;
             // 
             // PopUpMenu
@@ -410,21 +398,10 @@ namespace FlagMiner
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.subtractButt);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.Label2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.GroupBox1);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.aboutButt);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.mineBtn);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.parsebutt);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.AbortButt);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.checkbutt);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.StatusText);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.purgebutt);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.clearbutt);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.savebutt);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.ProgressBar1);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.loadbutt);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.CopyBtn);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.TreeListView1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.Label1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.GroupBox2);
@@ -870,145 +847,6 @@ namespace FlagMiner
             this.expandToolStripButton.ToolTipText = "Expand all";
             this.expandToolStripButton.Click += new System.EventHandler(this.ExpandHandler);
             // 
-            // loadbutt
-            // 
-            this.loadbutt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadbutt.Enabled = false;
-            this.loadbutt.Location = new System.Drawing.Point(793, 409);
-            this.loadbutt.Name = "loadbutt";
-            this.loadbutt.Size = new System.Drawing.Size(66, 23);
-            this.loadbutt.TabIndex = 47;
-            this.loadbutt.Text = "Load tree";
-            this.loadbutt.UseVisualStyleBackColor = true;
-            this.loadbutt.Click += new System.EventHandler(this.loadbutt_Click);
-            // 
-            // savebutt
-            // 
-            this.savebutt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.savebutt.Enabled = false;
-            this.savebutt.Location = new System.Drawing.Point(721, 409);
-            this.savebutt.Name = "savebutt";
-            this.savebutt.Size = new System.Drawing.Size(66, 23);
-            this.savebutt.TabIndex = 48;
-            this.savebutt.Text = "Save tree";
-            this.savebutt.UseVisualStyleBackColor = true;
-            this.savebutt.Click += new System.EventHandler(this.savebutt_Click);
-            // 
-            // subtractButt
-            // 
-            this.subtractButt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.subtractButt.Enabled = false;
-            this.subtractButt.Location = new System.Drawing.Point(649, 409);
-            this.subtractButt.Name = "subtractButt";
-            this.subtractButt.Size = new System.Drawing.Size(66, 23);
-            this.subtractButt.TabIndex = 53;
-            this.subtractButt.Text = "Subtract";
-            this.subtractButt.UseVisualStyleBackColor = true;
-            this.subtractButt.Click += new System.EventHandler(this.subtractButt_Click);
-            // 
-            // clearbutt
-            // 
-            this.clearbutt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearbutt.Enabled = false;
-            this.clearbutt.Location = new System.Drawing.Point(593, 409);
-            this.clearbutt.Name = "clearbutt";
-            this.clearbutt.Size = new System.Drawing.Size(50, 23);
-            this.clearbutt.TabIndex = 40;
-            this.clearbutt.Text = "Clear";
-            this.clearbutt.UseVisualStyleBackColor = true;
-            this.clearbutt.Click += new System.EventHandler(this.clearbutt_Click);
-            // 
-            // purgebutt
-            // 
-            this.purgebutt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.purgebutt.Enabled = false;
-            this.purgebutt.Location = new System.Drawing.Point(537, 409);
-            this.purgebutt.Name = "purgebutt";
-            this.purgebutt.Size = new System.Drawing.Size(50, 23);
-            this.purgebutt.TabIndex = 49;
-            this.purgebutt.Text = "Purge";
-            this.ToolTip2.SetToolTip(this.purgebutt, "Button is disabled. To enable it, open the Options dialog to properly configure t" +
-        "he folders.");
-            this.purgebutt.UseVisualStyleBackColor = true;
-            this.purgebutt.Click += new System.EventHandler(this.purgebutt_Click);
-            // 
-            // checkbutt
-            // 
-            this.checkbutt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkbutt.Enabled = false;
-            this.checkbutt.Location = new System.Drawing.Point(481, 409);
-            this.checkbutt.Name = "checkbutt";
-            this.checkbutt.Size = new System.Drawing.Size(50, 23);
-            this.checkbutt.TabIndex = 50;
-            this.checkbutt.Text = "Check";
-            this.ToolTip1.SetToolTip(this.checkbutt, "Button is disabled. To enable it, open the Options dialog to properly configure t" +
-        "he folders.");
-            this.checkbutt.UseVisualStyleBackColor = true;
-            this.checkbutt.Click += new System.EventHandler(this.checkbutt_Click);
-            // 
-            // CopyBtn
-            // 
-            this.CopyBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CopyBtn.Location = new System.Drawing.Point(374, 409);
-            this.CopyBtn.Name = "CopyBtn";
-            this.CopyBtn.Size = new System.Drawing.Size(101, 23);
-            this.CopyBtn.TabIndex = 43;
-            this.CopyBtn.Text = "Copy to clipboard";
-            this.CopyBtn.UseVisualStyleBackColor = true;
-            this.CopyBtn.Click += new System.EventHandler(this.CopyBtn_Click);
-            // 
-            // optButt
-            // 
-            this.optButt.Image = global::FlagMiner.Properties.Resources.opt;
-            this.optButt.Location = new System.Drawing.Point(243, 35);
-            this.optButt.Name = "optButt";
-            this.optButt.Size = new System.Drawing.Size(24, 24);
-            this.optButt.TabIndex = 35;
-            this.optButt.UseVisualStyleBackColor = true;
-            this.optButt.Click += new System.EventHandler(this.optButt_Click);
-            // 
-            // aboutButt
-            // 
-            this.aboutButt.Location = new System.Drawing.Point(345, 71);
-            this.aboutButt.Name = "aboutButt";
-            this.aboutButt.Size = new System.Drawing.Size(24, 24);
-            this.aboutButt.TabIndex = 52;
-            this.aboutButt.Text = "?";
-            this.aboutButt.UseVisualStyleBackColor = true;
-            this.aboutButt.Click += new System.EventHandler(this.aboutButt_Click);
-            // 
-            // parsebutt
-            // 
-            this.parsebutt.Enabled = false;
-            this.parsebutt.Location = new System.Drawing.Point(265, 71);
-            this.parsebutt.Name = "parsebutt";
-            this.parsebutt.Size = new System.Drawing.Size(74, 24);
-            this.parsebutt.TabIndex = 51;
-            this.parsebutt.Text = "Parse posts";
-            this.parsebutt.UseVisualStyleBackColor = true;
-            this.parsebutt.Click += new System.EventHandler(this.importbutt_Click);
-            // 
-            // AbortButt
-            // 
-            this.AbortButt.Enabled = false;
-            this.AbortButt.Location = new System.Drawing.Point(185, 71);
-            this.AbortButt.Name = "AbortButt";
-            this.AbortButt.Size = new System.Drawing.Size(74, 24);
-            this.AbortButt.TabIndex = 37;
-            this.AbortButt.Text = "Abort";
-            this.AbortButt.UseVisualStyleBackColor = true;
-            this.AbortButt.Click += new System.EventHandler(this.AbortButt_Click);
-            // 
-            // mineBtn
-            // 
-            this.mineBtn.Location = new System.Drawing.Point(102, 71);
-            this.mineBtn.Name = "mineBtn";
-            this.mineBtn.Size = new System.Drawing.Size(77, 24);
-            this.mineBtn.TabIndex = 36;
-            this.mineBtn.Text = "Mine it!";
-            this.mineBtn.UseVisualStyleBackColor = true;
-            this.mineBtn.Click += new System.EventHandler(this.parseBtn_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1123,17 +961,5 @@ namespace FlagMiner
         private ToolStripMenuItem parseToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator13;
         private ToolStripMenuItem clearmenuItem;
-        private Button optButt;
-        private Button subtractButt;
-        private Button aboutButt;
-        private Button mineBtn;
-        private Button parsebutt;
-        private Button AbortButt;
-        private Button checkbutt;
-        private Button purgebutt;
-        private Button clearbutt;
-        private Button savebutt;
-        private Button loadbutt;
-        private Button CopyBtn;
 	}
 }

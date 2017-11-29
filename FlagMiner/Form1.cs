@@ -228,113 +228,92 @@ namespace FlagMiner
 
 		public void SetupForParsing()
 		{
-			AbortButt.Enabled = true;
             abortMenuItem.Enabled = true;
             abortToolStripButton.Enabled = true;
-			mineBtn.Enabled = false;
+
             mineMenuItem.Enabled = false;
             mineToolStripMenuItem.Enabled = false;
 
-			CopyBtn.Enabled = false;
             copyMenuItem.Enabled = true;
             copyToolStripButton.Enabled = true;
 
-			clearbutt.Enabled = false;
             clearmenuItem.Enabled = false;
             clearToolStripButton.Enabled = false;
 
-			savebutt.Enabled = false;
             saveMenuItem.Enabled = false;
             SaveToolStripButton.Enabled = false;
 
-			loadbutt.Enabled = false;
             loadMenuItem.Enabled = false;
             loadToolStripButton.Enabled = false;
 
-			purgebutt.Enabled = false;
             purgeMenuItem.Enabled = false;
             purgeToolStripButton.Enabled = false;
 			ToolTip2.Active = false;
 
-			checkbutt.Enabled = false;
             checkMenuItem.Enabled = false;
             checkToolStripButton.Enabled = false;
 			ToolTip1.Active = false;
 
-            subtractButt.Enabled = false;
             subtractMenuItem.Enabled = false;
             subtractToolStripButton.Enabled = false;
 
-			parsebutt.Enabled = false;
             parseMenuItem.Enabled = false;
             parseToolStripMenuItem.Enabled = false;
 
 			GroupBox1.Enabled = false;
 			GroupBox2.Enabled = false;
-
-			//CommitAll.Enabled = False
-			//CommitSel.Enabled = False
 		}
 
 		public void SetupForIdle()
 		{
-			AbortButt.Enabled = false;
             abortMenuItem.Enabled = false;
             abortToolStripButton.Enabled = false;
-			mineBtn.Enabled = true;
+
             mineMenuItem.Enabled = true;
             mineToolStripMenuItem.Enabled = true;
 
-			CopyBtn.Enabled = true;
+
             copyMenuItem.Enabled = true;
             copyToolStripButton.Enabled = true;
 
-			clearbutt.Enabled = true;
+
             clearmenuItem.Enabled = true;
             clearToolStripButton.Enabled = true;
 
-			savebutt.Enabled = true;
+
             saveMenuItem.Enabled = true;
             SaveToolStripButton.Enabled = true;
 
-			loadbutt.Enabled = true;
+
             loadMenuItem.Enabled = true;
             loadToolStripButton.Enabled = true;
 
 			if (options.enablePurge) {
-				purgebutt.Enabled = true;
                 purgeMenuItem.Enabled = true;
                 purgeToolStripButton.Enabled = true;
 				ToolTip2.Active = false;
 			} else {
-				purgebutt.Enabled = false;
                 purgeMenuItem.Enabled = false;
                 purgeToolStripButton.Enabled = false;
 				ToolTip2.Active = true;
 			}
 			if (options.enableCheck) {
-				checkbutt.Enabled = true;
                 checkMenuItem.Enabled = true;
                 checkToolStripButton.Enabled = true;
 				ToolTip1.Active = false;
 			} else {
-				checkbutt.Enabled = false;
                 checkMenuItem.Enabled = false;
                 checkToolStripButton.Enabled = false;
 				ToolTip1.Active = true;
 			}
-            subtractButt.Enabled = true;
             subtractMenuItem.Enabled = true;
             subtractToolStripButton.Enabled = true;
 
-			parsebutt.Enabled = true;
             parseMenuItem.Enabled = true;
             parseToolStripMenuItem.Enabled = true;
 
 			GroupBox1.Enabled = true;
 			GroupBox2.Enabled = true;
-			//CommitAll.Enabled = True
-			//CommitSel.Enabled = True
 		}
 
 		public delegate void AppendTextCallBack(string str);
@@ -466,7 +445,7 @@ namespace FlagMiner
 		{
 			var threadDbName = board + ".db";
 
-			// database coi thread già visti
+			// database with already seen threads
 			if (System.IO.File.Exists(threadDbName)) {
 				SerializableDictionary<string, long> tempList = null;
 				FileStream fs = new FileStream(threadDbName, FileMode.Open);
@@ -1458,7 +1437,7 @@ namespace FlagMiner
 			}
 		}
 
-		private void Form1_MouseMove(object sender, MouseEventArgs e)
+		/*private void Form1_MouseMove(object sender, MouseEventArgs e)
 		{
 			Control parent = (Control)sender;
 			if (parent == null)
@@ -1492,10 +1471,10 @@ namespace FlagMiner
 					ToolTip2.Tag = null;
 				}
 			}
-		}
+		}*/
 		public Form1()
 		{
-			MouseMove += Form1_MouseMove;
+			//MouseMove += Form1_MouseMove;
 			Load += Form1_Load;
 			FormClosing += Form1_FormClosing;
 			InitializeComponent();
