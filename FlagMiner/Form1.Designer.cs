@@ -158,6 +158,7 @@ namespace FlagMiner
             this.CheckBox2.TabIndex = 38;
             this.CheckBox2.Text = "exclude previously seen";
             this.CheckBox2.UseVisualStyleBackColor = true;
+            this.CheckBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
             // 
             // CheckBox1
             // 
@@ -722,6 +723,7 @@ namespace FlagMiner
             this.abortToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.abortToolStripButton.Text = "toolStripButton4";
             this.abortToolStripButton.ToolTipText = "Abort";
+            this.abortToolStripButton.Click += new System.EventHandler(this.AbortButt_Click);
             // 
             // toolStripSeparator8
             // 

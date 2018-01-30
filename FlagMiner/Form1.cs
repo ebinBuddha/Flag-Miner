@@ -149,7 +149,7 @@ namespace FlagMiner
 							board,
 							threads.Count
 						});
-						//Thread.Sleep(50) ' do not flood the server and get banned
+                        Thread.Sleep(850); // do not flood the server and get banned
 						try {
 							string rawResponse = null;
 							errorCode = loadThread(board, threads[i], out rawResponse);
@@ -173,7 +173,7 @@ namespace FlagMiner
 								SerializableDictionary<string, RegionalFleg> flagTree = new SerializableDictionary<string, RegionalFleg>();
 								errorCode = mergeFlegs(parsedFlegs, ref flagTree);
 
-								//TreeListView1.Roots = flagTree   ' TODO inviare a concurrent stack e inizializzare rootmanager
+								//TreeListView1.Roots = flagTree   ' TODO send to concurrent stack and init the rootmanager
 								rootManager.AddToStack(flagTree);
 							}
 							excludedThreads.TryAdd(threads[i], finalTime);
@@ -674,6 +674,8 @@ namespace FlagMiner
 		{
 			LoadOptions();
 
+            ser.MaxJsonLength = 10 * 1024 * 1024;
+
             // otherwise drunkensailor complains 
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
@@ -932,8 +934,8 @@ namespace FlagMiner
 			} else {
 				StatusText.AppendText(DateTime.Now + " : Parsing completed." + System.Environment.NewLine);
 				SetupForIdle();
-				var res = WindowsApi.FlashWindow( Process.GetCurrentProcess().MainWindowHandle, true, true, 5);
 			}
+            var res = WindowsApi.FlashWindow(Process.GetCurrentProcess().MainWindowHandle, true, true, 5);
 		}
 
 		public void returnPasta(SerializableDictionary<string, RegionalFleg> dict, string str, ref StringBuilder pasta)
@@ -1265,7 +1267,7 @@ namespace FlagMiner
 					"N/A",
 					threads.Count
 				});
-				Thread.Sleep(50);
+				Thread.Sleep(950);
 				// do not flood the server and get banned
 				try {
 					string rawResponse = null;
