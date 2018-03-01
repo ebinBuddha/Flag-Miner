@@ -10,6 +10,8 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Net;
+
 namespace FlagMiner
 {
 
@@ -25,28 +27,39 @@ namespace FlagMiner
 		public List<Tuple<string, string, string>> links;
 		private void Button1_Click(object sender, EventArgs e)
 		{
-			int errorCode = 0;
-			string rawResponse = null;
-			//Dim board, thread As String
+            try
+            {
+                int errorCode = 0;
+                string rawResponse = null;
+                //Dim board, thread As String
 
-			Uri uri = new Uri(TextBox1.Text);
-			string parsedUrl = uri.GetLeftPart(UriPartial.Path);
+                Uri uri = new Uri(TextBox1.Text);
+                string parsedUrl = uri.GetLeftPart(UriPartial.Path);
 
-			errorCode = myForm1.loadThread(null, null, out rawResponse, parsedUrl);
+                errorCode = myForm1.loadThread(null, null, out rawResponse, parsedUrl);
 
-			List<Post> posts = null;
-			errorCode = myForm1.parseThread(rawResponse, ref posts);
+                List<Post> posts = null;
+                errorCode = myForm1.parseThread(rawResponse, ref posts);
 
-			List<ulong> sourcePosts = new List<ulong>();
-			errorCode = parseStrings(ref posts, ref sourcePosts);
+                List<ulong> sourcePosts = new List<ulong>();
+                errorCode = parseStrings(ref posts, ref sourcePosts);
 
-			List<Post> trimmedPosts = new List<Post>();
-			errorCode = filterPosts(ref posts, ref sourcePosts, trimmedPosts);
+                List<Post> trimmedPosts = new List<Post>();
+                errorCode = filterPosts(ref posts, ref sourcePosts, trimmedPosts);
 
-			links = new List<Tuple<string, string, string>>();
-			errorCode = gatherLinks(ref trimmedPosts, ref links);
+                links = new List<Tuple<string, string, string>>();
+                errorCode = gatherLinks(ref trimmedPosts, ref links);
 
-			this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+            catch (WebException ex)
+            {
+                myForm1.AppendText(DateTime.Now + " : " + ex.ToString() + System.Environment.NewLine);
+            }
+            catch (Exception ex)
+            {
+                myForm1.AppendText(DateTime.Now + " : " + ex.ToString() + System.Environment.NewLine);
+            }
 		}
 
 		private void Button2_Click(object sender, EventArgs e)

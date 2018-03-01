@@ -179,6 +179,7 @@ namespace FlagMiner
             // 
             this.OpenXmlDialog.FileName = "SavedTree.xml";
             this.OpenXmlDialog.Filter = "Xml files|*.xml|All files|*.*";
+            this.OpenXmlDialog.Multiselect = true;
             // 
             // SaveXmlDialog
             // 
@@ -260,7 +261,7 @@ namespace FlagMiner
             this.TreeListView1.VirtualMode = true;
             this.TreeListView1.CellRightClick += new System.EventHandler<BrightIdeasSoftware.CellRightClickEventArgs>(this.olv_CellRightClick);
             this.TreeListView1.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.FormatRow_EventHandler);
-            this.TreeListView1.SelectionChanged += new System.EventHandler(TreeListView1_SelectionChanged);
+            this.TreeListView1.SelectionChanged += new System.EventHandler(this.TreeListView1_SelectionChanged);
             // 
             // FlagsColumn
             // 

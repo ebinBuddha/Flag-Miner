@@ -317,7 +317,7 @@ namespace FlagMiner
 		}
 
 		public delegate void AppendTextCallBack(string str);
-		private void AppendText(string str)
+		public void AppendText(string str)
 		{
 			AppendTextCallBack d = new AppendTextCallBack(appendTextCallBackFunction);
 			this.Invoke(d, str);
@@ -1009,27 +1009,45 @@ namespace FlagMiner
 		{
             if (MessageBox.Show("Load tree from file? It will be merged with the current tree", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
-				OpenXmlDialog.InitialDirectory = options.saveAndLoadFolder;
-				if (OpenXmlDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-					string currentFile = OpenXmlDialog.FileName;
-					SerializableDictionary<string, RegionalFleg> temptree = null;
-					FileStream fs = null;
-					try {
-						fs = new FileStream(currentFile, FileMode.Open);
-						XmlSerializer treeSerializer = new XmlSerializer(typeof(SerializableDictionary<string, RegionalFleg>));
-                        temptree = (SerializableDictionary<string, RegionalFleg>)treeSerializer.Deserialize(fs);
-						mergeFlegs(temptree.Values.ToList(), ref MainTree);
-					} catch (Exception ex) {
-					} finally {
-						if (fs != null)
-							fs.Close();
-					}
+                try
+                {
+                    OpenXmlDialog.InitialDirectory = options.saveAndLoadFolder;
+                    if (OpenXmlDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        foreach (string fileName in OpenXmlDialog.FileNames)
+                        {
+                            string currentFile = fileName;
+                            SerializableDictionary<string, RegionalFleg> temptree = null;
+                            FileStream fs = null;
+                            try
+                            {
+                                fs = new FileStream(currentFile, FileMode.Open);
+                                XmlSerializer treeSerializer = new XmlSerializer(typeof(SerializableDictionary<string, RegionalFleg>));
+                                temptree = (SerializableDictionary<string, RegionalFleg>)treeSerializer.Deserialize(fs);
+                                mergeFlegs(temptree.Values.ToList(), ref MainTree);
+                            }
+                            catch (Exception ex)
+                            {
+                                AppendText(DateTime.Now + " : " + "Error processing file " + fileName + " " + ex.ToString() + System.Environment.NewLine);
+                            }
+                            finally
+                            {
+                                if (fs != null)
+                                    fs.Close();
+                            }
+                        }
 
-					Task.Run(new Action(CacheFlegs));
+                        Task.Run(new Action(CacheFlegs));
 
-					UpdateRoots();
-					TreeListView1.Invalidate();
-				}
+                        UpdateRoots();
+                        TreeListView1.Invalidate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    AppendText(DateTime.Now + " : " + ex.ToString() + System.Environment.NewLine);
+                    MessageBox.Show("Error during the process", "Flag Miner", MessageBoxButtons.OK);
+                }
 			}
 
 		}
@@ -1267,7 +1285,7 @@ namespace FlagMiner
 					"N/A",
 					threads.Count
 				});
-				Thread.Sleep(950);
+				Thread.Sleep(1000);
 				// do not flood the server and get banned
 				try {
 					string rawResponse = null;
@@ -1534,32 +1552,42 @@ namespace FlagMiner
         {
             if (MessageBox.Show("Import the flags to subtract from the current tree? The action cannot be undone.", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
-                OpenXmlDialog.InitialDirectory = options.saveAndLoadFolder;
-                if (OpenXmlDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                try
                 {
-                    String currentFile = OpenXmlDialog.FileName;
-                    SerializableDictionary<String, RegionalFleg> temptree;
-                    FileStream fs = null;
-                    try
+                    OpenXmlDialog.InitialDirectory = options.saveAndLoadFolder;
+                    if (OpenXmlDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
-                        fs = new FileStream(currentFile, FileMode.Open);
-                        XmlSerializer treeSerializer =
-                            new XmlSerializer(typeof(SerializableDictionary<String, RegionalFleg>));
-                        temptree = (SerializableDictionary<String, RegionalFleg>)treeSerializer.Deserialize(fs);
-                        subtractFlegs(temptree, ref MainTree);
-                    }
-                    catch (Exception ex)
-                    {
-                    }
-                    finally
-                    {
-                        if (fs != null) fs.Close();
-                    }
+                        foreach (string fileName in OpenXmlDialog.FileNames)
+                        {
+                            String currentFile = fileName;
+                            SerializableDictionary<String, RegionalFleg> temptree;
+                            FileStream fs = null;
+                            try
+                            {
+                                fs = new FileStream(currentFile, FileMode.Open);
+                                XmlSerializer treeSerializer =
+                                    new XmlSerializer(typeof(SerializableDictionary<String, RegionalFleg>));
+                                temptree = (SerializableDictionary<String, RegionalFleg>)treeSerializer.Deserialize(fs);
+                                subtractFlegs(temptree, ref MainTree);
+                            }
+                            catch (Exception ex)
+                            {
+                                AppendText(DateTime.Now + " : " + "Error processing file " + fileName + " " + ex.ToString() + System.Environment.NewLine);
+                            }
+                            finally
+                            {
+                                if (fs != null) fs.Close();
+                            }
+                        }
 
-                    Task.Run(new Action(CacheFlegs));
-
-                    UpdateRoots();
-                    TreeListView1.Invalidate();
+                        Task.Run(new Action(CacheFlegs));
+                        UpdateRoots();
+                        TreeListView1.Invalidate();
+                    }
+                }
+                catch (Exception ex) {
+                    AppendText(DateTime.Now + " : " + ex.ToString() + System.Environment.NewLine);
+                    MessageBox.Show("Error during the process", "Flag Miner", MessageBoxButtons.OK);
                 }
             }
         }
