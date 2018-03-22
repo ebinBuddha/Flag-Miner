@@ -157,6 +157,8 @@ namespace FlagMiner
             if (MessageBox.Show("Restore default server address?", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
                 this.backendServers.Clear();
+                // DEFAULT SERVERS
+                this.backendServers.Text += "https://whatisthisimnotgoodwithcomputers.com/\n";
                 this.backendServers.Text += "https://flagtism.drunkensailor.org/\n";
             }
         }

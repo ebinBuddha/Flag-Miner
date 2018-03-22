@@ -149,7 +149,7 @@ namespace FlagMiner
 							board,
 							threads.Count
 						});
-                        Thread.Sleep(850); // do not flood the server and get banned
+                        Thread.Sleep(750); // do not flood the server and get banned
 						try {
 							string rawResponse = null;
 							errorCode = loadThread(board, threads[i], out rawResponse);
@@ -1285,7 +1285,7 @@ namespace FlagMiner
 					"N/A",
 					threads.Count
 				});
-				Thread.Sleep(1000);
+				Thread.Sleep(750);
 				// do not flood the server and get banned
 				try {
 					string rawResponse = null;
