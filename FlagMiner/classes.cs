@@ -218,6 +218,8 @@ namespace FlagMiner
 		public string userAgent;
 
 		public string saveAndLoadFolder;
+
+        public string repoUrl;
 	}
 }
 namespace FlagMiner

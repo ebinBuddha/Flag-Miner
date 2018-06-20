@@ -43,6 +43,7 @@ namespace FlagMiner
             this.userAgent.Text = myForm1.options.userAgent;
             this.saveAndLoadFolder.Text = myForm1.options.saveAndLoadFolder;
             this.deleteChildFree.Checked = myForm1.options.deleteChildFree;
+            this.repoUrl.Text = myForm1.options.repoUrl;
             this.backendServers.Clear();
             foreach (string st in myForm1.options.backendServers)
             {
@@ -61,22 +62,23 @@ namespace FlagMiner
 			if (!this.ValidateChildren()) {
 				this.DialogResult = DialogResult.None;
 			} else {
+                OptionsForm_UpdateOpts();
 				this.DialogResult = System.Windows.Forms.DialogResult.OK;
 			}
 		}
 
-		private void localSaveFolder_Validated(object sender, EventArgs e)
+		private void OptionsForm_UpdateOpts()
 		{
-			myForm1.options.localSaveFolder = this.localSaveFolder.Text;
-			myForm1.options.localRepoFolder = this.localRepoFolder.Text;
-			myForm1.options.enableCheck = this.enableCheck.Checked;
-			myForm1.options.enablePurge = this.enablePurge.Checked;
-			myForm1.options.useLocal = this.RadioButton1.Checked;
-			myForm1.options.markTroll = this.markTroll.Checked;
-			myForm1.options.userAgent = this.userAgent.Text;
-			myForm1.options.saveAndLoadFolder = this.saveAndLoadFolder.Text;
-			myForm1.options.deleteChildFree = this.deleteChildFree.Checked;
-
+            myForm1.options.localSaveFolder = this.localSaveFolder.Text;
+            myForm1.options.localRepoFolder = this.localRepoFolder.Text;
+            myForm1.options.enableCheck = this.enableCheck.Checked;
+            myForm1.options.enablePurge = this.enablePurge.Checked;
+            myForm1.options.useLocal = this.RadioButton1.Checked;
+            myForm1.options.markTroll = this.markTroll.Checked;
+            myForm1.options.userAgent = this.userAgent.Text;
+            myForm1.options.saveAndLoadFolder = this.saveAndLoadFolder.Text;
+            myForm1.options.deleteChildFree = this.deleteChildFree.Checked;
+            myForm1.options.repoUrl = this.repoUrl.Text;
             myForm1.options.backendServers.Clear();
             foreach (string st in this.backendServers.Lines)
             {
@@ -115,6 +117,16 @@ namespace FlagMiner
 				return;
 			}
 		}
+
+        private void repoUrl_Validating(object sender, CancelEventArgs e)
+        {
+            if ((string.IsNullOrEmpty(repoUrl.Text) || string.IsNullOrWhiteSpace(repoUrl.Text)))
+            {
+                MessageBox.Show("Insert a valid Url for the Repository or press Default", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Cancel = true;
+                return;
+            }
+        }
 
 		private void Button3_Click(object sender, EventArgs e)
 		{
@@ -161,6 +173,11 @@ namespace FlagMiner
                 this.backendServers.Text += "https://whatisthisimnotgoodwithcomputers.com/\n";
                 this.backendServers.Text += "https://flagtism.drunkensailor.org/\n";
             }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            this.repoUrl.Text = "https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/";
         }
 
 

@@ -43,7 +43,8 @@ namespace FlagMiner
 		public string catalogStr = "/archive.json";
 
 		XmlSerializer xs = new XmlSerializer(typeof(SerializableDictionary<string, long>));
-		string flegsBaseUrl = "https://raw.githubusercontent.com/flaghunters/Extra-Flags-for-int-/master/flags/";
+		string DefaultflegsBaseUrl = "https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/";
+        string flegsBaseUrl = "";
 			// // not https bcs installing the certificate on wine is a nightmare
 		string backendBaseUrl = "http://whatisthisimnotgoodwithcomputers.com/";
 
@@ -668,6 +669,7 @@ namespace FlagMiner
 			spCheck.Checked = options.spCheck;
 			CheckBox1.Checked = options.exclusionByDate;
 			CheckBox2.Checked = options.exclusionByList;
+            flegsBaseUrl = options.repoUrl;
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
@@ -1196,6 +1198,8 @@ namespace FlagMiner
 			//Dim baseFile0 = basestr & ".gif"
 			//Dim baseFile1 = basestr & ".png"
 			string initString = "";
+            if (string.IsNullOrEmpty(flegsBaseUrl))
+                throw new Exception("Repository url is not set.");
 			if (fleg.imgurl.Contains(flegsBaseUrl))
 				initString = options.localSaveFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
 			// for regionals
@@ -1221,12 +1225,20 @@ namespace FlagMiner
 		{
             if (MessageBox.Show("Mark existent flags?", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
-				var level = 0;
-				foreach (KeyValuePair<string, RegionalFleg> ke in MainTree) {
-					checkExistent(ke.Value, MainTree, level);
-				}
-				UpdateRoots();
-				TreeListView1.Invalidate();
+                try
+                {
+                    var level = 0;
+                    foreach (KeyValuePair<string, RegionalFleg> ke in MainTree)
+                    {
+                        checkExistent(ke.Value, MainTree, level);
+                    }
+                    UpdateRoots();
+                    TreeListView1.Invalidate();
+                }
+                catch (Exception ex)
+                {
+                    AppendText(DateTime.Now + " : " + ex.ToString() + System.Environment.NewLine);
+                }
 			}
 		}
 
@@ -1435,6 +1447,8 @@ namespace FlagMiner
 		{
             if (optionsForm == null) optionsForm = new OptionsForm(this);
 			optionsForm.ShowDialog();
+            SaveOptions();
+            LoadOptions();
 			SetupForIdle();
 		}
 
@@ -1456,8 +1470,18 @@ namespace FlagMiner
 		private void ValidateOptions()
 		{
 			if (string.IsNullOrEmpty(options.userAgent)) {
-				options.userAgent = DefaultUserAgent;
+                throw new Exception("User Agent not defined");
+				//options.userAgent = DefaultUserAgent;
 			}
+            if (string.IsNullOrEmpty(options.repoUrl))
+            {
+                throw new Exception("Repository Url not defined");
+                //options.repoUrl = DefaultflegsBaseUrl;
+            }
+            else
+            {
+                flegsBaseUrl = options.repoUrl;
+            }
 		}
 
 		/*private void Form1_MouseMove(object sender, MouseEventArgs e)

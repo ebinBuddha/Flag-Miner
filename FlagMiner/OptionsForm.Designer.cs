@@ -46,6 +46,9 @@ namespace FlagMiner
             this.Label1 = new System.Windows.Forms.Label();
             this.GroupBox2 = new System.Windows.Forms.GroupBox();
             this.Panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
+            this.repoUrl = new System.Windows.Forms.TextBox();
             this.deleteChildFree = new System.Windows.Forms.CheckBox();
             this.Label2 = new System.Windows.Forms.Label();
             this.markTroll = new System.Windows.Forms.CheckBox();
@@ -74,7 +77,7 @@ namespace FlagMiner
             // Button1
             // 
             this.Button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button1.Location = new System.Drawing.Point(316, 486);
+            this.Button1.Location = new System.Drawing.Point(316, 528);
             this.Button1.Name = "Button1";
             this.Button1.Size = new System.Drawing.Size(75, 23);
             this.Button1.TabIndex = 0;
@@ -85,7 +88,7 @@ namespace FlagMiner
             // Button2
             // 
             this.Button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button2.Location = new System.Drawing.Point(397, 486);
+            this.Button2.Location = new System.Drawing.Point(397, 528);
             this.Button2.Name = "Button2";
             this.Button2.Size = new System.Drawing.Size(75, 23);
             this.Button2.TabIndex = 1;
@@ -95,7 +98,7 @@ namespace FlagMiner
             // 
             // GroupBox1
             // 
-            this.GroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.GroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox1.Controls.Add(this.enableCheck);
             this.GroupBox1.Controls.Add(this.Button3);
@@ -113,10 +116,10 @@ namespace FlagMiner
             this.enableCheck.AutoSize = true;
             this.enableCheck.Location = new System.Drawing.Point(6, 19);
             this.enableCheck.Name = "enableCheck";
-            this.enableCheck.Size = new System.Drawing.Size(452, 17);
+            this.enableCheck.Size = new System.Drawing.Size(444, 17);
             this.enableCheck.TabIndex = 6;
-            this.enableCheck.Text = "Mark saved flags using the local folder (use this only if you keep the github fol" +
-    "der structure)";
+            this.enableCheck.Text = "Mark saved flags using the local folder (use this only if you keep the repo folde" +
+    "r structure)";
             this.enableCheck.UseVisualStyleBackColor = true;
             this.enableCheck.CheckedChanged += new System.EventHandler(this.enableCheck_CheckedChanged);
             // 
@@ -138,7 +141,6 @@ namespace FlagMiner
             this.localSaveFolder.Size = new System.Drawing.Size(353, 20);
             this.localSaveFolder.TabIndex = 2;
             this.localSaveFolder.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox1_Validating);
-            this.localSaveFolder.Validated += new System.EventHandler(this.localSaveFolder_Validated);
             // 
             // Label1
             // 
@@ -151,13 +153,14 @@ namespace FlagMiner
             // 
             // GroupBox2
             // 
-            this.GroupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.GroupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox2.Controls.Add(this.Panel1);
             this.GroupBox2.Controls.Add(this.enablePurge);
             this.GroupBox2.Location = new System.Drawing.Point(12, 178);
             this.GroupBox2.Name = "GroupBox2";
-            this.GroupBox2.Size = new System.Drawing.Size(461, 184);
+            this.GroupBox2.Size = new System.Drawing.Size(461, 226);
             this.GroupBox2.TabIndex = 0;
             this.GroupBox2.TabStop = false;
             this.GroupBox2.Text = "Flag validation";
@@ -168,6 +171,9 @@ namespace FlagMiner
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Panel1.Controls.Add(this.label6);
+            this.Panel1.Controls.Add(this.button8);
+            this.Panel1.Controls.Add(this.repoUrl);
             this.Panel1.Controls.Add(this.deleteChildFree);
             this.Panel1.Controls.Add(this.Label2);
             this.Panel1.Controls.Add(this.markTroll);
@@ -177,13 +183,41 @@ namespace FlagMiner
             this.Panel1.Controls.Add(this.RadioButton2);
             this.Panel1.Location = new System.Drawing.Point(6, 42);
             this.Panel1.Name = "Panel1";
-            this.Panel1.Size = new System.Drawing.Size(447, 136);
+            this.Panel1.Size = new System.Drawing.Size(447, 178);
             this.Panel1.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 85);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(398, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Repo Url (e.g. https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags" +
+    "/)";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(361, 99);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(50, 23);
+            this.button8.TabIndex = 11;
+            this.button8.Text = "Default";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // repoUrl
+            // 
+            this.repoUrl.Location = new System.Drawing.Point(2, 101);
+            this.repoUrl.Name = "repoUrl";
+            this.repoUrl.Size = new System.Drawing.Size(353, 20);
+            this.repoUrl.TabIndex = 10;
+            this.repoUrl.Validating += new System.ComponentModel.CancelEventHandler(this.repoUrl_Validating);
             // 
             // deleteChildFree
             // 
             this.deleteChildFree.AutoSize = true;
-            this.deleteChildFree.Location = new System.Drawing.Point(2, 111);
+            this.deleteChildFree.Location = new System.Drawing.Point(-1, 156);
             this.deleteChildFree.Name = "deleteChildFree";
             this.deleteChildFree.Size = new System.Drawing.Size(270, 17);
             this.deleteChildFree.TabIndex = 9;
@@ -202,7 +236,7 @@ namespace FlagMiner
             // markTroll
             // 
             this.markTroll.AutoSize = true;
-            this.markTroll.Location = new System.Drawing.Point(2, 88);
+            this.markTroll.Location = new System.Drawing.Point(-1, 133);
             this.markTroll.Name = "markTroll";
             this.markTroll.Size = new System.Drawing.Size(189, 17);
             this.markTroll.TabIndex = 7;
@@ -233,9 +267,9 @@ namespace FlagMiner
             this.RadioButton1.AutoSize = true;
             this.RadioButton1.Location = new System.Drawing.Point(3, 3);
             this.RadioButton1.Name = "RadioButton1";
-            this.RadioButton1.Size = new System.Drawing.Size(187, 17);
+            this.RadioButton1.Size = new System.Drawing.Size(155, 17);
             this.RadioButton1.TabIndex = 3;
-            this.RadioButton1.Text = "Use local copy of github repository";
+            this.RadioButton1.Text = "Use local copy of repository";
             this.RadioButton1.UseVisualStyleBackColor = true;
             // 
             // RadioButton2
@@ -244,10 +278,10 @@ namespace FlagMiner
             this.RadioButton2.Checked = true;
             this.RadioButton2.Location = new System.Drawing.Point(2, 65);
             this.RadioButton2.Name = "RadioButton2";
-            this.RadioButton2.Size = new System.Drawing.Size(209, 17);
+            this.RadioButton2.Size = new System.Drawing.Size(177, 17);
             this.RadioButton2.TabIndex = 4;
             this.RadioButton2.TabStop = true;
-            this.RadioButton2.Text = "Use official github repository image Urls";
+            this.RadioButton2.Text = "Use official repository image Urls";
             this.RadioButton2.UseVisualStyleBackColor = true;
             // 
             // enablePurge
@@ -255,10 +289,10 @@ namespace FlagMiner
             this.enablePurge.AutoSize = true;
             this.enablePurge.Location = new System.Drawing.Point(6, 19);
             this.enablePurge.Name = "enablePurge";
-            this.enablePurge.Size = new System.Drawing.Size(411, 17);
+            this.enablePurge.Size = new System.Drawing.Size(427, 17);
             this.enablePurge.TabIndex = 0;
-            this.enablePurge.Text = "Enable validation and purging (use this only if you keep the github folder struct" +
-    "ure)";
+            this.enablePurge.Text = "Enable validation and purging (use this only if you keep the repository folder st" +
+    "ructure)";
             this.enablePurge.UseVisualStyleBackColor = true;
             this.enablePurge.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
@@ -272,7 +306,7 @@ namespace FlagMiner
             this.GroupBox3.Controls.Add(this.saveAndLoadFolder);
             this.GroupBox3.Controls.Add(this.userAgent);
             this.GroupBox3.Controls.Add(this.Label3);
-            this.GroupBox3.Location = new System.Drawing.Point(12, 368);
+            this.GroupBox3.Location = new System.Drawing.Point(12, 410);
             this.GroupBox3.Name = "GroupBox3";
             this.GroupBox3.Size = new System.Drawing.Size(461, 112);
             this.GroupBox3.TabIndex = 7;
@@ -366,7 +400,7 @@ namespace FlagMiner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 521);
+            this.ClientSize = new System.Drawing.Size(484, 563);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.backendServers);
             this.Controls.Add(this.label5);
@@ -423,5 +457,8 @@ namespace FlagMiner
         private Label label5;
         private TextBox backendServers;
         private Button button7;
+        internal Label label6;
+        private Button button8;
+        private TextBox repoUrl;
 	}
 }
