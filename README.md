@@ -46,7 +46,7 @@ With Flag Miner you can:
 **2.** Choose the settings that fit you best.  
 Remember that saved flags can be looked up if your local folders match the hierarchy of the **Extra Flags** repository, e.g.:
 
-|Flag Url       | https://raw.githubusercontent.com/flaghunters/Extra-Flags-for-int-/master/flags/United%20States/Minnesota.png |
+|Flag Url       | https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United%20States/Minnesota.png |
 |:---|---|
 |**Valid local path**   | C:\\my flag folder\\**United States\\Minnesota.png**
 |**Invalid local path**   | C:\\my flag folder\\USA\\Minnesota.png
