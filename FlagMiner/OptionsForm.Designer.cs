@@ -46,17 +46,17 @@ namespace FlagMiner
             this.Label1 = new System.Windows.Forms.Label();
             this.GroupBox2 = new System.Windows.Forms.GroupBox();
             this.Panel1 = new System.Windows.Forms.Panel();
+            this.deleteChildFree = new System.Windows.Forms.CheckBox();
+            this.markTroll = new System.Windows.Forms.CheckBox();
+            this.enablePurge = new System.Windows.Forms.CheckBox();
+            this.localRepoFolder = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.repoUrl = new System.Windows.Forms.TextBox();
-            this.deleteChildFree = new System.Windows.Forms.CheckBox();
             this.Label2 = new System.Windows.Forms.Label();
-            this.markTroll = new System.Windows.Forms.CheckBox();
             this.Button4 = new System.Windows.Forms.Button();
-            this.localRepoFolder = new System.Windows.Forms.TextBox();
             this.RadioButton1 = new System.Windows.Forms.RadioButton();
             this.RadioButton2 = new System.Windows.Forms.RadioButton();
-            this.enablePurge = new System.Windows.Forms.CheckBox();
             this.FolderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.GroupBox3 = new System.Windows.Forms.GroupBox();
             this.Label4 = new System.Windows.Forms.Label();
@@ -68,16 +68,18 @@ namespace FlagMiner
             this.label5 = new System.Windows.Forms.Label();
             this.backendServers = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
+            this.GroupBox4 = new System.Windows.Forms.GroupBox();
             this.GroupBox1.SuspendLayout();
             this.GroupBox2.SuspendLayout();
             this.Panel1.SuspendLayout();
             this.GroupBox3.SuspendLayout();
+            this.GroupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // Button1
             // 
             this.Button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button1.Location = new System.Drawing.Point(316, 528);
+            this.Button1.Location = new System.Drawing.Point(316, 533);
             this.Button1.Name = "Button1";
             this.Button1.Size = new System.Drawing.Size(75, 23);
             this.Button1.TabIndex = 0;
@@ -88,7 +90,7 @@ namespace FlagMiner
             // Button2
             // 
             this.Button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button2.Location = new System.Drawing.Point(397, 528);
+            this.Button2.Location = new System.Drawing.Point(397, 533);
             this.Button2.Name = "Button2";
             this.Button2.Size = new System.Drawing.Size(75, 23);
             this.Button2.TabIndex = 1;
@@ -153,14 +155,13 @@ namespace FlagMiner
             // 
             // GroupBox2
             // 
-            this.GroupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.GroupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox2.Controls.Add(this.Panel1);
             this.GroupBox2.Controls.Add(this.enablePurge);
             this.GroupBox2.Location = new System.Drawing.Point(12, 178);
             this.GroupBox2.Name = "GroupBox2";
-            this.GroupBox2.Size = new System.Drawing.Size(461, 226);
+            this.GroupBox2.Size = new System.Drawing.Size(461, 94);
             this.GroupBox2.TabIndex = 0;
             this.GroupBox2.TabStop = false;
             this.GroupBox2.Text = "Flag validation";
@@ -171,118 +172,32 @@ namespace FlagMiner
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Panel1.Controls.Add(this.label6);
-            this.Panel1.Controls.Add(this.button8);
-            this.Panel1.Controls.Add(this.repoUrl);
             this.Panel1.Controls.Add(this.deleteChildFree);
-            this.Panel1.Controls.Add(this.Label2);
             this.Panel1.Controls.Add(this.markTroll);
-            this.Panel1.Controls.Add(this.Button4);
-            this.Panel1.Controls.Add(this.localRepoFolder);
-            this.Panel1.Controls.Add(this.RadioButton1);
-            this.Panel1.Controls.Add(this.RadioButton2);
             this.Panel1.Location = new System.Drawing.Point(6, 42);
             this.Panel1.Name = "Panel1";
-            this.Panel1.Size = new System.Drawing.Size(447, 178);
+            this.Panel1.Size = new System.Drawing.Size(447, 46);
             this.Panel1.TabIndex = 5;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 85);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(398, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Repo Url (e.g. https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags" +
-    "/)";
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(361, 99);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(50, 23);
-            this.button8.TabIndex = 11;
-            this.button8.Text = "Default";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // repoUrl
-            // 
-            this.repoUrl.Location = new System.Drawing.Point(2, 101);
-            this.repoUrl.Name = "repoUrl";
-            this.repoUrl.Size = new System.Drawing.Size(353, 20);
-            this.repoUrl.TabIndex = 10;
-            this.repoUrl.Validating += new System.ComponentModel.CancelEventHandler(this.repoUrl_Validating);
             // 
             // deleteChildFree
             // 
             this.deleteChildFree.AutoSize = true;
-            this.deleteChildFree.Location = new System.Drawing.Point(-1, 156);
+            this.deleteChildFree.Location = new System.Drawing.Point(2, 26);
             this.deleteChildFree.Name = "deleteChildFree";
             this.deleteChildFree.Size = new System.Drawing.Size(270, 17);
             this.deleteChildFree.TabIndex = 9;
             this.deleteChildFree.Text = "When purging purge national flags with no regionals";
             this.deleteChildFree.UseVisualStyleBackColor = true;
             // 
-            // Label2
-            // 
-            this.Label2.AutoSize = true;
-            this.Label2.Location = new System.Drawing.Point(3, 23);
-            this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(236, 13);
-            this.Label2.TabIndex = 8;
-            this.Label2.Text = "Local folder (e.g. C:\\Extra-flags-for-4chan\\flags\\)";
-            // 
             // markTroll
             // 
             this.markTroll.AutoSize = true;
-            this.markTroll.Location = new System.Drawing.Point(-1, 133);
+            this.markTroll.Location = new System.Drawing.Point(2, 3);
             this.markTroll.Name = "markTroll";
             this.markTroll.Size = new System.Drawing.Size(189, 17);
             this.markTroll.TabIndex = 7;
             this.markTroll.Text = "When purging purge also troll flags";
             this.markTroll.UseVisualStyleBackColor = true;
-            // 
-            // Button4
-            // 
-            this.Button4.Location = new System.Drawing.Point(361, 37);
-            this.Button4.Name = "Button4";
-            this.Button4.Size = new System.Drawing.Size(50, 23);
-            this.Button4.TabIndex = 6;
-            this.Button4.Text = "...";
-            this.Button4.UseVisualStyleBackColor = true;
-            this.Button4.Click += new System.EventHandler(this.Button4_Click);
-            // 
-            // localRepoFolder
-            // 
-            this.localRepoFolder.Location = new System.Drawing.Point(2, 39);
-            this.localRepoFolder.Name = "localRepoFolder";
-            this.localRepoFolder.ReadOnly = true;
-            this.localRepoFolder.Size = new System.Drawing.Size(353, 20);
-            this.localRepoFolder.TabIndex = 5;
-            this.localRepoFolder.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox2_Validating);
-            // 
-            // RadioButton1
-            // 
-            this.RadioButton1.AutoSize = true;
-            this.RadioButton1.Location = new System.Drawing.Point(3, 3);
-            this.RadioButton1.Name = "RadioButton1";
-            this.RadioButton1.Size = new System.Drawing.Size(155, 17);
-            this.RadioButton1.TabIndex = 3;
-            this.RadioButton1.Text = "Use local copy of repository";
-            this.RadioButton1.UseVisualStyleBackColor = true;
-            // 
-            // RadioButton2
-            // 
-            this.RadioButton2.AutoSize = true;
-            this.RadioButton2.Checked = true;
-            this.RadioButton2.Location = new System.Drawing.Point(2, 65);
-            this.RadioButton2.Name = "RadioButton2";
-            this.RadioButton2.Size = new System.Drawing.Size(177, 17);
-            this.RadioButton2.TabIndex = 4;
-            this.RadioButton2.TabStop = true;
-            this.RadioButton2.Text = "Use official repository image Urls";
-            this.RadioButton2.UseVisualStyleBackColor = true;
             // 
             // enablePurge
             // 
@@ -296,6 +211,84 @@ namespace FlagMiner
             this.enablePurge.UseVisualStyleBackColor = true;
             this.enablePurge.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
+            // localRepoFolder
+            // 
+            this.localRepoFolder.Location = new System.Drawing.Point(9, 55);
+            this.localRepoFolder.Name = "localRepoFolder";
+            this.localRepoFolder.ReadOnly = true;
+            this.localRepoFolder.Size = new System.Drawing.Size(353, 20);
+            this.localRepoFolder.TabIndex = 5;
+            this.localRepoFolder.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox2_Validating);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 101);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(398, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Repo Url (e.g. https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags" +
+    "/)";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(368, 115);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(50, 23);
+            this.button8.TabIndex = 11;
+            this.button8.Text = "Default";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // repoUrl
+            // 
+            this.repoUrl.Location = new System.Drawing.Point(9, 117);
+            this.repoUrl.Name = "repoUrl";
+            this.repoUrl.Size = new System.Drawing.Size(353, 20);
+            this.repoUrl.TabIndex = 10;
+            this.repoUrl.Validating += new System.ComponentModel.CancelEventHandler(this.repoUrl_Validating);
+            // 
+            // Label2
+            // 
+            this.Label2.AutoSize = true;
+            this.Label2.Location = new System.Drawing.Point(6, 39);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(236, 13);
+            this.Label2.TabIndex = 8;
+            this.Label2.Text = "Local folder (e.g. C:\\Extra-flags-for-4chan\\flags\\)";
+            // 
+            // Button4
+            // 
+            this.Button4.Location = new System.Drawing.Point(368, 53);
+            this.Button4.Name = "Button4";
+            this.Button4.Size = new System.Drawing.Size(50, 23);
+            this.Button4.TabIndex = 6;
+            this.Button4.Text = "...";
+            this.Button4.UseVisualStyleBackColor = true;
+            this.Button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
+            // RadioButton1
+            // 
+            this.RadioButton1.AutoSize = true;
+            this.RadioButton1.Location = new System.Drawing.Point(6, 19);
+            this.RadioButton1.Name = "RadioButton1";
+            this.RadioButton1.Size = new System.Drawing.Size(155, 17);
+            this.RadioButton1.TabIndex = 3;
+            this.RadioButton1.Text = "Use local copy of repository";
+            this.RadioButton1.UseVisualStyleBackColor = true;
+            // 
+            // RadioButton2
+            // 
+            this.RadioButton2.AutoSize = true;
+            this.RadioButton2.Checked = true;
+            this.RadioButton2.Location = new System.Drawing.Point(5, 81);
+            this.RadioButton2.Name = "RadioButton2";
+            this.RadioButton2.Size = new System.Drawing.Size(177, 17);
+            this.RadioButton2.TabIndex = 4;
+            this.RadioButton2.TabStop = true;
+            this.RadioButton2.Text = "Use official repository image Urls";
+            this.RadioButton2.UseVisualStyleBackColor = true;
+            // 
             // GroupBox3
             // 
             this.GroupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -306,9 +299,9 @@ namespace FlagMiner
             this.GroupBox3.Controls.Add(this.saveAndLoadFolder);
             this.GroupBox3.Controls.Add(this.userAgent);
             this.GroupBox3.Controls.Add(this.Label3);
-            this.GroupBox3.Location = new System.Drawing.Point(12, 410);
+            this.GroupBox3.Location = new System.Drawing.Point(12, 429);
             this.GroupBox3.Name = "GroupBox3";
-            this.GroupBox3.Size = new System.Drawing.Size(461, 112);
+            this.GroupBox3.Size = new System.Drawing.Size(461, 98);
             this.GroupBox3.TabIndex = 7;
             this.GroupBox3.TabStop = false;
             this.GroupBox3.Text = "Misc.";
@@ -316,7 +309,7 @@ namespace FlagMiner
             // Label4
             // 
             this.Label4.AutoSize = true;
-            this.Label4.Location = new System.Drawing.Point(10, 65);
+            this.Label4.Location = new System.Drawing.Point(10, 55);
             this.Label4.Name = "Label4";
             this.Label4.Size = new System.Drawing.Size(130, 13);
             this.Label4.TabIndex = 11;
@@ -324,7 +317,7 @@ namespace FlagMiner
             // 
             // Button6
             // 
-            this.Button6.Location = new System.Drawing.Point(368, 79);
+            this.Button6.Location = new System.Drawing.Point(368, 69);
             this.Button6.Name = "Button6";
             this.Button6.Size = new System.Drawing.Size(50, 23);
             this.Button6.TabIndex = 10;
@@ -344,7 +337,7 @@ namespace FlagMiner
             // 
             // saveAndLoadFolder
             // 
-            this.saveAndLoadFolder.Location = new System.Drawing.Point(9, 81);
+            this.saveAndLoadFolder.Location = new System.Drawing.Point(9, 71);
             this.saveAndLoadFolder.Name = "saveAndLoadFolder";
             this.saveAndLoadFolder.ReadOnly = true;
             this.saveAndLoadFolder.Size = new System.Drawing.Size(353, 20);
@@ -396,11 +389,32 @@ namespace FlagMiner
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
+            // GroupBox4
+            // 
+            this.GroupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBox4.Controls.Add(this.label6);
+            this.GroupBox4.Controls.Add(this.button8);
+            this.GroupBox4.Controls.Add(this.repoUrl);
+            this.GroupBox4.Controls.Add(this.Label2);
+            this.GroupBox4.Controls.Add(this.Button4);
+            this.GroupBox4.Controls.Add(this.localRepoFolder);
+            this.GroupBox4.Controls.Add(this.RadioButton1);
+            this.GroupBox4.Controls.Add(this.RadioButton2);
+            this.GroupBox4.Location = new System.Drawing.Point(12, 278);
+            this.GroupBox4.Name = "GroupBox4";
+            this.GroupBox4.Size = new System.Drawing.Size(461, 145);
+            this.GroupBox4.TabIndex = 13;
+            this.GroupBox4.TabStop = false;
+            this.GroupBox4.Text = "Flag sources";
+            // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 563);
+            this.ClientSize = new System.Drawing.Size(484, 568);
+            this.Controls.Add(this.GroupBox4);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.backendServers);
             this.Controls.Add(this.label5);
@@ -425,6 +439,8 @@ namespace FlagMiner
             this.Panel1.PerformLayout();
             this.GroupBox3.ResumeLayout(false);
             this.GroupBox3.PerformLayout();
+            this.GroupBox4.ResumeLayout(false);
+            this.GroupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -460,5 +476,6 @@ namespace FlagMiner
         internal Label label6;
         private Button button8;
         private TextBox repoUrl;
-	}
+        private GroupBox GroupBox4;
+    }
 }

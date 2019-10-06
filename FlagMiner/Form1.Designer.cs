@@ -246,6 +246,7 @@ namespace FlagMiner
             this.ThreadColumn});
             this.TreeListView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.TreeListView1.FullRowSelect = true;
+            this.TreeListView1.HideSelection = false;
             this.TreeListView1.Location = new System.Drawing.Point(375, 8);
             this.TreeListView1.Name = "TreeListView1";
             this.TreeListView1.ShowGroups = false;
@@ -259,13 +260,14 @@ namespace FlagMiner
             this.TreeListView1.UseHyperlinks = true;
             this.TreeListView1.View = System.Windows.Forms.View.Details;
             this.TreeListView1.VirtualMode = true;
-            this.TreeListView1.CellRightClick += new System.EventHandler<BrightIdeasSoftware.CellRightClickEventArgs>(this.olv_CellRightClick);
+            this.TreeListView1.CellRightClick += new System.EventHandler<BrightIdeasSoftware.CellRightClickEventArgs>(this.Olv_CellRightClick);
             this.TreeListView1.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.FormatRow_EventHandler);
             this.TreeListView1.SelectionChanged += new System.EventHandler(this.TreeListView1_SelectionChanged);
             // 
             // FlagsColumn
             // 
-            this.FlagsColumn.AspectName = "imgurl";
+            this.FlagsColumn.AspectName = "";
+            this.FlagsColumn.ImageAspectName = "imgurl";
             this.FlagsColumn.Text = "Flags";
             // 
             // GroupBox1
@@ -289,7 +291,7 @@ namespace FlagMiner
             this.intCheck.TabIndex = 20;
             this.intCheck.Text = "/int/";
             this.intCheck.UseVisualStyleBackColor = true;
-            this.intCheck.CheckedChanged += new System.EventHandler(this.intCheck_CheckedChanged);
+            this.intCheck.CheckedChanged += new System.EventHandler(this.IntCheck_CheckedChanged);
             // 
             // spCheck
             // 
@@ -300,7 +302,7 @@ namespace FlagMiner
             this.spCheck.TabIndex = 22;
             this.spCheck.Text = "/sp/";
             this.spCheck.UseVisualStyleBackColor = true;
-            this.spCheck.CheckedChanged += new System.EventHandler(this.spCheck_CheckedChanged);
+            this.spCheck.CheckedChanged += new System.EventHandler(this.SpCheck_CheckedChanged);
             // 
             // polCheck
             // 
@@ -311,7 +313,7 @@ namespace FlagMiner
             this.polCheck.TabIndex = 21;
             this.polCheck.Text = "/pol/";
             this.polCheck.UseVisualStyleBackColor = true;
-            this.polCheck.CheckedChanged += new System.EventHandler(this.polCheck_CheckedChanged);
+            this.polCheck.CheckedChanged += new System.EventHandler(this.PolCheck_CheckedChanged);
             // 
             // ProgressBar1
             // 
@@ -458,7 +460,7 @@ namespace FlagMiner
             this.loadMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.loadMenuItem.Size = new System.Drawing.Size(161, 22);
             this.loadMenuItem.Text = "&Load...";
-            this.loadMenuItem.Click += new System.EventHandler(this.loadbutt_Click);
+            this.loadMenuItem.Click += new System.EventHandler(this.Loadbutt_Click);
             // 
             // subtractMenuItem
             // 
@@ -467,7 +469,7 @@ namespace FlagMiner
             this.subtractMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
             this.subtractMenuItem.Size = new System.Drawing.Size(161, 22);
             this.subtractMenuItem.Text = "S&ubtract...";
-            this.subtractMenuItem.Click += new System.EventHandler(this.subtractButt_Click);
+            this.subtractMenuItem.Click += new System.EventHandler(this.SubtractButt_Click);
             // 
             // saveMenuItem
             // 
@@ -476,7 +478,7 @@ namespace FlagMiner
             this.saveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveMenuItem.Size = new System.Drawing.Size(161, 22);
             this.saveMenuItem.Text = "&Save as...";
-            this.saveMenuItem.Click += new System.EventHandler(this.savebutt_Click);
+            this.saveMenuItem.Click += new System.EventHandler(this.Savebutt_Click);
             // 
             // toolStripSeparator3
             // 
@@ -513,7 +515,7 @@ namespace FlagMiner
             this.mineMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.mineMenuItem.Size = new System.Drawing.Size(269, 22);
             this.mineMenuItem.Text = "&Mine the archives";
-            this.mineMenuItem.Click += new System.EventHandler(this.parseBtn_Click);
+            this.mineMenuItem.Click += new System.EventHandler(this.ParseBtn_Click);
             // 
             // parseMenuItem
             // 
@@ -522,7 +524,7 @@ namespace FlagMiner
             this.parseMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
             this.parseMenuItem.Size = new System.Drawing.Size(269, 22);
             this.parseMenuItem.Text = "&Parse flag dump...";
-            this.parseMenuItem.Click += new System.EventHandler(this.importbutt_Click);
+            this.parseMenuItem.Click += new System.EventHandler(this.Importbutt_Click);
             // 
             // toolStripSeparator6
             // 
@@ -564,7 +566,7 @@ namespace FlagMiner
             this.settingsMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10;
             this.settingsMenuItem.Size = new System.Drawing.Size(269, 22);
             this.settingsMenuItem.Text = "Ad&vaced settings...";
-            this.settingsMenuItem.Click += new System.EventHandler(this.optButt_Click);
+            this.settingsMenuItem.Click += new System.EventHandler(this.OptButt_Click);
             // 
             // aboutMenu
             // 
@@ -573,7 +575,7 @@ namespace FlagMiner
             this.aboutMenu.ShortcutKeys = System.Windows.Forms.Keys.F1;
             this.aboutMenu.Size = new System.Drawing.Size(24, 20);
             this.aboutMenu.Text = "&?";
-            this.aboutMenu.Click += new System.EventHandler(this.aboutButt_Click);
+            this.aboutMenu.Click += new System.EventHandler(this.AboutButt_Click);
             // 
             // flagsMenu
             // 
@@ -593,7 +595,7 @@ namespace FlagMiner
             this.checkMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
             this.checkMenuItem.Size = new System.Drawing.Size(126, 22);
             this.checkMenuItem.Text = "&Check";
-            this.checkMenuItem.Click += new System.EventHandler(this.checkbutt_Click);
+            this.checkMenuItem.Click += new System.EventHandler(this.Checkbutt_Click);
             // 
             // purgeMenuItem
             // 
@@ -602,7 +604,7 @@ namespace FlagMiner
             this.purgeMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F9;
             this.purgeMenuItem.Size = new System.Drawing.Size(126, 22);
             this.purgeMenuItem.Text = "&Purge";
-            this.purgeMenuItem.Click += new System.EventHandler(this.purgebutt_Click);
+            this.purgeMenuItem.Click += new System.EventHandler(this.Purgebutt_Click);
             // 
             // toolStripSeparator13
             // 
@@ -615,7 +617,7 @@ namespace FlagMiner
             this.clearmenuItem.Name = "clearmenuItem";
             this.clearmenuItem.Size = new System.Drawing.Size(126, 22);
             this.clearmenuItem.Text = "&Clear all";
-            this.clearmenuItem.Click += new System.EventHandler(this.clearbutt_Click);
+            this.clearmenuItem.Click += new System.EventHandler(this.Clearbutt_Click);
             // 
             // toolStrip2
             // 
@@ -658,7 +660,7 @@ namespace FlagMiner
             this.loadToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.loadToolStripButton.Text = "toolStripButton1";
             this.loadToolStripButton.ToolTipText = "Load file...";
-            this.loadToolStripButton.Click += new System.EventHandler(this.loadbutt_Click);
+            this.loadToolStripButton.Click += new System.EventHandler(this.Loadbutt_Click);
             // 
             // subtractToolStripButton
             // 
@@ -669,7 +671,7 @@ namespace FlagMiner
             this.subtractToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.subtractToolStripButton.Text = "toolStripButton2";
             this.subtractToolStripButton.ToolTipText = "Subtract file";
-            this.subtractToolStripButton.Click += new System.EventHandler(this.subtractButt_Click);
+            this.subtractToolStripButton.Click += new System.EventHandler(this.SubtractButt_Click);
             // 
             // SaveToolStripButton
             // 
@@ -680,7 +682,7 @@ namespace FlagMiner
             this.SaveToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.SaveToolStripButton.Text = "toolStripButton3";
             this.SaveToolStripButton.ToolTipText = "Save to file...";
-            this.SaveToolStripButton.Click += new System.EventHandler(this.savebutt_Click);
+            this.SaveToolStripButton.Click += new System.EventHandler(this.Savebutt_Click);
             // 
             // toolStripSeparator7
             // 
@@ -704,7 +706,7 @@ namespace FlagMiner
             this.mineToolStripMenuItem.Name = "mineToolStripMenuItem";
             this.mineToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.mineToolStripMenuItem.Text = "Mine the archives";
-            this.mineToolStripMenuItem.Click += new System.EventHandler(this.parseBtn_Click);
+            this.mineToolStripMenuItem.Click += new System.EventHandler(this.ParseBtn_Click);
             // 
             // parseToolStripMenuItem
             // 
@@ -712,7 +714,7 @@ namespace FlagMiner
             this.parseToolStripMenuItem.Name = "parseToolStripMenuItem";
             this.parseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.parseToolStripMenuItem.Text = "Parse flag dump...";
-            this.parseToolStripMenuItem.Click += new System.EventHandler(this.importbutt_Click);
+            this.parseToolStripMenuItem.Click += new System.EventHandler(this.Importbutt_Click);
             // 
             // abortToolStripButton
             // 
@@ -740,7 +742,7 @@ namespace FlagMiner
             this.settingsToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.settingsToolStripButton.Text = "toolStripButton5";
             this.settingsToolStripButton.ToolTipText = "Advanced settings";
-            this.settingsToolStripButton.Click += new System.EventHandler(this.optButt_Click);
+            this.settingsToolStripButton.Click += new System.EventHandler(this.OptButt_Click);
             // 
             // toolStripSeparator9
             // 
@@ -773,7 +775,7 @@ namespace FlagMiner
             this.checkToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.checkToolStripButton.Text = "toolStripButton8";
             this.checkToolStripButton.ToolTipText = "Check flags";
-            this.checkToolStripButton.Click += new System.EventHandler(this.checkbutt_Click);
+            this.checkToolStripButton.Click += new System.EventHandler(this.Checkbutt_Click);
             // 
             // purgeToolStripButton
             // 
@@ -785,7 +787,7 @@ namespace FlagMiner
             this.purgeToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.purgeToolStripButton.Text = "toolStripButton9";
             this.purgeToolStripButton.ToolTipText = "Purge flags";
-            this.purgeToolStripButton.Click += new System.EventHandler(this.purgebutt_Click);
+            this.purgeToolStripButton.Click += new System.EventHandler(this.Purgebutt_Click);
             // 
             // toolStripSeparator12
             // 
@@ -801,7 +803,7 @@ namespace FlagMiner
             this.clearToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.clearToolStripButton.Text = "toolStripButton10";
             this.clearToolStripButton.ToolTipText = "Clear all";
-            this.clearToolStripButton.Click += new System.EventHandler(this.clearbutt_Click);
+            this.clearToolStripButton.Click += new System.EventHandler(this.Clearbutt_Click);
             // 
             // toolStripSeparator10
             // 

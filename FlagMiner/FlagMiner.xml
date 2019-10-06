@@ -17,7 +17,7 @@
             <param name="path">The full path to the file/directory</param>
             <returns>The index of the image or -1 if something goes wrong.</returns>
         </member>
-        <member name="M:FlagMiner.Form1.subtractFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg},FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
+        <member name="M:FlagMiner.Form1.SubtractFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg},FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
             <summary>
             subtracts src from dest: dest = dest-src
             </summary>

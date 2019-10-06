@@ -95,15 +95,6 @@ namespace FlagMiner
 namespace FlagMiner
 {
 
-	public class CompleteFleg
-	{
-		public List<RegionalFleg> flegs;
-		public bool isTrollFlag;
-	}
-}
-namespace FlagMiner
-{
-
 	[Serializable()]
 	public class RegionalFleg
 	{
@@ -229,42 +220,39 @@ namespace FlagMiner
 	public class ImageListHelper
 	{
 
-		static Form1 frm;
-		private BlockingCollection<string> stack;
+		private static Form1 frm;
+		private readonly BlockingCollection<string> stack;
 
-		private Task consumer;
+        protected ObjectListView listView;
+        private ImageListHelper(Form1 form) => ImageListHelper.frm = form;
 
-		protected ObjectListView listView;
-		private ImageListHelper(Form1 form)
+        /// <summary>
+        /// Create a SysImageListHelper that will fetch images for the given tree control
+        /// </summary>
+        /// <param name="listView">The tree view that will use the images</param>
+        public ImageListHelper(ObjectListView listView, ConcurrentQueue<string> source)
 		{
-			frm = form;
-		}
-
-		/// <summary>
-		/// Create a SysImageListHelper that will fetch images for the given tree control
-		/// </summary>
-		/// <param name="listView">The tree view that will use the images</param>
-		public ImageListHelper(ObjectListView listView, ConcurrentQueue<string> source)
-		{
-			if (listView.SmallImageList == null) {
+            Debug.AutoFlush = true;
+            if (listView.SmallImageList == null) {
 				listView.SmallImageList = new ImageList();
 				//listView.ImageList.ImageSize = New Size(16, 16)
 			}
 			this.listView = listView;
-			ImageListHelper.frm = (Form1)listView.Parent.Parent.Parent;
+            ImageListHelper.frm = (Form1)listView.Parent.Parent.Parent; // this suck ass
 
 			stack = new BlockingCollection<string>(source);
-			consumer = Task.Run(() =>
+            Task.Run(() =>
 			{
 				foreach (string path in stack.GetConsumingEnumerable()) {
 					if (!(this.SmallImageList.Images.ContainsKey(path))) {
 						try {
 							this.AddImageToCollection(path, this.SmallImageList, ScrapeImage(path));
-						} catch (ArgumentNullException generatedExceptionName) {
+						} catch (ArgumentNullException) {
+                            // ignore it
 						}
 					}
 					if (stack.Count == 0) {
-						Thread.Sleep(200);
+						Thread.Sleep(500);
 						// fist run ok, but now wait a little to build the queue for the next run
 						frm.RefreshTree();
 					}
@@ -273,12 +261,15 @@ namespace FlagMiner
 			});
 		}
 
+
+
 		protected ImageList.ImageCollection SmallImageCollection {
 			get {
 				if (this.listView != null) {
 					return this.listView.SmallImageList.Images;
 				}
-				return null;
+                ImageList il = new ImageList();
+				return il.Images;
 			}
 		}
 
@@ -304,7 +295,8 @@ namespace FlagMiner
 					return this.SmallImageCollection.IndexOfKey(path);
 					//End SyncLock
 				}
-			} catch (Exception ex) {
+			} catch (Exception) {
+                // ignore it
 			}
 
 			//Try
@@ -324,7 +316,8 @@ namespace FlagMiner
 				//SyncLock messagesLock
 				return this.SmallImageCollection.ContainsKey(path);
 				//End SyncLock
-			} catch (Exception ex) {
+			} catch (Exception) {
+                // ignore it
 			}
 			return false;
 		}
@@ -355,25 +348,48 @@ namespace FlagMiner
 		{
 			System.Drawing.Bitmap img = null;
 
-			//Dim finalimg As Image
-			WebClient wc = new WebClient();
-			try {
-				byte[] bytes = wc.DownloadData(url);
-				MemoryStream ms = new MemoryStream(bytes);
-				img = (Bitmap)System.Drawing.Image.FromStream(ms);
-
-			} catch (WebException ex) {
-				var resp = (HttpWebResponse)ex.Response;
-				if (resp.StatusCode == HttpStatusCode.NotFound) {
+            //Dim finalimg As Image
+            if (frm.options.useLocal && url.Contains(frm.options.repoUrl))
+            {
+                string diskPath = url.Replace(frm.options.repoUrl, frm.options.localRepoFolder+"/");
+                try
+                {
+                    img = (Bitmap)System.Drawing.Image.FromFile(diskPath);
+                    System.Diagnostics.Debug.Listeners[0].WriteLine(diskPath);
+                }
+                catch (Exception)
+                {
                     img = (Bitmap)frm.blankImg;
-				}
-			}
+                }
+                return img;
+            }
+            else
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    try
+                    {
+                        byte[] bytes = wc.DownloadData(url);
+                        MemoryStream ms = new MemoryStream(bytes);
+                        img = (Bitmap)System.Drawing.Image.FromStream(ms);
+
+                    }
+                    catch (WebException ex)
+                    {
+                        var resp = (HttpWebResponse)ex.Response;
+                        if (resp.StatusCode == HttpStatusCode.NotFound)
+                        {
+                            img = (Bitmap)frm.blankImg;
+                        }
+                    }
+                }
+            }
 
 			return img;
 		}
 
 
-		private object messagesLock = new object();
+		private readonly object messagesLock = new object();
 		public void AddImageToCollection(string key, ImageList imageList, Image img)
 		{
 			if (imageList == null | img == null) {
@@ -423,6 +439,7 @@ namespace FlagMiner
 					}
 					imageList.Images.Add(key, finalimg);
 				} catch (Exception ex) {
+                    // ignore this
 				}
 			}
 
@@ -469,7 +486,7 @@ namespace FlagMiner
 							if (curFleg.children.Count > 0) {
 								SerializableDictionary<string, RegionalFleg> curSrcDict = curFleg.children;
 								SerializableDictionary<string, RegionalFleg> curDestDict = curDict[curFleg.title].children;
-								Form1.merger(ref curSrcDict, ref curDestDict);
+								Form1.Merger(ref curSrcDict, ref curDestDict);
 							}
 						}
 					}

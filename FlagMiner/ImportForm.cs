@@ -29,6 +29,7 @@ namespace FlagMiner
 		{
             try
             {
+                int statusFlag = 0;
                 int errorCode = 0;
                 string rawResponse = null;
                 //Dim board, thread As String
@@ -36,19 +37,21 @@ namespace FlagMiner
                 Uri uri = new Uri(TextBox1.Text);
                 string parsedUrl = uri.GetLeftPart(UriPartial.Path);
 
-                errorCode = myForm1.loadThread(null, null, out rawResponse, parsedUrl);
+                errorCode = myForm1.LoadThread(null, null, out rawResponse, parsedUrl);
+                Form1.RaiseError(errorCode, ref statusFlag);
 
                 List<Post> posts = null;
-                errorCode = myForm1.parseThread(rawResponse, ref posts);
+                myForm1.ParseThread(rawResponse, ref posts);
 
                 List<ulong> sourcePosts = new List<ulong>();
                 errorCode = parseStrings(ref posts, ref sourcePosts);
+                Form1.RaiseError(errorCode, ref statusFlag);
 
                 List<Post> trimmedPosts = new List<Post>();
-                errorCode = filterPosts(ref posts, ref sourcePosts, trimmedPosts);
+                filterPosts(ref posts, ref sourcePosts, trimmedPosts);
 
                 links = new List<Tuple<string, string, string>>();
-                errorCode = gatherLinks(ref trimmedPosts, ref links);
+                gatherLinks(ref trimmedPosts, ref links);
 
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
@@ -62,12 +65,9 @@ namespace FlagMiner
             }
 		}
 
-		private void Button2_Click(object sender, EventArgs e)
-		{
-			this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-		}
+        private void Button2_Click(object sender, EventArgs e) => this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 
-		public int parseStrings(ref List<Post> posts, ref List<ulong> sourcePosts)
+        public int parseStrings(ref List<Post> posts, ref List<ulong> sourcePosts)
 		{
 			foreach (string lin in TextBox2.Lines) {
 				string temp = lin.Trim( new char[] {
@@ -85,26 +85,24 @@ namespace FlagMiner
 					return 1;
 				}
 			}
-			sourcePosts.Distinct();
+			sourcePosts = (List<ulong>)sourcePosts.Distinct();
 			sourcePosts.Sort();
 
 			return 0;
 		}
 
-		public int filterPosts(ref List<Post> posts, ref List<ulong> sourcePosts, List<Post> filtered)
+		public void filterPosts(ref List<Post> posts, ref List<ulong> sourcePosts, List<Post> filtered)
 		{
 			foreach (Post Post in posts) {
 				if (sourcePosts.Contains((ulong)Post.no)) {
 					filtered.Add(Post);
 				}
 			}
-			return 0;
 		}
 
 
-		public int gatherLinks(ref List<Post> filtered, ref List<Tuple<string, string, string>> links)
+		public void gatherLinks(ref List<Post> filtered, ref List<Tuple<string, string, string>> links)
 		{
-			List<string> temp = new List<string>();
 
 			WebBrowser1.Navigate(string.Empty);
 			HtmlDocument fakeDoc = WebBrowser1.Document;
@@ -132,8 +130,6 @@ namespace FlagMiner
 				if (parts.Length == 3)
 					links.Add(new Tuple<string, string, string>(parts[0], parts[2], str2));
 			}
-			return 0;
-
 		}
 
         WatDo watDo=null;

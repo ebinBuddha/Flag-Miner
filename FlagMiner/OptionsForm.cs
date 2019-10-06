@@ -45,10 +45,13 @@ namespace FlagMiner
             this.deleteChildFree.Checked = myForm1.options.deleteChildFree;
             this.repoUrl.Text = myForm1.options.repoUrl;
             this.backendServers.Clear();
-            foreach (string st in myForm1.options.backendServers)
+            if (myForm1.options.backendServers != null)
             {
-                if (st != "")
-                    this.backendServers.Text += st + "\n";
+                foreach (string st in myForm1.options.backendServers)
+                {
+                    if (st != "")
+                        this.backendServers.Text += st + "\n";
+                }
             }
 		}
 
@@ -170,8 +173,8 @@ namespace FlagMiner
             {
                 this.backendServers.Clear();
                 // DEFAULT SERVERS
-                this.backendServers.Text += "https://whatisthisimnotgoodwithcomputers.com/\n";
-                this.backendServers.Text += "https://flagtism.drunkensailor.org/\n";
+                //this.backendServers.Text += "https://whatisthisimnotgoodwithcomputers.com/\n";
+                this.backendServers.Text += "https://countryball.ca/\n";
             }
         }
 
