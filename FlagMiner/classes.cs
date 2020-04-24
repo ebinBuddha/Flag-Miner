@@ -16,14 +16,8 @@ using System.Collections.Concurrent;
 using System.Xml.Serialization;
 using System.Runtime.CompilerServices;
 using System.Threading;
-namespace FlagMiner
-{
 
-	public class ChanCatalog
-	{
-		public string[] ThreadArray;
-	}
-}
+
 namespace FlagMiner
 {
 
@@ -31,16 +25,29 @@ namespace FlagMiner
 	{
 		public List<Post> posts;
 	}
-}
-namespace FlagMiner
-{
 
 
 	public class Post
 	{
-		//' deserializer looks for proper field names to deserialize json fields
-		public Int64 no;
-		public Int64 resto;
+		//' deserializer looks for public field names to deserialize json fields
+		private Int64 _no;
+        public Int64 no  // all this mess to handle OPs which have resto = 0
+        {
+            get { return _no; }
+            set
+            {
+                if (_resto == 0) { _resto = value; }
+                _no = value;
+            }
+        }
+		private Int64 _resto;
+        public Int64 resto
+        {
+            get { return _resto; }
+            set { if (value == 0) { _resto = _no; }
+                else { _resto = value; }
+            }
+        }
 		public Int64 sticky;
 		public Int64 closed;
 		public Int64 archived;
@@ -82,18 +89,14 @@ namespace FlagMiner
 
 		public string troll_country;
 	}
-}
-namespace FlagMiner
-{
+
 
 	public class Fleg
 	{
 		public Int64 post_nr;
 		public string region;
 	}
-}
-namespace FlagMiner
-{
+
 
 	[Serializable()]
 	public class RegionalFleg
@@ -116,10 +119,19 @@ namespace FlagMiner
 		[XmlIgnore()]
 			// existing, invalid etc...
 		public int status = 0;
+
+        public void copySerializableItems(RegionalFleg src)
+        {
+            this.isTrollFlag = src.isTrollFlag;
+            this.imgurl = src.imgurl;
+            this.title = src.title;
+            this.thread = src.thread;
+            this.board = src.board;
+            this.pNo = src.pNo;
+            this.time = src.time;
+        }
 	}
-}
-namespace FlagMiner
-{
+
 
 	public enum PurgeEnum : int
 	{
@@ -128,16 +140,13 @@ namespace FlagMiner
 		undefined = 0,
 		ok = 1
 	}
-}
-namespace FlagMiner
-{
+
 
 	public class PostComparer : IComparer<Post>
 	{
 
 		public int Compare(Post x, Post y)
 		{
-
 			if (x == null) {
 				if (y == null) {
 					return 0;
@@ -154,9 +163,7 @@ namespace FlagMiner
 			}
 		}
 	}
-}
-namespace FlagMiner
-{
+
 
 	public class FlegComparer : IComparer<Fleg>
 	{
@@ -180,9 +187,7 @@ namespace FlagMiner
 			}
 		}
 	}
-}
-namespace FlagMiner
-{
+
 
 	[Serializable()]
 	public struct Options
@@ -212,12 +217,44 @@ namespace FlagMiner
 
         public string repoUrl;
 	}
-}
-namespace FlagMiner
-{
+
+    public enum WorkerStatus
+    {
+        unk = 0,
+        starting,
+        initializing,
+        running,
+        completed,
+        cancelling,
+        cancelled,
+        error,
+    }
+
+    public class WorkerUserState
+    {
+        public WorkerStatus status;
+        public String board;
+        public String current;
+        public String additionalString;
+        public int progress;
+        public int total;
+    }
 
 
-	public class ImageListHelper
+    public static class ListExtensions
+    {
+        public static List<List<T>> ChunkBy<T>(this IEnumerable<T> source, int chunkSize)
+        {
+            return source
+                .Select((x, i) => new { Index = i, Value = x })
+                .GroupBy(x => x.Index / chunkSize)
+                .Select(x => x.Select(v => v.Value).ToList())
+                .ToList();
+        }
+    }
+
+
+    public class ImageListHelper
 	{
 
 		private static Form1 frm;
@@ -260,7 +297,6 @@ namespace FlagMiner
 				}
 			});
 		}
-
 
 
 		protected ImageList.ImageCollection SmallImageCollection {
@@ -392,7 +428,7 @@ namespace FlagMiner
 		private readonly object messagesLock = new object();
 		public void AddImageToCollection(string key, ImageList imageList, Image img)
 		{
-			if (imageList == null | img == null) {
+			if (imageList == null || img == null) {
 				return;
 			}
 			lock (messagesLock) {
@@ -417,11 +453,11 @@ namespace FlagMiner
 							g = Graphics.FromImage(tempbmp);
 							//g.Clear(Color.White)
 							g.DrawImage(savedImg, new Rectangle(0, 0, savedImg.Width, savedImg.Height), new Rectangle(0, 0, savedImg.Width, savedImg.Height), GraphicsUnit.Pixel);
-							// sostituisci
+							// replace
 							tempList.Images.Add(ke, tempbmp);
 						}
 
-						// copia
+						// copy
 						this.SmallImageList.Images.Clear();
 						Form1 myform = (Form1)this.listView.Parent.Parent.Parent;
 						myform.SetImgSizeInvoker(new Size(maxSize.Width, maxSize.Height));
@@ -430,7 +466,7 @@ namespace FlagMiner
 							this.SmallImageList.Images.Add(ke, tempList.Images[ke]);
 						}
 
-						// sistema nuova
+						// new one
 						Bitmap newBitmap = new Bitmap(maxSize.Width, maxSize.Height);
 						Graphics gr = Graphics.FromImage(newBitmap);
 						gr.DrawImage(img, 0, 0, img.Width, img.Height);
@@ -446,9 +482,6 @@ namespace FlagMiner
 		}
 
 	}
-}
-namespace FlagMiner
-{
 
 
 	public class MergeManager
@@ -508,9 +541,6 @@ namespace FlagMiner
 		}
 
 	}
-}
-namespace FlagMiner
-{
 
 
 	public class UpdateManager
@@ -550,13 +580,10 @@ namespace FlagMiner
 		}
 
 	}
-}
-namespace FlagMiner
-{
+
 
 	//https://weblogs.asp.net/pwelter34/444961
 	[XmlRoot("dictionary")]
-
 	public class SerializableDictionary<TKey, TValue> : SortedDictionary<TKey, TValue>, IXmlSerializable
 	{
 
@@ -566,7 +593,6 @@ namespace FlagMiner
 		{
 			return null;
 		}
-
 
 
 		public void ReadXml(System.Xml.XmlReader reader)
@@ -631,9 +657,6 @@ namespace FlagMiner
 		#endregion
 
 	}
-}
-namespace FlagMiner
-{
 
 
 	// array mangling
@@ -647,7 +670,16 @@ namespace FlagMiner
 			return ApplyInternal(source, action);
 		}
 
-		static internal IEnumerable<T> ApplyInternal<T>(IEnumerable<T> source, Action<T> action)
+        //[Extension()]
+        public static void Apply<T>(this IEnumerable<T> source)
+        {
+            foreach (object e in source)
+            {
+                //' do nothing, just make sure the elements are enumerated.
+            }
+        }
+
+        static internal IEnumerable<T> ApplyInternal<T>(IEnumerable<T> source, Action<T> action)
 		{
 			List<T> res = new List<T>();
 			foreach (T e in source) {
@@ -657,12 +689,5 @@ namespace FlagMiner
 			return res;
 		}
 
-		//[Extension()]
-		public static void Apply<T>(this IEnumerable<T> source)
-		{
-			foreach (object e in source) {
-				//' do nothing, just make sure the elements are enumerated.
-			}
-		}
 	}
 }

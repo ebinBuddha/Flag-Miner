@@ -1,26 +1,21 @@
-using Microsoft.VisualBasic;
+using BrightIdeasSoftware;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
-using System.Windows.Forms;
-using System.Linq;
-using System.Xml.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Threading;
-using System.Net;
-using System.IO;
-using System.Xml.Serialization;
 using System.Collections.Concurrent;
-using System.Text;
-using System.Web;
-using System.Net.Http;
+using System.Collections.Generic;
 using System.Collections.Specialized;
-using BrightIdeasSoftware;
-using FlagMiner;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace FlagMiner
 {
@@ -28,10 +23,10 @@ namespace FlagMiner
     public partial class Form1 : Form
     {
 
-        public string DefaultUserAgent = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10136";
-        string baseUrl = "http://boards.4chan.org/";
-        string archiveBaseUrl = "http://a.4cdn.org/";
-        string imageBaseUrl = "http://s.4cdn.org/image/country/";
+        public string DefaultUserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/72.0";
+        string baseUrl = "https://boards.4chan.org/";
+        string archiveBaseUrl = "https://a.4cdn.org/";
+        string imageBaseUrl = "https://s.4cdn.org/image/country/";
         List<string> boardDict = new List<string> {
             "int/",
             "pol/",
@@ -44,7 +39,7 @@ namespace FlagMiner
         string DefaultflegsBaseUrl = "https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/";
         string flegsBaseUrl = "";
         // // not https bcs installing the certificate on wine is a nightmare
-        string backendBaseUrl = "http://whatisthisimnotgoodwithcomputers.com/";
+        string backendBaseUrl = "https://countryball.ca/";
 
 
         string getUrl = "int/get_flags_api2.php";
@@ -98,7 +93,14 @@ namespace FlagMiner
             exclusionDateLong = (long)(options.exclusionDate.ToUniversalTime() - UnixEpoch).TotalSeconds;
 
             SetupForParsing();
-            ValidateOptions();
+            try
+            {
+                ValidateOptions();
+            }
+            catch (Exception ex)
+            {
+                AppendText(DateTime.Now + " : " + ex.ToString() + System.Environment.NewLine);
+            }
 
             StatusText.AppendText(DateTime.Now + " : Mining started." + System.Environment.NewLine);
 
@@ -114,6 +116,16 @@ namespace FlagMiner
 
             bool markedForAbortion = false;
 
+            if (boardList.Count == 0)
+            {
+                worker.ReportProgress(0,
+                    new WorkerUserState
+                    {
+                        status = WorkerStatus.error,
+                        additionalString = "No board selected for parsing. Please select at least one."
+                    });
+            }
+
             foreach (string board in boardList) {
                 if (markedForAbortion)
                     break;
@@ -123,7 +135,7 @@ namespace FlagMiner
                     List<string> threads = null;
                     ConcurrentDictionary<string, long> excludedThreads = null;
 
-                    worker.ReportProgress(0, new object[] { board });
+                    worker.ReportProgress(0, new WorkerUserState { board=board, status=WorkerStatus.starting });
 
                     errorCode = LoadArchive(board, ref response);
                     RaiseError(errorCode, ref statusFlag);
@@ -131,6 +143,8 @@ namespace FlagMiner
                     ParseArchive(response, ref threads);
                     LoadExclusionList(board, ref excludedThreads);
                     PurgeExclusionList(ref excludedThreads, ref threads);
+
+                    worker.ReportProgress(0, new WorkerUserState { board = board, status = WorkerStatus.initializing, progress=0, total = threads.Count });
 
                     long finalTime = (long)(DateTime.UtcNow - UnixEpoch).TotalSeconds;
 
@@ -141,11 +155,13 @@ namespace FlagMiner
                             break;
                         }
 
-                        worker.ReportProgress(i + 1, new object[] {
-                            board,
-                            threads.Count
+                        worker.ReportProgress(i + 1, new WorkerUserState {
+                            board = board,
+                            status = WorkerStatus.running,
+                            progress = i+1,
+                            total = threads.Count
                         });
-                        Thread.Sleep(450); // do not flood the server and get banned
+                        Thread.Sleep(50); // do not flood the server and get banned
                         try {
                             string rawResponse = null;
                             errorCode = LoadThread(board, threads[i], out rawResponse);
@@ -157,7 +173,7 @@ namespace FlagMiner
                             Post firstPost = posts[0];
                             finalTime = firstPost.archived_on;
 
-                            if ((options.exclusionByDate && finalTime > exclusionDateLong) | (!options.exclusionByDate)) {
+                            if ((options.exclusionByDate && finalTime > exclusionDateLong) || (!options.exclusionByDate)) {
                                 List<Fleg> flegs = new List<Fleg>();
                                 QueryExtraFlags(board, ref posts, ref flegs);
 
@@ -180,11 +196,31 @@ namespace FlagMiner
                                 excludedThreads.TryAdd(threads[i], finalTime);
                             } else {
                                 // halt everything.. internet down?
-                                AppendText(DateTime.Now + " : " + board + "/" + threads[i] + " " + ex.ToString() + System.Environment.NewLine);
+                                worker.ReportProgress(i + 1,
+                                    new WorkerUserState
+                                    {
+                                        board = board,
+                                        current = threads[i],
+                                        status = WorkerStatus.cancelling,
+                                        progress = i + 1,
+                                        total = threads.Count,
+                                        additionalString = ex.ToString()
+                                    });
+                                //AppendText(DateTime.Now + " : " + board + "/" + threads[i] + " " + ex.ToString() + System.Environment.NewLine);
                                 markedForAbortion = true;
                             }
                         } catch (Exception ex) {
-                            AppendText(DateTime.Now + " : " + board + "/" + threads[i] + " " + ex.ToString() + System.Environment.NewLine);
+                            worker.ReportProgress(i + 1,
+                                new WorkerUserState
+                                {
+                                    board = board,
+                                    current = threads[i],
+                                    status = WorkerStatus.cancelling,
+                                    progress = i + 1,
+                                    total = threads.Count,
+                                    additionalString = ex.ToString()
+                                });
+                            //AppendText(DateTime.Now + " : " + board + "/" + threads[i] + " " + ex.ToString() + System.Environment.NewLine);
                             markedForAbortion = true;
                         }
 
@@ -199,10 +235,24 @@ namespace FlagMiner
                         break;
 
                 } catch (WebException ex) {
-                    AppendText(DateTime.Now + " : " + board + " " + ex.ToString() + System.Environment.NewLine);
+                    worker.ReportProgress(0,
+                        new WorkerUserState
+                        {
+                            board = board,
+                            status = WorkerStatus.cancelling,
+                            additionalString = ex.ToString()
+                        });
+                    //AppendText(DateTime.Now + " : " + board + " " + ex.ToString() + System.Environment.NewLine);
                     markedForAbortion = true;
                 } catch (Exception ex) {
-                    AppendText(DateTime.Now + " : " + board + " " + ex.ToString() + System.Environment.NewLine);
+                    worker.ReportProgress(0,
+                        new WorkerUserState
+                        {
+                            board = board,
+                            status = WorkerStatus.cancelling,
+                            additionalString = ex.ToString()
+                        });
+                    //AppendText(DateTime.Now + " : " + board + " " + ex.ToString() + System.Environment.NewLine);
                     markedForAbortion = true;
                 }
             }
@@ -215,7 +265,8 @@ namespace FlagMiner
                 BackgroundWorker1.CancelAsync();
             if (BackgroundWorker2.IsBusy)
                 BackgroundWorker2.CancelAsync();
-            StatusText.AppendText(DateTime.Now + " : Abort signal sent." + System.Environment.NewLine);
+            //StatusText.AppendText(DateTime.Now + " : Abort signal sent." + System.Environment.NewLine);
+            parseWorkerObject(sender, new WorkerUserState() { status = WorkerStatus.cancelling });
             SetupForIdle();
         }
 
@@ -495,52 +546,48 @@ namespace FlagMiner
 
         public void QueryExtraFlags(string board, ref List<Post> posts, ref List<Fleg> flags)
         {
-            StringBuilder strB = new StringBuilder();
-            StringBuilder tempstr = new StringBuilder();
+            List<string> reqStrings = new List<string>();
 
             if (posts.Count > 0) {
-                strB.Append("post_nrs=");
-                for (int i = 0; i <= posts.Count - 1; i++) {
-                    string postNo = posts[i].no.ToString();
-                    if (i > 0) {
-                        tempstr.Append("," + postNo);
-                    } else {
-                        tempstr.Append(postNo);
-                    }
-                }
-                strB.Append(HttpUtility.UrlEncode(tempstr.ToString()));
-                strB.Append("&" + "board=" + HttpUtility.UrlEncode(board));
-
-                // better if parallelized?
-                foreach (string st in options.backendServers)
+                List<List<long>> chunks = posts.Select(p => p.no).ChunkBy(400);
+                foreach (List<long> subList in chunks)
                 {
-                    if (st == "") continue;
+                    StringBuilder tempstr = subList.Aggregate(new StringBuilder(), (acc, p) => acc.Append("," + p.ToString()),(acc)=>acc.Remove(0,1));
 
-                    using (WebClient client = new WebClient())
+                    // better if parallelized?
+                    foreach (string st in options.backendServers)
                     {
-                        client.Headers["User-Agent"] = options.userAgent;
-                        NameValueCollection values = new NameValueCollection {
-                            {
-                                "post_nrs",
-                                tempstr.ToString()
-                            },
-                            {
-                                "board",
-                                board
-                            }
-                        };
-                        var responses = client.UploadValues(st + getUrl, values);
-                        //var responses = client.UploadValues(backendBaseUrl + getUrl, values);
+                        if (st == "") continue;
 
-                        var response = Encoding.Default.GetString(responses);
+                        using (WebClient client = new WebClient())
+                        {
+                            client.Headers["User-Agent"] = options.userAgent;
+                            NameValueCollection values = new NameValueCollection {
+                                {
+                                    "post_nrs",
+                                    tempstr.ToString()
+                                },
+                                {
+                                    "board",
+                                    board
+                                }
+                            };
+                            var responses = client.UploadValues(st + getUrl, values);
+                            //if (chunks.Count>1)
+                            //{
+                            //    Thread.Sleep(2500);
+                            //}
+                            //var responses = client.UploadValues(backendBaseUrl + getUrl, values);
 
-                        flags.AddRange(ser.Deserialize<Fleg[]>(response));
+                            var response = Encoding.Default.GetString(responses);
 
-                        //return;
+                            flags.AddRange(ser.Deserialize<Fleg[]>(response));
+
+                            //return;
+                        }
                     }
-                }
 
-                //flags.Distinct();
+                }
 
             } else {
                 if (flags.Count > 0)
@@ -630,8 +677,12 @@ namespace FlagMiner
                 if (fs != null)
                     fs.Close();
             }
-
-            if (options.exclusionDate > DateTimePicker1.MaxDate || options.exclusionDate < DateTimePicker1.MinDate) {
+            if (options.backendServers == null)
+            {
+                options.backendServers = new List<string>();
+            }
+            if (options.exclusionDate > DateTimePicker1.MaxDate || options.exclusionDate < DateTimePicker1.MinDate)
+            {
                 options.exclusionDate = DateTime.Now;
             }
             DateTimePicker1.Value = options.exclusionDate;
@@ -643,8 +694,15 @@ namespace FlagMiner
             flegsBaseUrl = options.repoUrl;
         }
 
+        public bool AcceptAllCertifications(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certification, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+        {
+            return true;
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(AcceptAllCertifications);
+
             LoadOptions();
 
             ser.MaxJsonLength = 10 * 1024 * 1024;
@@ -691,7 +749,6 @@ namespace FlagMiner
         public object ThreadAspect(object x)
         {
             RegionalFleg fleg = (RegionalFleg)x;
-            //return fleg.Value.thread;
             return fleg.thread;
         }
 
@@ -755,16 +812,15 @@ namespace FlagMiner
 		{
 			List<Post> tempPosts;
 
-			List<string> listOfNo = new List<string>();
+			List<long> listOfNo = new List<long>();
 			foreach (Fleg flag in extraflags) {
-                if (listOfNo.Contains(flag.post_nr.ToString())) continue;   
-				listOfNo.Add(flag.post_nr.ToString());
+                if (listOfNo.Contains(flag.post_nr)) continue;   
+				listOfNo.Add(flag.post_nr);
 			}
 
 			// some of these variables may come not sorted... sort everything by post # !!!
 			listOfNo.Sort();
-            //listOfNo = (List<string>)listOfNo.Distinct();
-			tempPosts = posts.Where((Post e) => listOfNo.Contains(e.no.ToString())).ToList();
+			tempPosts = posts.Where((Post e) => listOfNo.Contains(e.no)).ToList();
 			//purge posts without extraflags
 			tempPosts.Sort(postComparer);
 
@@ -785,19 +841,19 @@ namespace FlagMiner
 				string mf = null;
 				bool trollflag = false;
 				string imgUrl = null;
-				if (post.troll_country != null && post.troll_country != string.Empty) {
-					mf = post.country_name;
-					trollflag = true;
-					imgUrl = imageBaseUrl + "troll/" + post.troll_country.ToLower() + ".gif";
-				} else {
+				if (String.IsNullOrEmpty(post.troll_country)) {
 					mf = post.country_name;
 					trollflag = false;
 					imgUrl = imageBaseUrl + post.country.ToLower() + ".gif";
+				} else {
+					mf = post.country_name;
+					trollflag = true;
+					imgUrl = imageBaseUrl + "troll/" + post.troll_country.ToLower() + ".gif";
 				}
 
 				var postUrl = baseUrl + board + "/thread/" + post.resto + "#p" + post.no;
 
-                RegionalFleg regFlag = new RegionalFleg
+                RegionalFleg regFlag = new RegionalFleg()
                 {
                     isTrollFlag = trollflag,
                     title = mf,
@@ -848,10 +904,7 @@ namespace FlagMiner
 				} else {
 					RegionalFleg presentFleg = curDict[curFleg.title];
 					if (presentFleg.time < curFleg.time) {
-						presentFleg.time = curFleg.time;
-						presentFleg.pNo = curFleg.pNo;
-						presentFleg.thread = curFleg.thread;
-						presentFleg.board = curFleg.board;
+                        presentFleg.copySerializableItems(curFleg);
 					}
 					if (curFleg.children.Count > 0) {
 						SerializableDictionary<string, RegionalFleg> curSrcDict = curFleg.children;
@@ -872,11 +925,8 @@ namespace FlagMiner
 					var curdestfleg = dest[el.Key];
 					var cursourcefleg = el.Value;
 					if (curdestfleg.time < cursourcefleg.time) {
-						curdestfleg.time = cursourcefleg.time;
-						curdestfleg.pNo = cursourcefleg.pNo;
-						curdestfleg.thread = cursourcefleg.thread;
-						curdestfleg.board = cursourcefleg.board;
-					}
+                        curdestfleg.copySerializableItems(cursourcefleg);
+                    }
 					if (cursourcefleg.children.Count > 0) {
 						Merger(ref cursourcefleg.children, ref curdestfleg.children);
 					}
@@ -884,36 +934,63 @@ namespace FlagMiner
 			}
 		}
 
+        private void parseWorkerObject(object sender, WorkerUserState userState)
+        {
+            switch (userState.status)
+            {
+                case WorkerStatus.starting:
+                    StatusText.AppendText(DateTime.Now + " : Parsing " + userState.board + " board" + System.Environment.NewLine);
+                    ProgressBar1.Maximum = 1;
+                    ProgressBar1.Value = 0;
+                    break;
+                case WorkerStatus.initializing:
+                    StatusText.AppendText(DateTime.Now + " : " + userState.board + " board has " + userState.total + " threads to be parsed" + System.Environment.NewLine);
+                    ProgressBar1.Maximum = 1;
+                    ProgressBar1.Value = 0;
+                    break;
+                case WorkerStatus.running:
+                    Label2.Text = string.Format("Current board: {0}. Parsing thread {1} of {2}", userState.board, userState.progress, userState.total);
+                    ProgressBar1.Maximum = userState.total;
+                    ProgressBar1.Value = userState.progress;
+                    break;
+                case WorkerStatus.cancelling:
+                    StatusText.AppendText(DateTime.Now + " : Abort signal sent." + System.Environment.NewLine);
+                    break;
+                case WorkerStatus.cancelled:
+                    StatusText.AppendText(DateTime.Now + " : Aborted." + System.Environment.NewLine);
+                    break;
+                case WorkerStatus.error:
+                    StatusText.AppendText(DateTime.Now + " : An unexpected error occurred: " + userState.additionalString + System.Environment.NewLine);
+                    break;
+                case WorkerStatus.completed:
+                    StatusText.AppendText(DateTime.Now + " : Parsing completed." + System.Environment.NewLine);
+                    break;
+            }
+        }
+
 
 		private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
 		{
-            object[] arr = (object[])e.UserState;
-            if (arr.Length == 1)
+            WorkerUserState userState = (WorkerUserState)e.UserState;
+            if (userState != null)
             {
-                StatusText.AppendText(DateTime.Now + " : Parsing " + arr[0] + " board" + System.Environment.NewLine);
-                ProgressBar1.Maximum = 1;
-                ProgressBar1.Value = 0;
-            }
-            else
-            {
-                Label2.Text = string.Format("Current board: {0}. Parsing thread {1} of {2}", arr[0], e.ProgressPercentage, arr[1]);
-                ProgressBar1.Maximum = (int)arr[1];
-                ProgressBar1.Value = e.ProgressPercentage;
+                parseWorkerObject(sender, userState);
             }
 		}
 
 		private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
+			SetupForIdle();
+            WorkerUserState userState = new WorkerUserState();
 			if (e.Cancelled) {
-				SetupForIdle();
-				StatusText.AppendText(DateTime.Now + " : Aborted." + System.Environment.NewLine);
+                userState.status = WorkerStatus.cancelled;
 			} else if (e.Error != null) {
-				StatusText.AppendText(DateTime.Now + " : An error occurred." + System.Environment.NewLine);
-				SetupForIdle();
+                userState.status = WorkerStatus.error;
+                userState.additionalString = e.Error.ToString();
 			} else {
-				StatusText.AppendText(DateTime.Now + " : Parsing completed." + System.Environment.NewLine);
-				SetupForIdle();
+                userState.status = WorkerStatus.completed;
 			}
+            parseWorkerObject(sender, userState);
             var res = WindowsApi.FlashWindow(Process.GetCurrentProcess().MainWindowHandle, true, true, 5);
 		}
 
@@ -1155,7 +1232,7 @@ namespace FlagMiner
 						return;
 					}
 				}
-				MainTree.Where((KeyValuePair<string, RegionalFleg> pair) => pair.Value.markedfordeletion == true | (options.deleteChildFree && pair.Value.children.Count == 0)).ToArray().Apply((KeyValuePair<string, RegionalFleg> pair) => MainTree.Remove(pair.Key)).Apply();
+				MainTree.Where((KeyValuePair<string, RegionalFleg> pair) => pair.Value.markedfordeletion == true || (options.deleteChildFree && pair.Value.children.Count == 0)).ToArray().Apply((KeyValuePair<string, RegionalFleg> pair) => MainTree.Remove(pair.Key)).Apply();
 
 				UpdateRoots();
 				TreeListView1.Invalidate();
@@ -1169,7 +1246,7 @@ namespace FlagMiner
 			//Dim baseFile1 = basestr & ".png"
 			string initString = "";
             if (string.IsNullOrEmpty(flegsBaseUrl))
-                throw new Exception("Repository url is not set.");
+                throw new Exception("Repository url is not set. Make sure to set a valid one in the options.");
 			if (fleg.imgurl.Contains(flegsBaseUrl))
 				initString = options.localSaveFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
 			// for regionals
@@ -1402,20 +1479,28 @@ namespace FlagMiner
 
         private void ValidateOptions()
 		{
+            if (options.backendServers == null)
+            {
+                options.backendServers = new List<string>();
+            }
 			if (string.IsNullOrEmpty(options.userAgent)) {
-                throw new Exception("User Agent not defined");
+                throw new Exception("User Agent not defined. Make sure to set a valid one in the options.");
 				//options.userAgent = DefaultUserAgent;
 			}
             if (string.IsNullOrEmpty(options.repoUrl))
             {
-                throw new Exception("Repository Url not defined");
+                throw new Exception("Repository Url not defined. Make sure to set a valid one in the options.");
                 //options.repoUrl = DefaultflegsBaseUrl;
             }
             else
             {
                 flegsBaseUrl = options.repoUrl;
             }
-		}
+            if (options.exclusionDate > DateTimePicker1.MaxDate || options.exclusionDate < DateTimePicker1.MinDate)
+            {
+                options.exclusionDate = DateTime.Now;
+            }
+        }
 
 		/*private void Form1_MouseMove(object sender, MouseEventArgs e)
 		{

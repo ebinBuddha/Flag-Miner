@@ -104,7 +104,7 @@ namespace FlagMiner
 		private void TextBox2_Validating(object sender, CancelEventArgs e)
 		{
 			if (enablePurge.Checked && RadioButton1.Checked) {
-				if ((localRepoFolder.Text.Length == 0) && !Directory.Exists(localRepoFolder.Text)) {
+				if ((localRepoFolder.Text.Length == 0) || !Directory.Exists(localRepoFolder.Text)) {
                     MessageBox.Show("Invalid folder", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					e.Cancel = true;
 					return;
@@ -131,7 +131,17 @@ namespace FlagMiner
             }
         }
 
-		private void Button3_Click(object sender, EventArgs e)
+        private void backendServers_Validating(object sender, CancelEventArgs e)
+        {
+            if (this.backendServers.Lines.All(s => string.IsNullOrWhiteSpace(s)))
+            {
+                MessageBox.Show("Insert a valid Url for the backend server or press Default", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Cancel = true;
+                return;
+            }
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
 		{
 			if (FolderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
 				localSaveFolder.Text = FolderBrowserDialog1.SelectedPath;
@@ -150,7 +160,7 @@ namespace FlagMiner
 			}
 		}
 
-		private void Button5_Click(object sender, EventArgs e)
+		private void defaultUserAgentButton_Click(object sender, EventArgs e)
 		{
 			userAgent.Text = myForm1.DefaultUserAgent;
 		}
@@ -164,10 +174,10 @@ namespace FlagMiner
 
         private void enableCheck_CheckedChanged(object sender, EventArgs e)
         {
-            Button3.Enabled = enableCheck.Checked;
+            selectLocalDestFolderButton.Enabled = enableCheck.Checked;
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void defaultBackendButton_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Restore default server address?", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
@@ -178,11 +188,23 @@ namespace FlagMiner
             }
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void defaultRepoUrlButton_Click(object sender, EventArgs e)
         {
             this.repoUrl.Text = "https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/";
         }
 
+        public override bool ValidateChildren()
+        {
+            foreach (Control control in new List<Control> { this.backendServers, this.localRepoFolder, this.repoUrl, this.userAgent, this.localSaveFolder })
+            {
+                control.Focus();
+                if (!Validate())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
 	}
 }

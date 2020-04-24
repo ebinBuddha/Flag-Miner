@@ -41,7 +41,7 @@ namespace FlagMiner
             this.Button2 = new System.Windows.Forms.Button();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
             this.enableCheck = new System.Windows.Forms.CheckBox();
-            this.Button3 = new System.Windows.Forms.Button();
+            this.selectLocalDestFolderButton = new System.Windows.Forms.Button();
             this.localSaveFolder = new System.Windows.Forms.TextBox();
             this.Label1 = new System.Windows.Forms.Label();
             this.GroupBox2 = new System.Windows.Forms.GroupBox();
@@ -51,7 +51,7 @@ namespace FlagMiner
             this.enablePurge = new System.Windows.Forms.CheckBox();
             this.localRepoFolder = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
+            this.defaultRepoUrlButton = new System.Windows.Forms.Button();
             this.repoUrl = new System.Windows.Forms.TextBox();
             this.Label2 = new System.Windows.Forms.Label();
             this.Button4 = new System.Windows.Forms.Button();
@@ -61,13 +61,13 @@ namespace FlagMiner
             this.GroupBox3 = new System.Windows.Forms.GroupBox();
             this.Label4 = new System.Windows.Forms.Label();
             this.Button6 = new System.Windows.Forms.Button();
-            this.Button5 = new System.Windows.Forms.Button();
+            this.defaultUserAgentButton = new System.Windows.Forms.Button();
             this.saveAndLoadFolder = new System.Windows.Forms.TextBox();
             this.userAgent = new System.Windows.Forms.TextBox();
             this.Label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.backendServers = new System.Windows.Forms.TextBox();
-            this.button7 = new System.Windows.Forms.Button();
+            this.defaultBackendButton = new System.Windows.Forms.Button();
             this.GroupBox4 = new System.Windows.Forms.GroupBox();
             this.GroupBox1.SuspendLayout();
             this.GroupBox2.SuspendLayout();
@@ -103,7 +103,7 @@ namespace FlagMiner
             this.GroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox1.Controls.Add(this.enableCheck);
-            this.GroupBox1.Controls.Add(this.Button3);
+            this.GroupBox1.Controls.Add(this.selectLocalDestFolderButton);
             this.GroupBox1.Controls.Add(this.localSaveFolder);
             this.GroupBox1.Controls.Add(this.Label1);
             this.GroupBox1.Location = new System.Drawing.Point(12, 89);
@@ -125,15 +125,15 @@ namespace FlagMiner
             this.enableCheck.UseVisualStyleBackColor = true;
             this.enableCheck.CheckedChanged += new System.EventHandler(this.enableCheck_CheckedChanged);
             // 
-            // Button3
+            // selectLocalDestFolderButton
             // 
-            this.Button3.Location = new System.Drawing.Point(368, 53);
-            this.Button3.Name = "Button3";
-            this.Button3.Size = new System.Drawing.Size(50, 23);
-            this.Button3.TabIndex = 3;
-            this.Button3.Text = "...";
-            this.Button3.UseVisualStyleBackColor = true;
-            this.Button3.Click += new System.EventHandler(this.Button3_Click);
+            this.selectLocalDestFolderButton.Location = new System.Drawing.Point(368, 53);
+            this.selectLocalDestFolderButton.Name = "selectLocalDestFolderButton";
+            this.selectLocalDestFolderButton.Size = new System.Drawing.Size(50, 23);
+            this.selectLocalDestFolderButton.TabIndex = 3;
+            this.selectLocalDestFolderButton.Text = "...";
+            this.selectLocalDestFolderButton.UseVisualStyleBackColor = true;
+            this.selectLocalDestFolderButton.Click += new System.EventHandler(this.Button3_Click);
             // 
             // localSaveFolder
             // 
@@ -230,15 +230,15 @@ namespace FlagMiner
             this.label6.Text = "Repo Url (e.g. https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags" +
     "/)";
             // 
-            // button8
+            // defaultRepoUrlButton
             // 
-            this.button8.Location = new System.Drawing.Point(368, 115);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(50, 23);
-            this.button8.TabIndex = 11;
-            this.button8.Text = "Default";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.defaultRepoUrlButton.Location = new System.Drawing.Point(368, 115);
+            this.defaultRepoUrlButton.Name = "defaultRepoUrlButton";
+            this.defaultRepoUrlButton.Size = new System.Drawing.Size(50, 23);
+            this.defaultRepoUrlButton.TabIndex = 11;
+            this.defaultRepoUrlButton.Text = "Default";
+            this.defaultRepoUrlButton.UseVisualStyleBackColor = true;
+            this.defaultRepoUrlButton.Click += new System.EventHandler(this.defaultRepoUrlButton_Click);
             // 
             // repoUrl
             // 
@@ -295,7 +295,7 @@ namespace FlagMiner
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox3.Controls.Add(this.Label4);
             this.GroupBox3.Controls.Add(this.Button6);
-            this.GroupBox3.Controls.Add(this.Button5);
+            this.GroupBox3.Controls.Add(this.defaultUserAgentButton);
             this.GroupBox3.Controls.Add(this.saveAndLoadFolder);
             this.GroupBox3.Controls.Add(this.userAgent);
             this.GroupBox3.Controls.Add(this.Label3);
@@ -325,15 +325,15 @@ namespace FlagMiner
             this.Button6.UseVisualStyleBackColor = true;
             this.Button6.Click += new System.EventHandler(this.Button6_Click);
             // 
-            // Button5
+            // defaultUserAgentButton
             // 
-            this.Button5.Location = new System.Drawing.Point(368, 30);
-            this.Button5.Name = "Button5";
-            this.Button5.Size = new System.Drawing.Size(50, 23);
-            this.Button5.TabIndex = 9;
-            this.Button5.Text = "Default";
-            this.Button5.UseVisualStyleBackColor = true;
-            this.Button5.Click += new System.EventHandler(this.Button5_Click);
+            this.defaultUserAgentButton.Location = new System.Drawing.Point(368, 30);
+            this.defaultUserAgentButton.Name = "defaultUserAgentButton";
+            this.defaultUserAgentButton.Size = new System.Drawing.Size(50, 23);
+            this.defaultUserAgentButton.TabIndex = 9;
+            this.defaultUserAgentButton.Text = "Default";
+            this.defaultUserAgentButton.UseVisualStyleBackColor = true;
+            this.defaultUserAgentButton.Click += new System.EventHandler(this.defaultUserAgentButton_Click);
             // 
             // saveAndLoadFolder
             // 
@@ -345,7 +345,6 @@ namespace FlagMiner
             // 
             // userAgent
             // 
-            this.userAgent.CausesValidation = false;
             this.userAgent.Location = new System.Drawing.Point(9, 32);
             this.userAgent.Name = "userAgent";
             this.userAgent.Size = new System.Drawing.Size(353, 20);
@@ -378,16 +377,17 @@ namespace FlagMiner
             this.backendServers.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.backendServers.Size = new System.Drawing.Size(405, 58);
             this.backendServers.TabIndex = 9;
+            this.backendServers.Validating += new System.ComponentModel.CancelEventHandler(this.backendServers_Validating);
             // 
-            // button7
+            // defaultBackendButton
             // 
-            this.button7.Location = new System.Drawing.Point(423, 25);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(50, 23);
-            this.button7.TabIndex = 12;
-            this.button7.Text = "Default";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.defaultBackendButton.Location = new System.Drawing.Point(423, 25);
+            this.defaultBackendButton.Name = "defaultBackendButton";
+            this.defaultBackendButton.Size = new System.Drawing.Size(50, 23);
+            this.defaultBackendButton.TabIndex = 12;
+            this.defaultBackendButton.Text = "Default";
+            this.defaultBackendButton.UseVisualStyleBackColor = true;
+            this.defaultBackendButton.Click += new System.EventHandler(this.defaultBackendButton_Click);
             // 
             // GroupBox4
             // 
@@ -395,7 +395,7 @@ namespace FlagMiner
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox4.Controls.Add(this.label6);
-            this.GroupBox4.Controls.Add(this.button8);
+            this.GroupBox4.Controls.Add(this.defaultRepoUrlButton);
             this.GroupBox4.Controls.Add(this.repoUrl);
             this.GroupBox4.Controls.Add(this.Label2);
             this.GroupBox4.Controls.Add(this.Button4);
@@ -413,9 +413,10 @@ namespace FlagMiner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(484, 568);
             this.Controls.Add(this.GroupBox4);
-            this.Controls.Add(this.button7);
+            this.Controls.Add(this.defaultBackendButton);
             this.Controls.Add(this.backendServers);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.GroupBox3);
@@ -450,7 +451,7 @@ namespace FlagMiner
 		internal System.Windows.Forms.GroupBox GroupBox1;
 		internal System.Windows.Forms.GroupBox GroupBox2;
 		internal System.Windows.Forms.CheckBox enableCheck;
-		private System.Windows.Forms.Button Button3;
+		private System.Windows.Forms.Button selectLocalDestFolderButton;
 		private System.Windows.Forms.TextBox localSaveFolder;
 		internal System.Windows.Forms.Label Label1;
 		internal System.Windows.Forms.Panel Panel1;
@@ -465,16 +466,16 @@ namespace FlagMiner
 		internal System.Windows.Forms.GroupBox GroupBox3;
 		private System.Windows.Forms.TextBox userAgent;
 		internal System.Windows.Forms.Label Label3;
-		private System.Windows.Forms.Button Button5;
+		private System.Windows.Forms.Button defaultUserAgentButton;
 		internal System.Windows.Forms.Label Label4;
 		private System.Windows.Forms.Button Button6;
 		internal System.Windows.Forms.TextBox saveAndLoadFolder;
 		internal System.Windows.Forms.CheckBox deleteChildFree;
         private Label label5;
         private TextBox backendServers;
-        private Button button7;
+        private Button defaultBackendButton;
         internal Label label6;
-        private Button button8;
+        private Button defaultRepoUrlButton;
         private TextBox repoUrl;
         private GroupBox GroupBox4;
     }
