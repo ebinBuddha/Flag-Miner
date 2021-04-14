@@ -1278,77 +1278,6 @@
   </item>
   <item>
     <key>
-      <string>Catalonia</string>
-    </key>
-    <value>
-      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <isTrollFlag>true</isTrollFlag>
-        <imgurl>https://s.4cdn.org/image/country/troll/ct.gif</imgurl>
-        <title>Catalonia</title>
-        <thread>https://boards.4chan.org/pol/thread/316682079#p316689609</thread>
-        <board>pol</board>
-        <pNo>316689609</pNo>
-        <time>1618371630</time>
-        <children>
-          <item>
-            <key>
-              <string>Ohio</string>
-            </key>
-            <value>
-              <RegionalFleg>
-                <isTrollFlag>false</isTrollFlag>
-                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Catalonia/Ohio.png</imgurl>
-                <title>Ohio</title>
-                <thread>https://boards.4chan.org/pol/thread/316682079#p316689609</thread>
-                <board>pol</board>
-                <pNo>316689609</pNo>
-                <time>1618371630</time>
-                <children>
-                  <item>
-                    <key>
-                      <string>Franklin County</string>
-                    </key>
-                    <value>
-                      <RegionalFleg>
-                        <isTrollFlag>false</isTrollFlag>
-                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Catalonia/Ohio/Franklin County.png</imgurl>
-                        <title>Franklin County</title>
-                        <thread>https://boards.4chan.org/pol/thread/316682079#p316689609</thread>
-                        <board>pol</board>
-                        <pNo>316689609</pNo>
-                        <time>1618371630</time>
-                        <children>
-                          <item>
-                            <key>
-                              <string>Columbus</string>
-                            </key>
-                            <value>
-                              <RegionalFleg>
-                                <isTrollFlag>false</isTrollFlag>
-                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Catalonia/Ohio/Franklin County/Columbus.png</imgurl>
-                                <title>Columbus</title>
-                                <thread>https://boards.4chan.org/pol/thread/316682079#p316689609</thread>
-                                <board>pol</board>
-                                <pNo>316689609</pNo>
-                                <time>1618371630</time>
-                                <children />
-                              </RegionalFleg>
-                            </value>
-                          </item>
-                        </children>
-                      </RegionalFleg>
-                    </value>
-                  </item>
-                </children>
-              </RegionalFleg>
-            </value>
-          </item>
-        </children>
-      </RegionalFleg>
-    </value>
-  </item>
-  <item>
-    <key>
       <string>Colombia</string>
     </key>
     <value>
@@ -1657,41 +1586,6 @@
                     </value>
                   </item>
                 </children>
-              </RegionalFleg>
-            </value>
-          </item>
-        </children>
-      </RegionalFleg>
-    </value>
-  </item>
-  <item>
-    <key>
-      <string>Fascist</string>
-    </key>
-    <value>
-      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <isTrollFlag>true</isTrollFlag>
-        <imgurl>https://s.4cdn.org/image/country/troll/fc.gif</imgurl>
-        <title>Fascist</title>
-        <thread>https://boards.4chan.org/pol/thread/316671609#p316672271</thread>
-        <board>pol</board>
-        <pNo>316672271</pNo>
-        <time>1618362628</time>
-        <children>
-          <item>
-            <key>
-              <string>Mississippi</string>
-            </key>
-            <value>
-              <RegionalFleg>
-                <isTrollFlag>false</isTrollFlag>
-                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Fascist/Mississippi.png</imgurl>
-                <title>Mississippi</title>
-                <thread>https://boards.4chan.org/pol/thread/316671609#p316672271</thread>
-                <board>pol</board>
-                <pNo>316672271</pNo>
-                <time>1618362628</time>
-                <children />
               </RegionalFleg>
             </value>
           </item>
