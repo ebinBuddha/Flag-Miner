@@ -65,9 +65,6 @@ namespace FlagMiner
         const string savedTreeFile = "savedTree.xml";
 
         const string badFlagString = "Region empty, no flag yet or you did not set.";
-        //Public exclusionByList As Boolean
-        //Public exclusionByDate As Boolean
-        //Public exclusionDate As DateTime
 
         long exclusionDateLong;
 
@@ -206,7 +203,6 @@ namespace FlagMiner
                                         total = threads.Count,
                                         additionalString = ex.ToString()
                                     });
-                                //AppendText(DateTime.Now + " : " + board + "/" + threads[i] + " " + ex.ToString() + System.Environment.NewLine);
                                 markedForAbortion = true;
                             }
                         } catch (Exception ex) {
@@ -220,7 +216,6 @@ namespace FlagMiner
                                     total = threads.Count,
                                     additionalString = ex.ToString()
                                 });
-                            //AppendText(DateTime.Now + " : " + board + "/" + threads[i] + " " + ex.ToString() + System.Environment.NewLine);
                             markedForAbortion = true;
                         }
 
@@ -425,13 +420,8 @@ namespace FlagMiner
 
         public void SetImgSizeInvoker(Size imgSize)
         {
-            //If (TreeListView1.InvokeRequired) Then
             setImgSizeCallback d = new setImgSizeCallback(SetImgSize);
             this.Invoke(d, new object[] { imgSize });
-            //Else
-            //Me.ImageList1.ImageSize = imgSize
-
-            //End If
         }
 
         public void SetImgSize(Size imgSize)
@@ -488,10 +478,6 @@ namespace FlagMiner
                 foreach (KeyValuePair<string, long> ke in tempList) {
                     exclusionList.TryAdd(ke.Key, ke.Value);
                 }
-                //exclusionList = New ConcurrentDictionary(Of String, Long)
-                //For Each item As String In tempList
-                //    exclusionList.TryAdd(item, 1)
-                //Next
                 fs.Close();
             } else {
                 exclusionList = new ConcurrentDictionary<string, long>();
@@ -573,17 +559,10 @@ namespace FlagMiner
                                 }
                             };
                             var responses = client.UploadValues(st + getUrl, values);
-                            //if (chunks.Count>1)
-                            //{
-                            //    Thread.Sleep(2500);
-                            //}
-                            //var responses = client.UploadValues(backendBaseUrl + getUrl, values);
-
                             var response = Encoding.Default.GetString(responses);
 
                             flags.AddRange(ser.Deserialize<Fleg[]>(response));
 
-                            //return;
                         }
                     }
 
@@ -714,8 +693,6 @@ namespace FlagMiner
 
             Bitmap tempbmp = new Bitmap(1, 1);
             blankImg = Image.FromHbitmap(tempbmp.GetHbitmap());
-            //Dim g As Graphics = Graphics.FromImage(tempbmp)
-            //g.DrawImage(blankImg, 1, 1, 1, 1)
 
             helper = new ImageListHelper(this.TreeListView1, helperStack);
             rootManager = new MergeManager(MainMergeStack, ref MainTree, TreeListView1);
@@ -729,7 +706,6 @@ namespace FlagMiner
 
             this.ThreadColumn.AspectGetter = ThreadAspect;
             this.TitleColumn.AspectGetter = TitleAspect;
-            //Me.FlagsColumn.AspectGetter = AddressOf ImageAspect
             this.FlagsColumn.ImageGetter = ImageGetter;
 
             SetupForIdle();
@@ -768,7 +744,6 @@ namespace FlagMiner
         {
             RegionalFleg fleg = (RegionalFleg)x;
 
-            //Return helper.GetImageIndex(fleg.Value.imgurl)
             if (helper.HasImage(fleg.imgurl))
             {
                 return helper.GetImageIndex(fleg.imgurl);
@@ -777,21 +752,14 @@ namespace FlagMiner
 				fleg.fetching = true;
 				Task.Factory.StartNew(() =>
 				{
-					// Form1 frm = (Form1)TreeListView1.Parent.Parent.Parent;
 					try {
 						helper.AddToStack(fleg.imgurl);
-						//helper.GetImageIndex(fleg.Value.imgurl)
-						//frm.updateManager.AddToStack(fleg)
-						//Me.TreeListView1.RefreshObject(fleg)
 					} catch (Exception)
                     {
                         // ignore, for the moment being
 					} finally {
-						//fleg.Value.fetching = False
 					}
 				});
-				//helper.GetImageIndex(fleg.Value.imgurl)
-				//Me.TreeListView1.RefreshObject(fleg)
 			}
 			return blankImg;
 		}
@@ -1176,8 +1144,6 @@ namespace FlagMiner
 		private PurgeEnum PurgeInvalid(RegionalFleg fleg, string path, int level)
 		{
 			var basestr = path + "\\" + fleg.title;
-			//var baseFile0 = basestr + ".gif";
-			//var baseFile1 = basestr + ".png";
 
 			PurgeEnum checkedFlag = default(PurgeEnum);
 			if (options.useLocal & level > 0) {
@@ -1188,8 +1154,6 @@ namespace FlagMiner
 				if (fleg.imgurl.Contains(imageBaseUrl))
 					initString = options.localRepoFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
 				// for nationals
-				//Dim pth As String = System.IO.Path.GetDirectoryName(initString)
-				//Dim fileName As String = System.IO.Path.GetFileName(initString)
 				if (File.Exists(initString)) {
 					checkedFlag = PurgeEnum.ok;
 				} else {
@@ -1241,9 +1205,6 @@ namespace FlagMiner
 
 		private void CheckExistent( RegionalFleg fleg, int level)
 		{
-			//Dim basestr = path & "\" & fleg.title
-			//Dim baseFile0 = basestr & ".gif"
-			//Dim baseFile1 = basestr & ".png"
 			string initString = "";
             if (string.IsNullOrEmpty(flegsBaseUrl))
                 throw new Exception("Repository url is not set. Make sure to set a valid one in the options.");
@@ -1253,19 +1214,11 @@ namespace FlagMiner
 			if (fleg.imgurl.Contains(imageBaseUrl))
 				initString = options.localSaveFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
 			// for nationals
-			//Dim pth As String = System.IO.Path.GetDirectoryName(initString)
-			//Dim fileName As String = System.IO.Path.GetFileName(initString)
-			//If File.Exists(initString) Then
-			//If ((level = 0 AndAlso Not File.Exists(baseFile0)) OrElse (level > 0 AndAlso Not File.Exists(baseFile1))) Then
 			fleg.exists = File.Exists(initString);
-			//Else
-			//fleg.exists = True
-			//End If
 			level += 1;
 			foreach (KeyValuePair<string, RegionalFleg> ke in fleg.children) {
 				CheckExistent(ke.Value, level);
 			}
-			//Dim mirror As SerializableDictionary(Of String, RegionalFleg) = fleg.children
 		}
 
 		private void Checkbutt_Click(object sender, EventArgs e)
@@ -1397,7 +1350,6 @@ namespace FlagMiner
 		{
 			try {
 				ContextMenuStrip m = new ContextMenuStrip();
-				//.(e.Model, e.Column)
                 m.Tag = (RegionalFleg)e.Model;
 				m.Items.Add("Expand All", null, ExpandHandler);
 				m.Items.Add("Collapse All", null, CollapseHandler);
@@ -1442,10 +1394,6 @@ namespace FlagMiner
 				string pth = Path.GetDirectoryName(initString);
 				string fileName = Path.GetFileName(initString);
 				SaveFileDialog1.InitialDirectory = pth;
-				//Dim fileName As String
-
-				//If Path.Equals(destPath, pth) Then fileName = regFlag.title & ".gif" ' it's a level 0
-				//If regFlag.imgurl.Contains(flegsBaseUrl) Then fileName = regFlag.title & ".png" ' it's not a level 0
 
 				SaveFileDialog1.FileName = fileName;
 				if (SaveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -1502,41 +1450,6 @@ namespace FlagMiner
             }
         }
 
-		/*private void Form1_MouseMove(object sender, MouseEventArgs e)
-		{
-			Control parent = (Control)sender;
-			if (parent == null)
-				return;
-
-			Control ctrl = parent.GetChildAtPoint(e.Location);
-			if ((ctrl != null && !ctrl.Enabled)) {
-				if ((ctrl.Visible && ctrl.Equals(checkbutt))) {
-					if ((ToolTip1.Tag == null && ToolTip1.Active)) {
-						string tipstring = ToolTip1.GetToolTip(ctrl);
-						ToolTip1.Show(tipstring, ctrl, ctrl.Width / 2, ctrl.Height / 2);
-						ToolTip1.Tag = ctrl;
-					}
-				}
-				if ((ctrl.Visible && ctrl.Equals(purgebutt))) {
-					if ((ToolTip2.Tag == null && ToolTip2.Active)) {
-						string tipstring = ToolTip2.GetToolTip(ctrl);
-						ToolTip2.Show(tipstring, ctrl, ctrl.Width / 2, ctrl.Height / 2);
-						ToolTip2.Tag = ctrl;
-					}
-				}
-			} else {
-                ctrl = (Control)ToolTip1.Tag;
-				if ((ctrl != null)) {
-					ToolTip1.Hide(ctrl);
-					ToolTip1.Tag = null;
-				}
-                ctrl = (Control)ToolTip2.Tag;
-				if ((ctrl != null)) {
-					ToolTip2.Hide(ctrl);
-					ToolTip2.Tag = null;
-				}
-			}
-		}*/
 		public Form1()
 		{
 			//MouseMove += Form1_MouseMove;
