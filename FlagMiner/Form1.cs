@@ -129,8 +129,8 @@ namespace FlagMiner
                 try {
                     int errorCode = 0;
                     string response = "";
-                    List<string> threads = null;
-                    ConcurrentDictionary<string, long> excludedThreads = null;
+                    List<long> threads = null;
+                    ConcurrentDictionary<long, long> excludedThreads = null;
 
                     worker.ReportProgress(0, new WorkerUserState { board=board, status=WorkerStatus.starting });
 
@@ -455,16 +455,16 @@ namespace FlagMiner
             return 1;
         }
 
-        private void ParseArchive(string response, ref List<string> threads)
+        private void ParseArchive(string response, ref List<long> threads)
         {
-            string[] tempArray = null;
+            long[] tempArray = null;
 
-            tempArray = ser.Deserialize<string[]>(response);
+            tempArray = ser.Deserialize<long[]>(response);
             // all archived thread numbers listed
             threads = tempArray.ToList();
         }
 
-        private void LoadExclusionList(string board, ref ConcurrentDictionary<string, long> exclusionList)
+        private void LoadExclusionList(string board, ref ConcurrentDictionary<long, long> exclusionList)
         {
             var threadDbName = board + ".db";
 
@@ -472,62 +472,72 @@ namespace FlagMiner
             if (System.IO.File.Exists(threadDbName)) {
                 SerializableDictionary<string, long> tempList = null;
                 FileStream fs = new FileStream(threadDbName, FileMode.Open);
-                exclusionList = new ConcurrentDictionary<string, long>();
+                exclusionList = new ConcurrentDictionary<long, long>();
+                var exclusionListStr = new ConcurrentDictionary<string, long>();
 
                 tempList = (SerializableDictionary<string, long>)xs.Deserialize(fs);
                 foreach (KeyValuePair<string, long> ke in tempList) {
-                    exclusionList.TryAdd(ke.Key, ke.Value);
+                    exclusionListStr.TryAdd(ke.Key, ke.Value);
                 }
                 fs.Close();
+                foreach(var ke in exclusionListStr)
+                {
+                    exclusionList.TryAdd(long.Parse(ke.Key), ke.Value);
+                }
             } else {
-                exclusionList = new ConcurrentDictionary<string, long>();
+                exclusionList = new ConcurrentDictionary<long, long>();
             }
         }
 
-        private void SaveExclusionList(string board, ref ConcurrentDictionary<string, long> exclusionList)
+        private void SaveExclusionList(string board, ref ConcurrentDictionary<long, long> exclusionList)
         {
             SerializableDictionary<string, long> tempList = new SerializableDictionary<string, long>();
             var threadDbName = board + ".db";
-            foreach (KeyValuePair<string, long> ke in exclusionList) {
-                tempList.Add(ke.Key, ke.Value);
+            foreach (KeyValuePair<long, long> ke in exclusionList) {
+                tempList.Add(ke.Key.ToString(), ke.Value);
             }
             FileStream fs = new FileStream(threadDbName, FileMode.Create);
             xs.Serialize(fs, tempList);
             fs.Close();
         }
 
-        private void PurgeExclusionList(ref ConcurrentDictionary<string, long> exclusionList, ref List<string> threadList)
+        private void PurgeExclusionList(ref ConcurrentDictionary<long, long> exclusionList, ref List<long> threadList)
         {
-
+            Dictionary<long, int> threads = new Dictionary<long, int>();
+            foreach (long thr in threadList)
+            {
+                threads.Add(thr, 0);
+            }
             if (options.exclusionByList) {
-                List<string> TBDeleted = new List<string>();
+                List<long> TBDeleted = new List<long>();
                 for (int i = 0; i <= exclusionList.Count - 1; i++) {
-                    string str = exclusionList.Keys.ElementAt(i);
-                    if (!threadList.Contains(str)) {
+                    long str = exclusionList.Keys.ElementAt(i);
+                    if (!threads.ContainsKey(str)) {
                         TBDeleted.Add(str);
                     }
                 }
 
                 long bogusshitwedontneednow = 0;
-                foreach (string st in TBDeleted) {
+                foreach (long st in TBDeleted) {
                     exclusionList.TryRemove(st, out bogusshitwedontneednow);
                 }
 
-                foreach (string st in exclusionList.Keys) {
-                    threadList.Remove(st);
+                foreach (long st in exclusionList.Keys) {
+                    threads.Remove(st);
                 }
             }
 
             if (options.exclusionByDate) {
-                Dictionary<string, long> tempDict = null;
+                Dictionary<long, long> tempDict = null;
                 tempDict = exclusionList.Where(e => e.Value < exclusionDateLong).ToDictionary(e => e.Key, e => e.Value);
-                //.ToDictionary(Of String, Long)(Function(e) e.Key, Function(e) e.Value)
 
-                foreach (string st in tempDict.Keys) {
-                    threadList.Remove(st);
+                foreach (long st in tempDict.Keys) {
+                    threads.Remove(st);
                 }
 
             }
+            threadList.Clear();
+            threadList.AddRange(threads.Keys);
         }
 
         public void QueryExtraFlags(string board, ref List<Post> posts, ref List<Fleg> flags)
@@ -574,7 +584,7 @@ namespace FlagMiner
             }
         }
 
-        public int LoadThread(string board, string thread, out string rawResponse, string fullpath = null)
+        public int LoadThread(string board, long thread, out string rawResponse, string fullpath = null)
         {
             System.Net.HttpWebRequest request = null;
             System.Net.HttpWebResponse response = null;
@@ -582,7 +592,7 @@ namespace FlagMiner
             string boardUrl = null;
 
             if (fullpath == null) {
-                boardUrl = archiveBaseUrl + board + "/thread/" + thread + ".json";
+                boardUrl = archiveBaseUrl + board + "/thread/" + thread.ToString() + ".json";
             } else {
                 boardUrl = fullpath + ".json";
             }
@@ -1084,7 +1094,7 @@ namespace FlagMiner
 			lstr = lstr.Distinct().ToList();
 			ConcurrentDictionary<string, Image> queue = new ConcurrentDictionary<string, Image>();
             ParallelOptions pOpt = new ParallelOptions { MaxDegreeOfParallelism = 10 };
-            Parallel.ForEach<string>(lstr, pOpt, str =>
+            Parallel.ForEach(lstr, pOpt, str =>
 			{
 				Image image = ImageListHelper.ScrapeImage(str);
 				queue.TryAdd(str, image);
@@ -1295,9 +1305,8 @@ namespace FlagMiner
 				Thread.Sleep(450);
 				// do not flood the server and get banned
 				try {
-					string rawResponse = null;
-					errorCode = LoadThread(board, threads[i].Item2, out rawResponse);
-					RaiseError(errorCode, ref statusFlag);
+                    errorCode = LoadThread(board, Int64.Parse(threads[i].Item2), out string rawResponse);
+                    RaiseError(errorCode, ref statusFlag);
 
 					List<Post> posts = null;
 					ParseThread(rawResponse, ref posts);

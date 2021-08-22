@@ -234,7 +234,7 @@ namespace FlagMiner
     {
         public WorkerStatus status;
         public String board;
-        public String current;
+        public long current;
         public String additionalString;
         public int progress;
         public int total;

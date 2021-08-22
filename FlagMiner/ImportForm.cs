@@ -37,7 +37,7 @@ namespace FlagMiner
                 Uri uri = new Uri(TextBox1.Text);
                 string parsedUrl = uri.GetLeftPart(UriPartial.Path);
 
-                errorCode = myForm1.LoadThread(null, null, out rawResponse, parsedUrl);
+                errorCode = myForm1.LoadThread(null, 0, out rawResponse, parsedUrl);
                 Form1.RaiseError(errorCode, ref statusFlag);
 
                 List<Post> posts = null;
