@@ -686,7 +686,7 @@ namespace FlagMiner
             ser.MaxJsonLength = 10 * 1024 * 1024;
 
             // otherwise drunkensailor complains 
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
             headerCollection.Add("Content-Type", "application/x-www-form-urlencoded");
 
@@ -1149,7 +1149,7 @@ namespace FlagMiner
 			var basestr = path + "\\" + fleg.title;
 
 			PurgeEnum checkedFlag = default(PurgeEnum);
-			if (options.useLocal & level > 0) {
+			if (options.useLocal && (level > 0)) {
 				string initString = "";
 				if (fleg.imgurl.Contains(flegsBaseUrl))
 					initString = options.localRepoFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");

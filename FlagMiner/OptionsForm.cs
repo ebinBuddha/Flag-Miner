@@ -85,23 +85,19 @@ namespace FlagMiner
 
 		private void TextBox1_Validating(object sender, CancelEventArgs e)
 		{
-			if (enableCheck.Checked) {
-				if ((localSaveFolder.Text.Length == 0) && !Directory.Exists(localSaveFolder.Text)) {
-                    MessageBox.Show("Invalid folder", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					e.Cancel = true;
-					return;
-				}
+			if (enableCheck.Checked && (localSaveFolder.Text.Length == 0 || !Directory.Exists(localSaveFolder.Text))) {
+                MessageBox.Show("Invalid local save folder.", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				e.Cancel = true;
+				return;
 			}
 		}
 
 		private void TextBox2_Validating(object sender, CancelEventArgs e)
 		{
-			if (enablePurge.Checked && RadioButton1.Checked) {
-				if ((localRepoFolder.Text.Length == 0) || !Directory.Exists(localRepoFolder.Text)) {
-                    MessageBox.Show("Invalid folder", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					e.Cancel = true;
-					return;
-				}
+			if (enablePurge.Checked && RadioButton1.Checked && (localRepoFolder.Text.Length == 0) || !Directory.Exists(localRepoFolder.Text)) {
+                MessageBox.Show("Invalid local repo folder.", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				e.Cancel = true;
+				return;
 			}
 		}
 
