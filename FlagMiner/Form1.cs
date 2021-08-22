@@ -842,7 +842,11 @@ namespace FlagMiner
 				string mf = null;
 				bool trollflag = false;
 				string imgUrl = null;
-				if (String.IsNullOrEmpty(post.troll_country)) {
+                if (String.IsNullOrEmpty(post.country_name))
+                {
+                    continue; // no flags here, skip!
+                }
+                if (String.IsNullOrEmpty(post.troll_country)) {
 					mf = post.country_name;
 					trollflag = false;
 					imgUrl = imageBaseUrl + post.country.ToLower() + ".gif";
