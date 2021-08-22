@@ -23,7 +23,7 @@ namespace FlagMiner
     public partial class Form1 : Form
     {
 
-        public string DefaultUserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/72.0";
+        public string DefaultUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0";
         string baseUrl = "https://boards.4chan.org/";
         string archiveBaseUrl = "https://a.4cdn.org/";
         string imageBaseUrl = "https://s.4cdn.org/image/country/";
