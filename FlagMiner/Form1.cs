@@ -432,21 +432,15 @@ namespace FlagMiner
 
         private int LoadArchive(string board, ref string rawResponse)
         {
-            System.Net.HttpWebRequest request = null;
-            System.Net.HttpWebResponse response = null;
-            StreamReader reader = null;
-            string boardUrl = null;
-
-            boardUrl = baseUrl + board + catalogStr;
-
-            request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(boardUrl);
+            string boardUrl = baseUrl + board + catalogStr;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(boardUrl);
             request.UserAgent = options.userAgent;
-            response = (System.Net.HttpWebResponse)request.GetResponse();
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
             HttpStatusCode status = response.StatusCode;
 
             if (status == HttpStatusCode.OK) {
-                reader = new StreamReader(response.GetResponseStream());
+                StreamReader reader = new StreamReader(response.GetResponseStream());
                 rawResponse = reader.ReadToEnd();
 
                 return 0;
@@ -586,25 +580,21 @@ namespace FlagMiner
 
         public int LoadThread(string board, long thread, out string rawResponse, string fullpath = null)
         {
-            System.Net.HttpWebRequest request = null;
-            System.Net.HttpWebResponse response = null;
-            StreamReader reader = null;
-            string boardUrl = null;
-
+            string boardUrl;
             if (fullpath == null) {
                 boardUrl = archiveBaseUrl + board + "/thread/" + thread.ToString() + ".json";
             } else {
                 boardUrl = fullpath + ".json";
             }
 
-            request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(boardUrl);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(boardUrl);
             request.UserAgent = options.userAgent;
-            response = (System.Net.HttpWebResponse)request.GetResponse();
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
             HttpStatusCode status = response.StatusCode;
 
             if (status == HttpStatusCode.OK) {
-                reader = new StreamReader(response.GetResponseStream());
+                StreamReader reader = new StreamReader(response.GetResponseStream());
                 rawResponse = reader.ReadToEnd();
 
                 return 0;
@@ -760,16 +750,20 @@ namespace FlagMiner
             }
             if (!fleg.fetching) {
 				fleg.fetching = true;
-				Task.Factory.StartNew(() =>
-				{
-					try {
-						helper.AddToStack(fleg.imgurl);
-					} catch (Exception)
+                Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        helper.AddToStack(fleg.imgurl);
+                    }
+                    catch (Exception)
                     {
                         // ignore, for the moment being
-					} finally {
-					}
-				});
+                    }
+                    finally
+                    {
+                    }
+                });
 			}
 			return blankImg;
 		}
@@ -1126,10 +1120,10 @@ namespace FlagMiner
 			HttpWebRequest request = null;
 			HttpWebResponse response = null;
 			try {
-				request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(imgurl);
+				request = (HttpWebRequest)WebRequest.Create(imgurl);
 				request.UserAgent = options.userAgent;
 				request.Method = "HEAD";
-				response = (System.Net.HttpWebResponse)request.GetResponse();
+				response = (HttpWebResponse)request.GetResponse();
 
 				HttpStatusCode status = response.StatusCode;
 				response.Dispose();
@@ -1291,7 +1285,7 @@ namespace FlagMiner
 			threads.Sort();
 
 			for (int i = 0; i <= threads.Count - 1; i += 1) {
-				if ((worker.CancellationPending)) {
+				if (worker.CancellationPending) {
 					e.Cancel = true;
 					break;
 				}
