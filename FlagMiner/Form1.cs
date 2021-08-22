@@ -144,54 +144,85 @@ namespace FlagMiner
 
                     long finalTime = (long)(DateTime.UtcNow - UnixEpoch).TotalSeconds;
 
-                    for (int i = 0; i <= threads.Count - 1; i += 1) {
-                        if ((worker.CancellationPending)) {
-                            e.Cancel = true;
-                            markedForAbortion = true;
-                            break;
-                        }
-
-                        worker.ReportProgress(i + 1, new WorkerUserState {
-                            board = board,
-                            status = WorkerStatus.running,
-                            progress = i+1,
-                            total = threads.Count
-                        });
-                        Thread.Sleep(50); // do not flood the server and get banned
-                        try {
-                            string rawResponse = null;
-                            errorCode = LoadThread(board, threads[i], out rawResponse);
-                            RaiseError(errorCode, ref statusFlag);
-
-                            List<Post> posts = null;
-                            ParseThread(rawResponse, ref posts);
-
-                            Post firstPost = posts[0];
-                            finalTime = firstPost.archived_on;
-
-                            if ((options.exclusionByDate && finalTime > exclusionDateLong) || (!options.exclusionByDate)) {
-                                List<Fleg> flegs = new List<Fleg>();
-                                QueryExtraFlags(board, ref posts, ref flegs);
-
-                                List<RegionalFleg> parsedFlegs = null;
-                                ParseFlags(board, posts, ref flegs, ref parsedFlegs);
-
-                                SerializableDictionary<string, RegionalFleg> flagTree = new SerializableDictionary<string, RegionalFleg>();
-                                MergeFlegs(parsedFlegs, ref flagTree);
-
-                                //TreeListView1.Roots = flagTree   ' TODO send to concurrent stack and init the rootmanager
-                                rootManager.AddToStack(flagTree);
+                    ParallelOptions parallelOptions = new ParallelOptions();
+                    parallelOptions.MaxDegreeOfParallelism = 4;
+                    CancellationTokenSource cts = new CancellationTokenSource();
+                    parallelOptions.CancellationToken = cts.Token;
+                    try
+                    {
+                        int currentCount = 0;
+                        Parallel.ForEach(Enumerable.Range(0, threads.Count), parallelOptions, (i) =>
+                        {
+                            if (worker.CancellationPending)
+                            {
+                                e.Cancel = true;
+                                markedForAbortion = true;
+                                cts.Cancel();
+                                return;
                             }
-                            excludedThreads.TryAdd(threads[i], finalTime);
 
-                            // for inner loop catch it here bls
-                        } catch (WebException ex) {
-                            var resp = (HttpWebResponse)ex.Response;
-                            if (resp != null && resp.StatusCode == HttpStatusCode.NotFound) {
-                                // skip this and save as exclusion
+                            Interlocked.Increment(ref currentCount);
+                            worker.ReportProgress(currentCount, new WorkerUserState
+                            {
+                                board = board,
+                                status = WorkerStatus.running,
+                                progress = currentCount,
+                                total = threads.Count
+                            });
+                            Thread.Sleep(50); // do not flood the server and get banned
+                            try
+                            {
+                                errorCode = LoadThread(board, threads[i], out string rawResponse);
+                                RaiseError(errorCode, ref statusFlag);
+
+                                List<Post> posts = null;
+                                ParseThread(rawResponse, ref posts);
+
+                                Post firstPost = posts[0];
+                                finalTime = firstPost.archived_on;
+
+                                if ((options.exclusionByDate && finalTime > exclusionDateLong) || (!options.exclusionByDate))
+                                {
+                                    List<Fleg> flegs = new List<Fleg>();
+                                    QueryExtraFlags(board, ref posts, ref flegs);
+
+                                    List<RegionalFleg> parsedFlegs = null;
+                                    ParseFlags(board, posts, ref flegs, ref parsedFlegs);
+
+                                    SerializableDictionary<string, RegionalFleg> flagTree = new SerializableDictionary<string, RegionalFleg>();
+                                    MergeFlegs(parsedFlegs, ref flagTree);
+
+                                    rootManager.AddToStack(flagTree);
+                                }
                                 excludedThreads.TryAdd(threads[i], finalTime);
-                            } else {
-                                // halt everything.. internet down?
+
+                                // for inner loop catch it here bls
+                            } catch (WebException ex)
+                            {
+                                var resp = (HttpWebResponse)ex.Response;
+                                if (resp != null && resp.StatusCode == HttpStatusCode.NotFound)
+                                {
+                                    // skip this and save as exclusion for next time
+                                    excludedThreads.TryAdd(threads[i], finalTime);
+                                }
+                                else
+                                {
+                                    // halt everything.. internet down?
+                                    worker.ReportProgress(i + 1,
+                                        new WorkerUserState
+                                        {
+                                            board = board,
+                                            current = threads[i],
+                                            status = WorkerStatus.cancelling,
+                                            progress = i + 1,
+                                            total = threads.Count,
+                                            additionalString = ex.ToString()
+                                        });
+                                    markedForAbortion = true;
+                                }
+                            }
+                            catch (Exception ex)
+                            {
                                 worker.ReportProgress(i + 1,
                                     new WorkerUserState
                                     {
@@ -204,23 +235,19 @@ namespace FlagMiner
                                     });
                                 markedForAbortion = true;
                             }
-                        } catch (Exception ex) {
-                            worker.ReportProgress(i + 1,
-                                new WorkerUserState
-                                {
-                                    board = board,
-                                    current = threads[i],
-                                    status = WorkerStatus.cancelling,
-                                    progress = i + 1,
-                                    total = threads.Count,
-                                    additionalString = ex.ToString()
-                                });
-                            markedForAbortion = true;
-                        }
 
-                        if (markedForAbortion)
-                            break; // TODO: might not be correct. Was : Exit For
+                            if (markedForAbortion)
+                            {
+                                cts.Cancel(); // TODO: might not be correct. Was : Exit For
+                                return;
+                            }
 
+
+                        });
+                    }
+                    catch (OperationCanceledException ex)
+                    {
+                        // do nothing. this exception is normal when the task is cancelled
                     }
 
                     SaveExclusionList(board, ref excludedThreads);
@@ -539,9 +566,10 @@ namespace FlagMiner
 
             if (posts.Count > 0) {
                 List<List<long>> chunks = posts.Select(p => p.no).ChunkBy(400);
-                foreach (List<long> subList in chunks)
+                ConcurrentQueue<Fleg[]> concurrentQueue = new ConcurrentQueue<Fleg[]>();
+                Parallel.ForEach(chunks, (subList) =>
                 {
-                    StringBuilder tempstr = subList.Aggregate(new StringBuilder(), (acc, p) => acc.Append("," + p.ToString()),(acc)=>acc.Remove(0,1));
+                    StringBuilder tempstr = subList.Aggregate(new StringBuilder(), (acc, p) => acc.Append("," + p.ToString()), (acc) => acc.Remove(0, 1));
 
                     // better if parallelized?
                     foreach (string st in options.backendServers)
@@ -564,11 +592,13 @@ namespace FlagMiner
                             var responses = client.UploadValues(st + getUrl, values);
                             var response = Encoding.Default.GetString(responses);
 
-                            flags.AddRange(ser.Deserialize<Fleg[]>(response));
-
+                            concurrentQueue.Enqueue(ser.Deserialize<Fleg[]>(response));
                         }
                     }
-
+                });
+                foreach (Fleg[] flagArray in concurrentQueue)
+                {
+                    flags.AddRange(flagArray);
                 }
 
             } else {
