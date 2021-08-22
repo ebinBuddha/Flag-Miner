@@ -177,13 +177,13 @@ namespace FlagMiner
                 this.backendServers.Clear();
                 // DEFAULT SERVERS
                 //this.backendServers.Text += "https://whatisthisimnotgoodwithcomputers.com/\n";
-                this.backendServers.Text += "https://countryball.ca/\n";
+                this.backendServers.Text += (myForm1.backendBaseUrl +"\n");
             }
         }
 
         private void defaultRepoUrlButton_Click(object sender, EventArgs e)
         {
-            this.repoUrl.Text = "https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/";
+            this.repoUrl.Text = myForm1.DefaultflegsBaseUrl;
         }
 
         public override bool ValidateChildren()

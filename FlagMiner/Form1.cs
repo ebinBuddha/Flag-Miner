@@ -36,11 +36,10 @@ namespace FlagMiner
         string catalogStr = "/archive.json";
 
         XmlSerializer xs = new XmlSerializer(typeof(SerializableDictionary<string, long>));
-        string DefaultflegsBaseUrl = "https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/";
+        public string DefaultflegsBaseUrl = "https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/";
         string flegsBaseUrl = "";
         // // not https bcs installing the certificate on wine is a nightmare
-        string backendBaseUrl = "https://countryball.ca/";
-
+        public string backendBaseUrl = "https://countryball.ca/";
 
         string getUrl = "int/get_flags_api2.php";
 
