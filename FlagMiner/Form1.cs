@@ -1393,6 +1393,8 @@ namespace FlagMiner
 				m.Items.Add("Copy flag to clipboard", null, CopyImageHandler);
 				m.Items.Add("Save as...", null, SaveImageHandler);
 				m.Items.Add(new ToolStripSeparator());
+                m.Items.Add("Auto save selected...", null, AutoSaveImagesHandler);
+                m.Items.Add(new ToolStripSeparator());
 				m.Items.Add("Copy link", null, CopyLinkHandler);
 				e.MenuStrip = m;
 			} catch (Exception ex) {
@@ -1418,26 +1420,67 @@ namespace FlagMiner
 		private void SaveImageHandler(object sender, EventArgs e)
 		{
             RegionalFleg regFlag = (RegionalFleg)TreeListView1.SelectedItem.RowObject;
-            try {
-				Image image = ImageListHelper.ScrapeImage(regFlag.imgurl);
-				string initString = null;
-				if (regFlag.imgurl.Contains(flegsBaseUrl))
-					initString = options.localSaveFolder + "\\" + regFlag.imgurl.Replace(flegsBaseUrl, "");
-				// for regionals
-				if (regFlag.imgurl.Contains(imageBaseUrl))
-					initString = options.localSaveFolder + "\\" + regFlag.imgurl.Replace(imageBaseUrl, "");
-				// for nationals
-				string pth = Path.GetDirectoryName(initString);
-				string fileName = Path.GetFileName(initString);
-				SaveFileDialog1.InitialDirectory = pth;
+            try
+            {
+                Image image = ImageListHelper.ScrapeImage(regFlag.imgurl);
+                string pth, fileName, flagPath;
+                createSaveInformation(regFlag, out pth, out fileName, out flagPath);
+                SaveFileDialog1.InitialDirectory = pth;
 
-				SaveFileDialog1.FileName = fileName;
-				if (SaveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-					image.Save(SaveFileDialog1.FileName);
-			} catch (Exception) {
+                SaveFileDialog1.FileName = fileName;
+                if (SaveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    image.Save(SaveFileDialog1.FileName);
+            }
+            catch (Exception) {
 				MessageBox.Show("Error while downloading the flag to save", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
+
+        private void createSaveInformation(RegionalFleg regFlag, out string path, out string fileName, out string flagPath)
+        {
+
+            string initString = "";
+            flagPath = "";
+            if (regFlag.imgurl.Contains(flegsBaseUrl))
+            {
+                flagPath = regFlag.imgurl.Replace(flegsBaseUrl, "");
+                initString = options.localSaveFolder + "\\" + flagPath;
+            }
+            // for regionals
+            if (regFlag.imgurl.Contains(imageBaseUrl))
+            {
+                flagPath = regFlag.imgurl.Replace(imageBaseUrl, "");
+                initString = options.localSaveFolder + "\\" + regFlag.imgurl.Replace(imageBaseUrl, "");
+            }
+            // for nationals
+            path = Path.GetDirectoryName(initString);
+            fileName = Path.GetFileName(initString);
+        }
+
+        private void AutoSaveImagesHandler(object sender, EventArgs e)
+        {
+            foreach (object si in TreeListView1.SelectedObjects) {
+                RegionalFleg regFlag = (RegionalFleg)si;
+                string flagPath = "";
+                try
+                {
+                    string pth, fileName;
+                    createSaveInformation(regFlag, out pth, out fileName, out flagPath);
+                    using (Image image = ImageListHelper.ScrapeImage(regFlag.imgurl))
+                    {
+                        if (!Directory.Exists(pth))
+                        {
+                            Directory.CreateDirectory(pth);
+                        }
+                        image.Save(Path.Combine(pth, fileName));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    AppendText(DateTime.Now + " : Error while downloading the flag (" + flagPath + ") to save. " + ex.Message.ToString() + System.Environment.NewLine);
+                }
+            }
+        }
 
 		private void CopyLinkHandler(object sender, EventArgs e)
 		{
