@@ -25,6 +25,14 @@
             <param name="dest">minuend</param>
             <remarks></remarks>
         </member>
+        <member name="M:FlagMiner.Form1.DeleteCheckedFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
+            <summary>
+            subtracts src from dest: dest = dest-src
+            </summary>
+            <param name="src">subtrahend</param>
+            <param name="dest">minuend</param>
+            <remarks></remarks>
+        </member>
         <member name="F:FlagMiner.Form1.components">
             <summary>
             Required designer variable.

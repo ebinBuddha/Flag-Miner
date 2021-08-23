@@ -1612,5 +1612,45 @@ namespace FlagMiner
                 }
             }
         }
-	}
+
+        /// <summary>
+        /// subtracts src from dest: dest = dest-src
+        /// </summary>
+        /// <param name="src">subtrahend</param>
+        /// <param name="dest">minuend</param>
+        /// <remarks></remarks>
+        public void DeleteCheckedFlegs(ref SerializableDictionary<String, RegionalFleg> dest)
+        {
+            SerializableDictionary<String, RegionalFleg> curDestDict = dest;
+
+            foreach (KeyValuePair<String, RegionalFleg> ke in curDestDict)
+            {
+                RegionalFleg Fleg = ke.Value;
+                DeleteCheckedFlegs(ref curDestDict[ke.Key].children);
+                if (Fleg.children.Count ==0)
+                {
+                    curDestDict[ke.Key].markedfordeletion = Fleg.exists;
+                }
+            }
+            curDestDict.Where(pair => pair.Value.markedfordeletion).ToList().
+                Apply(pair => curDestDict.Remove(pair.Key)).Apply();  // ToList isn't useless. It allows to avoid an InvalidOperationException by editing an object that is being looped. duplicate first maybe?
+        }
+
+        private void deleteCheckedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Remove Checked Flags?", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+            {
+                try
+                {
+                    DeleteCheckedFlegs(ref MainTree);
+                    UpdateRoots();
+                    TreeListView1.Invalidate();
+                }
+                catch (Exception ex)
+                {
+                    AppendText(DateTime.Now + " : " + ex.ToString() + System.Environment.NewLine);
+                }
+            }
+        }
+    }
 }
