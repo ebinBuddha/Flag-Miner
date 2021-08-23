@@ -1112,13 +1112,9 @@ namespace FlagMiner
 		void CacheFlegs()
 		{
 			List<string> lstr = new List<string>();
-			foreach (KeyValuePair<string, RegionalFleg> ke in MainTree) {
-				lstr.Add(ke.Value.imgurl);
-				foreach (KeyValuePair<string, RegionalFleg> ke2 in ke.Value.children) {
-					CacheEm(ke2.Value, ref lstr);
-				}
-			}
-			lstr = lstr.Distinct().ToList();
+            CacheEm(MainTree, ref lstr);
+			
+            lstr = lstr.Distinct().ToList();
 			ConcurrentDictionary<string, Image> queue = new ConcurrentDictionary<string, Image>();
             ParallelOptions pOpt = new ParallelOptions { MaxDegreeOfParallelism = 10 };
             Parallel.ForEach(lstr, pOpt, str =>
@@ -1139,13 +1135,12 @@ namespace FlagMiner
 			this.RefreshTree();
 		}
 
-		public object CacheEm(RegionalFleg fleg, ref List<string> lstr)
+		public void CacheEm(SerializableDictionary<string, RegionalFleg> flegs, ref List<string> lstr)
 		{
-			lstr.Add(fleg.imgurl);
-			foreach (KeyValuePair<string, RegionalFleg> ke2 in fleg.children) {
-				CacheEm(ke2.Value, ref lstr);
+			foreach (RegionalFleg fleg in flegs.Values) {
+			    lstr.Add(fleg.imgurl);
+				CacheEm(fleg.children, ref lstr);
 			}
-			return null;
 		}
 
 		public PurgeEnum QueryFlag(string imgurl)
@@ -1178,83 +1173,83 @@ namespace FlagMiner
 			}
         }
 
-		private PurgeEnum PurgeInvalid(RegionalFleg fleg, string path, int level)
-		{
-			var basestr = path + "\\" + fleg.title;
+        private PurgeEnum PurgeInvalid(SerializableDictionary<string, RegionalFleg> flegs, string path, int level)
+        {
+            foreach (RegionalFleg fleg in flegs.Values) {
+                var basestr = path + "\\" + fleg.title;
 
-			PurgeEnum checkedFlag = default(PurgeEnum);
-			if (options.useLocal && (level > 0)) {
-				string initString = "";
-				if (fleg.imgurl.Contains(flegsBaseUrl))
-					initString = options.localRepoFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
-				// for regionals
-				if (fleg.imgurl.Contains(imageBaseUrl))
-					initString = options.localRepoFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
-				// for nationals
-				if (File.Exists(initString)) {
-					checkedFlag = PurgeEnum.ok;
-				} else {
-					checkedFlag = PurgeEnum.notFound;
-				}
-			} else {
-				checkedFlag = QueryFlag(fleg.imgurl);
-			}
-			if (checkedFlag == PurgeEnum.genericError)
-				return checkedFlag;
-			if ((fleg.isTrollFlag)) {
-				if ((options.markTroll)) {
-					fleg.markedfordeletion = true;
-				} else {
-					fleg.markedfordeletion = false;
-				}
-			}
-			if ((checkedFlag == PurgeEnum.notFound)) {
-				fleg.markedfordeletion = true;
-			} else {
-				level += 1;
-				foreach (KeyValuePair<string, RegionalFleg> ke in fleg.children) {
-					if (PurgeInvalid(ke.Value, basestr, level) == PurgeEnum.genericError) {
-						return PurgeEnum.genericError;
-					}
-				}
-				SerializableDictionary<string, RegionalFleg> mirror = fleg.children;
-				fleg.children.Where((KeyValuePair<string, RegionalFleg> pair) => pair.Value.markedfordeletion).ToArray().Apply((KeyValuePair<string, RegionalFleg> pair) => mirror.Remove(pair.Key)).Apply();
-			}
+                PurgeEnum checkedFlag = default(PurgeEnum);
+                if (options.useLocal && (level > 0)) {
+                    string initString = "";
+                    if (fleg.imgurl.Contains(flegsBaseUrl))
+                        initString = options.localRepoFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
+                    // for regionals
+                    if (fleg.imgurl.Contains(imageBaseUrl))
+                        initString = options.localRepoFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
+                    // for nationals
+                    if (File.Exists(initString)) {
+                        checkedFlag = PurgeEnum.ok;
+                    } else {
+                        checkedFlag = PurgeEnum.notFound;
+                    }
+                } else {
+                    checkedFlag = QueryFlag(fleg.imgurl);
+                }
+                if (checkedFlag == PurgeEnum.genericError) {
+                    return checkedFlag;
+                }
+                if (fleg.isTrollFlag) {
+                    if (options.markTroll) {
+                        fleg.markedfordeletion = true;
+                    } else {
+                        fleg.markedfordeletion = false;
+                    }
+                }
+                if (checkedFlag == PurgeEnum.notFound) {
+                    fleg.markedfordeletion = true;
+                } else {
+                    if (PurgeInvalid(fleg.children, basestr, level + 1) == PurgeEnum.genericError)
+                    {
+                        return PurgeEnum.genericError;
+                    }
+                    SerializableDictionary<string, RegionalFleg> mirror = fleg.children;
+                    fleg.children.Where((KeyValuePair<string, RegionalFleg> pair) => pair.Value.markedfordeletion).ToArray().Apply((KeyValuePair<string, RegionalFleg> pair) => mirror.Remove(pair.Key)).Apply();
+                }
+            }
             return PurgeEnum.ok;
-		}
+        }
 
 		private void Purgebutt_Click(object sender, EventArgs e)
 		{
 			if (MessageBox.Show("Purge inexistent flags? This cannot be undone", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes) {
 				var level = 0;
-				foreach (KeyValuePair<string, RegionalFleg> ke in MainTree) {
-					if (PurgeInvalid(ke.Value, options.localRepoFolder, level) == PurgeEnum.genericError) {
-                        MessageBox.Show("An error occurred while checking the flags. Make sure your connection is up and/or local folders are valid.", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						return;
-					}
-				}
-				MainTree.Where((KeyValuePair<string, RegionalFleg> pair) => pair.Value.markedfordeletion == true || (options.deleteChildFree && pair.Value.children.Count == 0)).ToArray().Apply((KeyValuePair<string, RegionalFleg> pair) => MainTree.Remove(pair.Key)).Apply();
+                if (PurgeInvalid(MainTree, options.localRepoFolder, level) == PurgeEnum.genericError)
+                {
+                    MessageBox.Show("An error occurred while checking the flags. Make sure your connection is up and/or local folders are valid.", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                MainTree.Where((KeyValuePair<string, RegionalFleg> pair) => pair.Value.markedfordeletion == true || (options.deleteChildFree && pair.Value.children.Count == 0)).ToArray().Apply((KeyValuePair<string, RegionalFleg> pair) => MainTree.Remove(pair.Key)).Apply();
 
 				UpdateRoots();
 				TreeListView1.Invalidate();
 			}
 		}
 
-		private void CheckExistent( RegionalFleg fleg, int level)
+		private void CheckExistent(SerializableDictionary<string, RegionalFleg > flegs, int level)
 		{
-			string initString = "";
-            if (string.IsNullOrEmpty(flegsBaseUrl))
-                throw new Exception("Repository url is not set. Make sure to set a valid one in the options.");
-			if (fleg.imgurl.Contains(flegsBaseUrl))
-				initString = options.localSaveFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
-			// for regionals
-			if (fleg.imgurl.Contains(imageBaseUrl))
-				initString = options.localSaveFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
-			// for nationals
-			fleg.exists = File.Exists(initString);
-			level += 1;
-			foreach (KeyValuePair<string, RegionalFleg> ke in fleg.children) {
-				CheckExistent(ke.Value, level);
+			foreach (KeyValuePair<string, RegionalFleg> ke in flegs) {
+                RegionalFleg fleg = ke.Value;
+                string initString = "";
+                if (string.IsNullOrEmpty(flegsBaseUrl))
+                    throw new Exception("Repository url is not set. Make sure to set a valid one in the options.");
+                if (fleg.imgurl.Contains(flegsBaseUrl))
+                    initString = options.localSaveFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
+                // for regionals
+                if (fleg.imgurl.Contains(imageBaseUrl))
+                    initString = options.localSaveFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
+                // for nationals
+                fleg.exists = File.Exists(initString);
+                CheckExistent(fleg.children, level + 1);
 			}
 		}
 
@@ -1265,10 +1260,7 @@ namespace FlagMiner
                 try
                 {
                     var level = 0;
-                    foreach (KeyValuePair<string, RegionalFleg> ke in MainTree)
-                    {
-                        CheckExistent(ke.Value, level);
-                    }
+                    CheckExistent(MainTree, level);
                     UpdateRoots();
                     TreeListView1.Invalidate();
                 }
