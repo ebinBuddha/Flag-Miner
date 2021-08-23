@@ -4,19 +4,6 @@
         <name>FlagMiner</name>
     </assembly>
     <members>
-        <member name="M:FlagMiner.ImageListHelper.#ctor(BrightIdeasSoftware.ObjectListView,System.Collections.Concurrent.ConcurrentQueue{System.String})">
-            <summary>
-            Create a SysImageListHelper that will fetch images for the given tree control
-            </summary>
-            <param name="listView">The tree view that will use the images</param>
-        </member>
-        <member name="M:FlagMiner.ImageListHelper.GetImageIndex(System.String)">
-            <summary>
-            Return the index of the image that has the Shell Icon for the given file/directory.
-            </summary>
-            <param name="path">The full path to the file/directory</param>
-            <returns>The index of the image or -1 if something goes wrong.</returns>
-        </member>
         <member name="M:FlagMiner.Form1.SubtractFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg},FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
             <summary>
             subtracts src from dest: dest = dest-src
@@ -49,6 +36,19 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
+        </member>
+        <member name="M:FlagMiner.ImageListHelper.#ctor(BrightIdeasSoftware.ObjectListView,System.Collections.Concurrent.ConcurrentQueue{System.String})">
+            <summary>
+            Create a SysImageListHelper that will fetch images for the given tree control
+            </summary>
+            <param name="listView">The tree view that will use the images</param>
+        </member>
+        <member name="M:FlagMiner.ImageListHelper.GetImageIndex(System.String)">
+            <summary>
+            Return the index of the image that has the Shell Icon for the given file/directory.
+            </summary>
+            <param name="path">The full path to the file/directory</param>
+            <returns>The index of the image or -1 if something goes wrong.</returns>
         </member>
         <member name="T:FlagMiner.Properties.Resources">
             <summary>

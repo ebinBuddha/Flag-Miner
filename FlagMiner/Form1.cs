@@ -49,9 +49,9 @@ namespace FlagMiner
         PostComparer postComparer = new PostComparer();
 
         ImageListHelper helper;
-        MergeManager rootManager;
+        FlagMergeManager rootManager;
 
-        UpdateManager updateManager;
+        FlagUpdateManager updateManager;
 
         ConcurrentQueue<string> helperStack = new ConcurrentQueue<string>();
         ConcurrentQueue<SerializableDictionary<string, RegionalFleg>> MainMergeStack = new ConcurrentQueue<SerializableDictionary<string, RegionalFleg>>();
@@ -718,8 +718,8 @@ namespace FlagMiner
             blankImg = Image.FromHbitmap(tempbmp.GetHbitmap());
 
             helper = new ImageListHelper(this.TreeListView1, helperStack);
-            rootManager = new MergeManager(MainMergeStack, ref MainTree, TreeListView1);
-            updateManager = new UpdateManager(MainUpdateStack, TreeListView1);
+            rootManager = new FlagMergeManager(MainMergeStack, ref MainTree, TreeListView1);
+            updateManager = new FlagUpdateManager(MainUpdateStack, TreeListView1);
 
             TreeListView1.CanExpandGetter = ExpandGetter;
             TreeListView1.ChildrenGetter = delegate (object x) { return (IEnumerable)(ChildrenGetter(x)); };
