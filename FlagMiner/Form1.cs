@@ -23,34 +23,31 @@ namespace FlagMiner
     public partial class Form1 : Form
     {
 
-        public string DefaultUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0";
-        string baseUrl = "https://boards.4chan.org/";
-        string archiveBaseUrl = "https://a.4cdn.org/";
-        string imageBaseUrl = "https://s.4cdn.org/image/country/";
-        List<string> boardDict = new List<string> {
-            "int/",
-            "pol/",
-            "sp/"
-        };
+        private readonly string baseUrl = Properties.Resources.baseUrl;
+        private readonly string archiveBaseUrl = Properties.Resources.archiveBaseUrl;
+        private readonly string imageBaseUrl = Properties.Resources.imageBaseUrl;
 
-        string catalogStr = "/archive.json";
+        private readonly string catalogStr = Properties.Resources.catalogStr;
+        private readonly string getUrl = Properties.Resources.getUrl;
 
-        XmlSerializer xs = new XmlSerializer(typeof(SerializableDictionary<string, long>));
-        public string DefaultflegsBaseUrl = "https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/";
+        // the divider used in the back-end response
+        private readonly string regionDivider = "||";
+
+        // local repository
         string flegsBaseUrl = "";
-        // // not https bcs installing the certificate on wine is a nightmare
-        public string backendBaseUrl = "https://countryball.ca/";
-
-        string getUrl = "int/get_flags_api2.php";
-
+        
+        // headers used to perform the http requests
         WebHeaderCollection headerCollection = new WebHeaderCollection();
 
+        // serializer to save/read fleg files
+        XmlSerializer xs = new XmlSerializer(typeof(SerializableDictionary<string, long>));
+        // serializer to parse 4chan data
         System.Web.Script.Serialization.JavaScriptSerializer ser = new System.Web.Script.Serialization.JavaScriptSerializer();
 
-        string regionDivider = "||";
+        // comparers to enable sorting
         FlegComparer flegComparer = new FlegComparer();
-
         PostComparer postComparer = new PostComparer();
+
         ImageListHelper helper;
         MergeManager rootManager;
 
@@ -61,9 +58,6 @@ namespace FlagMiner
         ConcurrentQueue<object> MainUpdateStack = new ConcurrentQueue<object>();
 
         SerializableDictionary<string, RegionalFleg> MainTree = new SerializableDictionary<string, RegionalFleg>();
-        const string savedTreeFile = "savedTree.xml";
-
-        const string badFlagString = "Region empty, no flag yet or you did not set.";
 
         long exclusionDateLong;
 
@@ -71,20 +65,20 @@ namespace FlagMiner
 
         static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         public Options options;
+        readonly string optionsFile = Properties.Resources.optionsFile;
 
         AboutBox1 aboutBox1 = null;
 
-        public string optionsFile = "options.xml";
         private void ParseBtn_Click(object sender, EventArgs e)
         {
             List<string> boardList = new List<string>();
 
             if (intCheck.Checked)
-                boardList.Add("int");
+            { boardList.Add("int"); }
             if (polCheck.Checked)
-                boardList.Add("pol");
+            { boardList.Add("pol"); }
             if (spCheck.Checked)
-                boardList.Add("sp");
+            { boardList.Add("sp"); }
 
             exclusionDateLong = (long)(options.exclusionDate.ToUniversalTime() - UnixEpoch).TotalSeconds;
 

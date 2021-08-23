@@ -71,6 +71,42 @@ namespace FlagMiner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://a.4cdn.org/.
+        /// </summary>
+        internal static string archiveBaseUrl {
+            get {
+                return ResourceManager.GetString("archiveBaseUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://countryball.ca/.
+        /// </summary>
+        internal static string backendBaseUrl {
+            get {
+                return ResourceManager.GetString("backendBaseUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://boards.4chan.org/.
+        /// </summary>
+        internal static string baseUrl {
+            get {
+                return ResourceManager.GetString("baseUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /archive.json.
+        /// </summary>
+        internal static string catalogStr {
+            get {
+                return ResourceManager.GetString("catalogStr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap check {
@@ -121,6 +157,24 @@ namespace FlagMiner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/.
+        /// </summary>
+        internal static string DefaultflegsBaseUrl {
+            get {
+                return ResourceManager.GetString("DefaultflegsBaseUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/90.0.
+        /// </summary>
+        internal static string DefaultUserAgent {
+            get {
+                return ResourceManager.GetString("DefaultUserAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap download {
@@ -137,6 +191,24 @@ namespace FlagMiner.Properties {
             get {
                 object obj = ResourceManager.GetObject("expand", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to int/get_flags_api2.php.
+        /// </summary>
+        internal static string getUrl {
+            get {
+                return ResourceManager.GetString("getUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://s.4cdn.org/image/country/.
+        /// </summary>
+        internal static string imageBaseUrl {
+            get {
+                return ResourceManager.GetString("imageBaseUrl", resourceCulture);
             }
         }
         
@@ -167,6 +239,15 @@ namespace FlagMiner.Properties {
             get {
                 object obj = ResourceManager.GetObject("opt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to options.xml.
+        /// </summary>
+        internal static string optionsFile {
+            get {
+                return ResourceManager.GetString("optionsFile", resourceCulture);
             }
         }
         

@@ -71,6 +71,26 @@
               Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
         </member>
+        <member name="P:FlagMiner.Properties.Resources.archiveBaseUrl">
+            <summary>
+              Looks up a localized string similar to https://a.4cdn.org/.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.backendBaseUrl">
+            <summary>
+              Looks up a localized string similar to https://countryball.ca/.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.baseUrl">
+            <summary>
+              Looks up a localized string similar to https://boards.4chan.org/.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.catalogStr">
+            <summary>
+              Looks up a localized string similar to /archive.json.
+            </summary>
+        </member>
         <member name="P:FlagMiner.Properties.Resources.check">
             <summary>
               Looks up a localized resource of type System.Drawing.Bitmap.
@@ -96,6 +116,16 @@
               Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
         </member>
+        <member name="P:FlagMiner.Properties.Resources.DefaultflegsBaseUrl">
+            <summary>
+              Looks up a localized string similar to https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.DefaultUserAgent">
+            <summary>
+              Looks up a localized string similar to Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/90.0.
+            </summary>
+        </member>
         <member name="P:FlagMiner.Properties.Resources.download">
             <summary>
               Looks up a localized resource of type System.Drawing.Bitmap.
@@ -104,6 +134,16 @@
         <member name="P:FlagMiner.Properties.Resources.expand">
             <summary>
               Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.getUrl">
+            <summary>
+              Looks up a localized string similar to int/get_flags_api2.php.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.imageBaseUrl">
+            <summary>
+              Looks up a localized string similar to https://s.4cdn.org/image/country/.
             </summary>
         </member>
         <member name="P:FlagMiner.Properties.Resources.link">
@@ -119,6 +159,11 @@
         <member name="P:FlagMiner.Properties.Resources.opt">
             <summary>
               Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.optionsFile">
+            <summary>
+              Looks up a localized string similar to options.xml.
             </summary>
         </member>
         <member name="P:FlagMiner.Properties.Resources.parse">

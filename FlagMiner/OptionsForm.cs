@@ -151,8 +151,8 @@ namespace FlagMiner
 
 		private void defaultUserAgentButton_Click(object sender, EventArgs e)
 		{
-			userAgent.Text = myForm1.DefaultUserAgent;
-		}
+			userAgent.Text = Properties.Resources.DefaultUserAgent;
+        }
 
 		private void Button6_Click(object sender, EventArgs e)
 		{
@@ -173,13 +173,13 @@ namespace FlagMiner
                 this.backendServers.Clear();
                 // DEFAULT SERVERS
                 //this.backendServers.Text += "https://whatisthisimnotgoodwithcomputers.com/\n";
-                this.backendServers.Text += (myForm1.backendBaseUrl +"\n");
+                this.backendServers.Text += Properties.Resources.backendBaseUrl + "\n";
             }
         }
 
         private void defaultRepoUrlButton_Click(object sender, EventArgs e)
         {
-            this.repoUrl.Text = myForm1.DefaultflegsBaseUrl;
+            this.repoUrl.Text = Properties.Resources.DefaultflegsBaseUrl;
         }
 
         public override bool ValidateChildren()
