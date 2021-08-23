@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("A useful tool for /flag/tists")]
 [assembly: AssemblyCompany("EbinBuddha")]
 [assembly: AssemblyProduct("FlagMiner")]
-[assembly: AssemblyCopyright("EbinBuddha 2017-2018")]
+[assembly: AssemblyCopyright("EbinBuddha 2017-2021")]
 
 [assembly: AssemblyTrademark("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // <Assembly: AssemblyVersion("1.0.*")> 
 
-[assembly: AssemblyVersion("1.0.5.0")]
-[assembly: AssemblyFileVersion("1.0.5.0")]
+[assembly: AssemblyVersion("1.0.6.0")]
+[assembly: AssemblyFileVersion("1.0.6.0")]
