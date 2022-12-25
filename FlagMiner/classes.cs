@@ -172,6 +172,7 @@ namespace FlagMiner
         cancelling,
         cancelled,
         error,
+		curruptJson,
     }
 
     public class WorkerUserState

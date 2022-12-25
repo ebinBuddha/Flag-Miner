@@ -171,16 +171,34 @@ namespace FlagMiner
                                 errorCode = LoadThread(board, threads[i], out string rawResponse);
                                 RaiseError(errorCode, ref statusFlag);
 
-                                List<Post> posts = null;
-                                ParseThread(rawResponse, ref posts);
-
-                                Post firstPost = posts[0];
-                                finalTime = firstPost.archived_on;
-
-                                if ((options.exclusionByDate && finalTime > exclusionDateLong) || (!options.exclusionByDate))
+                                List<Post> posts = new List<Post>();
+                                try
                                 {
-                                    List<Fleg> flegs = new List<Fleg>();
-                                    QueryExtraFlags(board, ref posts, ref flegs);
+                                    ParseThread(rawResponse, ref posts);
+                                }
+                                catch (Exception ex)
+                                {
+                                    worker.ReportProgress(i + 1,
+                                        new WorkerUserState
+                                        {
+                                            board = board,
+                                            current = threads[i],
+                                            status = WorkerStatus.curruptJson,
+                                            progress = i + 1,
+                                            total = threads.Count,
+                                            additionalString = ex.ToString()
+                                        });
+                                }
+
+                                if (posts.Count > 0)
+                                {
+                                    Post firstPost = posts[0];
+                                    finalTime = firstPost.archived_on;
+
+                                    if ((options.exclusionByDate && finalTime > exclusionDateLong) || (!options.exclusionByDate))
+                                    {
+                                        List<Fleg> flegs = new List<Fleg>();
+                                        QueryExtraFlags(board, ref posts, ref flegs);
 
                                         List<RegionalFleg> parsedFlegs = null;
                                         ParseFlags(board, posts, ref flegs, ref parsedFlegs);
@@ -1030,6 +1048,9 @@ namespace FlagMiner
                     break;
                 case WorkerStatus.completed:
                     StatusText.AppendText(DateTime.Now + " : Parsing completed." + System.Environment.NewLine);
+                    break;
+                case WorkerStatus.curruptJson:
+                    StatusText.AppendText(DateTime.Now + " : Error parsing 4chan json. " + userState.board + "/" + userState.current + ". " + userState.additionalString + System.Environment.NewLine);
                     break;
             }
         }
