@@ -35,7 +35,7 @@ namespace FlagMiner
 
         // local repository
         string flegsBaseUrl = "";
-        
+
         // headers used to perform the http requests
         WebHeaderCollection headerCollection = new WebHeaderCollection();
 
@@ -116,16 +116,18 @@ namespace FlagMiner
                     });
             }
 
-            foreach (string board in boardList) {
+            foreach (string board in boardList)
+            {
                 if (markedForAbortion)
                     break;
-                try {
+                try
+                {
                     int errorCode = 0;
                     string response = "";
                     List<long> threads = null;
                     ConcurrentDictionary<long, long> excludedThreads = null;
 
-                    worker.ReportProgress(0, new WorkerUserState { board=board, status=WorkerStatus.starting });
+                    worker.ReportProgress(0, new WorkerUserState { board = board, status = WorkerStatus.starting });
 
                     errorCode = LoadArchive(board, ref response);
                     RaiseError(errorCode, ref statusFlag);
@@ -134,7 +136,7 @@ namespace FlagMiner
                     LoadExclusionList(board, ref excludedThreads);
                     PurgeExclusionList(ref excludedThreads, ref threads);
 
-                    worker.ReportProgress(0, new WorkerUserState { board = board, status = WorkerStatus.initializing, progress=0, total = threads.Count });
+                    worker.ReportProgress(0, new WorkerUserState { board = board, status = WorkerStatus.initializing, progress = 0, total = threads.Count });
 
                     long finalTime = (long)(DateTime.UtcNow - UnixEpoch).TotalSeconds;
 
@@ -180,18 +182,20 @@ namespace FlagMiner
                                     List<Fleg> flegs = new List<Fleg>();
                                     QueryExtraFlags(board, ref posts, ref flegs);
 
-                                    List<RegionalFleg> parsedFlegs = null;
-                                    ParseFlags(board, posts, ref flegs, ref parsedFlegs);
+                                        List<RegionalFleg> parsedFlegs = null;
+                                        ParseFlags(board, posts, ref flegs, ref parsedFlegs);
 
-                                    SerializableDictionary<string, RegionalFleg> flagTree = new SerializableDictionary<string, RegionalFleg>();
-                                    MergeFlegs(parsedFlegs, ref flagTree);
+                                        SerializableDictionary<string, RegionalFleg> flagTree = new SerializableDictionary<string, RegionalFleg>();
+                                        MergeFlegs(parsedFlegs, ref flagTree);
 
-                                    rootManager.AddToStack(flagTree);
+                                        rootManager.AddToStack(flagTree);
+                                    }
                                 }
                                 excludedThreads.TryAdd(threads[i], finalTime);
 
                                 // for inner loop catch it here bls
-                            } catch (WebException ex)
+                            }
+                            catch (WebException ex)
                             {
                                 var resp = (HttpWebResponse)ex.Response;
                                 if (resp != null && resp.StatusCode == HttpStatusCode.NotFound)
@@ -249,7 +253,9 @@ namespace FlagMiner
                     if (markedForAbortion)
                         break;
 
-                } catch (WebException ex) {
+                }
+                catch (WebException ex)
+                {
                     worker.ReportProgress(0,
                         new WorkerUserState
                         {
@@ -259,7 +265,9 @@ namespace FlagMiner
                         });
                     //AppendText(DateTime.Now + " : " + board + " " + ex.ToString() + System.Environment.NewLine);
                     markedForAbortion = true;
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     worker.ReportProgress(0,
                         new WorkerUserState
                         {
@@ -343,20 +351,26 @@ namespace FlagMiner
             loadMenuItem.Enabled = true;
             loadToolStripButton.Enabled = true;
 
-            if (options.enablePurge) {
+            if (options.enablePurge)
+            {
                 purgeMenuItem.Enabled = true;
                 purgeToolStripButton.Enabled = true;
                 ToolTip2.Active = false;
-            } else {
+            }
+            else
+            {
                 purgeMenuItem.Enabled = false;
                 purgeToolStripButton.Enabled = false;
                 ToolTip2.Active = true;
             }
-            if (options.enableCheck) {
+            if (options.enableCheck)
+            {
                 checkMenuItem.Enabled = true;
                 checkToolStripButton.Enabled = true;
                 ToolTip1.Active = false;
-            } else {
+            }
+            else
+            {
                 checkMenuItem.Enabled = false;
                 checkToolStripButton.Enabled = false;
                 ToolTip1.Active = true;
@@ -387,7 +401,8 @@ namespace FlagMiner
         // @TODO :  proper error handling
         public static void RaiseError(int errorcode, ref int statusFlag)
         {
-            if (errorcode != 0) {
+            if (errorcode != 0)
+            {
                 statusFlag = 1;
                 throw new Exception();
             }
@@ -459,7 +474,8 @@ namespace FlagMiner
 
             HttpStatusCode status = response.StatusCode;
 
-            if (status == HttpStatusCode.OK) {
+            if (status == HttpStatusCode.OK)
+            {
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 rawResponse = reader.ReadToEnd();
 
@@ -483,22 +499,26 @@ namespace FlagMiner
             var threadDbName = board + ".db";
 
             // database with already seen threads
-            if (System.IO.File.Exists(threadDbName)) {
+            if (System.IO.File.Exists(threadDbName))
+            {
                 SerializableDictionary<string, long> tempList = null;
                 FileStream fs = new FileStream(threadDbName, FileMode.Open);
                 exclusionList = new ConcurrentDictionary<long, long>();
                 var exclusionListStr = new ConcurrentDictionary<string, long>();
 
                 tempList = (SerializableDictionary<string, long>)xs.Deserialize(fs);
-                foreach (KeyValuePair<string, long> ke in tempList) {
+                foreach (KeyValuePair<string, long> ke in tempList)
+                {
                     exclusionListStr.TryAdd(ke.Key, ke.Value);
                 }
                 fs.Close();
-                foreach(var ke in exclusionListStr)
+                foreach (var ke in exclusionListStr)
                 {
                     exclusionList.TryAdd(long.Parse(ke.Key), ke.Value);
                 }
-            } else {
+            }
+            else
+            {
                 exclusionList = new ConcurrentDictionary<long, long>();
             }
         }
@@ -507,7 +527,8 @@ namespace FlagMiner
         {
             SerializableDictionary<string, long> tempList = new SerializableDictionary<string, long>();
             var threadDbName = board + ".db";
-            foreach (KeyValuePair<long, long> ke in exclusionList) {
+            foreach (KeyValuePair<long, long> ke in exclusionList)
+            {
                 tempList.Add(ke.Key.ToString(), ke.Value);
             }
             FileStream fs = new FileStream(threadDbName, FileMode.Create);
@@ -522,30 +543,37 @@ namespace FlagMiner
             {
                 threads.Add(thr, 0);
             }
-            if (options.exclusionByList) {
+            if (options.exclusionByList)
+            {
                 List<long> TBDeleted = new List<long>();
-                for (int i = 0; i <= exclusionList.Count - 1; i++) {
+                for (int i = 0; i <= exclusionList.Count - 1; i++)
+                {
                     long str = exclusionList.Keys.ElementAt(i);
-                    if (!threads.ContainsKey(str)) {
+                    if (!threads.ContainsKey(str))
+                    {
                         TBDeleted.Add(str);
                     }
                 }
 
                 long bogusshitwedontneednow = 0;
-                foreach (long st in TBDeleted) {
+                foreach (long st in TBDeleted)
+                {
                     exclusionList.TryRemove(st, out bogusshitwedontneednow);
                 }
 
-                foreach (long st in exclusionList.Keys) {
+                foreach (long st in exclusionList.Keys)
+                {
                     threads.Remove(st);
                 }
             }
 
-            if (options.exclusionByDate) {
+            if (options.exclusionByDate)
+            {
                 Dictionary<long, long> tempDict = null;
                 tempDict = exclusionList.Where(e => e.Value < exclusionDateLong).ToDictionary(e => e.Key, e => e.Value);
 
-                foreach (long st in tempDict.Keys) {
+                foreach (long st in tempDict.Keys)
+                {
                     threads.Remove(st);
                 }
 
@@ -558,7 +586,8 @@ namespace FlagMiner
         {
             List<string> reqStrings = new List<string>();
 
-            if (posts.Count > 0) {
+            if (posts.Count > 0)
+            {
                 List<List<long>> chunks = posts.Select(p => p.no).ChunkBy(400);
                 ConcurrentQueue<Fleg[]> concurrentQueue = new ConcurrentQueue<Fleg[]>();
                 Parallel.ForEach(chunks, (subList) =>
@@ -595,7 +624,9 @@ namespace FlagMiner
                     flags.AddRange(flagArray);
                 }
 
-            } else {
+            }
+            else
+            {
                 if (flags.Count > 0)
                     flags.Clear();
             }
@@ -604,9 +635,12 @@ namespace FlagMiner
         public int LoadThread(string board, long thread, out string rawResponse, string fullpath = null)
         {
             string boardUrl;
-            if (fullpath == null) {
+            if (fullpath == null)
+            {
                 boardUrl = archiveBaseUrl + board + "/thread/" + thread.ToString() + ".json";
-            } else {
+            }
+            else
+            {
                 boardUrl = fullpath + ".json";
             }
 
@@ -616,7 +650,8 @@ namespace FlagMiner
 
             HttpStatusCode status = response.StatusCode;
 
-            if (status == HttpStatusCode.OK) {
+            if (status == HttpStatusCode.OK)
+            {
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 rawResponse = reader.ReadToEnd();
 
@@ -633,7 +668,10 @@ namespace FlagMiner
             tempArray = ser.Deserialize<ChanThread>(response);
             // all archived thread numbers listed
 
-            posts = tempArray.posts;
+            if (tempArray != null)
+            {
+                posts = tempArray.posts;
+            }
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -643,14 +681,18 @@ namespace FlagMiner
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (BackgroundWorker1.IsBusy || BackgroundWorker2.IsBusy) {
+            if (BackgroundWorker1.IsBusy || BackgroundWorker2.IsBusy)
+            {
                 MessageBox.Show("Task is ongoing. Please hit \"Abort\" before closing", "Flag Miner", MessageBoxButtons.OK);
                 e.Cancel = true;
                 return;
             }
-            try {
+            try
+            {
                 SaveOptions();
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(e.ToString() + "\n" + ex.ToString(), "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 e.Cancel = true;
             }
@@ -668,14 +710,19 @@ namespace FlagMiner
         private void LoadOptions()
         {
             FileStream fs = null;
-            try {
+            try
+            {
                 fs = new FileStream(optionsFile, FileMode.OpenOrCreate);
 
                 XmlSerializer optionsSerializer = new XmlSerializer(typeof(Options));
                 options = (Options)optionsSerializer.Deserialize(fs);
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 // ignore it for now.
-            } finally {
+            }
+            finally
+            {
                 if (fs != null)
                     fs.Close();
             }
@@ -771,8 +818,9 @@ namespace FlagMiner
             {
                 return helper.GetImageIndex(fleg.imgurl);
             }
-            if (!fleg.fetching) {
-				fleg.fetching = true;
+            if (!fleg.fetching)
+            {
+                fleg.fetching = true;
                 Task.Factory.StartNew(() =>
                 {
                     try
@@ -787,70 +835,76 @@ namespace FlagMiner
                     {
                     }
                 });
-			}
-			return blankImg;
-		}
+            }
+            return blankImg;
+        }
 
-		public bool ExpandGetter(object x)
-		{
+        public bool ExpandGetter(object x)
+        {
             RegionalFleg fleg = (RegionalFleg)x;
             return (fleg.children.Count > 0);
-		}
+        }
 
-		public object ChildrenGetter(object x)
-		{
+        public object ChildrenGetter(object x)
+        {
             RegionalFleg fleg = (RegionalFleg)x;
             return fleg.children.Values;
-		}
+        }
 
-		public void ParseFlags(string board, List<Post> posts, ref List<Fleg> extraflags, ref List<RegionalFleg> parsedFlegs)
-		{
-			List<Post> tempPosts;
+        public void ParseFlags(string board, List<Post> posts, ref List<Fleg> extraflags, ref List<RegionalFleg> parsedFlegs)
+        {
+            List<Post> tempPosts;
 
-			List<long> listOfNo = new List<long>();
-			foreach (Fleg flag in extraflags) {
-                if (listOfNo.Contains(flag.post_nr)) continue;   
-				listOfNo.Add(flag.post_nr);
-			}
+            List<long> listOfNo = new List<long>();
+            foreach (Fleg flag in extraflags)
+            {
+                if (listOfNo.Contains(flag.post_nr)) continue;
+                listOfNo.Add(flag.post_nr);
+            }
 
-			// some of these variables may come not sorted... sort everything by post # !!!
-			listOfNo.Sort();
-			tempPosts = posts.Where((Post e) => listOfNo.Contains(e.no)).ToList();
-			//purge posts without extraflags
-			tempPosts.Sort(postComparer);
+            // some of these variables may come not sorted... sort everything by post # !!!
+            listOfNo.Sort();
+            tempPosts = posts.Where((Post e) => listOfNo.Contains(e.no)).ToList();
+            //purge posts without extraflags
+            tempPosts.Sort(postComparer);
 
-			List<Fleg> flegList = null;
-			flegList = extraflags.ToList();
-			flegList.Sort(flegComparer);
+            List<Fleg> flegList = null;
+            flegList = extraflags.ToList();
+            flegList.Sort(flegComparer);
 
-			// all sorted, go on
-			parsedFlegs = new List<RegionalFleg>();
+            // all sorted, go on
+            parsedFlegs = new List<RegionalFleg>();
 
-			for (int i = 0; i <= listOfNo.Count - 1; i++) {
-				Post post = tempPosts[i];
-				string fleg = flegList[i].region;
+            for (int i = 0; i <= listOfNo.Count - 1; i++)
+            {
+                Post post = tempPosts[i];
+                string fleg = flegList[i].region;
 
-				string[] arr = fleg.Split((new List<string> { regionDivider }).ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                string[] arr = fleg.Split((new List<string> { regionDivider }).ToArray(), StringSplitOptions.RemoveEmptyEntries);
 
-				// main flag
-				string mf = null;
-				bool trollflag = false;
-				string imgUrl = null;
+                // main flag
+                string mf = null;
+                bool trollflag = false;
+                string imgUrl = null;
                 if (String.IsNullOrEmpty(post.country_name))
                 {
                     continue; // no flags here, skip!
                 }
-                if (String.IsNullOrEmpty(post.troll_country)) {
-					mf = post.country_name;
-					trollflag = false;
-					imgUrl = imageBaseUrl + post.country.ToLower() + ".gif";
-				} else {
-					mf = post.country_name;
-					trollflag = true;
-					imgUrl = imageBaseUrl + "troll/" + post.troll_country.ToLower() + ".gif";
-				}
+                if (String.IsNullOrEmpty(post.troll_country))
+                {
+                    if (post.country == "TL") { post.country_name = "Timor-Leste"; }
+                    mf = post.country_name;
+                    trollflag = false;
+                    imgUrl = imageBaseUrl + post.country.ToLower() + ".gif";
+                }
+                else
+                {
+                    mf = post.country_name;
+                    trollflag = true;
+                    imgUrl = imageBaseUrl + "troll/" + post.troll_country.ToLower() + ".gif";
+                }
 
-				var postUrl = baseUrl + board + "/thread/" + post.resto + "#p" + post.no;
+                var postUrl = baseUrl + board + "/thread/" + post.resto + "#p" + post.no;
 
                 RegionalFleg regFlag = new RegionalFleg()
                 {
@@ -865,73 +919,86 @@ namespace FlagMiner
 
                 // loop on children
                 RegionalFleg prev = regFlag;
-				string completeUrl = flegsBaseUrl + post.country_name + "/";
+                string completeUrl = flegsBaseUrl + post.country_name + "/";
 
-				for (int child = 0; child <= arr.Length - 1; child++) {
-					RegionalFleg curChild = new RegionalFleg();
+                for (int child = 0; child <= arr.Length - 1; child++)
+                {
+                    RegionalFleg curChild = new RegionalFleg();
 
-					curChild.isTrollFlag = false;
-					curChild.thread = postUrl;
-					curChild.title = arr[child];
-					curChild.board = board;
-					curChild.pNo = post.no.ToString();
-					curChild.time = post.time;
-					curChild.imgurl = completeUrl + arr[child] + ".png";
+                    curChild.isTrollFlag = false;
+                    curChild.thread = postUrl;
+                    curChild.title = arr[child];
+                    curChild.board = board;
+                    curChild.pNo = post.no.ToString();
+                    curChild.time = post.time;
+                    curChild.imgurl = completeUrl + arr[child] + ".png";
 
-					completeUrl += arr[child] + "/";
+                    completeUrl += arr[child] + "/";
 
-					prev.children.Add(curChild.title, curChild);
+                    prev.children.Add(curChild.title, curChild);
 
-					prev = curChild;
-				}
+                    prev = curChild;
+                }
 
-				parsedFlegs.Add(regFlag);
-			}
-		}
+                parsedFlegs.Add(regFlag);
+            }
+        }
 
-		public static void MergeFlegs(List<RegionalFleg> collectedFlegs, ref SerializableDictionary<string, RegionalFleg> flegTree)
-		{
-			//flegTree = New SerializableDictionary(Of String, RegionalFleg)
+        public static void MergeFlegs(List<RegionalFleg> collectedFlegs, ref SerializableDictionary<string, RegionalFleg> flegTree)
+        {
+            //flegTree = New SerializableDictionary(Of String, RegionalFleg)
 
-			foreach (RegionalFleg fleg in collectedFlegs) {
-				SerializableDictionary<string, RegionalFleg> curDict = flegTree;
-				RegionalFleg curFleg = fleg;
+            foreach (RegionalFleg fleg in collectedFlegs)
+            {
+                SerializableDictionary<string, RegionalFleg> curDict = flegTree;
+                RegionalFleg curFleg = fleg;
 
-				if (!curDict.ContainsKey(curFleg.title)) {
-					curDict.Add(curFleg.title, curFleg);
-					// does it copy it all?  TODO CREATE DEEP COPY   48861
-				} else {
-					RegionalFleg presentFleg = curDict[curFleg.title];
-					if (presentFleg.time < curFleg.time) {
+                if (!curDict.ContainsKey(curFleg.title))
+                {
+                    curDict.Add(curFleg.title, curFleg);
+                    // does it copy it all?  TODO CREATE DEEP COPY   48861
+                }
+                else
+                {
+                    RegionalFleg presentFleg = curDict[curFleg.title];
+                    if (presentFleg.time < curFleg.time)
+                    {
                         presentFleg.copySerializableItems(curFleg);
-					}
-					if (curFleg.children.Count > 0) {
-						SerializableDictionary<string, RegionalFleg> curSrcDict = curFleg.children;
-						SerializableDictionary<string, RegionalFleg> curDestDict = curDict[curFleg.title].children;
-						Merger(ref curSrcDict, ref curDestDict);
-					}
-				}
-			}
-		}
+                    }
+                    if (curFleg.children.Count > 0)
+                    {
+                        SerializableDictionary<string, RegionalFleg> curSrcDict = curFleg.children;
+                        SerializableDictionary<string, RegionalFleg> curDestDict = curDict[curFleg.title].children;
+                        Merger(ref curSrcDict, ref curDestDict);
+                    }
+                }
+            }
+        }
 
 
-		public static void Merger(ref SerializableDictionary<string, RegionalFleg> source, ref SerializableDictionary<string, RegionalFleg> dest)
-		{
-			foreach (KeyValuePair<string, RegionalFleg> el in source) {
-				if (!dest.ContainsKey(el.Key)) {
-					dest.Add(el.Key, el.Value);
-				} else {
-					var curdestfleg = dest[el.Key];
-					var cursourcefleg = el.Value;
-					if (curdestfleg.time < cursourcefleg.time) {
+        public static void Merger(ref SerializableDictionary<string, RegionalFleg> source, ref SerializableDictionary<string, RegionalFleg> dest)
+        {
+            foreach (KeyValuePair<string, RegionalFleg> el in source)
+            {
+                if (!dest.ContainsKey(el.Key))
+                {
+                    dest.Add(el.Key, el.Value);
+                }
+                else
+                {
+                    var curdestfleg = dest[el.Key];
+                    var cursourcefleg = el.Value;
+                    if (curdestfleg.time < cursourcefleg.time)
+                    {
                         curdestfleg.copySerializableItems(cursourcefleg);
                     }
-					if (cursourcefleg.children.Count > 0) {
-						Merger(ref cursourcefleg.children, ref curdestfleg.children);
-					}
-				}
-			}
-		}
+                    if (cursourcefleg.children.Count > 0)
+                    {
+                        Merger(ref cursourcefleg.children, ref curdestfleg.children);
+                    }
+                }
+            }
+        }
 
         private void parseWorkerObject(object sender, WorkerUserState userState)
         {
@@ -968,96 +1035,110 @@ namespace FlagMiner
         }
 
 
-		private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
-		{
+        private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
             WorkerUserState userState = (WorkerUserState)e.UserState;
             if (userState != null)
             {
                 parseWorkerObject(sender, userState);
             }
-		}
+        }
 
-		private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-		{
-			SetupForIdle();
+        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            SetupForIdle();
             WorkerUserState userState = new WorkerUserState();
-			if (e.Cancelled) {
+            if (e.Cancelled)
+            {
                 userState.status = WorkerStatus.cancelled;
-			} else if (e.Error != null) {
+            }
+            else if (e.Error != null)
+            {
                 userState.status = WorkerStatus.error;
                 userState.additionalString = e.Error.ToString();
-			} else {
+            }
+            else
+            {
                 userState.status = WorkerStatus.completed;
-			}
+            }
             parseWorkerObject(sender, userState);
             var res = WindowsApi.FlashWindow(Process.GetCurrentProcess().MainWindowHandle, true, true, 5);
-		}
+        }
 
-		public void ReturnPasta(SerializableDictionary<string, RegionalFleg> dict, string str, ref StringBuilder pasta)
-		{
-			foreach (KeyValuePair<string, RegionalFleg> ch in dict) {
-				RegionalFleg curFleg = ch.Value;
-				SerializableDictionary<string, RegionalFleg> curDict = curFleg.children;
-				string curString = curFleg.title + ", " + str;
-				if (curDict.Count == 0) {
-					pasta.AppendLine(">>>/" + curFleg.board + "/" + curFleg.pNo + " " + curString);
-				} else {
-					ReturnPasta(curDict, curString, ref pasta);
-				}
-			}
-		}
+        public void ReturnPasta(SerializableDictionary<string, RegionalFleg> dict, string str, ref StringBuilder pasta)
+        {
+            foreach (KeyValuePair<string, RegionalFleg> ch in dict)
+            {
+                RegionalFleg curFleg = ch.Value;
+                SerializableDictionary<string, RegionalFleg> curDict = curFleg.children;
+                string curString = curFleg.title + ", " + str;
+                if (curDict.Count == 0)
+                {
+                    pasta.AppendLine(">>>/" + curFleg.board + "/" + curFleg.pNo + " " + curString);
+                }
+                else
+                {
+                    ReturnPasta(curDict, curString, ref pasta);
+                }
+            }
+        }
 
 
-		private void CopyBtn_Click(object sender, EventArgs e)
-		{
-			// copy links to clipboard
-			StringBuilder pasta = new StringBuilder();
+        private void CopyBtn_Click(object sender, EventArgs e)
+        {
+            // copy links to clipboard
+            StringBuilder pasta = new StringBuilder();
 
-			foreach (KeyValuePair<string, RegionalFleg> fleg in MainTree) {
-				var curString = fleg.Value.title;
-				//Dim curDict As Dictionary(Of String, RegionalFleg) = flegTree
-				RegionalFleg curFleg = fleg.Value;
-				SerializableDictionary<string, RegionalFleg> curDict = fleg.Value.children;
+            foreach (KeyValuePair<string, RegionalFleg> fleg in MainTree)
+            {
+                var curString = fleg.Value.title;
+                //Dim curDict As Dictionary(Of String, RegionalFleg) = flegTree
+                RegionalFleg curFleg = fleg.Value;
+                SerializableDictionary<string, RegionalFleg> curDict = fleg.Value.children;
 
-				if (curDict.Count == 0) {
-					pasta.AppendLine(">>>/" + curFleg.board + "/" + curFleg.pNo + " " + curString);
-				} else {
-					ReturnPasta(curDict, curString, ref pasta);
-				}
-			}
+                if (curDict.Count == 0)
+                {
+                    pasta.AppendLine(">>>/" + curFleg.board + "/" + curFleg.pNo + " " + curString);
+                }
+                else
+                {
+                    ReturnPasta(curDict, curString, ref pasta);
+                }
+            }
 
-            if (pasta.Length>0) Clipboard.SetText(pasta.ToString());
-		}
+            if (pasta.Length > 0) Clipboard.SetText(pasta.ToString());
+        }
 
-		private void Clearbutt_Click(object sender, EventArgs e)
-		{
+        private void Clearbutt_Click(object sender, EventArgs e)
+        {
             if (MessageBox.Show("Clear flags, sure?", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
-				MainTree.Clear();
-				helper.Clear();
-				UpdateRoots();
-			}
-		}
+                MainTree.Clear();
+                helper.Clear();
+                UpdateRoots();
+            }
+        }
 
-		private void Savebutt_Click(object sender, EventArgs e)
-		{
+        private void Savebutt_Click(object sender, EventArgs e)
+        {
             if (MessageBox.Show("Save current tree to file?", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
-				SaveXmlDialog.InitialDirectory = options.saveAndLoadFolder;
-				if (SaveXmlDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-					string currentFile = SaveXmlDialog.FileName;
-					FileStream fs = new FileStream(currentFile, FileMode.Create);
-					SerializableDictionary<string, RegionalFleg> CurTree = MainTree;
+                SaveXmlDialog.InitialDirectory = options.saveAndLoadFolder;
+                if (SaveXmlDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    string currentFile = SaveXmlDialog.FileName;
+                    FileStream fs = new FileStream(currentFile, FileMode.Create);
+                    SerializableDictionary<string, RegionalFleg> CurTree = MainTree;
 
-					XmlSerializer treeSerializer = new XmlSerializer(typeof(SerializableDictionary<string, RegionalFleg>));
-					treeSerializer.Serialize(fs, MainTree);
-					fs.Close();
-				}
-			}
-		}
+                    XmlSerializer treeSerializer = new XmlSerializer(typeof(SerializableDictionary<string, RegionalFleg>));
+                    treeSerializer.Serialize(fs, MainTree);
+                    fs.Close();
+                }
+            }
+        }
 
-		private void Loadbutt_Click(object sender, EventArgs e)
-		{
+        private void Loadbutt_Click(object sender, EventArgs e)
+        {
             if (MessageBox.Show("Load tree from file? It will be merged with the current tree", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
                 try
@@ -1099,81 +1180,97 @@ namespace FlagMiner
                     AppendText(DateTime.Now + " : " + ex.ToString() + System.Environment.NewLine);
                     MessageBox.Show("Error during the process", "Flag Miner", MessageBoxButtons.OK);
                 }
-			}
+            }
 
-		}
+        }
 
-		void CacheFlegs()
-		{
-			List<string> lstr = new List<string>();
+        void CacheFlegs()
+        {
+            List<string> lstr = new List<string>();
             CacheEm(MainTree, ref lstr);
-			
+
             lstr = lstr.Distinct().ToList();
-			ConcurrentDictionary<string, Image> queue = new ConcurrentDictionary<string, Image>();
+            ConcurrentDictionary<string, Image> queue = new ConcurrentDictionary<string, Image>();
             ParallelOptions pOpt = new ParallelOptions { MaxDegreeOfParallelism = 10 };
             Parallel.ForEach(lstr, pOpt, str =>
-			{
-				Image image = ImageListHelper.ScrapeImage(str);
-				queue.TryAdd(str, image);
-			});
-			this.TreeListView1.SuspendLayout();
-			foreach (KeyValuePair<string, Image> ke in queue) {
-				try {
-					if (!helper.HasImage(ke.Key))
-						helper.AddImageToCollection(ke.Key, this.TreeListView1.SmallImageList, ke.Value);
-				} catch (ArgumentNullException) {
+            {
+                Image image = ImageListHelper.ScrapeImage(str);
+                queue.TryAdd(str, image);
+            });
+            this.TreeListView1.SuspendLayout();
+            foreach (KeyValuePair<string, Image> ke in queue)
+            {
+                try
+                {
+                    if (!helper.HasImage(ke.Key))
+                        helper.AddImageToCollection(ke.Key, this.TreeListView1.SmallImageList, ke.Value);
+                }
+                catch (ArgumentNullException)
+                {
                     // ignored
-				}
-			}
-			this.TreeListView1.ResumeLayout();
-			this.RefreshTree();
-		}
+                }
+            }
+            this.TreeListView1.ResumeLayout();
+            this.RefreshTree();
+        }
 
-		public void CacheEm(SerializableDictionary<string, RegionalFleg> flegs, ref List<string> lstr)
-		{
-			foreach (RegionalFleg fleg in flegs.Values) {
-			    lstr.Add(fleg.imgurl);
-				CacheEm(fleg.children, ref lstr);
-			}
-		}
+        public void CacheEm(SerializableDictionary<string, RegionalFleg> flegs, ref List<string> lstr)
+        {
+            foreach (RegionalFleg fleg in flegs.Values)
+            {
+                lstr.Add(fleg.imgurl);
+                CacheEm(fleg.children, ref lstr);
+            }
+        }
 
-		public PurgeEnum QueryFlag(string imgurl)
-		{
-			HttpWebRequest request = null;
-			HttpWebResponse response = null;
-			try {
-				request = (HttpWebRequest)WebRequest.Create(imgurl);
-				request.UserAgent = options.userAgent;
-				request.Method = "HEAD";
-				response = (HttpWebResponse)request.GetResponse();
+        public PurgeEnum QueryFlag(string imgurl)
+        {
+            HttpWebRequest request = null;
+            HttpWebResponse response = null;
+            try
+            {
+                request = (HttpWebRequest)WebRequest.Create(imgurl);
+                request.UserAgent = options.userAgent;
+                request.Method = "HEAD";
+                response = (HttpWebResponse)request.GetResponse();
 
-				HttpStatusCode status = response.StatusCode;
-				response.Dispose();
+                HttpStatusCode status = response.StatusCode;
+                response.Dispose();
 
-				if (status == HttpStatusCode.NotFound) {
-					return PurgeEnum.notFound;
-				}
-				return PurgeEnum.ok;
-			} catch (WebException ex) {
-				var resp = (HttpWebResponse)ex.Response;
-				if (resp != null && resp.StatusCode == HttpStatusCode.NotFound) {
-					return PurgeEnum.notFound;
-				} else {
-					return PurgeEnum.genericError;
-				}
-			} catch (Exception) {
-				return PurgeEnum.genericError;
-				// network error
-			}
+                if (status == HttpStatusCode.NotFound)
+                {
+                    return PurgeEnum.notFound;
+                }
+                return PurgeEnum.ok;
+            }
+            catch (WebException ex)
+            {
+                var resp = (HttpWebResponse)ex.Response;
+                if (resp != null && resp.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return PurgeEnum.notFound;
+                }
+                else
+                {
+                    return PurgeEnum.genericError;
+                }
+            }
+            catch (Exception)
+            {
+                return PurgeEnum.genericError;
+                // network error
+            }
         }
 
         private PurgeEnum PurgeInvalid(SerializableDictionary<string, RegionalFleg> flegs, string path, int level)
         {
-            foreach (RegionalFleg fleg in flegs.Values) {
+            foreach (RegionalFleg fleg in flegs.Values)
+            {
                 var basestr = path + "\\" + fleg.title;
 
                 PurgeEnum checkedFlag = default(PurgeEnum);
-                if (options.useLocal && (level > 0)) {
+                if (options.useLocal && (level > 0))
+                {
                     string initString = "";
                     if (fleg.imgurl.Contains(flegsBaseUrl))
                         initString = options.localRepoFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
@@ -1181,27 +1278,40 @@ namespace FlagMiner
                     if (fleg.imgurl.Contains(imageBaseUrl))
                         initString = options.localRepoFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
                     // for nationals
-                    if (File.Exists(initString)) {
+                    if (File.Exists(initString))
+                    {
                         checkedFlag = PurgeEnum.ok;
-                    } else {
+                    }
+                    else
+                    {
                         checkedFlag = PurgeEnum.notFound;
                     }
-                } else {
+                }
+                else
+                {
                     checkedFlag = QueryFlag(fleg.imgurl);
                 }
-                if (checkedFlag == PurgeEnum.genericError) {
+                if (checkedFlag == PurgeEnum.genericError)
+                {
                     return checkedFlag;
                 }
-                if (fleg.isTrollFlag) {
-                    if (options.markTroll) {
+                if (fleg.isTrollFlag)
+                {
+                    if (options.markTroll)
+                    {
                         fleg.markedfordeletion = true;
-                    } else {
+                    }
+                    else
+                    {
                         fleg.markedfordeletion = false;
                     }
                 }
-                if (checkedFlag == PurgeEnum.notFound) {
+                if (checkedFlag == PurgeEnum.notFound)
+                {
                     fleg.markedfordeletion = true;
-                } else {
+                }
+                else
+                {
                     if (PurgeInvalid(fleg.children, basestr, level + 1) == PurgeEnum.genericError)
                     {
                         return PurgeEnum.genericError;
@@ -1213,10 +1323,11 @@ namespace FlagMiner
             return PurgeEnum.ok;
         }
 
-		private void Purgebutt_Click(object sender, EventArgs e)
-		{
-			if (MessageBox.Show("Purge inexistent flags? This cannot be undone", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes) {
-				var level = 0;
+        private void Purgebutt_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Purge inexistent flags? This cannot be undone", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+            {
+                var level = 0;
                 if (PurgeInvalid(MainTree, options.localRepoFolder, level) == PurgeEnum.genericError)
                 {
                     MessageBox.Show("An error occurred while checking the flags. Make sure your connection is up and/or local folders are valid.", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1224,14 +1335,15 @@ namespace FlagMiner
                 }
                 MainTree.Where((KeyValuePair<string, RegionalFleg> pair) => pair.Value.markedfordeletion == true || (options.deleteChildFree && pair.Value.children.Count == 0)).ToArray().Apply((KeyValuePair<string, RegionalFleg> pair) => MainTree.Remove(pair.Key)).Apply();
 
-				UpdateRoots();
-				TreeListView1.Invalidate();
-			}
-		}
+                UpdateRoots();
+                TreeListView1.Invalidate();
+            }
+        }
 
-		private void CheckExistent(SerializableDictionary<string, RegionalFleg > flegs, int level)
-		{
-			foreach (KeyValuePair<string, RegionalFleg> ke in flegs) {
+        private void CheckExistent(SerializableDictionary<string, RegionalFleg> flegs, int level)
+        {
+            foreach (KeyValuePair<string, RegionalFleg> ke in flegs)
+            {
                 RegionalFleg fleg = ke.Value;
                 string initString = "";
                 if (string.IsNullOrEmpty(flegsBaseUrl))
@@ -1244,11 +1356,11 @@ namespace FlagMiner
                 // for nationals
                 fleg.exists = File.Exists(initString);
                 CheckExistent(fleg.children, level + 1);
-			}
-		}
+            }
+        }
 
-		private void Checkbutt_Click(object sender, EventArgs e)
-		{
+        private void Checkbutt_Click(object sender, EventArgs e)
+        {
             if (MessageBox.Show("Mark existent flags?", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
                 try
@@ -1262,98 +1374,110 @@ namespace FlagMiner
                 {
                     AppendText(DateTime.Now + " : " + ex.ToString() + System.Environment.NewLine);
                 }
-			}
-		}
+            }
+        }
 
-		private void ToolStripMenuItem1_Click(object sender, EventArgs e)
-		{
-			this.TreeListView1.ExpandAll();
-		}
+        private void ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.TreeListView1.ExpandAll();
+        }
 
-		private void CollapseAllToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			this.TreeListView1.CollapseAll();
-		}
+        private void CollapseAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.TreeListView1.CollapseAll();
+        }
 
         ImportForm importForm = null;
-		private void Importbutt_Click(object sender, EventArgs e)
-		{
-			SetupForParsing();
-			StatusText.AppendText(DateTime.Now + " : Parsing started." + System.Environment.NewLine);
+        private void Importbutt_Click(object sender, EventArgs e)
+        {
+            SetupForParsing();
+            StatusText.AppendText(DateTime.Now + " : Parsing started." + System.Environment.NewLine);
             if (importForm == null) importForm = new ImportForm(this);
-			DialogResult res = importForm.ShowDialog();
+            DialogResult res = importForm.ShowDialog();
             if (res == System.Windows.Forms.DialogResult.OK && importForm.links.Count > 0)
             {
-				BackgroundWorker2.RunWorkerAsync(importForm.links);
+                BackgroundWorker2.RunWorkerAsync(importForm.links);
 
-			} else {
-				StatusText.AppendText(DateTime.Now + " : Action cancelled by user or no valid thread/posts given." + System.Environment.NewLine);
-				SetupForIdle();
-			}
-		}
+            }
+            else
+            {
+                StatusText.AppendText(DateTime.Now + " : Action cancelled by user or no valid thread/posts given." + System.Environment.NewLine);
+                SetupForIdle();
+            }
+        }
 
-		private void BackgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
-		{
-			int statusFlag = 0;
-			//Dim boardList As List(Of String) = e.Argument
+        private void BackgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int statusFlag = 0;
+            //Dim boardList As List(Of String) = e.Argument
             BackgroundWorker worker = (BackgroundWorker)sender;
 
-			int errorCode = 0;
+            int errorCode = 0;
             List<Tuple<string, string, string>> threads = (List<Tuple<string, string, string>>)e.Argument;
 
-			threads.Sort();
+            threads.Sort();
 
-			for (int i = 0; i <= threads.Count - 1; i += 1) {
-				if (worker.CancellationPending) {
-					e.Cancel = true;
-					break;
-				}
+            for (int i = 0; i <= threads.Count - 1; i += 1)
+            {
+                if (worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    break;
+                }
 
-				string board = threads[i].Item1;
+                string board = threads[i].Item1;
 
-				worker.ReportProgress(i + 1, new object [] {
-					"N/A",
-					threads.Count
-				});
-				Thread.Sleep(450);
-				// do not flood the server and get banned
-				try {
+                worker.ReportProgress(i + 1, new object[] {
+                    "N/A",
+                    threads.Count
+                });
+                Thread.Sleep(450);
+                // do not flood the server and get banned
+                try
+                {
                     errorCode = LoadThread(board, Int64.Parse(threads[i].Item2), out string rawResponse);
                     RaiseError(errorCode, ref statusFlag);
 
-					List<Post> posts = null;
-					ParseThread(rawResponse, ref posts);
+                    List<Post> posts = null;
+                    ParseThread(rawResponse, ref posts);
 
-					List<Fleg> flegs = new List<Fleg>();
-					QueryExtraFlags(board, ref posts, ref flegs);
+                    List<Fleg> flegs = new List<Fleg>();
+                    QueryExtraFlags(board, ref posts, ref flegs);
 
-					List<RegionalFleg> parsedFlegs = null;
-					ParseFlags(board, posts, ref flegs, ref parsedFlegs);
+                    List<RegionalFleg> parsedFlegs = null;
+                    ParseFlags(board, posts, ref flegs, ref parsedFlegs);
 
-					SerializableDictionary<string, RegionalFleg> flagTree = new SerializableDictionary<string, RegionalFleg>();
-					MergeFlegs( parsedFlegs, ref flagTree);
+                    SerializableDictionary<string, RegionalFleg> flagTree = new SerializableDictionary<string, RegionalFleg>();
+                    MergeFlegs(parsedFlegs, ref flagTree);
 
-					//TreeListView1.Roots = flagTree   ' TODO inviare a concurrent stack e inizializzare rootmanager
-					rootManager.AddToStack(flagTree);
+                    //TreeListView1.Roots = flagTree   ' TODO inviare a concurrent stack e inizializzare rootmanager
+                    rootManager.AddToStack(flagTree);
 
 
-				// for inner loop catch it here bls
-				} catch (WebException ex) {
-					var resp = (HttpWebResponse)ex.Response;
-					if (resp.StatusCode == HttpStatusCode.NotFound) {
-						// anything to do?
-					} else {
-						// halt everything.. internet down?
-						AppendText(DateTime.Now + " : " + board + "/" + threads[i].Item2 + " " + ex.ToString() + System.Environment.NewLine);
-					}
-				} catch (Exception ex) {
-					AppendText(DateTime.Now + " : " + board + "/" + threads[i].Item2 + " " + ex.ToString() + System.Environment.NewLine);
+                    // for inner loop catch it here bls
+                }
+                catch (WebException ex)
+                {
+                    var resp = (HttpWebResponse)ex.Response;
+                    if (resp.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        // anything to do?
+                    }
+                    else
+                    {
+                        // halt everything.. internet down?
+                        AppendText(DateTime.Now + " : " + board + "/" + threads[i].Item2 + " " + ex.ToString() + System.Environment.NewLine);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    AppendText(DateTime.Now + " : " + board + "/" + threads[i].Item2 + " " + ex.ToString() + System.Environment.NewLine);
 
-				}
+                }
 
-			}
+            }
 
-		}
+        }
 
         private void DateTimePicker1_ValueChanged(object sender, EventArgs e) => options.exclusionDate = DateTimePicker1.Value;
 
@@ -1361,50 +1485,56 @@ namespace FlagMiner
 
         private void CheckBox2_CheckedChanged(object sender, EventArgs e) => options.exclusionByList = CheckBox2.Checked;
 
-		private void AboutButt_Click(object sender, EventArgs e)
-		{
+        private void AboutButt_Click(object sender, EventArgs e)
+        {
             if (aboutBox1 == null) aboutBox1 = new AboutBox1();
             aboutBox1.ShowDialog();
-			SetupForIdle();
-		}
+            SetupForIdle();
+        }
 
-		private void Olv_CellRightClick(object sender, CellRightClickEventArgs e)
-		{
-			try {
-				ContextMenuStrip m = new ContextMenuStrip();
+        private void Olv_CellRightClick(object sender, CellRightClickEventArgs e)
+        {
+            try
+            {
+                ContextMenuStrip m = new ContextMenuStrip();
                 m.Tag = (RegionalFleg)e.Model;
-				m.Items.Add("Expand All", null, ExpandHandler);
-				m.Items.Add("Collapse All", null, CollapseHandler);
-				m.Items.Add(new ToolStripSeparator());
-				m.Items.Add("Copy flag to clipboard", null, CopyImageHandler);
-				m.Items.Add("Save as...", null, SaveImageHandler);
-				m.Items.Add(new ToolStripSeparator());
+                m.Items.Add("Expand All", null, ExpandHandler);
+                m.Items.Add("Collapse All", null, CollapseHandler);
+                m.Items.Add(new ToolStripSeparator());
+                m.Items.Add("Copy flag to clipboard", null, CopyImageHandler);
+                m.Items.Add("Save as...", null, SaveImageHandler);
+                m.Items.Add(new ToolStripSeparator());
                 m.Items.Add("Auto save selected...", null, AutoSaveImagesHandler);
                 m.Items.Add(new ToolStripSeparator());
-				m.Items.Add("Copy link", null, CopyLinkHandler);
-				e.MenuStrip = m;
-			} catch (Exception ex) {
+                m.Items.Add("Copy link", null, CopyLinkHandler);
+                e.MenuStrip = m;
+            }
+            catch (Exception ex)
+            {
                 // ingore it for now
-			}
-		}
+            }
+        }
 
         private void ExpandHandler(object sender, EventArgs e) => TreeListView1.ExpandAll();
 
         private void CollapseHandler(object sender, EventArgs e) => TreeListView1.CollapseAll();
 
         private void CopyImageHandler(object sender, EventArgs e)
-		{
+        {
             RegionalFleg regFlag = (RegionalFleg)TreeListView1.SelectedItem.RowObject;
-            try {
-				Image image = ImageListHelper.ScrapeImage(regFlag.imgurl);
-				Clipboard.SetImage(image);
-			} catch (Exception) {
-				MessageBox.Show("Error while downloading the flag to copy", "Flag Miner");
-			}
-		}
+            try
+            {
+                Image image = ImageListHelper.ScrapeImage(regFlag.imgurl);
+                Clipboard.SetImage(image);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while downloading the flag to copy", "Flag Miner");
+            }
+        }
 
-		private void SaveImageHandler(object sender, EventArgs e)
-		{
+        private void SaveImageHandler(object sender, EventArgs e)
+        {
             RegionalFleg regFlag = (RegionalFleg)TreeListView1.SelectedItem.RowObject;
             try
             {
@@ -1417,10 +1547,11 @@ namespace FlagMiner
                 if (SaveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     image.Save(SaveFileDialog1.FileName);
             }
-            catch (Exception) {
-				MessageBox.Show("Error while downloading the flag to save", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
+            catch (Exception)
+            {
+                MessageBox.Show("Error while downloading the flag to save", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void createSaveInformation(RegionalFleg regFlag, out string path, out string fileName, out string flagPath)
         {
@@ -1445,7 +1576,8 @@ namespace FlagMiner
 
         private void AutoSaveImagesHandler(object sender, EventArgs e)
         {
-            foreach (object si in TreeListView1.SelectedObjects) {
+            foreach (object si in TreeListView1.SelectedObjects)
+            {
                 RegionalFleg regFlag = (RegionalFleg)si;
                 string flagPath = "";
                 try
@@ -1468,21 +1600,21 @@ namespace FlagMiner
             }
         }
 
-		private void CopyLinkHandler(object sender, EventArgs e)
-		{
+        private void CopyLinkHandler(object sender, EventArgs e)
+        {
             RegionalFleg regFlag = (RegionalFleg)TreeListView1.SelectedItem.RowObject;
-			Clipboard.SetText(regFlag.thread);
-		}
+            Clipboard.SetText(regFlag.thread);
+        }
 
         OptionsForm optionsForm = null;
-		private void OptButt_Click(object sender, EventArgs e)
-		{
+        private void OptButt_Click(object sender, EventArgs e)
+        {
             if (optionsForm == null) optionsForm = new OptionsForm(this);
-			optionsForm.ShowDialog();
+            optionsForm.ShowDialog();
             SaveOptions();
             LoadOptions();
-			SetupForIdle();
-		}
+            SetupForIdle();
+        }
 
         private void IntCheck_CheckedChanged(object sender, EventArgs e) => options.intCheck = intCheck.Checked;
 
@@ -1491,15 +1623,16 @@ namespace FlagMiner
         private void SpCheck_CheckedChanged(object sender, EventArgs e) => options.spCheck = spCheck.Checked;
 
         private void ValidateOptions()
-		{
+        {
             if (options.backendServers == null)
             {
                 options.backendServers = new List<string>();
             }
-			if (string.IsNullOrEmpty(options.userAgent)) {
+            if (string.IsNullOrEmpty(options.userAgent))
+            {
                 throw new Exception("User Agent not defined. Make sure to set a valid one in the options.");
-				//options.userAgent = DefaultUserAgent;
-			}
+                //options.userAgent = DefaultUserAgent;
+            }
             if (string.IsNullOrEmpty(options.repoUrl))
             {
                 throw new Exception("Repository Url not defined. Make sure to set a valid one in the options.");
@@ -1515,21 +1648,24 @@ namespace FlagMiner
             }
         }
 
-		public Form1()
-		{
-			//MouseMove += Form1_MouseMove;
-			Load += Form1_Load;
-			FormClosing += Form1_FormClosing;
-			InitializeComponent();
-		}
+        public Form1()
+        {
+            //MouseMove += Form1_MouseMove;
+            Load += Form1_Load;
+            FormClosing += Form1_FormClosing;
+            InitializeComponent();
+        }
 
         void TreeListView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (((TreeListView)sender).SelectedObjects.Count !=0) {
+            if (((TreeListView)sender).SelectedObjects.Count != 0)
+            {
                 copyFlagToolStripButton.Enabled = true;
                 saveFlagToolStripButton.Enabled = true;
                 copyLinkToolStripButton.Enabled = true;
-            } else {
+            }
+            else
+            {
                 copyFlagToolStripButton.Enabled = false;
                 saveFlagToolStripButton.Enabled = false;
                 copyLinkToolStripButton.Enabled = false;
@@ -1600,7 +1736,8 @@ namespace FlagMiner
                         TreeListView1.Invalidate();
                     }
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     AppendText(DateTime.Now + " : " + ex.ToString() + System.Environment.NewLine);
                     MessageBox.Show("Error during the process", "Flag Miner", MessageBoxButtons.OK);
                 }
@@ -1621,7 +1758,7 @@ namespace FlagMiner
             {
                 RegionalFleg Fleg = ke.Value;
                 DeleteCheckedFlegs(ref curDestDict[ke.Key].children);
-                if (Fleg.children.Count ==0)
+                if (Fleg.children.Count == 0)
                 {
                     curDestDict[ke.Key].markedfordeletion = Fleg.exists;
                 }
