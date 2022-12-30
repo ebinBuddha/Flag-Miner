@@ -80,7 +80,7 @@ namespace FlagMiner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://countryball.ca/.
+        ///   Looks up a localized string similar to https://nun.wtf/.
         /// </summary>
         internal static string backendBaseUrl {
             get {

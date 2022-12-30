@@ -172,7 +172,6 @@ namespace FlagMiner
             {
                 this.backendServers.Clear();
                 // DEFAULT SERVERS
-                //this.backendServers.Text += "https://whatisthisimnotgoodwithcomputers.com/\n";
                 this.backendServers.Text += Properties.Resources.backendBaseUrl + "\n";
             }
         }
