@@ -40,6 +40,9 @@ namespace FlagMiner
 
 	public static class ListExtensions
 	{
+		/// <summary>
+		/// Splits the enumerable into lists of given size
+		/// </summary>
 		public static List<List<T>> ChunkBy<T>(this IEnumerable<T> source, int chunkSize)
 		{
 			return source

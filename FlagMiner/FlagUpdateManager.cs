@@ -17,7 +17,7 @@ namespace FlagMiner
 		{
 			stack = new BlockingCollection<object>(source);
 			treeView = myTreeView;
-			Form1 frm = (Form1)treeView.Parent.Parent.Parent;
+			FlagMiner frm = (FlagMiner)treeView.Parent.Parent.Parent;
 			consumer = Task.Run(() =>
 			{
 				List<object> accumulator = new List<object>();

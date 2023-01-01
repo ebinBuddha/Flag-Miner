@@ -17,7 +17,7 @@ namespace FlagMiner
 		{
 			stack = new BlockingCollection<SerializableDictionary<string, RegionalFleg>>(source);
 			treeView = myTreeView;
-			Form1 frm = (Form1)treeView.Parent.Parent.Parent;
+			FlagMiner frm = (FlagMiner)treeView.Parent.Parent.Parent;
 			SerializableDictionary<string, RegionalFleg> dict = dest;
 			consumer = Task.Run(() =>
 			{
@@ -41,7 +41,7 @@ namespace FlagMiner
 							if (curFleg.children.Count > 0) {
 								SerializableDictionary<string, RegionalFleg> curSrcDict = curFleg.children;
 								SerializableDictionary<string, RegionalFleg> curDestDict = curDict[curFleg.title].children;
-								Form1.Merger(ref curSrcDict, ref curDestDict);
+								FlagMiner.Merger(ref curSrcDict, ref curDestDict);
 							}
 						}
 					}

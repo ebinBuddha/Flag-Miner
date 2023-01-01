@@ -18,11 +18,11 @@ namespace FlagMiner
     public class ImageListHelper
 	{
 
-		private static Form1 frm;
+		private static FlagMiner frm;
 		private readonly BlockingCollection<string> stack;
 
         protected ObjectListView listView;
-        private ImageListHelper(Form1 form) => ImageListHelper.frm = form;
+        private ImageListHelper(FlagMiner form) => ImageListHelper.frm = form;
 
         /// <summary>
         /// Create a SysImageListHelper that will fetch images for the given tree control
@@ -36,7 +36,7 @@ namespace FlagMiner
 				//listView.ImageList.ImageSize = New Size(16, 16)
 			}
 			this.listView = listView;
-            ImageListHelper.frm = (Form1)listView.Parent.Parent.Parent; // this suck ass
+            ImageListHelper.frm = (FlagMiner)listView.Parent.Parent.Parent; // this suck ass
 
 			stack = new BlockingCollection<string>(source);
             Task.Run(() =>
@@ -145,10 +145,14 @@ namespace FlagMiner
 		{
 			System.Drawing.Bitmap img = null;
 
-            //Dim finalimg As Image
-            if (frm.options.useLocal && url.Contains(frm.options.repoUrl))
+			var options = OptionsManager.OptionsInstance;
+			var useLocal = options.useLocal;
+			var repoUrl = options.repoUrl;
+			var localRepoFolder = options.localRepoFolder;
+
+			if (useLocal && url.Contains(repoUrl))
             {
-                string diskPath = url.Replace(frm.options.repoUrl, frm.options.localRepoFolder+"/");
+                string diskPath = url.Replace(repoUrl, localRepoFolder+"/");
                 try
                 {
                     img = (Bitmap)System.Drawing.Image.FromFile(diskPath);
@@ -220,7 +224,7 @@ namespace FlagMiner
 
 						// copy
 						this.SmallImageList.Images.Clear();
-						Form1 myform = (Form1)this.listView.Parent.Parent.Parent;
+						FlagMiner myform = (FlagMiner)this.listView.Parent.Parent.Parent;
 						myform.SetImgSizeInvoker(new Size(maxSize.Width, maxSize.Height));
 						//Me.SmallImageList.ImageSize = New Size(maxSize.Width, maxSize.Height)
 						foreach (string ke in tempList.Images.Keys) {

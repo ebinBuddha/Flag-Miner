@@ -87,22 +87,22 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutBox1.cs">
+    <Compile Include="MinerAboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutBox1.Designer.cs">
-      <DependentUpon>AboutBox1.cs</DependentUpon>
+    <Compile Include="MinerAboutBox.Designer.cs">
+      <DependentUpon>MinerAboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="classes.cs" />
+    <Compile Include="Classes.cs" />
     <Compile Include="ExtensionClasses.cs" />
     <Compile Include="FlagMergeManager.cs" />
     <Compile Include="FlagUpdateManager.cs" />
     <Compile Include="FlegComparer.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FlagMiner.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FlagMiner.Designer.cs">
+      <DependentUpon>FlagMiner.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ImageListHelper.cs" />
@@ -112,6 +112,7 @@
     <Compile Include="ImportForm.Designer.cs">
       <DependentUpon>ImportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OptionsManager.cs" />
     <Compile Include="PostComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -154,11 +155,11 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AboutBox1.resx">
-      <DependentUpon>AboutBox1.cs</DependentUpon>
+    <EmbeddedResource Include="MinerAboutBox.resx">
+      <DependentUpon>MinerAboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FlagMiner.resx">
+      <DependentUpon>FlagMiner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportForm.resx">
       <DependentUpon>ImportForm.cs</DependentUpon>

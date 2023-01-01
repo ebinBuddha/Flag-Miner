@@ -4,7 +4,12 @@
         <name>FlagMiner</name>
     </assembly>
     <members>
-        <member name="M:FlagMiner.Form1.SubtractFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg},FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
+        <member name="M:FlagMiner.ListExtensions.ChunkBy``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Splits the enumerable into lists of given size
+            </summary>
+        </member>
+        <member name="M:FlagMiner.FlagMiner.SubtractFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg},FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
             <summary>
             subtracts src from dest: dest = dest-src
             </summary>
@@ -12,7 +17,7 @@
             <param name="dest">minuend</param>
             <remarks></remarks>
         </member>
-        <member name="M:FlagMiner.Form1.DeleteCheckedFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
+        <member name="M:FlagMiner.FlagMiner.DeleteCheckedFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
             <summary>
             subtracts src from dest: dest = dest-src
             </summary>
@@ -20,18 +25,18 @@
             <param name="dest">minuend</param>
             <remarks></remarks>
         </member>
-        <member name="F:FlagMiner.Form1.components">
+        <member name="F:FlagMiner.FlagMiner.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:FlagMiner.Form1.Dispose(System.Boolean)">
+        <member name="M:FlagMiner.FlagMiner.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:FlagMiner.Form1.InitializeComponent">
+        <member name="M:FlagMiner.FlagMiner.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -78,7 +83,7 @@
         </member>
         <member name="P:FlagMiner.Properties.Resources.backendBaseUrl">
             <summary>
-              Looks up a localized string similar to https://countryball.ca/.
+              Looks up a localized string similar to https://nun.wtf/.
             </summary>
         </member>
         <member name="P:FlagMiner.Properties.Resources.baseUrl">

@@ -20,7 +20,7 @@ using System.Xml.Serialization;
 namespace FlagMiner
 {
 
-    public partial class Form1 : Form
+    public partial class FlagMiner : Form
     {
 
         private readonly string baseUrl = Properties.Resources.baseUrl;
@@ -64,10 +64,10 @@ namespace FlagMiner
         public Image blankImg;
 
         static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        public Options options;
+        //public Options options;
         readonly string optionsFile = Properties.Resources.optionsFile;
 
-        AboutBox1 aboutBox1 = null;
+        MinerAboutBox minerAboutBox = null;
 
         private void ParseBtn_Click(object sender, EventArgs e)
         {
@@ -80,7 +80,7 @@ namespace FlagMiner
             if (spCheck.Checked)
             { boardList.Add("sp"); }
 
-            exclusionDateLong = (long)(options.exclusionDate.ToUniversalTime() - UnixEpoch).TotalSeconds;
+            exclusionDateLong = (long)(OptionsManager.OptionsInstance.exclusionDate.ToUniversalTime() - UnixEpoch).TotalSeconds;
 
             SetupForParsing();
             try
@@ -94,11 +94,11 @@ namespace FlagMiner
 
             StatusText.AppendText(DateTime.Now + " : Mining started." + System.Environment.NewLine);
 
-            BackgroundWorker1.RunWorkerAsync(boardList);
+            MinerBackgroundWorker.RunWorkerAsync(boardList);
         }
 
 
-        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        private void MinerBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             int statusFlag = 0;
             List<string> boardList = (List<string>)e.Argument;
@@ -141,7 +141,7 @@ namespace FlagMiner
                     long finalTime = (long)(DateTime.UtcNow - UnixEpoch).TotalSeconds;
 
                     ParallelOptions parallelOptions = new ParallelOptions();
-                    parallelOptions.MaxDegreeOfParallelism = 4;
+                    parallelOptions.MaxDegreeOfParallelism = 12;
                     CancellationTokenSource cts = new CancellationTokenSource();
                     parallelOptions.CancellationToken = cts.Token;
                     try
@@ -165,7 +165,7 @@ namespace FlagMiner
                                 progress = currentCount,
                                 total = threads.Count
                             });
-                            Thread.Sleep(50); // do not flood the server and get banned
+                            Thread.Sleep(10); // do not flood the server and get banned
                             try
                             {
                                 errorCode = LoadThread(board, threads[i], out string rawResponse);
@@ -195,7 +195,7 @@ namespace FlagMiner
                                     Post firstPost = posts[0];
                                     finalTime = firstPost.archived_on;
 
-                                    if ((options.exclusionByDate && finalTime > exclusionDateLong) || (!options.exclusionByDate))
+                                    if ((OptionsManager.OptionsInstance.exclusionByDate && finalTime > exclusionDateLong) || (!OptionsManager.OptionsInstance.exclusionByDate))
                                     {
                                         List<Fleg> flegs = new List<Fleg>();
                                         QueryExtraFlags(board, ref posts, ref flegs);
@@ -302,10 +302,10 @@ namespace FlagMiner
 
         private void AbortButt_Click(object sender, EventArgs e)
         {
-            if (BackgroundWorker1.IsBusy)
-                BackgroundWorker1.CancelAsync();
-            if (BackgroundWorker2.IsBusy)
-                BackgroundWorker2.CancelAsync();
+            if (MinerBackgroundWorker.IsBusy)
+                MinerBackgroundWorker.CancelAsync();
+            if (ThreadParserBackgroundWorker.IsBusy)
+                ThreadParserBackgroundWorker.CancelAsync();
             //StatusText.AppendText(DateTime.Now + " : Abort signal sent." + System.Environment.NewLine);
             parseWorkerObject(sender, new WorkerUserState() { status = WorkerStatus.cancelling });
             SetupForIdle();
@@ -333,11 +333,9 @@ namespace FlagMiner
 
             purgeMenuItem.Enabled = false;
             purgeToolStripButton.Enabled = false;
-            ToolTip2.Active = false;
 
             checkMenuItem.Enabled = false;
             checkToolStripButton.Enabled = false;
-            ToolTip1.Active = false;
 
             subtractMenuItem.Enabled = false;
             subtractToolStripButton.Enabled = false;
@@ -369,29 +367,25 @@ namespace FlagMiner
             loadMenuItem.Enabled = true;
             loadToolStripButton.Enabled = true;
 
-            if (options.enablePurge)
+            if (OptionsManager.OptionsInstance.enablePurge)
             {
                 purgeMenuItem.Enabled = true;
                 purgeToolStripButton.Enabled = true;
-                ToolTip2.Active = false;
             }
             else
             {
                 purgeMenuItem.Enabled = false;
                 purgeToolStripButton.Enabled = false;
-                ToolTip2.Active = true;
             }
-            if (options.enableCheck)
+            if (OptionsManager.OptionsInstance.enableCheck)
             {
                 checkMenuItem.Enabled = true;
                 checkToolStripButton.Enabled = true;
-                ToolTip1.Active = false;
             }
             else
             {
                 checkMenuItem.Enabled = false;
                 checkToolStripButton.Enabled = false;
-                ToolTip1.Active = true;
             }
             subtractMenuItem.Enabled = true;
             subtractToolStripButton.Enabled = true;
@@ -436,9 +430,9 @@ namespace FlagMiner
 
         public void UpdateRoots()
         {
-            this.TreeListView1.SuspendLayout();
-            this.TreeListView1.Roots = MainTree.Values;
-            this.TreeListView1.ResumeLayout();
+            this.FlegTreeListView.SuspendLayout();
+            this.FlegTreeListView.Roots = MainTree.Values;
+            this.FlegTreeListView.ResumeLayout();
         }
 
         public delegate void RefreshTreeCallBack();
@@ -451,7 +445,7 @@ namespace FlagMiner
 
         public void RefreshTreeFunction()
         {
-            this.TreeListView1.Refresh();
+            this.FlegTreeListView.Refresh();
         }
 
         public delegate void UpdateTreeViewCallback(List<object> acc);
@@ -464,9 +458,9 @@ namespace FlagMiner
 
         public void UpdateObjects(List<object> acc)
         {
-            this.TreeListView1.SuspendLayout();
-            this.TreeListView1.RefreshObjects(acc);
-            this.TreeListView1.ResumeLayout();
+            this.FlegTreeListView.SuspendLayout();
+            this.FlegTreeListView.RefreshObjects(acc);
+            this.FlegTreeListView.ResumeLayout();
         }
 
         public delegate void setImgSizeCallback(Size imgSize);
@@ -479,15 +473,15 @@ namespace FlagMiner
 
         public void SetImgSize(Size imgSize)
         {
-            this.ImageList1.ImageSize = imgSize;
-            this.TreeListView1.BaseSmallImageList = this.ImageList1;
+            this.FlegImageList.ImageSize = imgSize;
+            this.FlegTreeListView.BaseSmallImageList = this.FlegImageList;
         }
 
         private int LoadArchive(string board, ref string rawResponse)
         {
             string boardUrl = baseUrl + board + catalogStr;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(boardUrl);
-            request.UserAgent = options.userAgent;
+            request.UserAgent = OptionsManager.OptionsInstance.userAgent;
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
             HttpStatusCode status = response.StatusCode;
@@ -561,7 +555,7 @@ namespace FlagMiner
             {
                 threads.Add(thr, 0);
             }
-            if (options.exclusionByList)
+            if (OptionsManager.OptionsInstance.exclusionByList)
             {
                 List<long> TBDeleted = new List<long>();
                 for (int i = 0; i <= exclusionList.Count - 1; i++)
@@ -585,7 +579,7 @@ namespace FlagMiner
                 }
             }
 
-            if (options.exclusionByDate)
+            if (OptionsManager.OptionsInstance.exclusionByDate)
             {
                 Dictionary<long, long> tempDict = null;
                 tempDict = exclusionList.Where(e => e.Value < exclusionDateLong).ToDictionary(e => e.Key, e => e.Value);
@@ -611,15 +605,15 @@ namespace FlagMiner
                 Parallel.ForEach(chunks, (subList) =>
                 {
                     StringBuilder tempstr = subList.Aggregate(new StringBuilder(), (acc, p) => acc.Append("," + p.ToString()), (acc) => acc.Remove(0, 1));
-
+                    
                     // better if parallelized?
-                    foreach (string st in options.backendServers)
+                    foreach (string st in OptionsManager.OptionsInstance.backendServers)
                     {
                         if (st == "") continue;
 
                         using (WebClient client = new WebClient())
                         {
-                            client.Headers["User-Agent"] = options.userAgent;
+                            client.Headers["User-Agent"] = OptionsManager.OptionsInstance.userAgent;
                             NameValueCollection values = new NameValueCollection {
                                 {
                                     "post_nrs",
@@ -663,7 +657,7 @@ namespace FlagMiner
             }
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(boardUrl);
-            request.UserAgent = options.userAgent;
+            request.UserAgent = OptionsManager.OptionsInstance.userAgent;
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
             HttpStatusCode status = response.StatusCode;
@@ -697,9 +691,9 @@ namespace FlagMiner
             this.Close();
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void FlagMiner_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (BackgroundWorker1.IsBusy || BackgroundWorker2.IsBusy)
+            if (MinerBackgroundWorker.IsBusy || ThreadParserBackgroundWorker.IsBusy)
             {
                 MessageBox.Show("Task is ongoing. Please hit \"Abort\" before closing", "Flag Miner", MessageBoxButtons.OK);
                 e.Cancel = true;
@@ -707,7 +701,7 @@ namespace FlagMiner
             }
             try
             {
-                SaveOptions();
+                OptionsManager.SaveOptions();
             }
             catch (Exception ex)
             {
@@ -716,49 +710,14 @@ namespace FlagMiner
             }
         }
 
-        private void SaveOptions()
-        {
-            FileStream fs = new FileStream(optionsFile, FileMode.Create);
-
-            XmlSerializer optionsSerializer = new XmlSerializer(typeof(Options));
-            optionsSerializer.Serialize(fs, options);
-            fs.Close();
-        }
-
-        private void LoadOptions()
-        {
-            FileStream fs = null;
-            try
-            {
-                fs = new FileStream(optionsFile, FileMode.OpenOrCreate);
-
-                XmlSerializer optionsSerializer = new XmlSerializer(typeof(Options));
-                options = (Options)optionsSerializer.Deserialize(fs);
-            }
-            catch (Exception)
-            {
-                // ignore it for now.
-            }
-            finally
-            {
-                if (fs != null)
-                    fs.Close();
-            }
-            if (options.backendServers == null)
-            {
-                options.backendServers = new List<string>();
-            }
-            if (options.exclusionDate > DateTimePicker1.MaxDate || options.exclusionDate < DateTimePicker1.MinDate)
-            {
-                options.exclusionDate = DateTime.Now;
-            }
-            DateTimePicker1.Value = options.exclusionDate;
-            intCheck.Checked = options.intCheck;
-            polCheck.Checked = options.polCheck;
-            spCheck.Checked = options.spCheck;
-            CheckBox1.Checked = options.exclusionByDate;
-            CheckBox2.Checked = options.exclusionByList;
-            flegsBaseUrl = options.repoUrl;
+        public void ApplyLoadedOptions() {
+            ExclusionDatePicker.Value = OptionsManager.OptionsInstance.exclusionDate;
+            intCheck.Checked = OptionsManager.OptionsInstance.intCheck;
+            polCheck.Checked = OptionsManager.OptionsInstance.polCheck;
+            spCheck.Checked = OptionsManager.OptionsInstance.spCheck;
+            ExclusionDateCheckBox.Checked = OptionsManager.OptionsInstance.exclusionByDate;
+            ExclusionListCheckBox.Checked = OptionsManager.OptionsInstance.exclusionByList;
+            flegsBaseUrl = OptionsManager.OptionsInstance.repoUrl;
         }
 
         public bool AcceptAllCertifications(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certification, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
@@ -766,11 +725,14 @@ namespace FlagMiner
             return true;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FlagMiner_Load(object sender, EventArgs e)
         {
             ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(AcceptAllCertifications);
+            ExclusionDatePicker.MinDate = OptionsManager.MinDate;
+            ExclusionDatePicker.MaxDate = OptionsManager.MaxDate;
 
-            LoadOptions();
+            OptionsManager.LoadOptions();
+            ApplyLoadedOptions();
 
             ser.MaxJsonLength = 10 * 1024 * 1024;
 
@@ -782,19 +744,19 @@ namespace FlagMiner
             Bitmap tempbmp = new Bitmap(1, 1);
             blankImg = Image.FromHbitmap(tempbmp.GetHbitmap());
 
-            helper = new ImageListHelper(this.TreeListView1, helperStack);
-            rootManager = new FlagMergeManager(MainMergeStack, ref MainTree, TreeListView1);
-            updateManager = new FlagUpdateManager(MainUpdateStack, TreeListView1);
+            helper = new ImageListHelper(this.FlegTreeListView, helperStack);
+            rootManager = new FlagMergeManager(MainMergeStack, ref MainTree, FlegTreeListView);
+            updateManager = new FlagUpdateManager(MainUpdateStack, FlegTreeListView);
 
-            TreeListView1.CanExpandGetter = ExpandGetter;
-            TreeListView1.ChildrenGetter = delegate (object x) { return (IEnumerable)(ChildrenGetter(x)); };
+            FlegTreeListView.CanExpandGetter = ExpandGetter;
+            FlegTreeListView.ChildrenGetter = delegate (object x) { return (IEnumerable)(ChildrenGetter(x)); };
 
-            TreeListView1.HoverSelection = false;
-            TreeListView1.HotTracking = false;
+            FlegTreeListView.HoverSelection = false;
+            FlegTreeListView.HotTracking = false;
 
-            this.ThreadColumn.AspectGetter = ThreadAspect;
-            this.TitleColumn.AspectGetter = TitleAspect;
-            this.FlagsColumn.ImageGetter = ImageGetter;
+            ThreadColumn.AspectGetter = ThreadAspect;
+            TitleColumn.AspectGetter = TitleAspect;
+            FlagsColumn.ImageGetter = ImageGetter;
 
             SetupForIdle();
             tempbmp.Dispose();
@@ -1024,18 +986,18 @@ namespace FlagMiner
             {
                 case WorkerStatus.starting:
                     StatusText.AppendText(DateTime.Now + " : Parsing " + userState.board + " board" + System.Environment.NewLine);
-                    ProgressBar1.Maximum = 1;
-                    ProgressBar1.Value = 0;
+                    ParsingProgressBar.Maximum = 1;
+                    ParsingProgressBar.Value = 0;
                     break;
                 case WorkerStatus.initializing:
                     StatusText.AppendText(DateTime.Now + " : " + userState.board + " board has " + userState.total + " threads to be parsed" + System.Environment.NewLine);
-                    ProgressBar1.Maximum = 1;
-                    ProgressBar1.Value = 0;
+                    ParsingProgressBar.Maximum = 1;
+                    ParsingProgressBar.Value = 0;
                     break;
                 case WorkerStatus.running:
                     Label2.Text = string.Format("Current board: {0}. Parsing thread {1} of {2}", userState.board, userState.progress, userState.total);
-                    ProgressBar1.Maximum = userState.total;
-                    ProgressBar1.Value = userState.progress;
+                    ParsingProgressBar.Maximum = userState.total;
+                    ParsingProgressBar.Value = userState.progress;
                     break;
                 case WorkerStatus.cancelling:
                     StatusText.AppendText(DateTime.Now + " : Abort signal sent." + System.Environment.NewLine);
@@ -1056,7 +1018,7 @@ namespace FlagMiner
         }
 
 
-        private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void MinerBackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             WorkerUserState userState = (WorkerUserState)e.UserState;
             if (userState != null)
@@ -1065,7 +1027,7 @@ namespace FlagMiner
             }
         }
 
-        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void MinerBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             SetupForIdle();
             WorkerUserState userState = new WorkerUserState();
@@ -1144,7 +1106,7 @@ namespace FlagMiner
         {
             if (MessageBox.Show("Save current tree to file?", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
-                SaveXmlDialog.InitialDirectory = options.saveAndLoadFolder;
+                SaveXmlDialog.InitialDirectory = OptionsManager.OptionsInstance.saveAndLoadFolder;
                 if (SaveXmlDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     string currentFile = SaveXmlDialog.FileName;
@@ -1164,7 +1126,7 @@ namespace FlagMiner
             {
                 try
                 {
-                    OpenXmlDialog.InitialDirectory = options.saveAndLoadFolder;
+                    OpenXmlDialog.InitialDirectory = OptionsManager.OptionsInstance.saveAndLoadFolder;
                     if (OpenXmlDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         foreach (string fileName in OpenXmlDialog.FileNames)
@@ -1193,7 +1155,7 @@ namespace FlagMiner
                         Task.Run(new Action(CacheFlegs));
 
                         UpdateRoots();
-                        TreeListView1.Invalidate();
+                        FlegTreeListView.Invalidate();
                     }
                 }
                 catch (Exception ex)
@@ -1218,20 +1180,20 @@ namespace FlagMiner
                 Image image = ImageListHelper.ScrapeImage(str);
                 queue.TryAdd(str, image);
             });
-            this.TreeListView1.SuspendLayout();
+            this.FlegTreeListView.SuspendLayout();
             foreach (KeyValuePair<string, Image> ke in queue)
             {
                 try
                 {
                     if (!helper.HasImage(ke.Key))
-                        helper.AddImageToCollection(ke.Key, this.TreeListView1.SmallImageList, ke.Value);
+                        helper.AddImageToCollection(ke.Key, this.FlegTreeListView.SmallImageList, ke.Value);
                 }
                 catch (ArgumentNullException)
                 {
                     // ignored
                 }
             }
-            this.TreeListView1.ResumeLayout();
+            this.FlegTreeListView.ResumeLayout();
             this.RefreshTree();
         }
 
@@ -1251,7 +1213,7 @@ namespace FlagMiner
             try
             {
                 request = (HttpWebRequest)WebRequest.Create(imgurl);
-                request.UserAgent = options.userAgent;
+                request.UserAgent = OptionsManager.OptionsInstance.userAgent;
                 request.Method = "HEAD";
                 response = (HttpWebResponse)request.GetResponse();
 
@@ -1290,23 +1252,16 @@ namespace FlagMiner
                 var basestr = path + "\\" + fleg.title;
 
                 PurgeEnum checkedFlag = default(PurgeEnum);
-                if (options.useLocal && (level > 0))
+                if (OptionsManager.OptionsInstance.useLocal && (level > 0))
                 {
                     string initString = "";
                     if (fleg.imgurl.Contains(flegsBaseUrl))
-                        initString = options.localRepoFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
+                        initString = OptionsManager.OptionsInstance.localRepoFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
                     // for regionals
                     if (fleg.imgurl.Contains(imageBaseUrl))
-                        initString = options.localRepoFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
+                        initString = OptionsManager.OptionsInstance.localRepoFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
                     // for nationals
-                    if (File.Exists(initString))
-                    {
-                        checkedFlag = PurgeEnum.ok;
-                    }
-                    else
-                    {
-                        checkedFlag = PurgeEnum.notFound;
-                    }
+                    checkedFlag = File.Exists(initString) ? PurgeEnum.ok : PurgeEnum.notFound;
                 }
                 else
                 {
@@ -1314,19 +1269,10 @@ namespace FlagMiner
                 }
                 if (checkedFlag == PurgeEnum.genericError)
                 {
-                    return checkedFlag;
+                    return PurgeEnum.genericError;
                 }
-                if (fleg.isTrollFlag)
-                {
-                    if (options.markTroll)
-                    {
-                        fleg.markedfordeletion = true;
-                    }
-                    else
-                    {
-                        fleg.markedfordeletion = false;
-                    }
-                }
+                fleg.markedfordeletion = fleg.isTrollFlag && OptionsManager.OptionsInstance.markTroll;
+
                 if (checkedFlag == PurgeEnum.notFound)
                 {
                     fleg.markedfordeletion = true;
@@ -1349,15 +1295,15 @@ namespace FlagMiner
             if (MessageBox.Show("Purge inexistent flags? This cannot be undone", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
                 var level = 0;
-                if (PurgeInvalid(MainTree, options.localRepoFolder, level) == PurgeEnum.genericError)
+                if (PurgeInvalid(MainTree, OptionsManager.OptionsInstance.localRepoFolder, level) == PurgeEnum.genericError)
                 {
                     MessageBox.Show("An error occurred while checking the flags. Make sure your connection is up and/or local folders are valid.", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                MainTree.Where((KeyValuePair<string, RegionalFleg> pair) => pair.Value.markedfordeletion == true || (options.deleteChildFree && pair.Value.children.Count == 0)).ToArray().Apply((KeyValuePair<string, RegionalFleg> pair) => MainTree.Remove(pair.Key)).Apply();
+                MainTree.Where((KeyValuePair<string, RegionalFleg> pair) => pair.Value.markedfordeletion == true || (OptionsManager.OptionsInstance.deleteChildFree && pair.Value.children.Count == 0)).ToArray().Apply((KeyValuePair<string, RegionalFleg> pair) => MainTree.Remove(pair.Key)).Apply();
 
                 UpdateRoots();
-                TreeListView1.Invalidate();
+                FlegTreeListView.Invalidate();
             }
         }
 
@@ -1368,12 +1314,12 @@ namespace FlagMiner
                 RegionalFleg fleg = ke.Value;
                 string initString = "";
                 if (string.IsNullOrEmpty(flegsBaseUrl))
-                    throw new Exception("Repository url is not set. Make sure to set a valid one in the options.");
+                    throw new Exception("Repository url is not set. Make sure to set a valid one in the OptionsManager.GetOptions.");
                 if (fleg.imgurl.Contains(flegsBaseUrl))
-                    initString = options.localSaveFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
+                    initString = OptionsManager.OptionsInstance.localSaveFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
                 // for regionals
                 if (fleg.imgurl.Contains(imageBaseUrl))
-                    initString = options.localSaveFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
+                    initString = OptionsManager.OptionsInstance.localSaveFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
                 // for nationals
                 fleg.exists = File.Exists(initString);
                 CheckExistent(fleg.children, level + 1);
@@ -1389,7 +1335,7 @@ namespace FlagMiner
                     var level = 0;
                     CheckExistent(MainTree, level);
                     UpdateRoots();
-                    TreeListView1.Invalidate();
+                    FlegTreeListView.Invalidate();
                 }
                 catch (Exception ex)
                 {
@@ -1400,12 +1346,12 @@ namespace FlagMiner
 
         private void ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            this.TreeListView1.ExpandAll();
+            this.FlegTreeListView.ExpandAll();
         }
 
         private void CollapseAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.TreeListView1.CollapseAll();
+            this.FlegTreeListView.CollapseAll();
         }
 
         ImportForm importForm = null;
@@ -1417,7 +1363,7 @@ namespace FlagMiner
             DialogResult res = importForm.ShowDialog();
             if (res == System.Windows.Forms.DialogResult.OK && importForm.links.Count > 0)
             {
-                BackgroundWorker2.RunWorkerAsync(importForm.links);
+                ThreadParserBackgroundWorker.RunWorkerAsync(importForm.links);
 
             }
             else
@@ -1427,7 +1373,7 @@ namespace FlagMiner
             }
         }
 
-        private void BackgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
+        private void ThreadParserBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             int statusFlag = 0;
             //Dim boardList As List(Of String) = e.Argument
@@ -1500,16 +1446,16 @@ namespace FlagMiner
 
         }
 
-        private void DateTimePicker1_ValueChanged(object sender, EventArgs e) => options.exclusionDate = DateTimePicker1.Value;
+        private void ExclusionDatePicker_ValueChanged(object sender, EventArgs e) => OptionsManager.ExclusionDate = ExclusionDatePicker.Value;
 
-        private void CheckBox1_CheckedChanged(object sender, EventArgs e) => options.exclusionByDate = CheckBox1.Checked;
+        private void ExclusionDateCheckBox_CheckedChanged(object sender, EventArgs e) => OptionsManager.ExclusionByDate = ExclusionDateCheckBox.Checked;
 
-        private void CheckBox2_CheckedChanged(object sender, EventArgs e) => options.exclusionByList = CheckBox2.Checked;
+        private void ExclusionListCheckBox_CheckedChanged(object sender, EventArgs e) => OptionsManager.ExclusionByList = ExclusionListCheckBox.Checked;
 
         private void AboutButt_Click(object sender, EventArgs e)
         {
-            if (aboutBox1 == null) aboutBox1 = new AboutBox1();
-            aboutBox1.ShowDialog();
+            if (minerAboutBox == null) minerAboutBox = new MinerAboutBox();
+            minerAboutBox.ShowDialog();
             SetupForIdle();
         }
 
@@ -1536,13 +1482,13 @@ namespace FlagMiner
             }
         }
 
-        private void ExpandHandler(object sender, EventArgs e) => TreeListView1.ExpandAll();
+        private void ExpandHandler(object sender, EventArgs e) => FlegTreeListView.ExpandAll();
 
-        private void CollapseHandler(object sender, EventArgs e) => TreeListView1.CollapseAll();
+        private void CollapseHandler(object sender, EventArgs e) => FlegTreeListView.CollapseAll();
 
         private void CopyImageHandler(object sender, EventArgs e)
         {
-            RegionalFleg regFlag = (RegionalFleg)TreeListView1.SelectedItem.RowObject;
+            RegionalFleg regFlag = (RegionalFleg)FlegTreeListView.SelectedItem.RowObject;
             try
             {
                 Image image = ImageListHelper.ScrapeImage(regFlag.imgurl);
@@ -1556,17 +1502,17 @@ namespace FlagMiner
 
         private void SaveImageHandler(object sender, EventArgs e)
         {
-            RegionalFleg regFlag = (RegionalFleg)TreeListView1.SelectedItem.RowObject;
+            RegionalFleg regFlag = (RegionalFleg)FlegTreeListView.SelectedItem.RowObject;
             try
             {
                 Image image = ImageListHelper.ScrapeImage(regFlag.imgurl);
                 string pth, fileName, flagPath;
                 createSaveInformation(regFlag, out pth, out fileName, out flagPath);
-                SaveFileDialog1.InitialDirectory = pth;
+                SaveFlagDialog.InitialDirectory = pth;
 
-                SaveFileDialog1.FileName = fileName;
-                if (SaveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    image.Save(SaveFileDialog1.FileName);
+                SaveFlagDialog.FileName = fileName;
+                if (SaveFlagDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    image.Save(SaveFlagDialog.FileName);
             }
             catch (Exception)
             {
@@ -1582,13 +1528,13 @@ namespace FlagMiner
             if (regFlag.imgurl.Contains(flegsBaseUrl))
             {
                 flagPath = regFlag.imgurl.Replace(flegsBaseUrl, "");
-                initString = options.localSaveFolder + "\\" + flagPath;
+                initString = OptionsManager.OptionsInstance.localSaveFolder + "\\" + flagPath;
             }
             // for regionals
             if (regFlag.imgurl.Contains(imageBaseUrl))
             {
                 flagPath = regFlag.imgurl.Replace(imageBaseUrl, "");
-                initString = options.localSaveFolder + "\\" + regFlag.imgurl.Replace(imageBaseUrl, "");
+                initString = OptionsManager.OptionsInstance.localSaveFolder + "\\" + regFlag.imgurl.Replace(imageBaseUrl, "");
             }
             // for nationals
             path = Path.GetDirectoryName(initString);
@@ -1597,7 +1543,7 @@ namespace FlagMiner
 
         private void AutoSaveImagesHandler(object sender, EventArgs e)
         {
-            foreach (object si in TreeListView1.SelectedObjects)
+            foreach (object si in FlegTreeListView.SelectedObjects)
             {
                 RegionalFleg regFlag = (RegionalFleg)si;
                 string flagPath = "";
@@ -1623,7 +1569,7 @@ namespace FlagMiner
 
         private void CopyLinkHandler(object sender, EventArgs e)
         {
-            RegionalFleg regFlag = (RegionalFleg)TreeListView1.SelectedItem.RowObject;
+            RegionalFleg regFlag = (RegionalFleg)FlegTreeListView.SelectedItem.RowObject;
             Clipboard.SetText(regFlag.thread);
         }
 
@@ -1632,48 +1578,42 @@ namespace FlagMiner
         {
             if (optionsForm == null) optionsForm = new OptionsForm(this);
             optionsForm.ShowDialog();
-            SaveOptions();
-            LoadOptions();
             SetupForIdle();
         }
 
-        private void IntCheck_CheckedChanged(object sender, EventArgs e) => options.intCheck = intCheck.Checked;
+        private void IntCheck_CheckedChanged(object sender, EventArgs e) => OptionsManager.IntCheck = intCheck.Checked;
 
-        private void PolCheck_CheckedChanged(object sender, EventArgs e) => options.polCheck = polCheck.Checked;
+        private void PolCheck_CheckedChanged(object sender, EventArgs e) => OptionsManager.PolCheck = polCheck.Checked;
 
-        private void SpCheck_CheckedChanged(object sender, EventArgs e) => options.spCheck = spCheck.Checked;
+        private void SpCheck_CheckedChanged(object sender, EventArgs e) => OptionsManager.SpCheck = spCheck.Checked;
 
         private void ValidateOptions()
         {
-            if (options.backendServers == null)
+            if (!(intCheck.Checked || polCheck.Checked || spCheck.Checked))
             {
-                options.backendServers = new List<string>();
+                throw new Exception("No board selected for parsing. Select at least one among (/int/, /pol/, and /sp/ with the checkboxes.");
             }
-            if (string.IsNullOrEmpty(options.userAgent))
+            if (OptionsManager.OptionsInstance.backendServers == null)
             {
-                throw new Exception("User Agent not defined. Make sure to set a valid one in the options.");
-                //options.userAgent = DefaultUserAgent;
+                throw new Exception("No backend server defined. A backend server is necessary for extraflags queries.");
             }
-            if (string.IsNullOrEmpty(options.repoUrl))
+            if (string.IsNullOrEmpty(OptionsManager.OptionsInstance.userAgent))
             {
-                throw new Exception("Repository Url not defined. Make sure to set a valid one in the options.");
-                //options.repoUrl = DefaultflegsBaseUrl;
+                throw new Exception("User Agent not defined. Make sure to set a valid one in the OptionsManager.GetOptions.");
+                //OptionsManager.GetOptions.userAgent = DefaultUserAgent;
             }
-            else
+            if (string.IsNullOrEmpty(OptionsManager.OptionsInstance.repoUrl))
             {
-                flegsBaseUrl = options.repoUrl;
+                throw new Exception("Repository Url not defined. Make sure to set a valid one in the OptionsManager.GetOptions.");
             }
-            if (options.exclusionDate > DateTimePicker1.MaxDate || options.exclusionDate < DateTimePicker1.MinDate)
+            if (OptionsManager.OptionsInstance.exclusionDate > OptionsManager.MaxDate || OptionsManager.OptionsInstance.exclusionDate < OptionsManager.MinDate)
             {
-                options.exclusionDate = DateTime.Now;
+                throw new Exception("Correct time and date are not set.");
             }
         }
 
-        public Form1()
+        public FlagMiner()
         {
-            //MouseMove += Form1_MouseMove;
-            Load += Form1_Load;
-            FormClosing += Form1_FormClosing;
             InitializeComponent();
         }
 
@@ -1726,7 +1666,7 @@ namespace FlagMiner
             {
                 try
                 {
-                    OpenXmlDialog.InitialDirectory = options.saveAndLoadFolder;
+                    OpenXmlDialog.InitialDirectory = OptionsManager.OptionsInstance.saveAndLoadFolder;
                     if (OpenXmlDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         foreach (string fileName in OpenXmlDialog.FileNames)
@@ -1754,7 +1694,7 @@ namespace FlagMiner
 
                         Task.Run(new Action(CacheFlegs));
                         UpdateRoots();
-                        TreeListView1.Invalidate();
+                        FlegTreeListView.Invalidate();
                     }
                 }
                 catch (Exception ex)
@@ -1796,7 +1736,7 @@ namespace FlagMiner
                 {
                     DeleteCheckedFlegs(ref MainTree);
                     UpdateRoots();
-                    TreeListView1.Invalidate();
+                    FlegTreeListView.Invalidate();
                 }
                 catch (Exception ex)
                 {

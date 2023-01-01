@@ -11,7 +11,7 @@ using System.Xml.Linq;
 using System.Threading.Tasks;
 namespace FlagMiner
 {
-    partial class AboutBox1
+    partial class MinerAboutBox
 	{
 
 		//Form overrides dispose to clean up the component list.
@@ -37,7 +37,7 @@ namespace FlagMiner
 		[System.Diagnostics.DebuggerStepThrough()]
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBox1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MinerAboutBox));
             this.OKButton = new System.Windows.Forms.Button();
             this.TextBoxDescription = new System.Windows.Forms.TextBox();
             this.LabelCopyright = new System.Windows.Forms.Label();

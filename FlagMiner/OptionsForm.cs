@@ -9,8 +9,8 @@ namespace FlagMiner
 
     partial class OptionsForm : Form
 	{
-        private Form1 myForm1;
-        public OptionsForm(Form1 frm1)
+        private FlagMiner myForm1;
+        public OptionsForm(FlagMiner frm1)
         {
             myForm1 = frm1;
             Load += OptionsForm_Load;
@@ -19,33 +19,40 @@ namespace FlagMiner
         }
 		private void OptionsForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			if ((DialogResult == System.Windows.Forms.DialogResult.None))
+			if (DialogResult == System.Windows.Forms.DialogResult.None)
 				e.Cancel = true;
 		}
 
 		private void OptionsForm_Load(object sender, EventArgs e)
 		{
-            this.enableCheck.Checked = myForm1.options.enableCheck;
-            this.enableCheck_CheckedChanged(null, System.EventArgs.Empty);
-            this.enablePurge.Checked = myForm1.options.enablePurge;
-            this.CheckBox1_CheckedChanged(null, System.EventArgs.Empty);
-            this.localRepoFolder.Text = myForm1.options.localRepoFolder;
-            this.localSaveFolder.Text = myForm1.options.localSaveFolder;
-            this.markTroll.Checked = myForm1.options.markTroll;
-            this.RadioButton1.Checked = myForm1.options.useLocal;
-            this.userAgent.Text = myForm1.options.userAgent;
-            this.saveAndLoadFolder.Text = myForm1.options.saveAndLoadFolder;
-            this.deleteChildFree.Checked = myForm1.options.deleteChildFree;
-            this.repoUrl.Text = myForm1.options.repoUrl;
-            this.backendServers.Clear();
-            if (myForm1.options.backendServers != null)
+            var options = OptionsManager.OptionsInstance;
+
+            this.BackendServersTextBox.Clear();
+            if (options.backendServers != null)
             {
-                foreach (string st in myForm1.options.backendServers)
+                foreach (string st in options.backendServers)
                 {
                     if (st != "")
-                        this.backendServers.Text += st + "\n";
+                        this.BackendServersTextBox.Text += st + "\n";
                 }
             }
+
+            this.LocalFlagSaveFolderTextBox.Text = options.localSaveFolder;
+            this.LocalRepoFolderTextBox.Text = options.localRepoFolder;
+
+            this.EnableCheckCheckBox.Checked = options.enableCheck;
+            this.enableCheck_CheckedChanged(null, System.EventArgs.Empty);
+            this.EnablePurgeCheckBox.Checked = options.enablePurge;
+            this.enablePurge_CheckedChanged(null, System.EventArgs.Empty);
+            this.UseLocalRepoRadioButton.Checked = options.useLocal;
+            this.MarkTrollCheckBox.Checked = options.markTroll;
+            this.DeleteChildFreeCheckBox.Checked = options.deleteChildFree;
+
+            this.UserAgentTextBox.Text = options.userAgent;
+
+            this.TreeSaveAndLoadFolderTextBox.Text = options.saveAndLoadFolder;
+
+            this.RepoUrlTextBox.Text = options.repoUrl;
 		}
 
 		private void Button2_Click(object sender, EventArgs e)
@@ -65,27 +72,37 @@ namespace FlagMiner
 
 		private void OptionsForm_UpdateOpts()
 		{
-            myForm1.options.localSaveFolder = this.localSaveFolder.Text;
-            myForm1.options.localRepoFolder = this.localRepoFolder.Text;
-            myForm1.options.enableCheck = this.enableCheck.Checked;
-            myForm1.options.enablePurge = this.enablePurge.Checked;
-            myForm1.options.useLocal = this.RadioButton1.Checked;
-            myForm1.options.markTroll = this.markTroll.Checked;
-            myForm1.options.userAgent = this.userAgent.Text;
-            myForm1.options.saveAndLoadFolder = this.saveAndLoadFolder.Text;
-            myForm1.options.deleteChildFree = this.deleteChildFree.Checked;
-            myForm1.options.repoUrl = this.repoUrl.Text;
-            myForm1.options.backendServers.Clear();
-            foreach (string st in this.backendServers.Lines)
+            var options = OptionsManager.OptionsInstance;
+
+            options.backendServers = new List<string>();
+            foreach (string st in this.BackendServersTextBox.Lines)
             {
                 if (st != "")
-                    myForm1.options.backendServers.Add(st);
+                { options.backendServers.Add(st); }
             }
+
+            options.localSaveFolder = this.LocalFlagSaveFolderTextBox.Text;
+            options.localRepoFolder = this.LocalRepoFolderTextBox.Text;
+
+            options.enableCheck = this.EnableCheckCheckBox.Checked;
+            options.enablePurge = this.EnablePurgeCheckBox.Checked;
+            options.useLocal = this.UseLocalRepoRadioButton.Checked;
+            options.markTroll = this.MarkTrollCheckBox.Checked;
+            options.deleteChildFree = this.DeleteChildFreeCheckBox.Checked;
+
+            options.userAgent = this.UserAgentTextBox.Text;
+
+            options.saveAndLoadFolder = this.TreeSaveAndLoadFolderTextBox.Text;
+
+            options.repoUrl = this.RepoUrlTextBox.Text;
+
+            OptionsManager.OptionsInstance = options;
+            OptionsManager.SaveOptions();
 		}
 
 		private void TextBox1_Validating(object sender, CancelEventArgs e)
 		{
-			if (enableCheck.Checked && (localSaveFolder.Text.Length == 0 || !Directory.Exists(localSaveFolder.Text))) {
+			if (EnableCheckCheckBox.Checked && (LocalFlagSaveFolderTextBox.Text.Length == 0 || !Directory.Exists(LocalFlagSaveFolderTextBox.Text))) {
                 MessageBox.Show("Invalid local save folder.", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				e.Cancel = true;
 				return;
@@ -94,7 +111,7 @@ namespace FlagMiner
 
 		private void TextBox2_Validating(object sender, CancelEventArgs e)
 		{
-			if (enablePurge.Checked && RadioButton1.Checked && (localRepoFolder.Text.Length == 0) || !Directory.Exists(localRepoFolder.Text)) {
+			if (EnablePurgeCheckBox.Checked && UseLocalRepoRadioButton.Checked && (LocalRepoFolderTextBox.Text.Length == 0) || !Directory.Exists(LocalRepoFolderTextBox.Text)) {
                 MessageBox.Show("Invalid local repo folder.", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				e.Cancel = true;
 				return;
@@ -103,7 +120,7 @@ namespace FlagMiner
 
 		private void userAgent_Validating(object sender, CancelEventArgs e)
 		{
-			if ((string.IsNullOrEmpty(userAgent.Text) || string.IsNullOrWhiteSpace(userAgent.Text))) {
+			if ((string.IsNullOrEmpty(UserAgentTextBox.Text) || string.IsNullOrWhiteSpace(UserAgentTextBox.Text))) {
                 MessageBox.Show("Insert a valid User Agent or press Default", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				e.Cancel = true;
 				return;
@@ -112,7 +129,7 @@ namespace FlagMiner
 
         private void repoUrl_Validating(object sender, CancelEventArgs e)
         {
-            if ((string.IsNullOrEmpty(repoUrl.Text) || string.IsNullOrWhiteSpace(repoUrl.Text)))
+            if ((string.IsNullOrEmpty(RepoUrlTextBox.Text) || string.IsNullOrWhiteSpace(RepoUrlTextBox.Text)))
             {
                 MessageBox.Show("Insert a valid Url for the Repository or press Default", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 e.Cancel = true;
@@ -122,7 +139,7 @@ namespace FlagMiner
 
         private void backendServers_Validating(object sender, CancelEventArgs e)
         {
-            if (this.backendServers.Lines.All(s => string.IsNullOrWhiteSpace(s)))
+            if (this.BackendServersTextBox.Lines.All(s => string.IsNullOrWhiteSpace(s)))
             {
                 MessageBox.Show("Insert a valid Url for the backend server or press Default", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 e.Cancel = true;
@@ -133,57 +150,57 @@ namespace FlagMiner
         private void Button3_Click(object sender, EventArgs e)
 		{
 			if (FolderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-				localSaveFolder.Text = FolderBrowserDialog1.SelectedPath;
+				LocalFlagSaveFolderTextBox.Text = FolderBrowserDialog1.SelectedPath;
 			}
 		}
 
-		private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+		private void enablePurge_CheckedChanged(object sender, EventArgs e)
 		{
-			Panel1.Enabled = enablePurge.Checked;
+			Panel1.Enabled = EnablePurgeCheckBox.Checked;
 		}
 
 		private void Button4_Click(object sender, EventArgs e)
 		{
 			if (FolderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-				localRepoFolder.Text = FolderBrowserDialog1.SelectedPath;
+				LocalRepoFolderTextBox.Text = FolderBrowserDialog1.SelectedPath;
 			}
 		}
 
 		private void defaultUserAgentButton_Click(object sender, EventArgs e)
 		{
-			userAgent.Text = Properties.Resources.DefaultUserAgent;
+			UserAgentTextBox.Text = Properties.Resources.DefaultUserAgent;
         }
 
 		private void Button6_Click(object sender, EventArgs e)
 		{
 			if (FolderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-				saveAndLoadFolder.Text = FolderBrowserDialog1.SelectedPath;
+				TreeSaveAndLoadFolderTextBox.Text = FolderBrowserDialog1.SelectedPath;
 			}
 		}
 
         private void enableCheck_CheckedChanged(object sender, EventArgs e)
         {
-            selectLocalDestFolderButton.Enabled = enableCheck.Checked;
+            selectLocalDestFolderButton.Enabled = EnableCheckCheckBox.Checked;
         }
 
         private void defaultBackendButton_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Restore default server address?", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
-                this.backendServers.Clear();
+                this.BackendServersTextBox.Clear();
                 // DEFAULT SERVERS
-                this.backendServers.Text += Properties.Resources.backendBaseUrl + "\n";
+                this.BackendServersTextBox.Text += Properties.Resources.backendBaseUrl + "\n";
             }
         }
 
         private void defaultRepoUrlButton_Click(object sender, EventArgs e)
         {
-            this.repoUrl.Text = Properties.Resources.DefaultflegsBaseUrl;
+            this.RepoUrlTextBox.Text = Properties.Resources.DefaultflegsBaseUrl;
         }
 
         public override bool ValidateChildren()
         {
-            foreach (Control control in new List<Control> { this.backendServers, this.localRepoFolder, this.repoUrl, this.userAgent, this.localSaveFolder })
+            foreach (Control control in new List<Control> { this.BackendServersTextBox, this.LocalRepoFolderTextBox, this.RepoUrlTextBox, this.UserAgentTextBox, this.LocalFlagSaveFolderTextBox })
             {
                 control.Focus();
                 if (!Validate())
