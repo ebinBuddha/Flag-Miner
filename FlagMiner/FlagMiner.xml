@@ -4,26 +4,22 @@
         <name>FlagMiner</name>
     </assembly>
     <members>
+        <member name="M:FlagMiner.FlegOperations.SubtractFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg},FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
+            <summary>
+            subtracts src from dest: dest = dest-src
+            </summary>
+            <param name="src">subtrahend</param>
+            <param name="dest">minuend</param>
+        </member>
+        <member name="M:FlagMiner.FlegOperations.DeleteCheckedFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
+            <summary>
+            removes flags marked for deletion on dest
+            </summary>
+        </member>
         <member name="M:FlagMiner.ListExtensions.ChunkBy``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
             <summary>
             Splits the enumerable into lists of given size
             </summary>
-        </member>
-        <member name="M:FlagMiner.FlagMiner.SubtractFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg},FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
-            <summary>
-            subtracts src from dest: dest = dest-src
-            </summary>
-            <param name="src">subtrahend</param>
-            <param name="dest">minuend</param>
-            <remarks></remarks>
-        </member>
-        <member name="M:FlagMiner.FlagMiner.DeleteCheckedFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
-            <summary>
-            subtracts src from dest: dest = dest-src
-            </summary>
-            <param name="src">subtrahend</param>
-            <param name="dest">minuend</param>
-            <remarks></remarks>
         </member>
         <member name="F:FlagMiner.FlagMiner.components">
             <summary>

@@ -22,7 +22,6 @@ namespace FlagMiner
 
     public partial class FlagMiner : Form
     {
-
         private readonly string baseUrl = Properties.Resources.baseUrl;
         private readonly string archiveBaseUrl = Properties.Resources.archiveBaseUrl;
         private readonly string imageBaseUrl = Properties.Resources.imageBaseUrl;
@@ -64,10 +63,9 @@ namespace FlagMiner
         public Image blankImg;
 
         static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        //public Options options;
-        readonly string optionsFile = Properties.Resources.optionsFile;
 
         MinerAboutBox minerAboutBox = null;
+        ImportForm importForm = null;
 
         private void ParseBtn_Click(object sender, EventArgs e)
         {
@@ -80,7 +78,7 @@ namespace FlagMiner
             if (spCheck.Checked)
             { boardList.Add("sp"); }
 
-            exclusionDateLong = (long)(OptionsManager.OptionsInstance.exclusionDate.ToUniversalTime() - UnixEpoch).TotalSeconds;
+            exclusionDateLong = OptionsManager.OptionsInstance.exclusionDate.To4ChanTime();
 
             SetupForParsing();
             try
@@ -92,7 +90,7 @@ namespace FlagMiner
                 AppendText(DateTime.Now + " : " + ex.ToString() + System.Environment.NewLine);
             }
 
-            StatusText.AppendText(DateTime.Now + " : Mining started." + System.Environment.NewLine);
+            AppendText(DateTime.Now + " : Mining started." + System.Environment.NewLine);
 
             MinerBackgroundWorker.RunWorkerAsync(boardList);
         }
@@ -138,7 +136,7 @@ namespace FlagMiner
 
                     worker.ReportProgress(0, new WorkerUserState { board = board, status = WorkerStatus.initializing, progress = 0, total = threads.Count });
 
-                    long finalTime = (long)(DateTime.UtcNow - UnixEpoch).TotalSeconds;
+                    long finalTime = DateTime.UtcNow.To4ChanTime();
 
                     ParallelOptions parallelOptions = new ParallelOptions();
                     parallelOptions.MaxDegreeOfParallelism = 12;
@@ -204,7 +202,7 @@ namespace FlagMiner
                                         ParseFlags(board, posts, ref flegs, ref parsedFlegs);
 
                                         SerializableDictionary<string, RegionalFleg> flagTree = new SerializableDictionary<string, RegionalFleg>();
-                                        MergeFlegs(parsedFlegs, ref flagTree);
+                                        FlegOperations.MergeFlegs(parsedFlegs, ref flagTree);
 
                                         rootManager.AddToStack(flagTree);
                                     }
@@ -213,32 +211,14 @@ namespace FlagMiner
 
                                 // for inner loop catch it here bls
                             }
-                            catch (WebException ex)
-                            {
-                                var resp = (HttpWebResponse)ex.Response;
-                                if (resp != null && resp.StatusCode == HttpStatusCode.NotFound)
-                                {
-                                    // skip this and save as exclusion for next time
-                                    excludedThreads.TryAdd(threads[i], finalTime);
-                                }
-                                else
-                                {
-                                    // halt everything.. internet down?
-                                    worker.ReportProgress(i + 1,
-                                        new WorkerUserState
-                                        {
-                                            board = board,
-                                            current = threads[i],
-                                            status = WorkerStatus.cancelling,
-                                            progress = i + 1,
-                                            total = threads.Count,
-                                            additionalString = ex.ToString()
-                                        });
-                                    markedForAbortion = true;
-                                }
-                            }
                             catch (Exception ex)
                             {
+                                // check if this is due to a thread not being found.
+                                if (ex is WebException webEx && (((HttpWebResponse)webEx.Response)?.StatusCode == HttpStatusCode.NotFound))
+                                {
+                                    // if so skip this and save as exclusion for next time.
+                                    excludedThreads.TryAdd(threads[i], finalTime);
+                                }
                                 worker.ReportProgress(i + 1,
                                     new WorkerUserState
                                     {
@@ -269,7 +249,7 @@ namespace FlagMiner
                     SaveExclusionList(board, ref excludedThreads);
 
                     if (markedForAbortion)
-                        break;
+                    { break; }
 
                 }
                 catch (WebException ex)
@@ -303,9 +283,9 @@ namespace FlagMiner
         private void AbortButt_Click(object sender, EventArgs e)
         {
             if (MinerBackgroundWorker.IsBusy)
-                MinerBackgroundWorker.CancelAsync();
+            { MinerBackgroundWorker.CancelAsync(); }
             if (ThreadParserBackgroundWorker.IsBusy)
-                ThreadParserBackgroundWorker.CancelAsync();
+            { ThreadParserBackgroundWorker.CancelAsync(); }
             //StatusText.AppendText(DateTime.Now + " : Abort signal sent." + System.Environment.NewLine);
             parseWorkerObject(sender, new WorkerUserState() { status = WorkerStatus.cancelling });
             SetupForIdle();
@@ -367,26 +347,12 @@ namespace FlagMiner
             loadMenuItem.Enabled = true;
             loadToolStripButton.Enabled = true;
 
-            if (OptionsManager.OptionsInstance.enablePurge)
-            {
-                purgeMenuItem.Enabled = true;
-                purgeToolStripButton.Enabled = true;
-            }
-            else
-            {
-                purgeMenuItem.Enabled = false;
-                purgeToolStripButton.Enabled = false;
-            }
-            if (OptionsManager.OptionsInstance.enableCheck)
-            {
-                checkMenuItem.Enabled = true;
-                checkToolStripButton.Enabled = true;
-            }
-            else
-            {
-                checkMenuItem.Enabled = false;
-                checkToolStripButton.Enabled = false;
-            }
+            purgeMenuItem.Enabled = OptionsManager.OptionsInstance.enablePurge;
+            purgeToolStripButton.Enabled = OptionsManager.OptionsInstance.enablePurge;
+
+            checkMenuItem.Enabled = OptionsManager.OptionsInstance.enableCheck;
+            checkToolStripButton.Enabled = OptionsManager.OptionsInstance.enableCheck;
+
             subtractMenuItem.Enabled = true;
             subtractToolStripButton.Enabled = true;
 
@@ -499,9 +465,7 @@ namespace FlagMiner
 
         private void ParseArchive(string response, ref List<long> threads)
         {
-            long[] tempArray = null;
-
-            tempArray = ser.Deserialize<long[]>(response);
+            long[] tempArray = ser.Deserialize<long[]>(response);
             // all archived thread numbers listed
             threads = tempArray.ToList();
         }
@@ -766,10 +730,10 @@ namespace FlagMiner
         public void FormatRow_EventHandler(object sender, FormatRowEventArgs e)
         {
             RegionalFleg fleg = (RegionalFleg)e.Model;
-            if ((fleg.isTrollFlag))
-                e.Item.BackColor = Color.LightPink;
-            if ((fleg.exists))
-                e.Item.BackColor = Color.LightGreen;
+            if (fleg.isTrollFlag)
+            { e.Item.BackColor = Color.LightPink; }
+            if (fleg.exists)
+            { e.Item.BackColor = Color.LightGreen; }
         }
 
         public object ThreadAspect(object x)
@@ -813,6 +777,7 @@ namespace FlagMiner
                     }
                     finally
                     {
+                        // @TODO
                     }
                 });
             }
@@ -822,7 +787,7 @@ namespace FlagMiner
         public bool ExpandGetter(object x)
         {
             RegionalFleg fleg = (RegionalFleg)x;
-            return (fleg.children.Count > 0);
+            return fleg.children.Count > 0;
         }
 
         public object ChildrenGetter(object x)
@@ -924,61 +889,6 @@ namespace FlagMiner
             }
         }
 
-        public static void MergeFlegs(List<RegionalFleg> collectedFlegs, ref SerializableDictionary<string, RegionalFleg> flegTree)
-        {
-            //flegTree = New SerializableDictionary(Of String, RegionalFleg)
-
-            foreach (RegionalFleg fleg in collectedFlegs)
-            {
-                SerializableDictionary<string, RegionalFleg> curDict = flegTree;
-                RegionalFleg curFleg = fleg;
-
-                if (!curDict.ContainsKey(curFleg.title))
-                {
-                    curDict.Add(curFleg.title, curFleg);
-                    // does it copy it all?  TODO CREATE DEEP COPY   48861
-                }
-                else
-                {
-                    RegionalFleg presentFleg = curDict[curFleg.title];
-                    if (presentFleg.time < curFleg.time)
-                    {
-                        presentFleg.copySerializableItems(curFleg);
-                    }
-                    if (curFleg.children.Count > 0)
-                    {
-                        SerializableDictionary<string, RegionalFleg> curSrcDict = curFleg.children;
-                        SerializableDictionary<string, RegionalFleg> curDestDict = curDict[curFleg.title].children;
-                        Merger(ref curSrcDict, ref curDestDict);
-                    }
-                }
-            }
-        }
-
-
-        public static void Merger(ref SerializableDictionary<string, RegionalFleg> source, ref SerializableDictionary<string, RegionalFleg> dest)
-        {
-            foreach (KeyValuePair<string, RegionalFleg> el in source)
-            {
-                if (!dest.ContainsKey(el.Key))
-                {
-                    dest.Add(el.Key, el.Value);
-                }
-                else
-                {
-                    var curdestfleg = dest[el.Key];
-                    var cursourcefleg = el.Value;
-                    if (curdestfleg.time < cursourcefleg.time)
-                    {
-                        curdestfleg.copySerializableItems(cursourcefleg);
-                    }
-                    if (cursourcefleg.children.Count > 0)
-                    {
-                        Merger(ref cursourcefleg.children, ref curdestfleg.children);
-                    }
-                }
-            }
-        }
 
         private void parseWorkerObject(object sender, WorkerUserState userState)
         {
@@ -1139,7 +1049,7 @@ namespace FlagMiner
                                 fs = new FileStream(currentFile, FileMode.Open);
                                 XmlSerializer treeSerializer = new XmlSerializer(typeof(SerializableDictionary<string, RegionalFleg>));
                                 temptree = (SerializableDictionary<string, RegionalFleg>)treeSerializer.Deserialize(fs);
-                                MergeFlegs(temptree.Values.ToList(), ref MainTree);
+                                FlegOperations.MergeFlegs(temptree.Values.ToList(), ref MainTree);
                             }
                             catch (Exception ex)
                             {
@@ -1186,7 +1096,7 @@ namespace FlagMiner
                 try
                 {
                     if (!helper.HasImage(ke.Key))
-                        helper.AddImageToCollection(ke.Key, this.FlegTreeListView.SmallImageList, ke.Value);
+                    { helper.AddImageToCollection(ke.Key, this.FlegTreeListView.SmallImageList, ke.Value); }
                 }
                 catch (ArgumentNullException)
                 {
@@ -1206,96 +1116,14 @@ namespace FlagMiner
             }
         }
 
-        public PurgeEnum QueryFlag(string imgurl)
-        {
-            HttpWebRequest request = null;
-            HttpWebResponse response = null;
-            try
-            {
-                request = (HttpWebRequest)WebRequest.Create(imgurl);
-                request.UserAgent = OptionsManager.OptionsInstance.userAgent;
-                request.Method = "HEAD";
-                response = (HttpWebResponse)request.GetResponse();
 
-                HttpStatusCode status = response.StatusCode;
-                response.Dispose();
-
-                if (status == HttpStatusCode.NotFound)
-                {
-                    return PurgeEnum.notFound;
-                }
-                return PurgeEnum.ok;
-            }
-            catch (WebException ex)
-            {
-                var resp = (HttpWebResponse)ex.Response;
-                if (resp != null && resp.StatusCode == HttpStatusCode.NotFound)
-                {
-                    return PurgeEnum.notFound;
-                }
-                else
-                {
-                    return PurgeEnum.genericError;
-                }
-            }
-            catch (Exception)
-            {
-                return PurgeEnum.genericError;
-                // network error
-            }
-        }
-
-        private PurgeEnum PurgeInvalid(SerializableDictionary<string, RegionalFleg> flegs, string path, int level)
-        {
-            foreach (RegionalFleg fleg in flegs.Values)
-            {
-                var basestr = path + "\\" + fleg.title;
-
-                PurgeEnum checkedFlag = default(PurgeEnum);
-                if (OptionsManager.OptionsInstance.useLocal && (level > 0))
-                {
-                    string initString = "";
-                    if (fleg.imgurl.Contains(flegsBaseUrl))
-                        initString = OptionsManager.OptionsInstance.localRepoFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
-                    // for regionals
-                    if (fleg.imgurl.Contains(imageBaseUrl))
-                        initString = OptionsManager.OptionsInstance.localRepoFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
-                    // for nationals
-                    checkedFlag = File.Exists(initString) ? PurgeEnum.ok : PurgeEnum.notFound;
-                }
-                else
-                {
-                    checkedFlag = QueryFlag(fleg.imgurl);
-                }
-                if (checkedFlag == PurgeEnum.genericError)
-                {
-                    return PurgeEnum.genericError;
-                }
-                fleg.markedfordeletion = fleg.isTrollFlag && OptionsManager.OptionsInstance.markTroll;
-
-                if (checkedFlag == PurgeEnum.notFound)
-                {
-                    fleg.markedfordeletion = true;
-                }
-                else
-                {
-                    if (PurgeInvalid(fleg.children, basestr, level + 1) == PurgeEnum.genericError)
-                    {
-                        return PurgeEnum.genericError;
-                    }
-                    SerializableDictionary<string, RegionalFleg> mirror = fleg.children;
-                    fleg.children.Where((KeyValuePair<string, RegionalFleg> pair) => pair.Value.markedfordeletion).ToArray().Apply((KeyValuePair<string, RegionalFleg> pair) => mirror.Remove(pair.Key)).Apply();
-                }
-            }
-            return PurgeEnum.ok;
-        }
 
         private void Purgebutt_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Purge inexistent flags? This cannot be undone", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
                 var level = 0;
-                if (PurgeInvalid(MainTree, OptionsManager.OptionsInstance.localRepoFolder, level) == PurgeEnum.genericError)
+                if (FlegOperations.PurgeInvalid(MainTree, OptionsManager.OptionsInstance.localRepoFolder, level) == PurgeEnum.genericError)
                 {
                     MessageBox.Show("An error occurred while checking the flags. Make sure your connection is up and/or local folders are valid.", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -1307,25 +1135,6 @@ namespace FlagMiner
             }
         }
 
-        private void CheckExistent(SerializableDictionary<string, RegionalFleg> flegs, int level)
-        {
-            foreach (KeyValuePair<string, RegionalFleg> ke in flegs)
-            {
-                RegionalFleg fleg = ke.Value;
-                string initString = "";
-                if (string.IsNullOrEmpty(flegsBaseUrl))
-                    throw new Exception("Repository url is not set. Make sure to set a valid one in the OptionsManager.GetOptions.");
-                if (fleg.imgurl.Contains(flegsBaseUrl))
-                    initString = OptionsManager.OptionsInstance.localSaveFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
-                // for regionals
-                if (fleg.imgurl.Contains(imageBaseUrl))
-                    initString = OptionsManager.OptionsInstance.localSaveFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
-                // for nationals
-                fleg.exists = File.Exists(initString);
-                CheckExistent(fleg.children, level + 1);
-            }
-        }
-
         private void Checkbutt_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Mark existent flags?", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
@@ -1333,7 +1142,8 @@ namespace FlagMiner
                 try
                 {
                     var level = 0;
-                    CheckExistent(MainTree, level);
+                    FlegOperations.CheckExistent(MainTree, level);
+
                     UpdateRoots();
                     FlegTreeListView.Invalidate();
                 }
@@ -1344,7 +1154,7 @@ namespace FlagMiner
             }
         }
 
-        private void ToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void ExpandAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.FlegTreeListView.ExpandAll();
         }
@@ -1354,7 +1164,6 @@ namespace FlagMiner
             this.FlegTreeListView.CollapseAll();
         }
 
-        ImportForm importForm = null;
         private void Importbutt_Click(object sender, EventArgs e)
         {
             SetupForParsing();
@@ -1415,7 +1224,7 @@ namespace FlagMiner
                     ParseFlags(board, posts, ref flegs, ref parsedFlegs);
 
                     SerializableDictionary<string, RegionalFleg> flagTree = new SerializableDictionary<string, RegionalFleg>();
-                    MergeFlegs(parsedFlegs, ref flagTree);
+                    FlegOperations.MergeFlegs(parsedFlegs, ref flagTree);
 
                     //TreeListView1.Roots = flagTree   ' TODO inviare a concurrent stack e inizializzare rootmanager
                     rootManager.AddToStack(flagTree);
@@ -1617,7 +1426,7 @@ namespace FlagMiner
             InitializeComponent();
         }
 
-        void TreeListView1_SelectionChanged(object sender, EventArgs e)
+        void FlegTreeListView_SelectionChanged(object sender, EventArgs e)
         {
             if (((TreeListView)sender).SelectedObjects.Count != 0)
             {
@@ -1633,32 +1442,6 @@ namespace FlagMiner
             }
         }
 
-        /// <summary>
-        /// subtracts src from dest: dest = dest-src
-        /// </summary>
-        /// <param name="src">subtrahend</param>
-        /// <param name="dest">minuend</param>
-        /// <remarks></remarks>
-        public void SubtractFlegs(SerializableDictionary<String, RegionalFleg> src, ref SerializableDictionary<String, RegionalFleg> dest)
-        {
-            SerializableDictionary<String, RegionalFleg> curDestDict = dest;
-            SerializableDictionary<String, RegionalFleg> curSrcDict = src;
-
-            foreach (KeyValuePair<String, RegionalFleg> ke in curDestDict)
-            {
-                RegionalFleg Fleg = ke.Value;
-                if (curSrcDict.ContainsKey(ke.Key))
-                {
-                    SubtractFlegs(curSrcDict[ke.Key].children, ref curDestDict[ke.Key].children);
-                    if (Fleg.children.Count == 0)
-                    {
-                        curDestDict[ke.Key].markedfordeletion = true;
-                    }
-                }
-            }
-            curDestDict.Where(pair => pair.Value.markedfordeletion).ToList().
-                Apply(pair => curDestDict.Remove(pair.Key)).Apply();  // ToList isn't useless. It allows to avoid an InvalidOperationException by editing an object that is being looped. duplicate first maybe?
-        }
 
         private void SubtractButt_Click(object sender, EventArgs e)
         {
@@ -1680,7 +1463,7 @@ namespace FlagMiner
                                 XmlSerializer treeSerializer =
                                     new XmlSerializer(typeof(SerializableDictionary<String, RegionalFleg>));
                                 temptree = (SerializableDictionary<String, RegionalFleg>)treeSerializer.Deserialize(fs);
-                                SubtractFlegs(temptree, ref MainTree);
+                                FlegOperations.SubtractFlegs(temptree, ref MainTree);
                             }
                             catch (Exception ex)
                             {
@@ -1705,36 +1488,14 @@ namespace FlagMiner
             }
         }
 
-        /// <summary>
-        /// subtracts src from dest: dest = dest-src
-        /// </summary>
-        /// <param name="src">subtrahend</param>
-        /// <param name="dest">minuend</param>
-        /// <remarks></remarks>
-        public void DeleteCheckedFlegs(ref SerializableDictionary<String, RegionalFleg> dest)
-        {
-            SerializableDictionary<String, RegionalFleg> curDestDict = dest;
 
-            foreach (KeyValuePair<String, RegionalFleg> ke in curDestDict)
-            {
-                RegionalFleg Fleg = ke.Value;
-                DeleteCheckedFlegs(ref curDestDict[ke.Key].children);
-                if (Fleg.children.Count == 0)
-                {
-                    curDestDict[ke.Key].markedfordeletion = Fleg.exists;
-                }
-            }
-            curDestDict.Where(pair => pair.Value.markedfordeletion).ToList().
-                Apply(pair => curDestDict.Remove(pair.Key)).Apply();  // ToList isn't useless. It allows to avoid an InvalidOperationException by editing an object that is being looped. duplicate first maybe?
-        }
-
-        private void deleteCheckedToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeleteCheckedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Remove Checked Flags?", "Flag Miner", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
                 try
                 {
-                    DeleteCheckedFlegs(ref MainTree);
+                    FlegOperations.DeleteCheckedFlegs(ref MainTree);
                     UpdateRoots();
                     FlegTreeListView.Invalidate();
                 }

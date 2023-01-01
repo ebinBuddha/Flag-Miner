@@ -52,4 +52,14 @@ namespace FlagMiner
 				.ToList();
 		}
 	}
+
+
+	public static class DateTimeExtensions
+    {
+		public static long To4ChanTime(this DateTime source)
+        {
+			var UnixEpoch = new  DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+			return (long)(source.ToUniversalTime() - UnixEpoch).TotalSeconds;
+        }
+    }
 }

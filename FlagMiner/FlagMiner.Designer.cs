@@ -56,7 +56,7 @@ namespace FlagMiner
             this.polCheck = new System.Windows.Forms.CheckBox();
             this.ParsingProgressBar = new System.Windows.Forms.ProgressBar();
             this.PopUpMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExpandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CollapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CopyFlagToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -261,7 +261,7 @@ namespace FlagMiner
             this.FlegTreeListView.VirtualMode = true;
             this.FlegTreeListView.CellRightClick += new System.EventHandler<BrightIdeasSoftware.CellRightClickEventArgs>(this.Olv_CellRightClick);
             this.FlegTreeListView.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.FormatRow_EventHandler);
-            this.FlegTreeListView.SelectionChanged += new System.EventHandler(this.TreeListView1_SelectionChanged);
+            this.FlegTreeListView.SelectionChanged += new System.EventHandler(this.FlegTreeListView_SelectionChanged);
             // 
             // FlagsColumn
             // 
@@ -326,7 +326,7 @@ namespace FlagMiner
             // PopUpMenu
             // 
             this.PopUpMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItem1,
+            this.ExpandAllToolStripMenuItem,
             this.CollapseAllToolStripMenuItem,
             this.ToolStripSeparator1,
             this.CopyFlagToClipboardToolStripMenuItem,
@@ -335,13 +335,13 @@ namespace FlagMiner
             this.CopyLinkToolStripMenuItem});
             this.PopUpMenu.Name = "PopUpMenu";
             this.PopUpMenu.ShowImageMargin = false;
-            this.PopUpMenu.Size = new System.Drawing.Size(168, 126);
+            this.PopUpMenu.Size = new System.Drawing.Size(168, 148);
             // 
-            // ToolStripMenuItem1
+            // ExpandAllToolStripMenuItem
             // 
-            this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
-            this.ToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
-            this.ToolStripMenuItem1.Text = "Expand All";
+            this.ExpandAllToolStripMenuItem.Name = "ExpandAllToolStripMenuItem";
+            this.ExpandAllToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ExpandAllToolStripMenuItem.Text = "Expand All";
             // 
             // CollapseAllToolStripMenuItem
             // 
@@ -624,7 +624,7 @@ namespace FlagMiner
             this.deleteCheckedToolStripMenuItem.Name = "deleteCheckedToolStripMenuItem";
             this.deleteCheckedToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.deleteCheckedToolStripMenuItem.Text = "&Delete Checked";
-            this.deleteCheckedToolStripMenuItem.Click += new System.EventHandler(this.deleteCheckedToolStripMenuItem_Click);
+            this.deleteCheckedToolStripMenuItem.Click += new System.EventHandler(this.DeleteCheckedToolStripMenuItem_Click);
             // 
             // MainToolStrip
             // 
@@ -877,7 +877,7 @@ namespace FlagMiner
             this.expandToolStripButton.ToolTipText = "Expand all";
             this.expandToolStripButton.Click += new System.EventHandler(this.ExpandHandler);
             // 
-            // Form1
+            // FlagMiner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -886,7 +886,7 @@ namespace FlagMiner
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.TopMenuStrip;
             this.MinimumSize = new System.Drawing.Size(875, 500);
-            this.Name = "Form1";
+            this.Name = "FlagMiner";
             this.Text = "Flag Miner";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FlagMiner_FormClosing);
             this.Load += new System.EventHandler(this.FlagMiner_Load);
@@ -931,7 +931,7 @@ namespace FlagMiner
         private TextBox StatusText;
         private System.ComponentModel.BackgroundWorker MinerBackgroundWorker;
         private ToolStripMenuItem CollapseAllToolStripMenuItem;
-        private ToolStripMenuItem ToolStripMenuItem1;
+        private ToolStripMenuItem ExpandAllToolStripMenuItem;
         private CheckBox polCheck;
         private CheckBox spCheck;
         private CheckBox intCheck;

@@ -87,6 +87,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FlegOperations.cs" />
     <Compile Include="MinerAboutBox.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -22,34 +22,11 @@ namespace FlagMiner
 			consumer = Task.Run(() =>
 			{
 				foreach (SerializableDictionary<string, RegionalFleg> myObj in stack.GetConsumingEnumerable()) {
-					foreach (RegionalFleg Fleg in myObj.Values) {
-						SerializableDictionary<string, RegionalFleg> curDict = dict;
-						RegionalFleg curFleg = Fleg;
-						RegionalFleg prevFleg = null;
-
-						if (!curDict.ContainsKey(curFleg.title)) {
-							curDict.Add(curFleg.title, curFleg);
-							// does it copy it all?  TODO CREATE DEEP COPY   48861
-						} else {
-							RegionalFleg presentFleg = curDict[curFleg.title];
-							if (presentFleg.time < curFleg.time) {
-								presentFleg.time = curFleg.time;
-								presentFleg.pNo = curFleg.pNo;
-								presentFleg.thread = curFleg.thread;
-								presentFleg.board = curFleg.board;
-							}
-							if (curFleg.children.Count > 0) {
-								SerializableDictionary<string, RegionalFleg> curSrcDict = curFleg.children;
-								SerializableDictionary<string, RegionalFleg> curDestDict = curDict[curFleg.title].children;
-								FlagMiner.Merger(ref curSrcDict, ref curDestDict);
-							}
-						}
-					}
+					FlegOperations.MergeFlegs(myObj.Values, ref dict);
 
 					Thread.Sleep(200);
 					if (stack.Count == 0) {
 						frm.UpdateRootsInvoker();
-						//frm.updateManager.AddToStack(Tuple.Create(Of String, Object)("ut", myTreeView))
 					}
 
 				}
