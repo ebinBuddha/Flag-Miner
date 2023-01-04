@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FlagMiner
 {
@@ -23,10 +22,10 @@ namespace FlagMiner
                 if (string.IsNullOrEmpty(flegsBaseUrl))
                     throw new Exception("Repository url is not set. Make sure to set a valid one in the options.");
                 if (fleg.imgurl.Contains(flegsBaseUrl))
-                    initString = localSaveFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
+                { initString = localSaveFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, ""); }
                 // for regionals
                 if (fleg.imgurl.Contains(imageBaseUrl))
-                    initString = localSaveFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
+                { initString = localSaveFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, ""); }
                 // for nationals
                 fleg.exists = File.Exists(initString);
                 CheckExistent(fleg.children, level + 1);
@@ -40,28 +39,18 @@ namespace FlagMiner
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(imgurl);
                 request.UserAgent = OptionsManager.OptionsInstance.userAgent;
                 request.Method = "HEAD";
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-                HttpStatusCode status = response.StatusCode;
-                response.Dispose();
-
-                if (status == HttpStatusCode.NotFound)
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
-                    return PurgeEnum.notFound;
+                    HttpStatusCode status = response.StatusCode;
+                    response.Dispose();
+
+                    return status == HttpStatusCode.NotFound ? PurgeEnum.notFound : PurgeEnum.ok;
                 }
-                return PurgeEnum.ok;
             }
             catch (WebException ex)
             {
                 var resp = (HttpWebResponse)ex.Response;
-                if (resp != null && resp.StatusCode == HttpStatusCode.NotFound)
-                {
-                    return PurgeEnum.notFound;
-                }
-                else
-                {
-                    return PurgeEnum.genericError;
-                }
+                return resp != null && resp.StatusCode == HttpStatusCode.NotFound ? PurgeEnum.notFound : PurgeEnum.genericError;
             }
             catch (Exception)
             {
@@ -83,33 +72,27 @@ namespace FlagMiner
                 {
                     string initString = "";
                     if (fleg.imgurl.Contains(flegsBaseUrl))
-                        initString = OptionsManager.OptionsInstance.localRepoFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, "");
+                    { initString = OptionsManager.OptionsInstance.localRepoFolder + "\\" + fleg.imgurl.Replace(flegsBaseUrl, ""); }
                     // for regionals
                     if (fleg.imgurl.Contains(imageBaseUrl))
-                        initString = OptionsManager.OptionsInstance.localRepoFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, "");
+                    { initString = OptionsManager.OptionsInstance.localRepoFolder + "\\" + fleg.imgurl.Replace(imageBaseUrl, ""); }
                     // for nationals
                     checkedFlag = File.Exists(initString) ? PurgeEnum.ok : PurgeEnum.notFound;
                 }
                 else
-                {
-                    checkedFlag = QueryFlag(fleg.imgurl);
-                }
+                { checkedFlag = QueryFlag(fleg.imgurl); }
+
                 if (checkedFlag == PurgeEnum.genericError)
-                {
-                    return PurgeEnum.genericError;
-                }
+                { return PurgeEnum.genericError; }
+
                 fleg.markedfordeletion = fleg.isTrollFlag && OptionsManager.OptionsInstance.markTroll;
 
                 if (checkedFlag == PurgeEnum.notFound)
-                {
-                    fleg.markedfordeletion = true;
-                }
+                { fleg.markedfordeletion = true; }
                 else
                 {
                     if (PurgeInvalid(fleg.children, basestr, level + 1) == PurgeEnum.genericError)
-                    {
-                        return PurgeEnum.genericError;
-                    }
+                    { return PurgeEnum.genericError; }
                     SerializableDictionary<string, RegionalFleg> mirror = fleg.children;
                     fleg.children.Where((KeyValuePair<string, RegionalFleg> pair) => pair.Value.markedfordeletion).ToArray().Apply((KeyValuePair<string, RegionalFleg> pair) => mirror.Remove(pair.Key)).Apply();
                 }
@@ -125,16 +108,12 @@ namespace FlagMiner
                 RegionalFleg curFleg = fleg;
 
                 if (!curDict.ContainsKey(curFleg.title))
-                {
-                    curDict.Add(curFleg.title, curFleg);
-                }
+                { curDict.Add(curFleg.title, curFleg); }
                 else
                 {
                     RegionalFleg presentFleg = curDict[curFleg.title];
                     if (presentFleg.time < curFleg.time)
-                    {
-                        presentFleg.copySerializableItems(curFleg);
-                    }
+                    { presentFleg.copySerializableItems(curFleg); }
                     if (curFleg.children.Count > 0)
                     {
                         SerializableDictionary<string, RegionalFleg> curSrcDict = curFleg.children;
@@ -162,15 +141,12 @@ namespace FlagMiner
                 {
                     SubtractFlegs(curSrcDict[ke.Key].children, ref curDestDict[ke.Key].children);
                     if (Fleg.children.Count == 0)
-                    {
-                        curDestDict[ke.Key].markedfordeletion = true;
-                    }
+                    { curDestDict[ke.Key].markedfordeletion = true; }
                 }
             }
             curDestDict.Where(pair => pair.Value.markedfordeletion).ToList().
                 Apply(pair => curDestDict.Remove(pair.Key)).Apply();  // ToList isn't useless. It allows to avoid an InvalidOperationException by editing an object that is being looped. duplicate first maybe?
         }
-
 
         /// <summary>
         /// removes flags marked for deletion on dest
@@ -184,12 +160,27 @@ namespace FlagMiner
                 RegionalFleg Fleg = ke.Value;
                 DeleteCheckedFlegs(ref curDestDict[ke.Key].children);
                 if (Fleg.children.Count == 0)
-                {
-                    curDestDict[ke.Key].markedfordeletion = Fleg.exists;
-                }
+                { curDestDict[ke.Key].markedfordeletion = Fleg.exists; }
             }
             curDestDict.Where(pair => pair.Value.markedfordeletion).ToList().
                 Apply(pair => curDestDict.Remove(pair.Key)).Apply();  // ToList isn't useless. It allows to avoid an InvalidOperationException by editing an object that is being looped. duplicate first maybe?
+        }
+
+        /// <summary>
+        /// Produces the flag dump text of the given tree
+        /// </summary>
+        public static void ReturnPasta(SerializableDictionary<string, RegionalFleg> dict, string str, ref StringBuilder pasta)
+        {
+            foreach (KeyValuePair<string, RegionalFleg> ch in dict)
+            {
+                RegionalFleg curFleg = ch.Value;
+                SerializableDictionary<string, RegionalFleg> curDict = curFleg.children;
+                string curString = String.IsNullOrEmpty(str) ? curFleg.title : (curFleg.title + ", " + str);
+                if (curDict.Count == 0)
+                { pasta.AppendLine(">>>/" + curFleg.board + "/" + curFleg.pNo + " " + curString); }
+                else
+                { ReturnPasta(curDict, curString, ref pasta); }
+            }
         }
 
     }

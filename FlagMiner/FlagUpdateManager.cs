@@ -31,7 +31,6 @@ namespace FlagMiner
 						Thread.Sleep(200);
 						// fist run ok, but now wait a little to build the queue for the next run
 					}
-
 				}
 			});
 		}

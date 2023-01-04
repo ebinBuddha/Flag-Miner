@@ -19,22 +19,22 @@ namespace FlagMiner
 			treeView = myTreeView;
 			FlagMiner frm = (FlagMiner)treeView.Parent.Parent.Parent;
 			SerializableDictionary<string, RegionalFleg> dict = dest;
-			consumer = Task.Run(() =>
-			{
-				foreach (SerializableDictionary<string, RegionalFleg> myObj in stack.GetConsumingEnumerable()) {
-					FlegOperations.MergeFlegs(myObj.Values, ref dict);
+            consumer = Task.Run(() =>
+            {
+                foreach (SerializableDictionary<string, RegionalFleg> myObj in stack.GetConsumingEnumerable())
+                {
+                    FlegOperations.MergeFlegs(myObj.Values, ref dict);
 
-					Thread.Sleep(200);
-					if (stack.Count == 0) {
-						frm.UpdateRootsInvoker();
-					}
+                    Thread.Sleep(200);
+                    if (stack.Count == 0)
+                    { frm.UpdateRootsInvoker(); }
 
-				}
-			});
-		}
+                }
+            });
+        }
 
 
-		public void AddToStack(SerializableDictionary<string, RegionalFleg> obj)
+        public void AddToStack(SerializableDictionary<string, RegionalFleg> obj)
 		{
 			stack.Add(obj);
 		}
