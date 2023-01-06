@@ -91,6 +91,7 @@ namespace FlagMiner
             this.copyBtn.TabIndex = 0;
             this.copyBtn.Text = "Copy to clipboard";
             this.copyBtn.UseVisualStyleBackColor = true;
+            this.copyBtn.Click += new System.EventHandler(this.copyBtn_Click);
             // 
             // cancelBtn
             // 
@@ -192,6 +193,7 @@ namespace FlagMiner
             this.removeABtn.TabIndex = 5;
             this.removeABtn.Text = "Remove";
             this.removeABtn.UseVisualStyleBackColor = true;
+            this.removeABtn.Click += new System.EventHandler(this.removeABtn_Click);
             // 
             // addABtn
             // 
@@ -202,6 +204,7 @@ namespace FlagMiner
             this.addABtn.TabIndex = 4;
             this.addABtn.Text = "Add...";
             this.addABtn.UseVisualStyleBackColor = true;
+            this.addABtn.Click += new System.EventHandler(this.AddABtn_Click);
             // 
             // groupBBox
             // 
@@ -240,6 +243,7 @@ namespace FlagMiner
             this.removeBBtn.TabIndex = 8;
             this.removeBBtn.Text = "Remove";
             this.removeBBtn.UseVisualStyleBackColor = true;
+            this.removeBBtn.Click += new System.EventHandler(this.removeBBtn_Click);
             // 
             // addBBtn
             // 
@@ -250,6 +254,7 @@ namespace FlagMiner
             this.addBBtn.TabIndex = 7;
             this.addBBtn.Text = "Add...";
             this.addBBtn.UseVisualStyleBackColor = true;
+            this.addBBtn.Click += new System.EventHandler(this.addBBtn_Click);
             // 
             // optionsBox
             // 
@@ -291,12 +296,15 @@ namespace FlagMiner
             // headerCheckBox
             // 
             this.headerCheckBox.AutoSize = true;
+            this.headerCheckBox.Checked = true;
+            this.headerCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.headerCheckBox.Location = new System.Drawing.Point(3, 3);
             this.headerCheckBox.Name = "headerCheckBox";
             this.headerCheckBox.Size = new System.Drawing.Size(61, 17);
             this.headerCheckBox.TabIndex = 1;
             this.headerCheckBox.Text = "Header";
             this.headerCheckBox.UseVisualStyleBackColor = true;
+            this.headerCheckBox.CheckedChanged += new System.EventHandler(this.HeaderCheckBox_CheckedChanged);
             // 
             // headerTextBox
             // 
@@ -336,12 +344,15 @@ namespace FlagMiner
             // separationCheckBox
             // 
             this.separationCheckBox.AutoSize = true;
+            this.separationCheckBox.Checked = true;
+            this.separationCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.separationCheckBox.Location = new System.Drawing.Point(3, 4);
             this.separationCheckBox.Name = "separationCheckBox";
             this.separationCheckBox.Size = new System.Drawing.Size(97, 17);
             this.separationCheckBox.TabIndex = 2;
             this.separationCheckBox.Text = "Separation text";
             this.separationCheckBox.UseVisualStyleBackColor = true;
+            this.separationCheckBox.CheckedChanged += new System.EventHandler(this.SeparationCheckBox_CheckedChanged);
             // 
             // separationTextBox
             // 
@@ -359,12 +370,15 @@ namespace FlagMiner
             // footerCheckBox
             // 
             this.footerCheckBox.AutoSize = true;
+            this.footerCheckBox.Checked = true;
+            this.footerCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.footerCheckBox.Location = new System.Drawing.Point(3, 3);
             this.footerCheckBox.Name = "footerCheckBox";
             this.footerCheckBox.Size = new System.Drawing.Size(56, 17);
             this.footerCheckBox.TabIndex = 3;
             this.footerCheckBox.Text = "Footer";
             this.footerCheckBox.UseVisualStyleBackColor = true;
+            this.footerCheckBox.CheckedChanged += new System.EventHandler(this.FooterCheckBox_CheckedChanged);
             // 
             // footerTextBox
             // 
@@ -411,6 +425,7 @@ namespace FlagMiner
             this.groupAminusBRadioButton.TabStop = true;
             this.groupAminusBRadioButton.Text = "Group A minus Group B, followed by what\'s in both";
             this.groupAminusBRadioButton.UseVisualStyleBackColor = true;
+            this.groupAminusBRadioButton.CheckedChanged += new System.EventHandler(this.GroupAminusBRadioButton_CheckedChanged);
             // 
             // statusLabel
             // 
@@ -441,6 +456,7 @@ namespace FlagMiner
             this.MinimumSize = new System.Drawing.Size(500, 400);
             this.Name = "DumperForm";
             this.Text = "Create the flag dump...";
+            this.Load += new System.EventHandler(this.DumperForm_Load);
             this.panel2.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
