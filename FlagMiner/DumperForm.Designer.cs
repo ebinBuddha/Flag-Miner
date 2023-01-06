@@ -164,6 +164,7 @@ namespace FlagMiner
             this.groupABox.Controls.Add(this.removeABtn);
             this.groupABox.Controls.Add(this.addABtn);
             this.groupABox.Location = new System.Drawing.Point(3, 12);
+            this.groupABox.MinimumSize = new System.Drawing.Size(200, 150);
             this.groupABox.Name = "groupABox";
             this.groupABox.Size = new System.Drawing.Size(378, 240);
             this.groupABox.TabIndex = 2;
@@ -210,9 +211,10 @@ namespace FlagMiner
             this.groupBBox.Controls.Add(this.groupBListView);
             this.groupBBox.Controls.Add(this.removeBBtn);
             this.groupBBox.Controls.Add(this.addBBtn);
-            this.groupBBox.Location = new System.Drawing.Point(10, 7);
+            this.groupBBox.Location = new System.Drawing.Point(3, 7);
+            this.groupBBox.MinimumSize = new System.Drawing.Size(200, 150);
             this.groupBBox.Name = "groupBBox";
-            this.groupBBox.Size = new System.Drawing.Size(371, 262);
+            this.groupBBox.Size = new System.Drawing.Size(378, 262);
             this.groupBBox.TabIndex = 3;
             this.groupBBox.TabStop = false;
             this.groupBBox.Text = "Group B";
@@ -225,14 +227,14 @@ namespace FlagMiner
             this.groupBListView.HideSelection = false;
             this.groupBListView.Location = new System.Drawing.Point(7, 19);
             this.groupBListView.Name = "groupBListView";
-            this.groupBListView.Size = new System.Drawing.Size(277, 227);
+            this.groupBListView.Size = new System.Drawing.Size(284, 227);
             this.groupBListView.TabIndex = 9;
             this.groupBListView.UseCompatibleStateImageBehavior = false;
             // 
             // removeBBtn
             // 
             this.removeBBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.removeBBtn.Location = new System.Drawing.Point(290, 47);
+            this.removeBBtn.Location = new System.Drawing.Point(297, 47);
             this.removeBBtn.Name = "removeBBtn";
             this.removeBBtn.Size = new System.Drawing.Size(75, 23);
             this.removeBBtn.TabIndex = 8;
@@ -242,7 +244,7 @@ namespace FlagMiner
             // addBBtn
             // 
             this.addBBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addBBtn.Location = new System.Drawing.Point(290, 18);
+            this.addBBtn.Location = new System.Drawing.Point(297, 18);
             this.addBBtn.Name = "addBBtn";
             this.addBBtn.Size = new System.Drawing.Size(75, 23);
             this.addBBtn.TabIndex = 7;
@@ -303,6 +305,7 @@ namespace FlagMiner
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.headerTextBox.Location = new System.Drawing.Point(3, 26);
+            this.headerTextBox.MinimumSize = new System.Drawing.Size(200, 70);
             this.headerTextBox.Multiline = true;
             this.headerTextBox.Name = "headerTextBox";
             this.headerTextBox.Size = new System.Drawing.Size(387, 104);
@@ -347,6 +350,7 @@ namespace FlagMiner
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.separationTextBox.Location = new System.Drawing.Point(3, 27);
+            this.separationTextBox.MinimumSize = new System.Drawing.Size(200, 70);
             this.separationTextBox.Multiline = true;
             this.separationTextBox.Name = "separationTextBox";
             this.separationTextBox.Size = new System.Drawing.Size(387, 111);
@@ -369,6 +373,7 @@ namespace FlagMiner
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.footerTextBox.Location = new System.Drawing.Point(3, 26);
+            this.footerTextBox.MinimumSize = new System.Drawing.Size(200, 70);
             this.footerTextBox.Multiline = true;
             this.footerTextBox.Name = "footerTextBox";
             this.footerTextBox.Size = new System.Drawing.Size(387, 125);
@@ -433,6 +438,7 @@ namespace FlagMiner
             this.Controls.Add(this.copyBtn);
             this.Controls.Add(this.panel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(500, 400);
             this.Name = "DumperForm";
             this.Text = "Create the flag dump...";
             this.panel2.ResumeLayout(false);

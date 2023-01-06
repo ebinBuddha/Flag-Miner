@@ -102,6 +102,7 @@ namespace FlagMiner
             this.settingsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.copyToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.dumpWizardToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.checkToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.purgeToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -335,7 +336,7 @@ namespace FlagMiner
             this.CopyLinkToolStripMenuItem});
             this.PopUpMenu.Name = "PopUpMenu";
             this.PopUpMenu.ShowImageMargin = false;
-            this.PopUpMenu.Size = new System.Drawing.Size(168, 148);
+            this.PopUpMenu.Size = new System.Drawing.Size(168, 126);
             // 
             // ExpandAllToolStripMenuItem
             // 
@@ -640,6 +641,7 @@ namespace FlagMiner
             this.settingsToolStripButton,
             this.toolStripSeparator9,
             this.copyToolStripButton,
+            this.dumpWizardToolStripButton,
             this.toolStripSeparator11,
             this.checkToolStripButton,
             this.purgeToolStripButton,
@@ -764,8 +766,18 @@ namespace FlagMiner
             this.copyToolStripButton.Name = "copyToolStripButton";
             this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.copyToolStripButton.Text = "toolStripButton6";
-            this.copyToolStripButton.ToolTipText = "Copy dump to clipboard";
+            this.copyToolStripButton.ToolTipText = "Copy simple flag dump to clipboard";
             this.copyToolStripButton.Click += new System.EventHandler(this.CopyBtn_Click);
+            // 
+            // dumpWizardToolStripButton
+            // 
+            this.dumpWizardToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.dumpWizardToolStripButton.Image = global::FlagMiner.Properties.Resources.flagdump;
+            this.dumpWizardToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.dumpWizardToolStripButton.Name = "dumpWizardToolStripButton";
+            this.dumpWizardToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.dumpWizardToolStripButton.Text = "Flag dump wizard";
+            this.dumpWizardToolStripButton.Click += new System.EventHandler(this.DumpWizardToolStripButton_Click);
             // 
             // toolStripSeparator11
             // 
@@ -991,5 +1003,6 @@ namespace FlagMiner
         private ToolStripSeparator toolStripSeparator13;
         private ToolStripMenuItem clearmenuItem;
         private ToolStripMenuItem deleteCheckedToolStripMenuItem;
+        private ToolStripButton dumpWizardToolStripButton;
     }
 }

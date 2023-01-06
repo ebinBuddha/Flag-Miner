@@ -12,8 +12,11 @@ namespace FlagMiner
 {
     public partial class DumperForm : Form
     {
-        public DumperForm()
+
+        public FlagMiner myForm1;
+        public DumperForm(FlagMiner frm1)
         {
+            myForm1 = frm1;
             InitializeComponent();
         }
     }

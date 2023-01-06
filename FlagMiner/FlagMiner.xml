@@ -4,6 +4,23 @@
         <name>FlagMiner</name>
     </assembly>
     <members>
+        <member name="F:FlagMiner.DumperForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:FlagMiner.DumperForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:FlagMiner.DumperForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="M:FlagMiner.FlegOperations.SubtractFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg},FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
             <summary>
             subtracts src from dest: dest = dest-src
@@ -14,6 +31,11 @@
         <member name="M:FlagMiner.FlegOperations.DeleteCheckedFlegs(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg}@)">
             <summary>
             removes flags marked for deletion on dest
+            </summary>
+        </member>
+        <member name="M:FlagMiner.FlegOperations.ReturnPasta(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg},System.String,System.Text.StringBuilder@)">
+            <summary>
+            Produces the flag dump text of the given tree
             </summary>
         </member>
         <member name="M:FlagMiner.ListExtensions.ChunkBy``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
@@ -133,6 +155,11 @@
             </summary>
         </member>
         <member name="P:FlagMiner.Properties.Resources.expand">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:FlagMiner.Properties.Resources.flagdump">
             <summary>
               Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>

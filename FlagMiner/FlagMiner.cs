@@ -64,6 +64,7 @@ namespace FlagMiner
 
         MinerAboutBox minerAboutBox = null;
         ImportForm importForm = null;
+        DumperForm dumperForm = null;
 
         private void ParseBtn_Click(object sender, EventArgs e)
         {
@@ -916,6 +917,20 @@ namespace FlagMiner
             if (pasta.Length > 0) { Clipboard.SetText(pasta.ToString()); }
         }
 
+        private void DumpWizardToolStripButton_Click(object sender, EventArgs e)
+        {
+            dumperForm ??= new DumperForm(this);
+
+            DialogResult res = dumperForm.ShowDialog();
+            //if (res == DialogResult.OK && dumperForm.links.Count > 0)
+            //{ ThreadParserBackgroundWorker.RunWorkerAsync(importForm.links); }
+            //else
+            //{
+            //    StatusText.AppendText(DateTime.Now + " : Action cancelled by user or no valid thread/posts given." + Environment.NewLine);
+            //    SetupForIdle();
+            //}
+        }
+
         private void Clearbutt_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Clear flags, sure?", "Flag Miner", MessageBoxButtons.YesNo) != DialogResult.Yes)
@@ -1022,7 +1037,6 @@ namespace FlagMiner
                 CacheEm(fleg.children, ref lstr);
             }
         }
-
 
 
         private void Purgebutt_Click(object sender, EventArgs e)
