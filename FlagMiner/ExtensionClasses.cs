@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace FlagMiner
@@ -60,6 +61,15 @@ namespace FlagMiner
         {
 			var UnixEpoch = new  DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 			return (long)(source.ToUniversalTime() - UnixEpoch).TotalSeconds;
+        }
+    }
+
+	public static class StringExtensions
+    {
+		public static string ToNormalizedPath(this string str)
+        {
+			return Path.GetFullPath(new Uri(str).LocalPath)
+					   .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
         }
     }
 }

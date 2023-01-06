@@ -38,7 +38,7 @@ namespace FlagMiner
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupABox = new System.Windows.Forms.GroupBox();
-            this.groupAlistView = new System.Windows.Forms.ListView();
+            this.groupAListView = new System.Windows.Forms.ListView();
             this.removeABtn = new System.Windows.Forms.Button();
             this.addABtn = new System.Windows.Forms.Button();
             this.groupBBox = new System.Windows.Forms.GroupBox();
@@ -161,28 +161,29 @@ namespace FlagMiner
             this.groupABox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupABox.Controls.Add(this.groupAlistView);
+            this.groupABox.Controls.Add(this.groupAListView);
             this.groupABox.Controls.Add(this.removeABtn);
             this.groupABox.Controls.Add(this.addABtn);
             this.groupABox.Location = new System.Drawing.Point(3, 12);
             this.groupABox.MinimumSize = new System.Drawing.Size(200, 150);
             this.groupABox.Name = "groupABox";
-            this.groupABox.Size = new System.Drawing.Size(378, 240);
+            this.groupABox.Size = new System.Drawing.Size(378, 243);
             this.groupABox.TabIndex = 2;
             this.groupABox.TabStop = false;
             this.groupABox.Text = "Group A";
             // 
-            // groupAlistView
+            // groupAListView
             // 
-            this.groupAlistView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.groupAListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupAlistView.HideSelection = false;
-            this.groupAlistView.Location = new System.Drawing.Point(7, 20);
-            this.groupAlistView.Name = "groupAlistView";
-            this.groupAlistView.Size = new System.Drawing.Size(284, 205);
-            this.groupAlistView.TabIndex = 6;
-            this.groupAlistView.UseCompatibleStateImageBehavior = false;
+            this.groupAListView.HideSelection = false;
+            this.groupAListView.Location = new System.Drawing.Point(7, 20);
+            this.groupAListView.Name = "groupAListView";
+            this.groupAListView.Size = new System.Drawing.Size(284, 208);
+            this.groupAListView.TabIndex = 6;
+            this.groupAListView.UseCompatibleStateImageBehavior = false;
+            this.groupAListView.View = System.Windows.Forms.View.List;
             // 
             // removeABtn
             // 
@@ -214,10 +215,10 @@ namespace FlagMiner
             this.groupBBox.Controls.Add(this.groupBListView);
             this.groupBBox.Controls.Add(this.removeBBtn);
             this.groupBBox.Controls.Add(this.addBBtn);
-            this.groupBBox.Location = new System.Drawing.Point(3, 7);
+            this.groupBBox.Location = new System.Drawing.Point(3, 3);
             this.groupBBox.MinimumSize = new System.Drawing.Size(200, 150);
             this.groupBBox.Name = "groupBBox";
-            this.groupBBox.Size = new System.Drawing.Size(378, 262);
+            this.groupBBox.Size = new System.Drawing.Size(378, 266);
             this.groupBBox.TabIndex = 3;
             this.groupBBox.TabStop = false;
             this.groupBBox.Text = "Group B";
@@ -230,7 +231,7 @@ namespace FlagMiner
             this.groupBListView.HideSelection = false;
             this.groupBListView.Location = new System.Drawing.Point(7, 19);
             this.groupBListView.Name = "groupBListView";
-            this.groupBListView.Size = new System.Drawing.Size(284, 227);
+            this.groupBListView.Size = new System.Drawing.Size(284, 231);
             this.groupBListView.TabIndex = 9;
             this.groupBListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -495,7 +496,7 @@ namespace FlagMiner
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.GroupBox groupABox;
-        private System.Windows.Forms.ListView groupAlistView;
+        private System.Windows.Forms.ListView groupAListView;
         private System.Windows.Forms.Button removeABtn;
         private System.Windows.Forms.Button addABtn;
         private System.Windows.Forms.GroupBox groupBBox;
