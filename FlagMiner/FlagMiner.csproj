@@ -87,6 +87,12 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DumperForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DumperForm.Designer.cs">
+      <DependentUpon>DumperForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FlegOperations.cs" />
     <Compile Include="MinerAboutBox.cs">
       <SubType>Form</SubType>
@@ -156,6 +162,9 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DumperForm.resx">
+      <DependentUpon>DumperForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MinerAboutBox.resx">
       <DependentUpon>MinerAboutBox.cs</DependentUpon>
     </EmbeddedResource>
