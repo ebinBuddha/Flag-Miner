@@ -912,7 +912,7 @@ namespace FlagMiner
         {
             // copy links to clipboard
             StringBuilder pasta = new StringBuilder();
-            FlegOperations.ReturnPasta(MainTree, "", ref pasta);
+            FlegOperations.AppendPasta(MainTree, "", ref pasta);
 
             if (pasta.Length > 0) { Clipboard.SetText(pasta.ToString()); }
         }
@@ -971,12 +971,11 @@ namespace FlagMiner
                 foreach (string fileName in OpenXmlDialog.FileNames)
                 {
                     string currentFile = fileName;
-                    SerializableDictionary<string, RegionalFleg> temptree = null;
                     try
                     {
                         using (FileStream fs = new FileStream(currentFile, FileMode.Open)) { 
                             XmlSerializer treeSerializer = new XmlSerializer(typeof(SerializableDictionary<string, RegionalFleg>));
-                            temptree = (SerializableDictionary<string, RegionalFleg>)treeSerializer.Deserialize(fs);
+                            SerializableDictionary<string, RegionalFleg> temptree = (SerializableDictionary<string, RegionalFleg>)treeSerializer.Deserialize(fs);
                             FlegOperations.MergeFlegs(temptree.Values.ToList(), ref MainTree);
                         }
                     }

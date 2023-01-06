@@ -234,6 +234,7 @@ namespace FlagMiner
             this.groupBListView.Size = new System.Drawing.Size(284, 231);
             this.groupBListView.TabIndex = 9;
             this.groupBListView.UseCompatibleStateImageBehavior = false;
+            this.groupBListView.View = System.Windows.Forms.View.List;
             // 
             // removeBBtn
             // 

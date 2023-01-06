@@ -33,7 +33,7 @@
             removes flags marked for deletion on dest
             </summary>
         </member>
-        <member name="M:FlagMiner.FlegOperations.ReturnPasta(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg},System.String,System.Text.StringBuilder@)">
+        <member name="M:FlagMiner.FlegOperations.AppendPasta(FlagMiner.SerializableDictionary{System.String,FlagMiner.RegionalFleg},System.String,System.Text.StringBuilder@)">
             <summary>
             Produces the flag dump text of the given tree
             </summary>

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace FlagMiner
 {
@@ -49,9 +51,6 @@ namespace FlagMiner
             {
                 string fullPath = Path.GetFullPath(new Uri(path).LocalPath)
                    .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-                if (list.Contains(fullPath))
-                { continue; }
-
                 list.Add(fullPath);
             }
 
@@ -153,7 +152,105 @@ namespace FlagMiner
 
         private void copyBtn_Click(object sender, EventArgs e)
         {
+            statusLabel.Text = "Pasta generation started";
 
+            var ATree = new SerializableDictionary<string, RegionalFleg>();
+            foreach (string fileName in dumperLists.groupA)
+            {
+                string currentFile = fileName;
+                try
+                {
+                    using (FileStream fs = new FileStream(currentFile, FileMode.Open))
+                    {
+                        XmlSerializer treeSerializer = new XmlSerializer(typeof(SerializableDictionary<string, RegionalFleg>));
+                        SerializableDictionary<string, RegionalFleg> temptree = (SerializableDictionary<string, RegionalFleg>)treeSerializer.Deserialize(fs);
+                        FlegOperations.MergeFlegs(temptree.Values.ToList(), ref ATree);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    statusLabel.Text = "Error processing file " + fileName;
+                    flagMiner.AppendText(DateTime.Now + " : " + "Error processing file " + fileName + " " + ex.ToString() + Environment.NewLine);
+                }
+            }
+
+            var BTree = new SerializableDictionary<string, RegionalFleg>();
+            if (CompleteDump)
+            {
+                foreach (string fileName in dumperLists.groupB)
+                {
+                    string currentFile = fileName;
+                    try
+                    {
+                        using (FileStream fs = new FileStream(currentFile, FileMode.Open))
+                        {
+                            XmlSerializer treeSerializer = new XmlSerializer(typeof(SerializableDictionary<string, RegionalFleg>));
+                            SerializableDictionary<string, RegionalFleg> temptree = (SerializableDictionary<string, RegionalFleg>)treeSerializer.Deserialize(fs);
+                            FlegOperations.MergeFlegs(temptree.Values.ToList(), ref BTree);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        statusLabel.Text = "Error processing file " + fileName;
+                        flagMiner.AppendText(DateTime.Now + " : " + "Error processing file " + fileName + " " + ex.ToString() + Environment.NewLine);
+                    }
+                }
+
+                var TempTree = new SerializableDictionary<string, RegionalFleg>();
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    XmlSerializer treeSerializer = new XmlSerializer(typeof(SerializableDictionary<string, RegionalFleg>));
+                    treeSerializer.Serialize(ms, ATree);
+                    ms.Position = 0;
+                    TempTree = (SerializableDictionary<string, RegionalFleg>)treeSerializer.Deserialize(ms);
+                }
+
+                FlegOperations.SubtractFlegs(BTree, ref ATree); // A-B
+                FlegOperations.SubtractFlegs(ATree, ref TempTree); // A intersected B
+                BTree = TempTree;
+            }
+
+            var pasta = new StringBuilder();
+
+            if (UseHeader)
+            { pasta.AppendFormat("{0}\n\n", headerTextBox.Text); }
+
+            if (ATree.Count > 0)
+            {
+                FlegOperations.AppendPasta(ATree,"",ref pasta);
+                pasta.AppendLine();
+            } else
+            {
+                pasta.AppendFormat("{0}\n\n", "No flags in group A, or all flags in group A are also in group B");
+            }
+
+            if (CompleteDump)
+            {
+                if (UseSeparator)
+                { pasta.AppendFormat("{0}\n\n", separationTextBox.Text); }
+
+                if (BTree.Count > 0)
+                {
+                    FlegOperations.AppendPasta(BTree, "", ref pasta);
+                    pasta.AppendLine();
+                }
+                else
+                {
+                    pasta.AppendFormat("{0}\n\n", "No flags are both in group A and group B");
+                }
+            }
+
+            if (UseFooter)
+            { pasta.AppendFormat("{0}\n\n", footerTextBox.Text); }
+
+            if (pasta.Length > 0) {
+                Clipboard.SetText(pasta.ToString());
+                statusLabel.Text = "Copied to clipboard!";
+            } else
+            {
+                statusLabel.Text = "Nothing to copy to clipboard!";
+            }
         }
+
     }
 }

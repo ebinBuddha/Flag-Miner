@@ -169,7 +169,7 @@ namespace FlagMiner
         /// <summary>
         /// Produces the flag dump text of the given tree
         /// </summary>
-        public static void ReturnPasta(SerializableDictionary<string, RegionalFleg> dict, string str, ref StringBuilder pasta)
+        public static void AppendPasta(SerializableDictionary<string, RegionalFleg> dict, string str, ref StringBuilder pasta)
         {
             foreach (KeyValuePair<string, RegionalFleg> ch in dict)
             {
@@ -179,7 +179,7 @@ namespace FlagMiner
                 if (curDict.Count == 0)
                 { pasta.AppendLine(">>>/" + curFleg.board + "/" + curFleg.pNo + " " + curString); }
                 else
-                { ReturnPasta(curDict, curString, ref pasta); }
+                { AppendPasta(curDict, curString, ref pasta); }
             }
         }
 
