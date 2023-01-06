@@ -195,6 +195,16 @@ namespace FlagMiner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap flagdump {
+            get {
+                object obj = ResourceManager.GetObject("flagdump", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to int/get_flags_api2.php.
         /// </summary>
         internal static string getUrl {

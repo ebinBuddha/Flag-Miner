@@ -212,6 +212,7 @@
     <Content Include="img\extrafleg.ico" />
     <None Include="img\open.png" />
     <None Include="img\link.png" />
+    <None Include="img\flagdump.png" />
     <Content Include="img\opt.ico" />
     <None Include="Resources\opt.png" />
   </ItemGroup>
