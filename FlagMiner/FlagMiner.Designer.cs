@@ -114,6 +114,7 @@ namespace FlagMiner
             this.copyLinkToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.collapseToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.expandToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.flagDumpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FlegTreeListView)).BeginInit();
             this.GroupBox1.SuspendLayout();
@@ -458,7 +459,7 @@ namespace FlagMiner
             this.loadMenuItem.Image = global::FlagMiner.Properties.Resources.open;
             this.loadMenuItem.Name = "loadMenuItem";
             this.loadMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.loadMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.loadMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadMenuItem.Text = "&Load...";
             this.loadMenuItem.Click += new System.EventHandler(this.Loadbutt_Click);
             // 
@@ -467,7 +468,7 @@ namespace FlagMiner
             this.subtractMenuItem.Image = global::FlagMiner.Properties.Resources.subtract;
             this.subtractMenuItem.Name = "subtractMenuItem";
             this.subtractMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.subtractMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.subtractMenuItem.Size = new System.Drawing.Size(180, 22);
             this.subtractMenuItem.Text = "S&ubtract...";
             this.subtractMenuItem.Click += new System.EventHandler(this.SubtractButt_Click);
             // 
@@ -476,20 +477,20 @@ namespace FlagMiner
             this.saveMenuItem.Image = global::FlagMiner.Properties.Resources.save;
             this.saveMenuItem.Name = "saveMenuItem";
             this.saveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.saveMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveMenuItem.Text = "&Save as...";
             this.saveMenuItem.Click += new System.EventHandler(this.Savebutt_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(158, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
             this.exitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitMenuItem.Text = "E&xit";
             this.exitMenuItem.Click += new System.EventHandler(this.CloseForm);
             // 
@@ -502,6 +503,7 @@ namespace FlagMiner
             this.abortMenuItem,
             this.toolStripSeparator4,
             this.copyMenuItem,
+            this.flagDumpMenuItem,
             this.toolStripSeparator5,
             this.settingsMenuItem});
             this.actionMenu.Name = "actionMenu";
@@ -594,7 +596,7 @@ namespace FlagMiner
             this.checkMenuItem.Image = global::FlagMiner.Properties.Resources.check;
             this.checkMenuItem.Name = "checkMenuItem";
             this.checkMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
-            this.checkMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.checkMenuItem.Size = new System.Drawing.Size(180, 22);
             this.checkMenuItem.Text = "&Check";
             this.checkMenuItem.Click += new System.EventHandler(this.Checkbutt_Click);
             // 
@@ -603,27 +605,27 @@ namespace FlagMiner
             this.purgeMenuItem.Image = global::FlagMiner.Properties.Resources.purge;
             this.purgeMenuItem.Name = "purgeMenuItem";
             this.purgeMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F9;
-            this.purgeMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.purgeMenuItem.Size = new System.Drawing.Size(180, 22);
             this.purgeMenuItem.Text = "&Purge";
             this.purgeMenuItem.Click += new System.EventHandler(this.Purgebutt_Click);
             // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(153, 6);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(177, 6);
             // 
             // clearmenuItem
             // 
             this.clearmenuItem.Image = global::FlagMiner.Properties.Resources.clear;
             this.clearmenuItem.Name = "clearmenuItem";
-            this.clearmenuItem.Size = new System.Drawing.Size(156, 22);
+            this.clearmenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearmenuItem.Text = "Clear &all";
             this.clearmenuItem.Click += new System.EventHandler(this.Clearbutt_Click);
             // 
             // deleteCheckedToolStripMenuItem
             // 
             this.deleteCheckedToolStripMenuItem.Name = "deleteCheckedToolStripMenuItem";
-            this.deleteCheckedToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.deleteCheckedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteCheckedToolStripMenuItem.Text = "&Delete Checked";
             this.deleteCheckedToolStripMenuItem.Click += new System.EventHandler(this.DeleteCheckedToolStripMenuItem_Click);
             // 
@@ -889,6 +891,15 @@ namespace FlagMiner
             this.expandToolStripButton.ToolTipText = "Expand all";
             this.expandToolStripButton.Click += new System.EventHandler(this.ExpandHandler);
             // 
+            // flagDumpMenuItem
+            // 
+            this.flagDumpMenuItem.Image = global::FlagMiner.Properties.Resources.flagdump;
+            this.flagDumpMenuItem.Name = "flagDumpMenuItem";
+            this.flagDumpMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.flagDumpMenuItem.Size = new System.Drawing.Size(269, 22);
+            this.flagDumpMenuItem.Text = "&Flag dump wizard";
+            this.flagDumpMenuItem.Click += new System.EventHandler(this.DumpWizardToolStripButton_Click);
+            // 
             // FlagMiner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1004,5 +1015,6 @@ namespace FlagMiner
         private ToolStripMenuItem clearmenuItem;
         private ToolStripMenuItem deleteCheckedToolStripMenuItem;
         private ToolStripButton dumpWizardToolStripButton;
+        private ToolStripMenuItem flagDumpMenuItem;
     }
 }
