@@ -126,7 +126,8 @@ namespace FlagMiner
         private void removeABtn_Click(object sender, EventArgs e)
         {
             var selected = new List<string>();
-            foreach (ListViewItem item in groupAListView.SelectedItems) {
+            foreach (ListViewItem item in groupAListView.SelectedItems)
+            {
                 selected.Add(item.Text);
             }
             RemoveFromList(ref dumperLists.groupA, selected);
@@ -212,21 +213,20 @@ namespace FlagMiner
 
             var pasta = new StringBuilder();
 
-            if (UseHeader)
+            if (UseHeader && headerTextBox.Text.Length > 0)
             { pasta.AppendFormat("{0}\n\n", headerTextBox.Text); }
 
             if (ATree.Count > 0)
             {
-                FlegOperations.AppendPasta(ATree,"",ref pasta);
+                FlegOperations.AppendPasta(ATree, "", ref pasta);
                 pasta.AppendLine();
-            } else
-            {
-                pasta.AppendFormat("{0}\n\n", "No flags in group A, or all flags in group A are also in group B");
             }
+            else
+            { pasta.AppendFormat("{0}\n\n", "No flags in group A, or all flags in group A are also in group B"); }
 
             if (CompleteDump)
             {
-                if (UseSeparator)
+                if (UseSeparator && separationTextBox.Text.Length > 0)
                 { pasta.AppendFormat("{0}\n\n", separationTextBox.Text); }
 
                 if (BTree.Count > 0)
@@ -235,21 +235,19 @@ namespace FlagMiner
                     pasta.AppendLine();
                 }
                 else
-                {
-                    pasta.AppendFormat("{0}\n\n", "No flags are both in group A and group B");
-                }
+                { pasta.AppendFormat("{0}\n\n", "No flags are both in group A and group B"); }
             }
 
-            if (UseFooter)
-            { pasta.AppendFormat("{0}\n\n", footerTextBox.Text); }
+            if (UseFooter && footerTextBox.Text.Length > 0)
+            { pasta.AppendLine(footerTextBox.Text); }
 
-            if (pasta.Length > 0) {
+            if (pasta.Length > 0)
+            {
                 Clipboard.SetText(pasta.ToString());
                 statusLabel.Text = "Copied to clipboard!";
-            } else
-            {
-                statusLabel.Text = "Nothing to copy to clipboard!";
             }
+            else
+            { statusLabel.Text = "Nothing to copy to clipboard!"; }
         }
 
     }

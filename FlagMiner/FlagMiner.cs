@@ -134,7 +134,7 @@ namespace FlagMiner
                     long finalTime = DateTime.UtcNow.To4ChanTime();
 
                     ParallelOptions parallelOptions = new ParallelOptions();
-                    parallelOptions.MaxDegreeOfParallelism = 12;
+                    parallelOptions.MaxDegreeOfParallelism = 4;
                     CancellationTokenSource cts = new CancellationTokenSource();
                     parallelOptions.CancellationToken = cts.Token;
                     try
@@ -158,7 +158,7 @@ namespace FlagMiner
                                 progress = currentCount,
                                 total = threads.Count
                             });
-                            Thread.Sleep(10); // do not flood the server and get banned
+                            Thread.Sleep(400); // do not flood the server and get banned
                             try
                             {
                                 errorCode = LoadThread(board, threads[i], out string rawResponse);
