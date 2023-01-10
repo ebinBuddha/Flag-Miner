@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace FlagMiner
 {
-	partial class Form1
+	partial class FlagMiner
 	{
         /// <summary>
         /// Required designer variable.
@@ -34,30 +34,29 @@ namespace FlagMiner
         private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FlagMiner));
             this.ThreadColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.BackgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.ImageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.CheckBox2 = new System.Windows.Forms.CheckBox();
-            this.CheckBox1 = new System.Windows.Forms.CheckBox();
-            this.SaveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.ThreadParserBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.FlegImageList = new System.Windows.Forms.ImageList(this.components);
+            this.ExclusionListCheckBox = new System.Windows.Forms.CheckBox();
+            this.ExclusionDateCheckBox = new System.Windows.Forms.CheckBox();
+            this.SaveFlagDialog = new System.Windows.Forms.SaveFileDialog();
             this.OpenXmlDialog = new System.Windows.Forms.OpenFileDialog();
             this.SaveXmlDialog = new System.Windows.Forms.SaveFileDialog();
-            this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.Label2 = new System.Windows.Forms.Label();
-            this.Label1 = new System.Windows.Forms.Label();
-            this.DateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.StatusLabel = new System.Windows.Forms.Label();
+            this.ExclusionDatePicker = new System.Windows.Forms.DateTimePicker();
             this.GroupBox2 = new System.Windows.Forms.GroupBox();
             this.TitleColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.TreeListView1 = new BrightIdeasSoftware.TreeListView();
+            this.FlegTreeListView = new BrightIdeasSoftware.TreeListView();
             this.FlagsColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
             this.intCheck = new System.Windows.Forms.CheckBox();
             this.spCheck = new System.Windows.Forms.CheckBox();
             this.polCheck = new System.Windows.Forms.CheckBox();
-            this.ProgressBar1 = new System.Windows.Forms.ProgressBar();
+            this.ParsingProgressBar = new System.Windows.Forms.ProgressBar();
             this.PopUpMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExpandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CollapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CopyFlagToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,10 +64,9 @@ namespace FlagMiner
             this.ToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.CopyLinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusText = new System.Windows.Forms.TextBox();
-            this.ToolTip2 = new System.Windows.Forms.ToolTip(this.components);
-            this.BackgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.MinerBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.TopMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.loadMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subtractMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,7 +88,8 @@ namespace FlagMiner
             this.purgeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.clearmenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.deleteCheckedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainToolStrip = new System.Windows.Forms.ToolStrip();
             this.loadToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.subtractToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.SaveToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -103,6 +102,7 @@ namespace FlagMiner
             this.settingsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.copyToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.dumpWizardToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.checkToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.purgeToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -114,16 +114,16 @@ namespace FlagMiner
             this.copyLinkToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.collapseToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.expandToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.deleteCheckedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flagDumpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TreeListView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FlegTreeListView)).BeginInit();
             this.GroupBox1.SuspendLayout();
             this.PopUpMenu.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
+            this.TopMenuStrip.SuspendLayout();
+            this.MainToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // ThreadColumn
@@ -134,47 +134,47 @@ namespace FlagMiner
             this.ThreadColumn.Text = "Thread";
             this.ThreadColumn.Width = 150;
             // 
-            // BackgroundWorker2
+            // ThreadParserBackgroundWorker
             // 
-            this.BackgroundWorker2.WorkerReportsProgress = true;
-            this.BackgroundWorker2.WorkerSupportsCancellation = true;
-            this.BackgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker2_DoWork);
-            this.BackgroundWorker2.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
-            this.BackgroundWorker2.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
+            this.ThreadParserBackgroundWorker.WorkerReportsProgress = true;
+            this.ThreadParserBackgroundWorker.WorkerSupportsCancellation = true;
+            this.ThreadParserBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ThreadParserBackgroundWorker_DoWork);
+            this.ThreadParserBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.MinerBackgroundWorker_ProgressChanged);
+            this.ThreadParserBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.MinerBackgroundWorker_RunWorkerCompleted);
             // 
-            // ImageList1
+            // FlegImageList
             // 
-            this.ImageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.ImageList1.ImageSize = new System.Drawing.Size(11, 11);
-            this.ImageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.FlegImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.FlegImageList.ImageSize = new System.Drawing.Size(11, 11);
+            this.FlegImageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // CheckBox2
+            // ExclusionListCheckBox
             // 
-            this.CheckBox2.AutoSize = true;
-            this.CheckBox2.Checked = true;
-            this.CheckBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CheckBox2.Location = new System.Drawing.Point(6, 19);
-            this.CheckBox2.Name = "CheckBox2";
-            this.CheckBox2.Size = new System.Drawing.Size(139, 17);
-            this.CheckBox2.TabIndex = 38;
-            this.CheckBox2.Text = "exclude previously seen";
-            this.CheckBox2.UseVisualStyleBackColor = true;
-            this.CheckBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
+            this.ExclusionListCheckBox.AutoSize = true;
+            this.ExclusionListCheckBox.Checked = true;
+            this.ExclusionListCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ExclusionListCheckBox.Location = new System.Drawing.Point(6, 19);
+            this.ExclusionListCheckBox.Name = "ExclusionListCheckBox";
+            this.ExclusionListCheckBox.Size = new System.Drawing.Size(139, 17);
+            this.ExclusionListCheckBox.TabIndex = 38;
+            this.ExclusionListCheckBox.Text = "exclude previously seen";
+            this.ExclusionListCheckBox.UseVisualStyleBackColor = true;
+            this.ExclusionListCheckBox.CheckedChanged += new System.EventHandler(this.ExclusionListCheckBox_CheckedChanged);
             // 
-            // CheckBox1
+            // ExclusionDateCheckBox
             // 
-            this.CheckBox1.AutoSize = true;
-            this.CheckBox1.Location = new System.Drawing.Point(6, 42);
-            this.CheckBox1.Name = "CheckBox1";
-            this.CheckBox1.Size = new System.Drawing.Size(118, 17);
-            this.CheckBox1.TabIndex = 37;
-            this.CheckBox1.Text = "archived after date:";
-            this.CheckBox1.UseVisualStyleBackColor = true;
-            this.CheckBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            this.ExclusionDateCheckBox.AutoSize = true;
+            this.ExclusionDateCheckBox.Location = new System.Drawing.Point(6, 42);
+            this.ExclusionDateCheckBox.Name = "ExclusionDateCheckBox";
+            this.ExclusionDateCheckBox.Size = new System.Drawing.Size(118, 17);
+            this.ExclusionDateCheckBox.TabIndex = 37;
+            this.ExclusionDateCheckBox.Text = "archived after date:";
+            this.ExclusionDateCheckBox.UseVisualStyleBackColor = true;
+            this.ExclusionDateCheckBox.CheckedChanged += new System.EventHandler(this.ExclusionDateCheckBox_CheckedChanged);
             // 
-            // SaveFileDialog1
+            // SaveFlagDialog
             // 
-            this.SaveFileDialog1.Title = "Save flag...";
+            this.SaveFlagDialog.Title = "Save flag...";
             // 
             // OpenXmlDialog
             // 
@@ -194,30 +194,30 @@ namespace FlagMiner
             this.Label2.Size = new System.Drawing.Size(0, 13);
             this.Label2.TabIndex = 46;
             // 
-            // Label1
+            // StatusLabel
             // 
-            this.Label1.AutoSize = true;
-            this.Label1.Location = new System.Drawing.Point(6, 105);
-            this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(41, 13);
-            this.Label1.TabIndex = 45;
-            this.Label1.Text = "status: ";
+            this.StatusLabel.AutoSize = true;
+            this.StatusLabel.Location = new System.Drawing.Point(6, 105);
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(41, 13);
+            this.StatusLabel.TabIndex = 45;
+            this.StatusLabel.Text = "status: ";
             // 
-            // DateTimePicker1
+            // ExclusionDatePicker
             // 
-            this.DateTimePicker1.CustomFormat = "yyyy/MM/dd HH:mm";
-            this.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateTimePicker1.Location = new System.Drawing.Point(6, 62);
-            this.DateTimePicker1.Name = "DateTimePicker1";
-            this.DateTimePicker1.Size = new System.Drawing.Size(159, 20);
-            this.DateTimePicker1.TabIndex = 34;
-            this.DateTimePicker1.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
+            this.ExclusionDatePicker.CustomFormat = "yyyy/MM/dd HH:mm";
+            this.ExclusionDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.ExclusionDatePicker.Location = new System.Drawing.Point(6, 62);
+            this.ExclusionDatePicker.Name = "ExclusionDatePicker";
+            this.ExclusionDatePicker.Size = new System.Drawing.Size(159, 20);
+            this.ExclusionDatePicker.TabIndex = 34;
+            this.ExclusionDatePicker.ValueChanged += new System.EventHandler(this.ExclusionDatePicker_ValueChanged);
             // 
             // GroupBox2
             // 
-            this.GroupBox2.Controls.Add(this.CheckBox2);
-            this.GroupBox2.Controls.Add(this.CheckBox1);
-            this.GroupBox2.Controls.Add(this.DateTimePicker1);
+            this.GroupBox2.Controls.Add(this.ExclusionListCheckBox);
+            this.GroupBox2.Controls.Add(this.ExclusionDateCheckBox);
+            this.GroupBox2.Controls.Add(this.ExclusionDatePicker);
             this.GroupBox2.Location = new System.Drawing.Point(102, 6);
             this.GroupBox2.Name = "GroupBox2";
             this.GroupBox2.Size = new System.Drawing.Size(267, 89);
@@ -232,38 +232,38 @@ namespace FlagMiner
             this.TitleColumn.Text = "Title";
             this.TitleColumn.Width = 150;
             // 
-            // TreeListView1
+            // FlegTreeListView
             // 
-            this.TreeListView1.AllColumns.Add(this.FlagsColumn);
-            this.TreeListView1.AllColumns.Add(this.TitleColumn);
-            this.TreeListView1.AllColumns.Add(this.ThreadColumn);
-            this.TreeListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.FlegTreeListView.AllColumns.Add(this.FlagsColumn);
+            this.FlegTreeListView.AllColumns.Add(this.TitleColumn);
+            this.FlegTreeListView.AllColumns.Add(this.ThreadColumn);
+            this.FlegTreeListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TreeListView1.CellEditUseWholeCell = false;
-            this.TreeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.FlegTreeListView.CellEditUseWholeCell = false;
+            this.FlegTreeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.FlagsColumn,
             this.TitleColumn,
             this.ThreadColumn});
-            this.TreeListView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.TreeListView1.FullRowSelect = true;
-            this.TreeListView1.HideSelection = false;
-            this.TreeListView1.Location = new System.Drawing.Point(375, 8);
-            this.TreeListView1.Name = "TreeListView1";
-            this.TreeListView1.ShowGroups = false;
-            this.TreeListView1.Size = new System.Drawing.Size(484, 395);
-            this.TreeListView1.SmallImageList = this.ImageList1;
-            this.TreeListView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.TreeListView1.TabIndex = 44;
-            this.TreeListView1.TintSortColumn = true;
-            this.TreeListView1.UseCompatibleStateImageBehavior = false;
-            this.TreeListView1.UseHotControls = false;
-            this.TreeListView1.UseHyperlinks = true;
-            this.TreeListView1.View = System.Windows.Forms.View.Details;
-            this.TreeListView1.VirtualMode = true;
-            this.TreeListView1.CellRightClick += new System.EventHandler<BrightIdeasSoftware.CellRightClickEventArgs>(this.Olv_CellRightClick);
-            this.TreeListView1.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.FormatRow_EventHandler);
-            this.TreeListView1.SelectionChanged += new System.EventHandler(this.TreeListView1_SelectionChanged);
+            this.FlegTreeListView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.FlegTreeListView.FullRowSelect = true;
+            this.FlegTreeListView.HideSelection = false;
+            this.FlegTreeListView.Location = new System.Drawing.Point(375, 8);
+            this.FlegTreeListView.Name = "FlegTreeListView";
+            this.FlegTreeListView.ShowGroups = false;
+            this.FlegTreeListView.Size = new System.Drawing.Size(484, 395);
+            this.FlegTreeListView.SmallImageList = this.FlegImageList;
+            this.FlegTreeListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.FlegTreeListView.TabIndex = 44;
+            this.FlegTreeListView.TintSortColumn = true;
+            this.FlegTreeListView.UseCompatibleStateImageBehavior = false;
+            this.FlegTreeListView.UseHotControls = false;
+            this.FlegTreeListView.UseHyperlinks = true;
+            this.FlegTreeListView.View = System.Windows.Forms.View.Details;
+            this.FlegTreeListView.VirtualMode = true;
+            this.FlegTreeListView.CellRightClick += new System.EventHandler<BrightIdeasSoftware.CellRightClickEventArgs>(this.Olv_CellRightClick);
+            this.FlegTreeListView.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.FormatRow_EventHandler);
+            this.FlegTreeListView.SelectionChanged += new System.EventHandler(this.FlegTreeListView_SelectionChanged);
             // 
             // FlagsColumn
             // 
@@ -316,19 +316,19 @@ namespace FlagMiner
             this.polCheck.UseVisualStyleBackColor = true;
             this.polCheck.CheckedChanged += new System.EventHandler(this.PolCheck_CheckedChanged);
             // 
-            // ProgressBar1
+            // ParsingProgressBar
             // 
-            this.ProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ParsingProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProgressBar1.Location = new System.Drawing.Point(6, 409);
-            this.ProgressBar1.Name = "ProgressBar1";
-            this.ProgressBar1.Size = new System.Drawing.Size(853, 23);
-            this.ProgressBar1.TabIndex = 38;
+            this.ParsingProgressBar.Location = new System.Drawing.Point(6, 409);
+            this.ParsingProgressBar.Name = "ParsingProgressBar";
+            this.ParsingProgressBar.Size = new System.Drawing.Size(853, 23);
+            this.ParsingProgressBar.TabIndex = 38;
             // 
             // PopUpMenu
             // 
             this.PopUpMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItem1,
+            this.ExpandAllToolStripMenuItem,
             this.CollapseAllToolStripMenuItem,
             this.ToolStripSeparator1,
             this.CopyFlagToClipboardToolStripMenuItem,
@@ -339,11 +339,11 @@ namespace FlagMiner
             this.PopUpMenu.ShowImageMargin = false;
             this.PopUpMenu.Size = new System.Drawing.Size(168, 126);
             // 
-            // ToolStripMenuItem1
+            // ExpandAllToolStripMenuItem
             // 
-            this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
-            this.ToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
-            this.ToolStripMenuItem1.Text = "Expand All";
+            this.ExpandAllToolStripMenuItem.Name = "ExpandAllToolStripMenuItem";
+            this.ExpandAllToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ExpandAllToolStripMenuItem.Text = "Expand All";
             // 
             // CollapseAllToolStripMenuItem
             // 
@@ -391,13 +391,13 @@ namespace FlagMiner
             this.StatusText.Size = new System.Drawing.Size(363, 282);
             this.StatusText.TabIndex = 39;
             // 
-            // BackgroundWorker1
+            // MinerBackgroundWorker
             // 
-            this.BackgroundWorker1.WorkerReportsProgress = true;
-            this.BackgroundWorker1.WorkerSupportsCancellation = true;
-            this.BackgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
-            this.BackgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
-            this.BackgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
+            this.MinerBackgroundWorker.WorkerReportsProgress = true;
+            this.MinerBackgroundWorker.WorkerSupportsCancellation = true;
+            this.MinerBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.MinerBackgroundWorker_DoWork);
+            this.MinerBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.MinerBackgroundWorker_ProgressChanged);
+            this.MinerBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.MinerBackgroundWorker_RunWorkerCompleted);
             // 
             // toolStripContainer1
             // 
@@ -408,9 +408,9 @@ namespace FlagMiner
             this.toolStripContainer1.ContentPanel.Controls.Add(this.Label2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.GroupBox1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.StatusText);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.ProgressBar1);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.TreeListView1);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.Label1);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.ParsingProgressBar);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.FlegTreeListView);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.StatusLabel);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.GroupBox2);
             this.toolStripContainer1.ContentPanel.Padding = new System.Windows.Forms.Padding(3);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(865, 438);
@@ -425,22 +425,22 @@ namespace FlagMiner
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip2);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.TopMenuStrip);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.MainToolStrip);
             // 
-            // menuStrip1
+            // TopMenuStrip
             // 
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TopMenuStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.TopMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.actionMenu,
             this.aboutMenu,
             this.flagsMenu});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(865, 24);
-            this.menuStrip1.TabIndex = 56;
-            this.menuStrip1.Text = "menuStrip1";
+            this.TopMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.TopMenuStrip.Name = "TopMenuStrip";
+            this.TopMenuStrip.Size = new System.Drawing.Size(865, 24);
+            this.TopMenuStrip.TabIndex = 56;
+            this.TopMenuStrip.Text = "menuStrip1";
             // 
             // fileMenu
             // 
@@ -459,7 +459,7 @@ namespace FlagMiner
             this.loadMenuItem.Image = global::FlagMiner.Properties.Resources.open;
             this.loadMenuItem.Name = "loadMenuItem";
             this.loadMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.loadMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.loadMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadMenuItem.Text = "&Load...";
             this.loadMenuItem.Click += new System.EventHandler(this.Loadbutt_Click);
             // 
@@ -468,7 +468,7 @@ namespace FlagMiner
             this.subtractMenuItem.Image = global::FlagMiner.Properties.Resources.subtract;
             this.subtractMenuItem.Name = "subtractMenuItem";
             this.subtractMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.subtractMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.subtractMenuItem.Size = new System.Drawing.Size(180, 22);
             this.subtractMenuItem.Text = "S&ubtract...";
             this.subtractMenuItem.Click += new System.EventHandler(this.SubtractButt_Click);
             // 
@@ -477,20 +477,20 @@ namespace FlagMiner
             this.saveMenuItem.Image = global::FlagMiner.Properties.Resources.save;
             this.saveMenuItem.Name = "saveMenuItem";
             this.saveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.saveMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveMenuItem.Text = "&Save as...";
             this.saveMenuItem.Click += new System.EventHandler(this.Savebutt_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(158, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
             this.exitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitMenuItem.Text = "E&xit";
             this.exitMenuItem.Click += new System.EventHandler(this.CloseForm);
             // 
@@ -503,6 +503,7 @@ namespace FlagMiner
             this.abortMenuItem,
             this.toolStripSeparator4,
             this.copyMenuItem,
+            this.flagDumpMenuItem,
             this.toolStripSeparator5,
             this.settingsMenuItem});
             this.actionMenu.Name = "actionMenu";
@@ -621,10 +622,17 @@ namespace FlagMiner
             this.clearmenuItem.Text = "Clear &all";
             this.clearmenuItem.Click += new System.EventHandler(this.Clearbutt_Click);
             // 
-            // toolStrip2
+            // deleteCheckedToolStripMenuItem
             // 
-            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteCheckedToolStripMenuItem.Name = "deleteCheckedToolStripMenuItem";
+            this.deleteCheckedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteCheckedToolStripMenuItem.Text = "&Delete Checked";
+            this.deleteCheckedToolStripMenuItem.Click += new System.EventHandler(this.DeleteCheckedToolStripMenuItem_Click);
+            // 
+            // MainToolStrip
+            // 
+            this.MainToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadToolStripButton,
             this.subtractToolStripButton,
             this.SaveToolStripButton,
@@ -635,6 +643,7 @@ namespace FlagMiner
             this.settingsToolStripButton,
             this.toolStripSeparator9,
             this.copyToolStripButton,
+            this.dumpWizardToolStripButton,
             this.toolStripSeparator11,
             this.checkToolStripButton,
             this.purgeToolStripButton,
@@ -646,12 +655,12 @@ namespace FlagMiner
             this.copyLinkToolStripButton,
             this.collapseToolStripButton,
             this.expandToolStripButton});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 24);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip2.Size = new System.Drawing.Size(865, 25);
-            this.toolStrip2.Stretch = true;
-            this.toolStrip2.TabIndex = 55;
+            this.MainToolStrip.Location = new System.Drawing.Point(0, 24);
+            this.MainToolStrip.Name = "MainToolStrip";
+            this.MainToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.MainToolStrip.Size = new System.Drawing.Size(865, 25);
+            this.MainToolStrip.Stretch = true;
+            this.MainToolStrip.TabIndex = 55;
             // 
             // loadToolStripButton
             // 
@@ -759,8 +768,18 @@ namespace FlagMiner
             this.copyToolStripButton.Name = "copyToolStripButton";
             this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.copyToolStripButton.Text = "toolStripButton6";
-            this.copyToolStripButton.ToolTipText = "Copy dump to clipboard";
+            this.copyToolStripButton.ToolTipText = "Copy simple flag dump to clipboard";
             this.copyToolStripButton.Click += new System.EventHandler(this.CopyBtn_Click);
+            // 
+            // dumpWizardToolStripButton
+            // 
+            this.dumpWizardToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.dumpWizardToolStripButton.Image = global::FlagMiner.Properties.Resources.flagdump;
+            this.dumpWizardToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.dumpWizardToolStripButton.Name = "dumpWizardToolStripButton";
+            this.dumpWizardToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.dumpWizardToolStripButton.Text = "Flag dump wizard";
+            this.dumpWizardToolStripButton.Click += new System.EventHandler(this.DumpWizardToolStripButton_Click);
             // 
             // toolStripSeparator11
             // 
@@ -872,28 +891,31 @@ namespace FlagMiner
             this.expandToolStripButton.ToolTipText = "Expand all";
             this.expandToolStripButton.Click += new System.EventHandler(this.ExpandHandler);
             // 
-            // deleteCheckedToolStripMenuItem
+            // flagDumpMenuItem
             // 
-            this.deleteCheckedToolStripMenuItem.Name = "deleteCheckedToolStripMenuItem";
-            this.deleteCheckedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.deleteCheckedToolStripMenuItem.Text = "&Delete Checked";
-            this.deleteCheckedToolStripMenuItem.Click += new System.EventHandler(this.deleteCheckedToolStripMenuItem_Click);
+            this.flagDumpMenuItem.Image = global::FlagMiner.Properties.Resources.flagdump;
+            this.flagDumpMenuItem.Name = "flagDumpMenuItem";
+            this.flagDumpMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.flagDumpMenuItem.Size = new System.Drawing.Size(269, 22);
+            this.flagDumpMenuItem.Text = "&Flag dump wizard";
+            this.flagDumpMenuItem.Click += new System.EventHandler(this.DumpWizardToolStripButton_Click);
             // 
-            // Form1
+            // FlagMiner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(865, 487);
             this.Controls.Add(this.toolStripContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.TopMenuStrip;
             this.MinimumSize = new System.Drawing.Size(875, 500);
-            this.Name = "Form1";
+            this.Name = "FlagMiner";
             this.Text = "Flag Miner";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FlagMiner_FormClosing);
+            this.Load += new System.EventHandler(this.FlagMiner_Load);
             this.GroupBox2.ResumeLayout(false);
             this.GroupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TreeListView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FlegTreeListView)).EndInit();
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox1.PerformLayout();
             this.PopUpMenu.ResumeLayout(false);
@@ -903,28 +925,26 @@ namespace FlagMiner
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
+            this.TopMenuStrip.ResumeLayout(false);
+            this.TopMenuStrip.PerformLayout();
+            this.MainToolStrip.ResumeLayout(false);
+            this.MainToolStrip.PerformLayout();
             this.ResumeLayout(false);
 
 		}
 
         private BrightIdeasSoftware.OLVColumn ThreadColumn;
-        private ImageList ImageList1;
-        private SaveFileDialog SaveFileDialog1;
+        private ImageList FlegImageList;
+        private SaveFileDialog SaveFlagDialog;
         private OpenFileDialog OpenXmlDialog;
         private SaveFileDialog SaveXmlDialog;
-        private ToolTip ToolTip1;
-        private ToolTip ToolTip2;
         private Label Label2;
-        private Label Label1;
+        private Label StatusLabel;
         private GroupBox GroupBox2;
         private BrightIdeasSoftware.OLVColumn TitleColumn;
         private BrightIdeasSoftware.OLVColumn FlagsColumn;
         private GroupBox GroupBox1;
-        private ProgressBar ProgressBar1;
+        private ProgressBar ParsingProgressBar;
         private ContextMenuStrip PopUpMenu;
         private ToolStripSeparator ToolStripSeparator1;
         private ToolStripMenuItem CopyFlagToClipboardToolStripMenuItem;
@@ -932,23 +952,23 @@ namespace FlagMiner
         private ToolStripSeparator ToolStripSeparator2;
         private ToolStripMenuItem CopyLinkToolStripMenuItem;
         private TextBox StatusText;
-        private System.ComponentModel.BackgroundWorker BackgroundWorker1;
+        private System.ComponentModel.BackgroundWorker MinerBackgroundWorker;
         private ToolStripMenuItem CollapseAllToolStripMenuItem;
-        private ToolStripMenuItem ToolStripMenuItem1;
+        private ToolStripMenuItem ExpandAllToolStripMenuItem;
         private CheckBox polCheck;
         private CheckBox spCheck;
         private CheckBox intCheck;
-        private BrightIdeasSoftware.TreeListView TreeListView1;
-        private DateTimePicker DateTimePicker1;
-        private CheckBox CheckBox1;
-        private CheckBox CheckBox2;
-        private System.ComponentModel.BackgroundWorker BackgroundWorker2;
+        private BrightIdeasSoftware.TreeListView FlegTreeListView;
+        private DateTimePicker ExclusionDatePicker;
+        private CheckBox ExclusionDateCheckBox;
+        private CheckBox ExclusionListCheckBox;
+        private System.ComponentModel.BackgroundWorker ThreadParserBackgroundWorker;
 
         #endregion
 
         private ToolStripContainer toolStripContainer1;
-        private ToolStrip toolStrip2;
-        private MenuStrip menuStrip1;
+        private ToolStrip MainToolStrip;
+        private MenuStrip TopMenuStrip;
         private ToolStripMenuItem fileMenu;
         private ToolStripMenuItem loadMenuItem;
         private ToolStripMenuItem subtractMenuItem;
@@ -994,5 +1014,7 @@ namespace FlagMiner
         private ToolStripSeparator toolStripSeparator13;
         private ToolStripMenuItem clearmenuItem;
         private ToolStripMenuItem deleteCheckedToolStripMenuItem;
+        private ToolStripButton dumpWizardToolStripButton;
+        private ToolStripMenuItem flagDumpMenuItem;
     }
 }

@@ -17,8 +17,8 @@ namespace FlagMiner
 
 	partial class ImportForm :Form
 	{
-        public Form1 myForm1;
-        public ImportForm(Form1 frm1)
+        public FlagMiner myForm1;
+        public ImportForm(FlagMiner frm1)
         {
             myForm1 = frm1;
             InitializeComponent();
@@ -38,14 +38,14 @@ namespace FlagMiner
                 string parsedUrl = uri.GetLeftPart(UriPartial.Path);
 
                 errorCode = myForm1.LoadThread(null, 0, out rawResponse, parsedUrl);
-                Form1.RaiseError(errorCode, ref statusFlag);
+                FlagMiner.RaiseError(errorCode, ref statusFlag);
 
                 List<Post> posts = null;
                 myForm1.ParseThread(rawResponse, ref posts);
 
                 List<ulong> sourcePosts = new List<ulong>();
                 errorCode = parseStrings(ref posts, ref sourcePosts);
-                Form1.RaiseError(errorCode, ref statusFlag);
+                FlagMiner.RaiseError(errorCode, ref statusFlag);
 
                 List<Post> trimmedPosts = new List<Post>();
                 filterPosts(ref posts, ref sourcePosts, trimmedPosts);

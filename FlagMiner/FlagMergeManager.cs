@@ -17,47 +17,24 @@ namespace FlagMiner
 		{
 			stack = new BlockingCollection<SerializableDictionary<string, RegionalFleg>>(source);
 			treeView = myTreeView;
-			Form1 frm = (Form1)treeView.Parent.Parent.Parent;
+			FlagMiner frm = (FlagMiner)treeView.Parent.Parent.Parent;
 			SerializableDictionary<string, RegionalFleg> dict = dest;
-			consumer = Task.Run(() =>
-			{
-				foreach (SerializableDictionary<string, RegionalFleg> myObj in stack.GetConsumingEnumerable()) {
-					foreach (RegionalFleg Fleg in myObj.Values) {
-						SerializableDictionary<string, RegionalFleg> curDict = dict;
-						RegionalFleg curFleg = Fleg;
-						RegionalFleg prevFleg = null;
+            consumer = Task.Run(() =>
+            {
+                foreach (SerializableDictionary<string, RegionalFleg> myObj in stack.GetConsumingEnumerable())
+                {
+                    FlegOperations.MergeFlegs(myObj.Values, ref dict);
 
-						if (!curDict.ContainsKey(curFleg.title)) {
-							curDict.Add(curFleg.title, curFleg);
-							// does it copy it all?  TODO CREATE DEEP COPY   48861
-						} else {
-							RegionalFleg presentFleg = curDict[curFleg.title];
-							if (presentFleg.time < curFleg.time) {
-								presentFleg.time = curFleg.time;
-								presentFleg.pNo = curFleg.pNo;
-								presentFleg.thread = curFleg.thread;
-								presentFleg.board = curFleg.board;
-							}
-							if (curFleg.children.Count > 0) {
-								SerializableDictionary<string, RegionalFleg> curSrcDict = curFleg.children;
-								SerializableDictionary<string, RegionalFleg> curDestDict = curDict[curFleg.title].children;
-								Form1.Merger(ref curSrcDict, ref curDestDict);
-							}
-						}
-					}
+                    Thread.Sleep(200);
+                    if (stack.Count == 0)
+                    { frm.UpdateRootsInvoker(); }
 
-					Thread.Sleep(200);
-					if (stack.Count == 0) {
-						frm.UpdateRootsInvoker();
-						//frm.updateManager.AddToStack(Tuple.Create(Of String, Object)("ut", myTreeView))
-					}
-
-				}
-			});
-		}
+                }
+            });
+        }
 
 
-		public void AddToStack(SerializableDictionary<string, RegionalFleg> obj)
+        public void AddToStack(SerializableDictionary<string, RegionalFleg> obj)
 		{
 			stack.Add(obj);
 		}

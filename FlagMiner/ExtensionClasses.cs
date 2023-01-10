@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace FlagMiner
@@ -40,6 +41,9 @@ namespace FlagMiner
 
 	public static class ListExtensions
 	{
+		/// <summary>
+		/// Splits the enumerable into lists of given size
+		/// </summary>
 		public static List<List<T>> ChunkBy<T>(this IEnumerable<T> source, int chunkSize)
 		{
 			return source
@@ -49,4 +53,23 @@ namespace FlagMiner
 				.ToList();
 		}
 	}
+
+
+	public static class DateTimeExtensions
+    {
+		public static long To4ChanTime(this DateTime source)
+        {
+			var UnixEpoch = new  DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+			return (long)(source.ToUniversalTime() - UnixEpoch).TotalSeconds;
+        }
+    }
+
+	public static class StringExtensions
+    {
+		public static string ToNormalizedPath(this string str)
+        {
+			return Path.GetFullPath(new Uri(str).LocalPath)
+					   .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+        }
+    }
 }

@@ -18,11 +18,11 @@ namespace FlagMiner
     public class ImageListHelper
 	{
 
-		private static Form1 frm;
+		private static FlagMiner frm;
 		private readonly BlockingCollection<string> stack;
 
         protected ObjectListView listView;
-        private ImageListHelper(Form1 form) => ImageListHelper.frm = form;
+        private ImageListHelper(FlagMiner form) => ImageListHelper.frm = form;
 
         /// <summary>
         /// Create a SysImageListHelper that will fetch images for the given tree control
@@ -36,7 +36,7 @@ namespace FlagMiner
 				//listView.ImageList.ImageSize = New Size(16, 16)
 			}
 			this.listView = listView;
-            ImageListHelper.frm = (Form1)listView.Parent.Parent.Parent; // this suck ass
+            ImageListHelper.frm = (FlagMiner)listView.Parent.Parent.Parent; // this suck ass
 
 			stack = new BlockingCollection<string>(source);
             Task.Run(() =>
@@ -60,31 +60,16 @@ namespace FlagMiner
 		}
 
 
-		protected ImageList.ImageCollection SmallImageCollection {
-			get {
-				if (this.listView != null) {
-					return this.listView.SmallImageList.Images;
-				}
-                ImageList il = new ImageList();
-				return il.Images;
-			}
-		}
+        protected ImageList.ImageCollection SmallImageCollection => this.listView?.SmallImageList.Images ?? new ImageList().Images;
 
-		protected ImageList SmallImageList {
-			get {
-				if (this.listView != null) {
-					return this.listView.SmallImageList;
-				}
-				return null;
-			}
-		}
+        protected ImageList SmallImageList => this.listView?.SmallImageList;
 
-		/// <summary>
-		/// Return the index of the image that has the Shell Icon for the given file/directory.
-		/// </summary>
-		/// <param name="path">The full path to the file/directory</param>
-		/// <returns>The index of the image or -1 if something goes wrong.</returns>
-		public int GetImageIndex(string path)
+        /// <summary>
+        /// Return the index of the image that has the Shell Icon for the given file/directory.
+        /// </summary>
+        /// <param name="path">The full path to the file/directory</param>
+        /// <returns>The index of the image or -1 if something goes wrong.</returns>
+        public int GetImageIndex(string path)
 		{
 			try {
 				if (this.SmallImageCollection.ContainsKey(path)) {
@@ -145,19 +130,21 @@ namespace FlagMiner
 		{
 			System.Drawing.Bitmap img = null;
 
-            //Dim finalimg As Image
-            if (frm.options.useLocal && url.Contains(frm.options.repoUrl))
+			var options = OptionsManager.OptionsInstance;
+			var useLocal = options.useLocal;
+			var repoUrl = options.repoUrl;
+			var localRepoFolder = options.localRepoFolder;
+
+			if (useLocal && url.Contains(repoUrl))
             {
-                string diskPath = url.Replace(frm.options.repoUrl, frm.options.localRepoFolder+"/");
+                string diskPath = url.Replace(repoUrl, localRepoFolder+"/");
                 try
                 {
                     img = (Bitmap)System.Drawing.Image.FromFile(diskPath);
                     System.Diagnostics.Debug.Listeners[0].WriteLine(diskPath);
                 }
                 catch (Exception)
-                {
-                    img = (Bitmap)frm.blankImg;
-                }
+                { img = (Bitmap)frm.blankImg; }
                 return img;
             }
             else
@@ -169,24 +156,21 @@ namespace FlagMiner
                         byte[] bytes = wc.DownloadData(url);
                         MemoryStream ms = new MemoryStream(bytes);
                         img = (Bitmap)System.Drawing.Image.FromStream(ms);
-
                     }
                     catch (WebException ex)
                     {
                         var resp = (HttpWebResponse)ex.Response;
                         if (resp.StatusCode == HttpStatusCode.NotFound)
-                        {
-                            img = (Bitmap)frm.blankImg;
-                        }
+                        { img = (Bitmap)frm.blankImg; }
                     }
                 }
             }
 
-			return img;
-		}
+            return img;
+        }
 
 
-		private readonly object messagesLock = new object();
+        private readonly object messagesLock = new object();
 		public void AddImageToCollection(string key, ImageList imageList, Image img)
 		{
 			if (imageList == null || img == null) {
@@ -220,7 +204,7 @@ namespace FlagMiner
 
 						// copy
 						this.SmallImageList.Images.Clear();
-						Form1 myform = (Form1)this.listView.Parent.Parent.Parent;
+						FlagMiner myform = (FlagMiner)this.listView.Parent.Parent.Parent;
 						myform.SetImgSizeInvoker(new Size(maxSize.Width, maxSize.Height));
 						//Me.SmallImageList.ImageSize = New Size(maxSize.Width, maxSize.Height)
 						foreach (string ke in tempList.Images.Keys) {
@@ -235,11 +219,10 @@ namespace FlagMiner
 
 					}
 					imageList.Images.Add(key, finalimg);
-				} catch (Exception ex) {
+				} catch (Exception) {
                     // ignore this
 				}
 			}
-
 		}
 
 	}

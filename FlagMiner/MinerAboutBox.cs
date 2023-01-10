@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace FlagMiner
 {
-	partial class AboutBox1 : Form
+	partial class MinerAboutBox : Form
 	{
-        public AboutBox1()
+        public MinerAboutBox()
         {
             Load += AboutBox1_Load;
             InitializeComponent();

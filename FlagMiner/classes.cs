@@ -138,28 +138,29 @@ namespace FlagMiner
 	{
         [XmlElement]
         public List<string> backendServers;
+
 		public bool intCheck;
 		public bool polCheck;
-
 		public bool spCheck;
+
 		public bool exclusionByList;
 		public bool exclusionByDate;
-
 		public DateTime exclusionDate;
-		public string localSaveFolder;
 
-		public string localRepoFolder;
+		public string localSaveFolder;  // where saved flags are stored, to be used for existance check
+		public string localRepoFolder;  // the local folder with the full repository, used for image scraping instead of the web
+
 		public bool enableCheck;
 		public bool enablePurge;
 		public bool useLocal;
 		public bool markTroll;
-
 		public bool deleteChildFree;
+
 		public string userAgent;
 
-		public string saveAndLoadFolder;
+		public string saveAndLoadFolder; // dafault folder for loading and saving the work tree
 
-        public string repoUrl;
+		public string repoUrl;
 	}
 
     public enum WorkerStatus

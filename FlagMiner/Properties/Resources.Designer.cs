@@ -80,7 +80,7 @@ namespace FlagMiner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://countryball.ca/.
+        ///   Looks up a localized string similar to https://nun.wtf/.
         /// </summary>
         internal static string backendBaseUrl {
             get {
@@ -190,6 +190,16 @@ namespace FlagMiner.Properties {
         internal static System.Drawing.Bitmap expand {
             get {
                 object obj = ResourceManager.GetObject("expand", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap flagdump {
+            get {
+                object obj = ResourceManager.GetObject("flagdump", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
