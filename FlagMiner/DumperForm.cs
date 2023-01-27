@@ -9,6 +9,15 @@ using System.Xml.Serialization;
 
 namespace FlagMiner
 {
+
+    enum Boards
+    {
+        None = 0,
+        @int = 1,
+        pol = 2,
+        sp=3,
+    }
+
     public partial class DumperForm : Form
     {
         private class DumperOptions
@@ -77,6 +86,8 @@ namespace FlagMiner
             dumperOptions = new DumperOptions();
             dumperLists = new DumperLists();
             InitializeComponent();
+            boardComboBox.DataSource = Enum.GetValues(typeof(Boards));
+            boardComboBox.SelectedIndex = 0;
         }
 
         public void DumperForm_Load(object sender, EventArgs e)
@@ -218,7 +229,10 @@ namespace FlagMiner
 
             if (ATree.Count > 0)
             {
-                FlegOperations.AppendPasta(ATree, "", ref pasta);
+                var Apasta = new StringBuilder();
+                FlegOperations.AppendPasta(ATree, "", ref Apasta);
+                if ((Boards)boardComboBox.SelectedItem != Boards.None) { Apasta = Apasta.Replace(">>>/" + boardComboBox.SelectedItem.ToString() + "/", ">>"); }
+                pasta.Append(Apasta);
                 pasta.AppendLine();
             }
             else
@@ -231,7 +245,10 @@ namespace FlagMiner
 
                 if (BTree.Count > 0)
                 {
-                    FlegOperations.AppendPasta(BTree, "", ref pasta);
+                    var Bpasta = new StringBuilder();
+                    FlegOperations.AppendPasta(BTree, "", ref Bpasta);
+                    if ((Boards)boardComboBox.SelectedItem != Boards.None) { Bpasta = Bpasta.Replace(">>>/" + boardComboBox.SelectedItem.ToString() + "/", ">>"); }
+                    pasta.Append(Bpasta);
                     pasta.AppendLine();
                 }
                 else

@@ -59,6 +59,8 @@ namespace FlagMiner
             this.groupAminusBRadioButton = new System.Windows.Forms.RadioButton();
             this.statusLabel = new System.Windows.Forms.Label();
             this.openFlagFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.boardComboBox = new System.Windows.Forms.ComboBox();
+            this.boardLabel = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -433,9 +435,9 @@ namespace FlagMiner
             // 
             this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.statusLabel.Location = new System.Drawing.Point(10, 537);
+            this.statusLabel.Location = new System.Drawing.Point(208, 536);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(516, 21);
+            this.statusLabel.Size = new System.Drawing.Size(318, 21);
             this.statusLabel.TabIndex = 7;
             this.statusLabel.Text = "Ready";
             this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -445,11 +447,32 @@ namespace FlagMiner
             this.openFlagFileDialog.Filter = "Xml files|*.xml";
             this.openFlagFileDialog.Multiselect = true;
             // 
+            // boardComboBox
+            // 
+            this.boardComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.boardComboBox.FormattingEnabled = true;
+            this.boardComboBox.Location = new System.Drawing.Point(119, 537);
+            this.boardComboBox.Name = "boardComboBox";
+            this.boardComboBox.Size = new System.Drawing.Size(83, 21);
+            this.boardComboBox.TabIndex = 7;
+            // 
+            // boardLabel
+            // 
+            this.boardLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.boardLabel.Location = new System.Drawing.Point(-3, 536);
+            this.boardLabel.Name = "boardLabel";
+            this.boardLabel.Size = new System.Drawing.Size(116, 21);
+            this.boardLabel.TabIndex = 8;
+            this.boardLabel.Text = "Make links relative to:";
+            this.boardLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // DumperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 570);
+            this.Controls.Add(this.boardLabel);
+            this.Controls.Add(this.boardComboBox);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.copyBtn);
@@ -518,5 +541,7 @@ namespace FlagMiner
         private System.Windows.Forms.RadioButton groupAminusBRadioButton;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.OpenFileDialog openFlagFileDialog;
+        private System.Windows.Forms.ComboBox boardComboBox;
+        private System.Windows.Forms.Label boardLabel;
     }
 }
