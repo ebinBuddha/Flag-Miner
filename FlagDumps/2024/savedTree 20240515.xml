@@ -1,0 +1,3995 @@
+<?xml version="1.0"?>
+<dictionary>
+  <item>
+    <key>
+      <string>Argentina</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/ar.gif</imgurl>
+        <title>Argentina</title>
+        <thread>https://boards.4chan.org/int/thread/197307745#p197322639</thread>
+        <board>int</board>
+        <pNo>197322639</pNo>
+        <time>1715782289</time>
+        <children>
+          <item>
+            <key>
+              <string>Buenos Aires</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Argentina/Buenos Aires.png</imgurl>
+                <title>Buenos Aires</title>
+                <thread>https://boards.4chan.org/int/thread/197307745#p197322639</thread>
+                <board>int</board>
+                <pNo>197322639</pNo>
+                <time>1715782289</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Belgrano</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Argentina/Buenos Aires/Belgrano.png</imgurl>
+                        <title>Belgrano</title>
+                        <thread>https://boards.4chan.org/int/thread/197224932#p197227893</thread>
+                        <board>int</board>
+                        <pNo>197227893</pNo>
+                        <time>1715559722</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Recoleta</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Argentina/Buenos Aires/Recoleta.png</imgurl>
+                        <title>Recoleta</title>
+                        <thread>https://boards.4chan.org/int/thread/197307745#p197322639</thread>
+                        <board>int</board>
+                        <pNo>197322639</pNo>
+                        <time>1715782289</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Buenos Aires Province</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Argentina/Buenos Aires Province.png</imgurl>
+                <title>Buenos Aires Province</title>
+                <thread>https://boards.4chan.org/int/thread/197267695#p197272812</thread>
+                <board>int</board>
+                <pNo>197272812</pNo>
+                <time>1715665339</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>La Plata Department</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Argentina/Buenos Aires Province/La Plata Department.png</imgurl>
+                        <title>La Plata Department</title>
+                        <thread>https://boards.4chan.org/int/thread/197267695#p197272812</thread>
+                        <board>int</board>
+                        <pNo>197272812</pNo>
+                        <time>1715665339</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Santa Fe Province</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Argentina/Santa Fe Province.png</imgurl>
+                <title>Santa Fe Province</title>
+                <thread>https://boards.4chan.org/int/thread/197153280#p197171932</thread>
+                <board>int</board>
+                <pNo>197171932</pNo>
+                <time>1715461899</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Australia</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/au.gif</imgurl>
+        <title>Australia</title>
+        <thread>https://boards.4chan.org/int/thread/197312106#p197315643</thread>
+        <board>int</board>
+        <pNo>197315643</pNo>
+        <time>1715766830</time>
+        <children>
+          <item>
+            <key>
+              <string>Queensland</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Australia/Queensland.png</imgurl>
+                <title>Queensland</title>
+                <thread>https://boards.4chan.org/int/thread/197312106#p197315643</thread>
+                <board>int</board>
+                <pNo>197315643</pNo>
+                <time>1715766830</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>North Queensland</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Australia/Queensland/North Queensland.png</imgurl>
+                        <title>North Queensland</title>
+                        <thread>https://boards.4chan.org/int/thread/197312106#p197315643</thread>
+                        <board>int</board>
+                        <pNo>197315643</pNo>
+                        <time>1715766830</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Townsville</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Australia/Queensland/North Queensland/Townsville.png</imgurl>
+                                <title>Townsville</title>
+                                <thread>https://boards.4chan.org/int/thread/197312106#p197315643</thread>
+                                <board>int</board>
+                                <pNo>197315643</pNo>
+                                <time>1715766830</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Bangladesh</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/bd.gif</imgurl>
+        <title>Bangladesh</title>
+        <thread>https://boards.4chan.org/int/thread/197320461#p197323720</thread>
+        <board>int</board>
+        <pNo>197323720</pNo>
+        <time>1715784077</time>
+        <children>
+          <item>
+            <key>
+              <string>Rajshahi</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Bangladesh/Rajshahi.png</imgurl>
+                <title>Rajshahi</title>
+                <thread>https://boards.4chan.org/int/thread/197320461#p197323720</thread>
+                <board>int</board>
+                <pNo>197323720</pNo>
+                <time>1715784077</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Belgium</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/be.gif</imgurl>
+        <title>Belgium</title>
+        <thread>https://boards.4chan.org/int/thread/197243651#p197257399</thread>
+        <board>int</board>
+        <pNo>197257399</pNo>
+        <time>1715627633</time>
+        <children>
+          <item>
+            <key>
+              <string>Vlaanderen</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Belgium/Vlaanderen.png</imgurl>
+                <title>Vlaanderen</title>
+                <thread>https://boards.4chan.org/int/thread/197243651#p197257399</thread>
+                <board>int</board>
+                <pNo>197257399</pNo>
+                <time>1715627633</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Canada</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/ca.gif</imgurl>
+        <title>Canada</title>
+        <thread>https://boards.4chan.org/pol/thread/468129895#p468131534</thread>
+        <board>pol</board>
+        <pNo>468131534</pNo>
+        <time>1715786891</time>
+        <children>
+          <item>
+            <key>
+              <string>Alberta</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/Alberta.png</imgurl>
+                <title>Alberta</title>
+                <thread>https://boards.4chan.org/int/thread/197301645#p197309282</thread>
+                <board>int</board>
+                <pNo>197309282</pNo>
+                <time>1715746392</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Lesser Slave River Municipal District</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/Alberta/Lesser Slave River Municipal District.png</imgurl>
+                        <title>Lesser Slave River Municipal District</title>
+                        <thread>https://boards.4chan.org/int/thread/197248468#p197275266</thread>
+                        <board>int</board>
+                        <pNo>197275266</pNo>
+                        <time>1715672949</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Slave Lake</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/Alberta/Lesser Slave River Municipal District/Slave Lake.png</imgurl>
+                                <title>Slave Lake</title>
+                                <thread>https://boards.4chan.org/int/thread/197248468#p197275266</thread>
+                                <board>int</board>
+                                <pNo>197275266</pNo>
+                                <time>1715672949</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>British Columbia</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/British Columbia.png</imgurl>
+                <title>British Columbia</title>
+                <thread>https://boards.4chan.org/int/thread/197190268#p197190802</thread>
+                <board>int</board>
+                <pNo>197190802</pNo>
+                <time>1715485552</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Metro Vancouver Regional District</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/British Columbia/Metro Vancouver Regional District.png</imgurl>
+                        <title>Metro Vancouver Regional District</title>
+                        <thread>https://boards.4chan.org/int/thread/197023550#p197027346</thread>
+                        <board>int</board>
+                        <pNo>197027346</pNo>
+                        <time>1715197059</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Vancouver</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/British Columbia/Metro Vancouver Regional District/Vancouver.png</imgurl>
+                                <title>Vancouver</title>
+                                <thread>https://boards.4chan.org/int/thread/197023550#p197027346</thread>
+                                <board>int</board>
+                                <pNo>197027346</pNo>
+                                <time>1715197059</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Nova Scotia</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/Nova Scotia.png</imgurl>
+                <title>Nova Scotia</title>
+                <thread>https://boards.4chan.org/int/thread/197321309#p197323970</thread>
+                <board>int</board>
+                <pNo>197323970</pNo>
+                <time>1715784469</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Halifax Region</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/Nova Scotia/Halifax Region.png</imgurl>
+                        <title>Halifax Region</title>
+                        <thread>https://boards.4chan.org/int/thread/197321309#p197323970</thread>
+                        <board>int</board>
+                        <pNo>197323970</pNo>
+                        <time>1715784469</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Ontario</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/Ontario.png</imgurl>
+                <title>Ontario</title>
+                <thread>https://boards.4chan.org/pol/thread/468129895#p468131534</thread>
+                <board>pol</board>
+                <pNo>468131534</pNo>
+                <time>1715786891</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Hastings County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/Ontario/Hastings County.png</imgurl>
+                        <title>Hastings County</title>
+                        <thread>https://boards.4chan.org/int/thread/197126826#p197128573</thread>
+                        <board>int</board>
+                        <pNo>197128573</pNo>
+                        <time>1715398485</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Middlesex County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/Ontario/Middlesex County.png</imgurl>
+                        <title>Middlesex County</title>
+                        <thread>https://boards.4chan.org/pol/thread/468129895#p468131534</thread>
+                        <board>pol</board>
+                        <pNo>468131534</pNo>
+                        <time>1715786891</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>London</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/Ontario/Middlesex County/London.png</imgurl>
+                                <title>London</title>
+                                <thread>https://boards.4chan.org/pol/thread/468129895#p468131534</thread>
+                                <board>pol</board>
+                                <pNo>468131534</pNo>
+                                <time>1715786891</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Niagara Region</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/Ontario/Niagara Region.png</imgurl>
+                        <title>Niagara Region</title>
+                        <thread>https://boards.4chan.org/int/thread/197284647#p197286047</thread>
+                        <board>int</board>
+                        <pNo>197286047</pNo>
+                        <time>1715698044</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Québec</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/Québec.png</imgurl>
+                <title>Québec</title>
+                <thread>https://boards.4chan.org/int/thread/197089953#p197090059</thread>
+                <board>int</board>
+                <pNo>197090059</pNo>
+                <time>1715324123</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Montréal Urban Agglomeration</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/Québec/Montréal Urban Agglomeration.png</imgurl>
+                        <title>Montréal Urban Agglomeration</title>
+                        <thread>https://boards.4chan.org/int/thread/197051087#p197083695</thread>
+                        <board>int</board>
+                        <pNo>197083695</pNo>
+                        <time>1715301273</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Baie-D’Urfé</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Canada/Québec/Montréal Urban Agglomeration/Baie-D’Urfé.png</imgurl>
+                                <title>Baie-D’Urfé</title>
+                                <thread>https://boards.4chan.org/int/thread/197051087#p197083695</thread>
+                                <board>int</board>
+                                <pNo>197083695</pNo>
+                                <time>1715301273</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Colombia</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/co.gif</imgurl>
+        <title>Colombia</title>
+        <thread>https://boards.4chan.org/int/thread/197310562#p197310842</thread>
+        <board>int</board>
+        <pNo>197310842</pNo>
+        <time>1715752964</time>
+        <children>
+          <item>
+            <key>
+              <string>Antioquia Department</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Colombia/Antioquia Department.png</imgurl>
+                <title>Antioquia Department</title>
+                <thread>https://boards.4chan.org/int/thread/197310562#p197310842</thread>
+                <board>int</board>
+                <pNo>197310842</pNo>
+                <time>1715752964</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Medellín</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Colombia/Antioquia Department/Medellín.png</imgurl>
+                        <title>Medellín</title>
+                        <thread>https://boards.4chan.org/int/thread/197310562#p197310842</thread>
+                        <board>int</board>
+                        <pNo>197310842</pNo>
+                        <time>1715752964</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Bogotá</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Colombia/Bogotá.png</imgurl>
+                <title>Bogotá</title>
+                <thread>https://boards.4chan.org/int/thread/197038942#p197041837</thread>
+                <board>int</board>
+                <pNo>197041837</pNo>
+                <time>1715233367</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Croatia</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/hr.gif</imgurl>
+        <title>Croatia</title>
+        <thread>https://boards.4chan.org/int/thread/197124330#p197138116</thread>
+        <board>int</board>
+        <pNo>197138116</pNo>
+        <time>1715425834</time>
+        <children>
+          <item>
+            <key>
+              <string>Primorje-Gorski Kotar County</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Croatia/Primorje-Gorski Kotar County.png</imgurl>
+                <title>Primorje-Gorski Kotar County</title>
+                <thread>https://boards.4chan.org/int/thread/197124330#p197138116</thread>
+                <board>int</board>
+                <pNo>197138116</pNo>
+                <time>1715425834</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Čabar</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Croatia/Primorje-Gorski Kotar County/Čabar.png</imgurl>
+                        <title>Čabar</title>
+                        <thread>https://boards.4chan.org/int/thread/197124330#p197138116</thread>
+                        <board>int</board>
+                        <pNo>197138116</pNo>
+                        <time>1715425834</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Czech Republic</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/cz.gif</imgurl>
+        <title>Czech Republic</title>
+        <thread>https://boards.4chan.org/pol/thread/468120270#p468127085</thread>
+        <board>pol</board>
+        <pNo>468127085</pNo>
+        <time>1715783770</time>
+        <children>
+          <item>
+            <key>
+              <string>Moravskoslezský Region</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Czech Republic/Moravskoslezský Region.png</imgurl>
+                <title>Moravskoslezský Region</title>
+                <thread>https://boards.4chan.org/pol/thread/468120270#p468127085</thread>
+                <board>pol</board>
+                <pNo>468127085</pNo>
+                <time>1715783770</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Egypt</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/eg.gif</imgurl>
+        <title>Egypt</title>
+        <thread>https://boards.4chan.org/int/thread/197154770#p197185562</thread>
+        <board>int</board>
+        <pNo>197185562</pNo>
+        <time>1715471471</time>
+        <children>
+          <item>
+            <key>
+              <string>El Eskenderiya Governorate</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Egypt/El Eskenderiya Governorate.png</imgurl>
+                <title>El Eskenderiya Governorate</title>
+                <thread>https://boards.4chan.org/int/thread/197154770#p197185562</thread>
+                <board>int</board>
+                <pNo>197185562</pNo>
+                <time>1715471471</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Alexandria</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Egypt/El Eskenderiya Governorate/Alexandria.png</imgurl>
+                        <title>Alexandria</title>
+                        <thread>https://boards.4chan.org/int/thread/197154770#p197185562</thread>
+                        <board>int</board>
+                        <pNo>197185562</pNo>
+                        <time>1715471471</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Finland</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/fi.gif</imgurl>
+        <title>Finland</title>
+        <thread>https://boards.4chan.org/int/thread/197113719#p197124379</thread>
+        <board>int</board>
+        <pNo>197124379</pNo>
+        <time>1715384356</time>
+        <children>
+          <item>
+            <key>
+              <string>Uusimaa</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Finland/Uusimaa.png</imgurl>
+                <title>Uusimaa</title>
+                <thread>https://boards.4chan.org/int/thread/197113719#p197124379</thread>
+                <board>int</board>
+                <pNo>197124379</pNo>
+                <time>1715384356</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>France</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/fr.gif</imgurl>
+        <title>France</title>
+        <thread>https://boards.4chan.org/int/thread/197326068#p197327123</thread>
+        <board>int</board>
+        <pNo>197327123</pNo>
+        <time>1715789407</time>
+        <children>
+          <item>
+            <key>
+              <string>Grand Est</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Grand Est.png</imgurl>
+                <title>Grand Est</title>
+                <thread>https://boards.4chan.org/int/thread/197326068#p197327123</thread>
+                <board>int</board>
+                <pNo>197327123</pNo>
+                <time>1715789407</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Bas-Rhin</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Grand Est/Bas-Rhin.png</imgurl>
+                        <title>Bas-Rhin</title>
+                        <thread>https://boards.4chan.org/int/thread/197273498#p197298643</thread>
+                        <board>int</board>
+                        <pNo>197298643</pNo>
+                        <time>1715717986</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Arrondissement Strasbourg</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Grand Est/Bas-Rhin/Arrondissement Strasbourg.png</imgurl>
+                                <title>Arrondissement Strasbourg</title>
+                                <thread>https://boards.4chan.org/int/thread/197273498#p197298643</thread>
+                                <board>int</board>
+                                <pNo>197298643</pNo>
+                                <time>1715717986</time>
+                                <children>
+                                  <item>
+                                    <key>
+                                      <string>Canton Illkirch-Graffenstaden</string>
+                                    </key>
+                                    <value>
+                                      <RegionalFleg>
+                                        <isTrollFlag>false</isTrollFlag>
+                                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Grand Est/Bas-Rhin/Arrondissement Strasbourg/Canton Illkirch-Graffenstaden.png</imgurl>
+                                        <title>Canton Illkirch-Graffenstaden</title>
+                                        <thread>https://boards.4chan.org/int/thread/197273498#p197298643</thread>
+                                        <board>int</board>
+                                        <pNo>197298643</pNo>
+                                        <time>1715717986</time>
+                                        <children>
+                                          <item>
+                                            <key>
+                                              <string>Illkirch-Graffenstaden</string>
+                                            </key>
+                                            <value>
+                                              <RegionalFleg>
+                                                <isTrollFlag>false</isTrollFlag>
+                                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Grand Est/Bas-Rhin/Arrondissement Strasbourg/Canton Illkirch-Graffenstaden/Illkirch-Graffenstaden.png</imgurl>
+                                                <title>Illkirch-Graffenstaden</title>
+                                                <thread>https://boards.4chan.org/int/thread/197273498#p197298643</thread>
+                                                <board>int</board>
+                                                <pNo>197298643</pNo>
+                                                <time>1715717986</time>
+                                                <children />
+                                              </RegionalFleg>
+                                            </value>
+                                          </item>
+                                        </children>
+                                      </RegionalFleg>
+                                    </value>
+                                  </item>
+                                </children>
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Haut-Rhin</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Grand Est/Haut-Rhin.png</imgurl>
+                        <title>Haut-Rhin</title>
+                        <thread>https://boards.4chan.org/int/thread/197259520#p197281976</thread>
+                        <board>int</board>
+                        <pNo>197281976</pNo>
+                        <time>1715689810</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Arrondissement Colmar-Ribeauville</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Grand Est/Haut-Rhin/Arrondissement Colmar-Ribeauville.png</imgurl>
+                                <title>Arrondissement Colmar-Ribeauville</title>
+                                <thread>https://boards.4chan.org/int/thread/197259520#p197281976</thread>
+                                <board>int</board>
+                                <pNo>197281976</pNo>
+                                <time>1715689810</time>
+                                <children>
+                                  <item>
+                                    <key>
+                                      <string>Canton Sainte-Marie-aux-Mines</string>
+                                    </key>
+                                    <value>
+                                      <RegionalFleg>
+                                        <isTrollFlag>false</isTrollFlag>
+                                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Grand Est/Haut-Rhin/Arrondissement Colmar-Ribeauville/Canton Sainte-Marie-aux-Mines.png</imgurl>
+                                        <title>Canton Sainte-Marie-aux-Mines</title>
+                                        <thread>https://boards.4chan.org/int/thread/197259520#p197281976</thread>
+                                        <board>int</board>
+                                        <pNo>197281976</pNo>
+                                        <time>1715689810</time>
+                                        <children>
+                                          <item>
+                                            <key>
+                                              <string>Ribeauville</string>
+                                            </key>
+                                            <value>
+                                              <RegionalFleg>
+                                                <isTrollFlag>false</isTrollFlag>
+                                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Grand Est/Haut-Rhin/Arrondissement Colmar-Ribeauville/Canton Sainte-Marie-aux-Mines/Ribeauville.png</imgurl>
+                                                <title>Ribeauville</title>
+                                                <thread>https://boards.4chan.org/int/thread/197259520#p197281976</thread>
+                                                <board>int</board>
+                                                <pNo>197281976</pNo>
+                                                <time>1715689810</time>
+                                                <children />
+                                              </RegionalFleg>
+                                            </value>
+                                          </item>
+                                        </children>
+                                      </RegionalFleg>
+                                    </value>
+                                  </item>
+                                </children>
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Meurthe-et-Moselle</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Grand Est/Meurthe-et-Moselle.png</imgurl>
+                        <title>Meurthe-et-Moselle</title>
+                        <thread>https://boards.4chan.org/int/thread/197242247#p197244388</thread>
+                        <board>int</board>
+                        <pNo>197244388</pNo>
+                        <time>1715605179</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Nancy</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Grand Est/Meurthe-et-Moselle/Nancy.png</imgurl>
+                                <title>Nancy</title>
+                                <thread>https://boards.4chan.org/int/thread/197242247#p197244388</thread>
+                                <board>int</board>
+                                <pNo>197244388</pNo>
+                                <time>1715605179</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Moselle</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Grand Est/Moselle.png</imgurl>
+                        <title>Moselle</title>
+                        <thread>https://boards.4chan.org/int/thread/197326068#p197327123</thread>
+                        <board>int</board>
+                        <pNo>197327123</pNo>
+                        <time>1715789407</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Nouvelle Aquitaine</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Nouvelle Aquitaine.png</imgurl>
+                <title>Nouvelle Aquitaine</title>
+                <thread>https://boards.4chan.org/int/thread/197273498#p197300150</thread>
+                <board>int</board>
+                <pNo>197300150</pNo>
+                <time>1715720554</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Gironde</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Nouvelle Aquitaine/Gironde.png</imgurl>
+                        <title>Gironde</title>
+                        <thread>https://boards.4chan.org/int/thread/197273498#p197300150</thread>
+                        <board>int</board>
+                        <pNo>197300150</pNo>
+                        <time>1715720554</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Occitanie</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Occitanie.png</imgurl>
+                <title>Occitanie</title>
+                <thread>https://boards.4chan.org/int/thread/197326068#p197326864</thread>
+                <board>int</board>
+                <pNo>197326864</pNo>
+                <time>1715788981</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Hérault</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Occitanie/Hérault.png</imgurl>
+                        <title>Hérault</title>
+                        <thread>https://boards.4chan.org/int/thread/197326068#p197326864</thread>
+                        <board>int</board>
+                        <pNo>197326864</pNo>
+                        <time>1715788981</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Montpellier</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Occitanie/Hérault/Montpellier.png</imgurl>
+                                <title>Montpellier</title>
+                                <thread>https://boards.4chan.org/pol/thread/467516329#p467537862</thread>
+                                <board>pol</board>
+                                <pNo>467537862</pNo>
+                                <time>1715261889</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Provence-Alpes-Côte d'Azur</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Provence-Alpes-Côte d'Azur.png</imgurl>
+                <title>Provence-Alpes-Côte d'Azur</title>
+                <thread>https://boards.4chan.org/pol/thread/468015854#p468039862</thread>
+                <board>pol</board>
+                <pNo>468039862</pNo>
+                <time>1715706262</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Alpes-Maritimes</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Provence-Alpes-Côte d'Azur/Alpes-Maritimes.png</imgurl>
+                        <title>Alpes-Maritimes</title>
+                        <thread>https://boards.4chan.org/pol/thread/468015854#p468039862</thread>
+                        <board>pol</board>
+                        <pNo>468039862</pNo>
+                        <time>1715706262</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Vence</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/France/Provence-Alpes-Côte d'Azur/Alpes-Maritimes/Vence.png</imgurl>
+                                <title>Vence</title>
+                                <thread>https://boards.4chan.org/pol/thread/468015854#p468039862</thread>
+                                <board>pol</board>
+                                <pNo>468039862</pNo>
+                                <time>1715706262</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Germany</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/de.gif</imgurl>
+        <title>Germany</title>
+        <thread>https://boards.4chan.org/sp/thread/140857399#p140858188</thread>
+        <board>sp</board>
+        <pNo>140858188</pNo>
+        <time>1715729183</time>
+        <children>
+          <item>
+            <key>
+              <string>Bayern</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Bayern.png</imgurl>
+                <title>Bayern</title>
+                <thread>https://boards.4chan.org/int/thread/197090837#p197099753</thread>
+                <board>int</board>
+                <pNo>197099753</pNo>
+                <time>1715346272</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Oberbayern</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Bayern/Oberbayern.png</imgurl>
+                        <title>Oberbayern</title>
+                        <thread>https://boards.4chan.org/int/thread/197090837#p197099753</thread>
+                        <board>int</board>
+                        <pNo>197099753</pNo>
+                        <time>1715346272</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Freising District</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Bayern/Oberbayern/Freising District.png</imgurl>
+                                <title>Freising District</title>
+                                <thread>https://boards.4chan.org/int/thread/197090837#p197099753</thread>
+                                <board>int</board>
+                                <pNo>197099753</pNo>
+                                <time>1715346272</time>
+                                <children>
+                                  <item>
+                                    <key>
+                                      <string>Freising</string>
+                                    </key>
+                                    <value>
+                                      <RegionalFleg>
+                                        <isTrollFlag>false</isTrollFlag>
+                                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Bayern/Oberbayern/Freising District/Freising.png</imgurl>
+                                        <title>Freising</title>
+                                        <thread>https://boards.4chan.org/int/thread/197090837#p197099753</thread>
+                                        <board>int</board>
+                                        <pNo>197099753</pNo>
+                                        <time>1715346272</time>
+                                        <children />
+                                      </RegionalFleg>
+                                    </value>
+                                  </item>
+                                </children>
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Berlin</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Berlin.png</imgurl>
+                <title>Berlin</title>
+                <thread>https://boards.4chan.org/int/thread/197102040#p197102756</thread>
+                <board>int</board>
+                <pNo>197102756</pNo>
+                <time>1715351392</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Pankow District</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Berlin/Pankow District.png</imgurl>
+                        <title>Pankow District</title>
+                        <thread>https://boards.4chan.org/int/thread/197102040#p197102756</thread>
+                        <board>int</board>
+                        <pNo>197102756</pNo>
+                        <time>1715351392</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Blankenfelde</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Berlin/Pankow District/Blankenfelde.png</imgurl>
+                                <title>Blankenfelde</title>
+                                <thread>https://boards.4chan.org/int/thread/197102040#p197102756</thread>
+                                <board>int</board>
+                                <pNo>197102756</pNo>
+                                <time>1715351392</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Brandenburg</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Brandenburg.png</imgurl>
+                <title>Brandenburg</title>
+                <thread>https://boards.4chan.org/int/thread/197154770#p197182822</thread>
+                <board>int</board>
+                <pNo>197182822</pNo>
+                <time>1715468151</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Ostprignitz-Ruppin District</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Brandenburg/Ostprignitz-Ruppin District.png</imgurl>
+                        <title>Ostprignitz-Ruppin District</title>
+                        <thread>https://boards.4chan.org/int/thread/197154770#p197182822</thread>
+                        <board>int</board>
+                        <pNo>197182822</pNo>
+                        <time>1715468151</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Neuruppin</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Brandenburg/Ostprignitz-Ruppin District/Neuruppin.png</imgurl>
+                                <title>Neuruppin</title>
+                                <thread>https://boards.4chan.org/int/thread/197154770#p197182822</thread>
+                                <board>int</board>
+                                <pNo>197182822</pNo>
+                                <time>1715468151</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Niedersachsen</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Niedersachsen.png</imgurl>
+                <title>Niedersachsen</title>
+                <thread>https://boards.4chan.org/sp/thread/140857399#p140858188</thread>
+                <board>sp</board>
+                <pNo>140858188</pNo>
+                <time>1715729183</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Aurich District</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Niedersachsen/Aurich District.png</imgurl>
+                        <title>Aurich District</title>
+                        <thread>https://boards.4chan.org/sp/thread/140857399#p140858188</thread>
+                        <board>sp</board>
+                        <pNo>140858188</pNo>
+                        <time>1715729183</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Goslar District</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Niedersachsen/Goslar District.png</imgurl>
+                        <title>Goslar District</title>
+                        <thread>https://boards.4chan.org/int/thread/197076446#p197085580</thread>
+                        <board>int</board>
+                        <pNo>197085580</pNo>
+                        <time>1715307236</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Braunlage</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Niedersachsen/Goslar District/Braunlage.png</imgurl>
+                                <title>Braunlage</title>
+                                <thread>https://boards.4chan.org/int/thread/197076446#p197085580</thread>
+                                <board>int</board>
+                                <pNo>197085580</pNo>
+                                <time>1715307236</time>
+                                <children>
+                                  <item>
+                                    <key>
+                                      <string>Sankt Andreasberg</string>
+                                    </key>
+                                    <value>
+                                      <RegionalFleg>
+                                        <isTrollFlag>false</isTrollFlag>
+                                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Niedersachsen/Goslar District/Braunlage/Sankt Andreasberg.png</imgurl>
+                                        <title>Sankt Andreasberg</title>
+                                        <thread>https://boards.4chan.org/int/thread/197076446#p197085580</thread>
+                                        <board>int</board>
+                                        <pNo>197085580</pNo>
+                                        <time>1715307236</time>
+                                        <children />
+                                      </RegionalFleg>
+                                    </value>
+                                  </item>
+                                </children>
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Rheinland-Pfalz</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Rheinland-Pfalz.png</imgurl>
+                <title>Rheinland-Pfalz</title>
+                <thread>https://boards.4chan.org/sp/thread/140791324#p140792324</thread>
+                <board>sp</board>
+                <pNo>140792324</pNo>
+                <time>1715491269</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Mainz</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Rheinland-Pfalz/Mainz.png</imgurl>
+                        <title>Mainz</title>
+                        <thread>https://boards.4chan.org/sp/thread/140791324#p140792324</thread>
+                        <board>sp</board>
+                        <pNo>140792324</pNo>
+                        <time>1715491269</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Schleswig-Holstein</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Schleswig-Holstein.png</imgurl>
+                <title>Schleswig-Holstein</title>
+                <thread>https://boards.4chan.org/int/thread/197217050#p197217050</thread>
+                <board>int</board>
+                <pNo>197217050</pNo>
+                <time>1715540208</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Lübeck</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Germany/Schleswig-Holstein/Lübeck.png</imgurl>
+                        <title>Lübeck</title>
+                        <thread>https://boards.4chan.org/int/thread/197217050#p197217050</thread>
+                        <board>int</board>
+                        <pNo>197217050</pNo>
+                        <time>1715540208</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Greece</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/gr.gif</imgurl>
+        <title>Greece</title>
+        <thread>https://boards.4chan.org/int/thread/197290663#p197292400</thread>
+        <board>int</board>
+        <pNo>197292400</pNo>
+        <time>1715708648</time>
+        <children>
+          <item>
+            <key>
+              <string>Attiki</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Greece/Attiki.png</imgurl>
+                <title>Attiki</title>
+                <thread>https://boards.4chan.org/pol/thread/467812625#p467815049</thread>
+                <board>pol</board>
+                <pNo>467815049</pNo>
+                <time>1715504453</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Marousi</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Greece/Attiki/Marousi.png</imgurl>
+                        <title>Marousi</title>
+                        <thread>https://boards.4chan.org/pol/thread/467812625#p467815049</thread>
+                        <board>pol</board>
+                        <pNo>467815049</pNo>
+                        <time>1715504453</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Kentriki Makedonia</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Greece/Kentriki Makedonia.png</imgurl>
+                <title>Kentriki Makedonia</title>
+                <thread>https://boards.4chan.org/int/thread/197290663#p197292400</thread>
+                <board>int</board>
+                <pNo>197292400</pNo>
+                <time>1715708648</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Thermi</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Greece/Kentriki Makedonia/Thermi.png</imgurl>
+                        <title>Thermi</title>
+                        <thread>https://boards.4chan.org/int/thread/197268216#p197268618</thread>
+                        <board>int</board>
+                        <pNo>197268618</pNo>
+                        <time>1715650816</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Greenland</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/gl.gif</imgurl>
+        <title>Greenland</title>
+        <thread>https://boards.4chan.org/int/thread/197282811#p197283450</thread>
+        <board>int</board>
+        <pNo>197283450</pNo>
+        <time>1715692878</time>
+        <children>
+          <item>
+            <key>
+              <string>Avannaata</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Greenland/Avannaata.png</imgurl>
+                <title>Avannaata</title>
+                <thread>https://boards.4chan.org/int/thread/197282811#p197283450</thread>
+                <board>int</board>
+                <pNo>197283450</pNo>
+                <time>1715692878</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Ilulissat</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Greenland/Avannaata/Ilulissat.png</imgurl>
+                        <title>Ilulissat</title>
+                        <thread>https://boards.4chan.org/int/thread/197282811#p197283450</thread>
+                        <board>int</board>
+                        <pNo>197283450</pNo>
+                        <time>1715692878</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Sermersooq</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Greenland/Sermersooq.png</imgurl>
+                <title>Sermersooq</title>
+                <thread>https://boards.4chan.org/int/thread/197279489#p197279794</thread>
+                <board>int</board>
+                <pNo>197279794</pNo>
+                <time>1715684832</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Nuuk</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Greenland/Sermersooq/Nuuk.png</imgurl>
+                        <title>Nuuk</title>
+                        <thread>https://boards.4chan.org/int/thread/197279489#p197279794</thread>
+                        <board>int</board>
+                        <pNo>197279794</pNo>
+                        <time>1715684832</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Ireland</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/ie.gif</imgurl>
+        <title>Ireland</title>
+        <thread>https://boards.4chan.org/sp/thread/140842447#p140842461</thread>
+        <board>sp</board>
+        <pNo>140842461</pNo>
+        <time>1715673968</time>
+        <children>
+          <item>
+            <key>
+              <string>Leinster</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Ireland/Leinster.png</imgurl>
+                <title>Leinster</title>
+                <thread>https://boards.4chan.org/sp/thread/140842447#p140842461</thread>
+                <board>sp</board>
+                <pNo>140842461</pNo>
+                <time>1715673968</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>County Louth</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Ireland/Leinster/County Louth.png</imgurl>
+                        <title>County Louth</title>
+                        <thread>https://boards.4chan.org/sp/thread/140842447#p140842461</thread>
+                        <board>sp</board>
+                        <pNo>140842461</pNo>
+                        <time>1715673968</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Dundalk</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Ireland/Leinster/County Louth/Dundalk.png</imgurl>
+                                <title>Dundalk</title>
+                                <thread>https://boards.4chan.org/sp/thread/140842447#p140842461</thread>
+                                <board>sp</board>
+                                <pNo>140842461</pNo>
+                                <time>1715673968</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Israel</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/il.gif</imgurl>
+        <title>Israel</title>
+        <thread>https://boards.4chan.org/int/thread/197265561#p197285196</thread>
+        <board>int</board>
+        <pNo>197285196</pNo>
+        <time>1715696634</time>
+        <children>
+          <item>
+            <key>
+              <string>Tel Aviv District</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Israel/Tel Aviv District.png</imgurl>
+                <title>Tel Aviv District</title>
+                <thread>https://boards.4chan.org/int/thread/197265561#p197285196</thread>
+                <board>int</board>
+                <pNo>197285196</pNo>
+                <time>1715696634</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Ramat HaSharon</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Israel/Tel Aviv District/Ramat HaSharon.png</imgurl>
+                        <title>Ramat HaSharon</title>
+                        <thread>https://boards.4chan.org/int/thread/197265561#p197285196</thread>
+                        <board>int</board>
+                        <pNo>197285196</pNo>
+                        <time>1715696634</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Tel Aviv</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Israel/Tel Aviv District/Tel Aviv.png</imgurl>
+                        <title>Tel Aviv</title>
+                        <thread>https://boards.4chan.org/int/thread/197281203#p197281862</thread>
+                        <board>int</board>
+                        <pNo>197281862</pNo>
+                        <time>1715689535</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Italy</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/it.gif</imgurl>
+        <title>Italy</title>
+        <thread>https://boards.4chan.org/sp/thread/140803293#p140828675</thread>
+        <board>sp</board>
+        <pNo>140828675</pNo>
+        <time>1715625668</time>
+        <children>
+          <item>
+            <key>
+              <string>Campania</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Italy/Campania.png</imgurl>
+                <title>Campania</title>
+                <thread>https://boards.4chan.org/int/thread/197090837#p197105566</thread>
+                <board>int</board>
+                <pNo>197105566</pNo>
+                <time>1715355805</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Metropolitan City of Napoli</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Italy/Campania/Metropolitan City of Napoli.png</imgurl>
+                        <title>Metropolitan City of Napoli</title>
+                        <thread>https://boards.4chan.org/int/thread/197090837#p197105566</thread>
+                        <board>int</board>
+                        <pNo>197105566</pNo>
+                        <time>1715355805</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Umbria</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Italy/Umbria.png</imgurl>
+                <title>Umbria</title>
+                <thread>https://boards.4chan.org/sp/thread/140803293#p140828675</thread>
+                <board>sp</board>
+                <pNo>140828675</pNo>
+                <time>1715625668</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Province of Terni</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Italy/Umbria/Province of Terni.png</imgurl>
+                        <title>Province of Terni</title>
+                        <thread>https://boards.4chan.org/sp/thread/140803293#p140828675</thread>
+                        <board>sp</board>
+                        <pNo>140828675</pNo>
+                        <time>1715625668</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Terni</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Italy/Umbria/Province of Terni/Terni.png</imgurl>
+                                <title>Terni</title>
+                                <thread>https://boards.4chan.org/sp/thread/140803293#p140828675</thread>
+                                <board>sp</board>
+                                <pNo>140828675</pNo>
+                                <time>1715625668</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Lithuania</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/lt.gif</imgurl>
+        <title>Lithuania</title>
+        <thread>https://boards.4chan.org/int/thread/197048571#p197132114</thread>
+        <board>int</board>
+        <pNo>197132114</pNo>
+        <time>1715412695</time>
+        <children>
+          <item>
+            <key>
+              <string>Panevežys County</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Lithuania/Panevežys County.png</imgurl>
+                <title>Panevežys County</title>
+                <thread>https://boards.4chan.org/int/thread/197048571#p197132114</thread>
+                <board>int</board>
+                <pNo>197132114</pNo>
+                <time>1715412695</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Panevežys</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Lithuania/Panevežys County/Panevežys.png</imgurl>
+                        <title>Panevežys</title>
+                        <thread>https://boards.4chan.org/int/thread/197048571#p197132114</thread>
+                        <board>int</board>
+                        <pNo>197132114</pNo>
+                        <time>1715412695</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Malaysia</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/my.gif</imgurl>
+        <title>Malaysia</title>
+        <thread>https://boards.4chan.org/pol/thread/467832871#p467836851</thread>
+        <board>pol</board>
+        <pNo>467836851</pNo>
+        <time>1715526692</time>
+        <children>
+          <item>
+            <key>
+              <string>Perak</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Malaysia/Perak.png</imgurl>
+                <title>Perak</title>
+                <thread>https://boards.4chan.org/pol/thread/467832871#p467836851</thread>
+                <board>pol</board>
+                <pNo>467836851</pNo>
+                <time>1715526692</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Ipoh</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Malaysia/Perak/Ipoh.png</imgurl>
+                        <title>Ipoh</title>
+                        <thread>https://boards.4chan.org/pol/thread/467832871#p467836851</thread>
+                        <board>pol</board>
+                        <pNo>467836851</pNo>
+                        <time>1715526692</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Malta</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/mt.gif</imgurl>
+        <title>Malta</title>
+        <thread>https://boards.4chan.org/int/thread/197273498#p197296129</thread>
+        <board>int</board>
+        <pNo>197296129</pNo>
+        <time>1715714341</time>
+        <children>
+          <item>
+            <key>
+              <string>Punent Region</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Malta/Punent Region.png</imgurl>
+                <title>Punent Region</title>
+                <thread>https://boards.4chan.org/int/thread/197273498#p197296129</thread>
+                <board>int</board>
+                <pNo>197296129</pNo>
+                <time>1715714341</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Mexico</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/mx.gif</imgurl>
+        <title>Mexico</title>
+        <thread>https://boards.4chan.org/int/thread/197305902#p197309219</thread>
+        <board>int</board>
+        <pNo>197309219</pNo>
+        <time>1715746121</time>
+        <children>
+          <item>
+            <key>
+              <string>Jalisco</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Mexico/Jalisco.png</imgurl>
+                <title>Jalisco</title>
+                <thread>https://boards.4chan.org/int/thread/197305902#p197309219</thread>
+                <board>int</board>
+                <pNo>197309219</pNo>
+                <time>1715746121</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Zapopan</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Mexico/Jalisco/Zapopan.png</imgurl>
+                        <title>Zapopan</title>
+                        <thread>https://boards.4chan.org/int/thread/197305902#p197309219</thread>
+                        <board>int</board>
+                        <pNo>197309219</pNo>
+                        <time>1715746121</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>New Zealand</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/nz.gif</imgurl>
+        <title>New Zealand</title>
+        <thread>https://boards.4chan.org/int/thread/197094549#p197095043</thread>
+        <board>int</board>
+        <pNo>197095043</pNo>
+        <time>1715336979</time>
+        <children>
+          <item>
+            <key>
+              <string>West Coast Region</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/New Zealand/West Coast Region.png</imgurl>
+                <title>West Coast Region</title>
+                <thread>https://boards.4chan.org/int/thread/197094549#p197095043</thread>
+                <board>int</board>
+                <pNo>197095043</pNo>
+                <time>1715336979</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Buller District</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/New Zealand/West Coast Region/Buller District.png</imgurl>
+                        <title>Buller District</title>
+                        <thread>https://boards.4chan.org/int/thread/197094549#p197095043</thread>
+                        <board>int</board>
+                        <pNo>197095043</pNo>
+                        <time>1715336979</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Westport</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/New Zealand/West Coast Region/Buller District/Westport.png</imgurl>
+                                <title>Westport</title>
+                                <thread>https://boards.4chan.org/int/thread/197094549#p197095043</thread>
+                                <board>int</board>
+                                <pNo>197095043</pNo>
+                                <time>1715336979</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Peru</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/pe.gif</imgurl>
+        <title>Peru</title>
+        <thread>https://boards.4chan.org/int/thread/197305585#p197308412</thread>
+        <board>int</board>
+        <pNo>197308412</pNo>
+        <time>1715742895</time>
+        <children>
+          <item>
+            <key>
+              <string>Cusco Region</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Peru/Cusco Region.png</imgurl>
+                <title>Cusco Region</title>
+                <thread>https://boards.4chan.org/int/thread/197305585#p197308412</thread>
+                <board>int</board>
+                <pNo>197308412</pNo>
+                <time>1715742895</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Cusco Province</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Peru/Cusco Region/Cusco Province.png</imgurl>
+                        <title>Cusco Province</title>
+                        <thread>https://boards.4chan.org/int/thread/197305585#p197308412</thread>
+                        <board>int</board>
+                        <pNo>197308412</pNo>
+                        <time>1715742895</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Cusco</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Peru/Cusco Region/Cusco Province/Cusco.png</imgurl>
+                                <title>Cusco</title>
+                                <thread>https://boards.4chan.org/int/thread/197305585#p197308412</thread>
+                                <board>int</board>
+                                <pNo>197308412</pNo>
+                                <time>1715742895</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Philippines</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/ph.gif</imgurl>
+        <title>Philippines</title>
+        <thread>https://boards.4chan.org/pol/thread/468102352#p468102688</thread>
+        <board>pol</board>
+        <pNo>468102688</pNo>
+        <time>1715758660</time>
+        <children>
+          <item>
+            <key>
+              <string>Manila</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Philippines/Manila.png</imgurl>
+                <title>Manila</title>
+                <thread>https://boards.4chan.org/pol/thread/468102352#p468102688</thread>
+                <board>pol</board>
+                <pNo>468102688</pNo>
+                <time>1715758660</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Poland</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/pl.gif</imgurl>
+        <title>Poland</title>
+        <thread>https://boards.4chan.org/int/thread/197301645#p197307062</thread>
+        <board>int</board>
+        <pNo>197307062</pNo>
+        <time>1715738456</time>
+        <children>
+          <item>
+            <key>
+              <string>Mazowieckie Voivodeship</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Poland/Mazowieckie Voivodeship.png</imgurl>
+                <title>Mazowieckie Voivodeship</title>
+                <thread>https://boards.4chan.org/int/thread/197301645#p197307062</thread>
+                <board>int</board>
+                <pNo>197307062</pNo>
+                <time>1715738456</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Warszawa</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Poland/Mazowieckie Voivodeship/Warszawa.png</imgurl>
+                        <title>Warszawa</title>
+                        <thread>https://boards.4chan.org/int/thread/197301645#p197307062</thread>
+                        <board>int</board>
+                        <pNo>197307062</pNo>
+                        <time>1715738456</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Praga-Północ</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Poland/Mazowieckie Voivodeship/Warszawa/Praga-Północ.png</imgurl>
+                                <title>Praga-Północ</title>
+                                <thread>https://boards.4chan.org/int/thread/197301645#p197307062</thread>
+                                <board>int</board>
+                                <pNo>197307062</pNo>
+                                <time>1715738456</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Wielkopolskie Voivodeship</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Poland/Wielkopolskie Voivodeship.png</imgurl>
+                <title>Wielkopolskie Voivodeship</title>
+                <thread>https://boards.4chan.org/pol/thread/468036252#p468036699</thread>
+                <board>pol</board>
+                <pNo>468036699</pNo>
+                <time>1715703930</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Poznań</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Poland/Wielkopolskie Voivodeship/Poznań.png</imgurl>
+                        <title>Poznań</title>
+                        <thread>https://boards.4chan.org/pol/thread/468036252#p468036699</thread>
+                        <board>pol</board>
+                        <pNo>468036699</pNo>
+                        <time>1715703930</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Portugal</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/pt.gif</imgurl>
+        <title>Portugal</title>
+        <thread>https://boards.4chan.org/int/thread/197283043#p197301900</thread>
+        <board>int</board>
+        <pNo>197301900</pNo>
+        <time>1715723824</time>
+        <children>
+          <item>
+            <key>
+              <string>Aveiro District</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Portugal/Aveiro District.png</imgurl>
+                <title>Aveiro District</title>
+                <thread>https://boards.4chan.org/int/thread/197234055#p197262453</thread>
+                <board>int</board>
+                <pNo>197262453</pNo>
+                <time>1715635260</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Ílhavo Municipality</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Portugal/Aveiro District/Ílhavo Municipality.png</imgurl>
+                        <title>Ílhavo Municipality</title>
+                        <thread>https://boards.4chan.org/int/thread/197234055#p197262453</thread>
+                        <board>int</board>
+                        <pNo>197262453</pNo>
+                        <time>1715635260</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Porto District</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Portugal/Porto District.png</imgurl>
+                <title>Porto District</title>
+                <thread>https://boards.4chan.org/int/thread/197283043#p197301900</thread>
+                <board>int</board>
+                <pNo>197301900</pNo>
+                <time>1715723824</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Vila do Conde Municipality</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Portugal/Porto District/Vila do Conde Municipality.png</imgurl>
+                        <title>Vila do Conde Municipality</title>
+                        <thread>https://boards.4chan.org/int/thread/197283043#p197301900</thread>
+                        <board>int</board>
+                        <pNo>197301900</pNo>
+                        <time>1715723824</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Russian Federation</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/ru.gif</imgurl>
+        <title>Russian Federation</title>
+        <thread>https://boards.4chan.org/pol/thread/467508562#p467508937</thread>
+        <board>pol</board>
+        <pNo>467508937</pNo>
+        <time>1715229447</time>
+        <children>
+          <item>
+            <key>
+              <string>Belgorod Region</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Russian Federation/Belgorod Region.png</imgurl>
+                <title>Belgorod Region</title>
+                <thread>https://boards.4chan.org/pol/thread/467508562#p467508937</thread>
+                <board>pol</board>
+                <pNo>467508937</pNo>
+                <time>1715229447</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Saint Petersburg</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Russian Federation/Saint Petersburg.png</imgurl>
+                <title>Saint Petersburg</title>
+                <thread>https://boards.4chan.org/int/thread/197003597#p197027976</thread>
+                <board>int</board>
+                <pNo>197027976</pNo>
+                <time>1715197954</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Serbia</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/rs.gif</imgurl>
+        <title>Serbia</title>
+        <thread>https://boards.4chan.org/int/thread/197319314#p197320398</thread>
+        <board>int</board>
+        <pNo>197320398</pNo>
+        <time>1715778075</time>
+        <children>
+          <item>
+            <key>
+              <string>Vojvodina</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Serbia/Vojvodina.png</imgurl>
+                <title>Vojvodina</title>
+                <thread>https://boards.4chan.org/int/thread/197319314#p197320398</thread>
+                <board>int</board>
+                <pNo>197320398</pNo>
+                <time>1715778075</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Spain</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/es.gif</imgurl>
+        <title>Spain</title>
+        <thread>https://boards.4chan.org/int/thread/197319641#p197319896</thread>
+        <board>int</board>
+        <pNo>197319896</pNo>
+        <time>1715777048</time>
+        <children>
+          <item>
+            <key>
+              <string>Andalucía</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Spain/Andalucía.png</imgurl>
+                <title>Andalucía</title>
+                <thread>https://boards.4chan.org/int/thread/197273498#p197300177</thread>
+                <board>int</board>
+                <pNo>197300177</pNo>
+                <time>1715720596</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Province of Granada</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Spain/Andalucía/Province of Granada.png</imgurl>
+                        <title>Province of Granada</title>
+                        <thread>https://boards.4chan.org/int/thread/197273498#p197300177</thread>
+                        <board>int</board>
+                        <pNo>197300177</pNo>
+                        <time>1715720596</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Galicia</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Spain/Galicia.png</imgurl>
+                <title>Galicia</title>
+                <thread>https://boards.4chan.org/int/thread/197319641#p197319896</thread>
+                <board>int</board>
+                <pNo>197319896</pNo>
+                <time>1715777048</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Melilla</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Spain/Melilla.png</imgurl>
+                <title>Melilla</title>
+                <thread>https://boards.4chan.org/sp/thread/140704309#p140715320</thread>
+                <board>sp</board>
+                <pNo>140715320</pNo>
+                <time>1715232077</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Switzerland</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/ch.gif</imgurl>
+        <title>Switzerland</title>
+        <thread>https://boards.4chan.org/int/thread/197193379#p197194073</thread>
+        <board>int</board>
+        <pNo>197194073</pNo>
+        <time>1715498102</time>
+        <children>
+          <item>
+            <key>
+              <string>Canton of Zürich</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Switzerland/Canton of Zürich.png</imgurl>
+                <title>Canton of Zürich</title>
+                <thread>https://boards.4chan.org/int/thread/197193379#p197194073</thread>
+                <board>int</board>
+                <pNo>197194073</pNo>
+                <time>1715498102</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Turkey</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/tr.gif</imgurl>
+        <title>Turkey</title>
+        <thread>https://boards.4chan.org/int/thread/197097913#p197099598</thread>
+        <board>int</board>
+        <pNo>197099598</pNo>
+        <time>1715346018</time>
+        <children>
+          <item>
+            <key>
+              <string>İstanbul Province</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Turkey/İstanbul Province.png</imgurl>
+                <title>İstanbul Province</title>
+                <thread>https://boards.4chan.org/int/thread/197097913#p197099598</thread>
+                <board>int</board>
+                <pNo>197099598</pNo>
+                <time>1715346018</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>İstanbul</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Turkey/İstanbul Province/İstanbul.png</imgurl>
+                        <title>İstanbul</title>
+                        <thread>https://boards.4chan.org/int/thread/197097913#p197099598</thread>
+                        <board>int</board>
+                        <pNo>197099598</pNo>
+                        <time>1715346018</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Kadıköy</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Turkey/İstanbul Province/İstanbul/Kadıköy.png</imgurl>
+                                <title>Kadıköy</title>
+                                <thread>https://boards.4chan.org/int/thread/197097913#p197099598</thread>
+                                <board>int</board>
+                                <pNo>197099598</pNo>
+                                <time>1715346018</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>United Kingdom</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/gb.gif</imgurl>
+        <title>United Kingdom</title>
+        <thread>https://boards.4chan.org/int/thread/197302361#p197303391</thread>
+        <board>int</board>
+        <pNo>197303391</pNo>
+        <time>1715727249</time>
+        <children>
+          <item>
+            <key>
+              <string>England</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United Kingdom/England.png</imgurl>
+                <title>England</title>
+                <thread>https://boards.4chan.org/int/thread/197302361#p197303391</thread>
+                <board>int</board>
+                <pNo>197303391</pNo>
+                <time>1715727249</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Bristol</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United Kingdom/England/Bristol.png</imgurl>
+                        <title>Bristol</title>
+                        <thread>https://boards.4chan.org/int/thread/197221355#p197225609</thread>
+                        <board>int</board>
+                        <pNo>197225609</pNo>
+                        <time>1715554073</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Cornwall</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United Kingdom/England/Cornwall.png</imgurl>
+                        <title>Cornwall</title>
+                        <thread>https://boards.4chan.org/int/thread/197299689#p197301396</thread>
+                        <board>int</board>
+                        <pNo>197301396</pNo>
+                        <time>1715722758</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Lancashire</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United Kingdom/England/Lancashire.png</imgurl>
+                        <title>Lancashire</title>
+                        <thread>https://boards.4chan.org/int/thread/197302361#p197303391</thread>
+                        <board>int</board>
+                        <pNo>197303391</pNo>
+                        <time>1715727249</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Northamptonshire</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United Kingdom/England/Northamptonshire.png</imgurl>
+                        <title>Northamptonshire</title>
+                        <thread>https://boards.4chan.org/int/thread/197080165#p197083045</thread>
+                        <board>int</board>
+                        <pNo>197083045</pNo>
+                        <time>1715299371</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>North Northamptonshire</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United Kingdom/England/Northamptonshire/North Northamptonshire.png</imgurl>
+                                <title>North Northamptonshire</title>
+                                <thread>https://boards.4chan.org/int/thread/197080165#p197083045</thread>
+                                <board>int</board>
+                                <pNo>197083045</pNo>
+                                <time>1715299371</time>
+                                <children>
+                                  <item>
+                                    <key>
+                                      <string>Wellingborough</string>
+                                    </key>
+                                    <value>
+                                      <RegionalFleg>
+                                        <isTrollFlag>false</isTrollFlag>
+                                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United Kingdom/England/Northamptonshire/North Northamptonshire/Wellingborough.png</imgurl>
+                                        <title>Wellingborough</title>
+                                        <thread>https://boards.4chan.org/int/thread/197080165#p197083045</thread>
+                                        <board>int</board>
+                                        <pNo>197083045</pNo>
+                                        <time>1715299371</time>
+                                        <children />
+                                      </RegionalFleg>
+                                    </value>
+                                  </item>
+                                </children>
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>United States</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/us.gif</imgurl>
+        <title>United States</title>
+        <thread>https://boards.4chan.org/int/thread/197326844#p197326873</thread>
+        <board>int</board>
+        <pNo>197326873</pNo>
+        <time>1715788996</time>
+        <children>
+          <item>
+            <key>
+              <string>Alabama</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Alabama.png</imgurl>
+                <title>Alabama</title>
+                <thread>https://boards.4chan.org/int/thread/197315229#p197315283</thread>
+                <board>int</board>
+                <pNo>197315283</pNo>
+                <time>1715766042</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Lauderdale County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Alabama/Lauderdale County.png</imgurl>
+                        <title>Lauderdale County</title>
+                        <thread>https://boards.4chan.org/int/thread/197301645#p197304308</thread>
+                        <board>int</board>
+                        <pNo>197304308</pNo>
+                        <time>1715729809</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Arkansas</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Arkansas.png</imgurl>
+                <title>Arkansas</title>
+                <thread>https://boards.4chan.org/int/thread/197301645#p197308831</thread>
+                <board>int</board>
+                <pNo>197308831</pNo>
+                <time>1715744644</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Faulkner County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Arkansas/Faulkner County.png</imgurl>
+                        <title>Faulkner County</title>
+                        <thread>https://boards.4chan.org/int/thread/197113719#p197127163</thread>
+                        <board>int</board>
+                        <pNo>197127163</pNo>
+                        <time>1715392421</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Conway</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Arkansas/Faulkner County/Conway.png</imgurl>
+                                <title>Conway</title>
+                                <thread>https://boards.4chan.org/int/thread/197113719#p197127163</thread>
+                                <board>int</board>
+                                <pNo>197127163</pNo>
+                                <time>1715392421</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>California</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/California.png</imgurl>
+                <title>California</title>
+                <thread>https://boards.4chan.org/int/thread/197234079#p197234219</thread>
+                <board>int</board>
+                <pNo>197234219</pNo>
+                <time>1715580906</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>San Bernardino County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/California/San Bernardino County.png</imgurl>
+                        <title>San Bernardino County</title>
+                        <thread>https://boards.4chan.org/int/thread/197029104#p197080496</thread>
+                        <board>int</board>
+                        <pNo>197080496</pNo>
+                        <time>1715294117</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>San Bernardino</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/California/San Bernardino County/San Bernardino.png</imgurl>
+                                <title>San Bernardino</title>
+                                <thread>https://boards.4chan.org/int/thread/197029104#p197080496</thread>
+                                <board>int</board>
+                                <pNo>197080496</pNo>
+                                <time>1715294117</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>San Diego County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/California/San Diego County.png</imgurl>
+                        <title>San Diego County</title>
+                        <thread>https://boards.4chan.org/int/thread/197234079#p197234219</thread>
+                        <board>int</board>
+                        <pNo>197234219</pNo>
+                        <time>1715580906</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Colorado</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Colorado.png</imgurl>
+                <title>Colorado</title>
+                <thread>https://boards.4chan.org/int/thread/197305098#p197306528</thread>
+                <board>int</board>
+                <pNo>197306528</pNo>
+                <time>1715736811</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Denver</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Colorado/Denver.png</imgurl>
+                        <title>Denver</title>
+                        <thread>https://boards.4chan.org/int/thread/197305098#p197306528</thread>
+                        <board>int</board>
+                        <pNo>197306528</pNo>
+                        <time>1715736811</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Connecticut</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Connecticut.png</imgurl>
+                <title>Connecticut</title>
+                <thread>https://boards.4chan.org/int/thread/197260711#p197266047</thread>
+                <board>int</board>
+                <pNo>197266047</pNo>
+                <time>1715642763</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Florida</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Florida.png</imgurl>
+                <title>Florida</title>
+                <thread>https://boards.4chan.org/int/thread/197310070#p197310193</thread>
+                <board>int</board>
+                <pNo>197310193</pNo>
+                <time>1715750240</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Miami-Dade County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Florida/Miami-Dade County.png</imgurl>
+                        <title>Miami-Dade County</title>
+                        <thread>https://boards.4chan.org/int/thread/197310070#p197310193</thread>
+                        <board>int</board>
+                        <pNo>197310193</pNo>
+                        <time>1715750240</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Coral Gables</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Florida/Miami-Dade County/Coral Gables.png</imgurl>
+                                <title>Coral Gables</title>
+                                <thread>https://boards.4chan.org/int/thread/197283319#p197285129</thread>
+                                <board>int</board>
+                                <pNo>197285129</pNo>
+                                <time>1715696533</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Georgia</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Georgia.png</imgurl>
+                <title>Georgia</title>
+                <thread>https://boards.4chan.org/int/thread/197301645#p197309733</thread>
+                <board>int</board>
+                <pNo>197309733</pNo>
+                <time>1715748381</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Chatham County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Georgia/Chatham County.png</imgurl>
+                        <title>Chatham County</title>
+                        <thread>https://boards.4chan.org/int/thread/197301645#p197309733</thread>
+                        <board>int</board>
+                        <pNo>197309733</pNo>
+                        <time>1715748381</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Savannah</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Georgia/Chatham County/Savannah.png</imgurl>
+                                <title>Savannah</title>
+                                <thread>https://boards.4chan.org/int/thread/197301645#p197309733</thread>
+                                <board>int</board>
+                                <pNo>197309733</pNo>
+                                <time>1715748381</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Cobb County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Georgia/Cobb County.png</imgurl>
+                        <title>Cobb County</title>
+                        <thread>https://boards.4chan.org/int/thread/197184923#p197189543</thread>
+                        <board>int</board>
+                        <pNo>197189543</pNo>
+                        <time>1715481120</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Macon-Bibb County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Georgia/Macon-Bibb County.png</imgurl>
+                        <title>Macon-Bibb County</title>
+                        <thread>https://boards.4chan.org/int/thread/196943566#p196954917</thread>
+                        <board>int</board>
+                        <pNo>196954917</pNo>
+                        <time>1715052171</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Iowa</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Iowa.png</imgurl>
+                <title>Iowa</title>
+                <thread>https://boards.4chan.org/int/thread/197290143#p197292203</thread>
+                <board>int</board>
+                <pNo>197292203</pNo>
+                <time>1715708308</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Johnson County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Iowa/Johnson County.png</imgurl>
+                        <title>Johnson County</title>
+                        <thread>https://boards.4chan.org/int/thread/197290143#p197292203</thread>
+                        <board>int</board>
+                        <pNo>197292203</pNo>
+                        <time>1715708308</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Louisiana</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Louisiana.png</imgurl>
+                <title>Louisiana</title>
+                <thread>https://boards.4chan.org/int/thread/197029104#p197085845</thread>
+                <board>int</board>
+                <pNo>197085845</pNo>
+                <time>1715308110</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Orleans Parish</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Louisiana/Orleans Parish.png</imgurl>
+                        <title>Orleans Parish</title>
+                        <thread>https://boards.4chan.org/int/thread/197029104#p197085845</thread>
+                        <board>int</board>
+                        <pNo>197085845</pNo>
+                        <time>1715308110</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>New Orleans</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Louisiana/Orleans Parish/New Orleans.png</imgurl>
+                                <title>New Orleans</title>
+                                <thread>https://boards.4chan.org/int/thread/197029104#p197085845</thread>
+                                <board>int</board>
+                                <pNo>197085845</pNo>
+                                <time>1715308110</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Maryland</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Maryland.png</imgurl>
+                <title>Maryland</title>
+                <thread>https://boards.4chan.org/int/thread/197301645#p197306592</thread>
+                <board>int</board>
+                <pNo>197306592</pNo>
+                <time>1715736977</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Baltimore County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Maryland/Baltimore County.png</imgurl>
+                        <title>Baltimore County</title>
+                        <thread>https://boards.4chan.org/int/thread/197301645#p197306592</thread>
+                        <board>int</board>
+                        <pNo>197306592</pNo>
+                        <time>1715736977</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Massachusetts</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Massachusetts.png</imgurl>
+                <title>Massachusetts</title>
+                <thread>https://boards.4chan.org/int/thread/197108799#p197110579</thread>
+                <board>int</board>
+                <pNo>197110579</pNo>
+                <time>1715363477</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Middlesex County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Massachusetts/Middlesex County.png</imgurl>
+                        <title>Middlesex County</title>
+                        <thread>https://boards.4chan.org/int/thread/197108799#p197110579</thread>
+                        <board>int</board>
+                        <pNo>197110579</pNo>
+                        <time>1715363477</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Cambridge</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Massachusetts/Middlesex County/Cambridge.png</imgurl>
+                                <title>Cambridge</title>
+                                <thread>https://boards.4chan.org/int/thread/197108799#p197110579</thread>
+                                <board>int</board>
+                                <pNo>197110579</pNo>
+                                <time>1715363477</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Mississippi</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Mississippi.png</imgurl>
+                <title>Mississippi</title>
+                <thread>https://boards.4chan.org/int/thread/197301645#p197309112</thread>
+                <board>int</board>
+                <pNo>197309112</pNo>
+                <time>1715745680</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Hinds County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Mississippi/Hinds County.png</imgurl>
+                        <title>Hinds County</title>
+                        <thread>https://boards.4chan.org/int/thread/197301645#p197309112</thread>
+                        <board>int</board>
+                        <pNo>197309112</pNo>
+                        <time>1715745680</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>New Hampshire</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/New Hampshire.png</imgurl>
+                <title>New Hampshire</title>
+                <thread>https://boards.4chan.org/int/thread/197309690#p197323838</thread>
+                <board>int</board>
+                <pNo>197323838</pNo>
+                <time>1715784252</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Hillsborough County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/New Hampshire/Hillsborough County.png</imgurl>
+                        <title>Hillsborough County</title>
+                        <thread>https://boards.4chan.org/int/thread/197309690#p197323838</thread>
+                        <board>int</board>
+                        <pNo>197323838</pNo>
+                        <time>1715784252</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Manchester</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/New Hampshire/Hillsborough County/Manchester.png</imgurl>
+                                <title>Manchester</title>
+                                <thread>https://boards.4chan.org/int/thread/197309690#p197323838</thread>
+                                <board>int</board>
+                                <pNo>197323838</pNo>
+                                <time>1715784252</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>New York</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/New York.png</imgurl>
+                <title>New York</title>
+                <thread>https://boards.4chan.org/int/thread/197326844#p197326873</thread>
+                <board>int</board>
+                <pNo>197326873</pNo>
+                <time>1715788996</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>New York City</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/New York/New York City.png</imgurl>
+                        <title>New York City</title>
+                        <thread>https://boards.4chan.org/int/thread/197326844#p197326873</thread>
+                        <board>int</board>
+                        <pNo>197326873</pNo>
+                        <time>1715788996</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Brooklyn</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/New York/New York City/Brooklyn.png</imgurl>
+                                <title>Brooklyn</title>
+                                <thread>https://boards.4chan.org/int/thread/197326844#p197326873</thread>
+                                <board>int</board>
+                                <pNo>197326873</pNo>
+                                <time>1715788996</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Niagara County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/New York/Niagara County.png</imgurl>
+                        <title>Niagara County</title>
+                        <thread>https://boards.4chan.org/pol/thread/468113302#p468128193</thread>
+                        <board>pol</board>
+                        <pNo>468128193</pNo>
+                        <time>1715784546</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Lockport (town)</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/New York/Niagara County/Lockport (town).png</imgurl>
+                                <title>Lockport (town)</title>
+                                <thread>https://boards.4chan.org/pol/thread/468113302#p468128193</thread>
+                                <board>pol</board>
+                                <pNo>468128193</pNo>
+                                <time>1715784546</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Oklahoma</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Oklahoma.png</imgurl>
+                <title>Oklahoma</title>
+                <thread>https://boards.4chan.org/pol/thread/467963780#p467972417</thread>
+                <board>pol</board>
+                <pNo>467972417</pNo>
+                <time>1715641344</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Pennsylvania</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Pennsylvania.png</imgurl>
+                <title>Pennsylvania</title>
+                <thread>https://boards.4chan.org/int/thread/197301645#p197308435</thread>
+                <board>int</board>
+                <pNo>197308435</pNo>
+                <time>1715742978</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Allegheny County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Pennsylvania/Allegheny County.png</imgurl>
+                        <title>Allegheny County</title>
+                        <thread>https://boards.4chan.org/int/thread/197301645#p197308435</thread>
+                        <board>int</board>
+                        <pNo>197308435</pNo>
+                        <time>1715742978</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Pittsburgh</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Pennsylvania/Allegheny County/Pittsburgh.png</imgurl>
+                                <title>Pittsburgh</title>
+                                <thread>https://boards.4chan.org/int/thread/197301645#p197308435</thread>
+                                <board>int</board>
+                                <pNo>197308435</pNo>
+                                <time>1715742978</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Texas</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Texas.png</imgurl>
+                <title>Texas</title>
+                <thread>https://boards.4chan.org/int/thread/197304940#p197309929</thread>
+                <board>int</board>
+                <pNo>197309929</pNo>
+                <time>1715749175</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Bexar County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Texas/Bexar County.png</imgurl>
+                        <title>Bexar County</title>
+                        <thread>https://boards.4chan.org/pol/thread/468078566#p468089020</thread>
+                        <board>pol</board>
+                        <pNo>468089020</pNo>
+                        <time>1715743190</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Dallas County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Texas/Dallas County.png</imgurl>
+                        <title>Dallas County</title>
+                        <thread>https://boards.4chan.org/int/thread/197304940#p197309929</thread>
+                        <board>int</board>
+                        <pNo>197309929</pNo>
+                        <time>1715749175</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>Rowlett</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Texas/Dallas County/Rowlett.png</imgurl>
+                                <title>Rowlett</title>
+                                <thread>https://boards.4chan.org/int/thread/197304940#p197309929</thread>
+                                <board>int</board>
+                                <pNo>197309929</pNo>
+                                <time>1715749175</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                  <item>
+                    <key>
+                      <string>Kendall County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Texas/Kendall County.png</imgurl>
+                        <title>Kendall County</title>
+                        <thread>https://boards.4chan.org/sp/thread/140844594#p140849673</thread>
+                        <board>sp</board>
+                        <pNo>140849673</pNo>
+                        <time>1715711418</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Virginia</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Virginia.png</imgurl>
+                <title>Virginia</title>
+                <thread>https://boards.4chan.org/pol/thread/468074092#p468079907</thread>
+                <board>pol</board>
+                <pNo>468079907</pNo>
+                <time>1715734966</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Williamsburg</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Virginia/Williamsburg.png</imgurl>
+                        <title>Williamsburg</title>
+                        <thread>https://boards.4chan.org/pol/thread/468074092#p468079907</thread>
+                        <board>pol</board>
+                        <pNo>468079907</pNo>
+                        <time>1715734966</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Washington</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Washington.png</imgurl>
+                <title>Washington</title>
+                <thread>https://boards.4chan.org/int/thread/197087651#p197089473</thread>
+                <board>int</board>
+                <pNo>197089473</pNo>
+                <time>1715322257</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>Spokane County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Washington/Spokane County.png</imgurl>
+                        <title>Spokane County</title>
+                        <thread>https://boards.4chan.org/int/thread/197087651#p197089473</thread>
+                        <board>int</board>
+                        <pNo>197089473</pNo>
+                        <time>1715322257</time>
+                        <children />
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Wisconsin</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Wisconsin.png</imgurl>
+                <title>Wisconsin</title>
+                <thread>https://boards.4chan.org/pol/thread/467978768#p467981175</thread>
+                <board>pol</board>
+                <pNo>467981175</pNo>
+                <time>1715648054</time>
+                <children>
+                  <item>
+                    <key>
+                      <string>La Crosse County</string>
+                    </key>
+                    <value>
+                      <RegionalFleg>
+                        <isTrollFlag>false</isTrollFlag>
+                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Wisconsin/La Crosse County.png</imgurl>
+                        <title>La Crosse County</title>
+                        <thread>https://boards.4chan.org/pol/thread/467978768#p467981175</thread>
+                        <board>pol</board>
+                        <pNo>467981175</pNo>
+                        <time>1715648054</time>
+                        <children>
+                          <item>
+                            <key>
+                              <string>La Crosse</string>
+                            </key>
+                            <value>
+                              <RegionalFleg>
+                                <isTrollFlag>false</isTrollFlag>
+                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/United States/Wisconsin/La Crosse County/La Crosse.png</imgurl>
+                                <title>La Crosse</title>
+                                <thread>https://boards.4chan.org/pol/thread/467978768#p467981175</thread>
+                                <board>pol</board>
+                                <pNo>467981175</pNo>
+                                <time>1715648054</time>
+                                <children />
+                              </RegionalFleg>
+                            </value>
+                          </item>
+                        </children>
+                      </RegionalFleg>
+                    </value>
+                  </item>
+                </children>
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Uruguay</string>
+    </key>
+    <value>
+      <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <isTrollFlag>false</isTrollFlag>
+        <imgurl>https://s.4cdn.org/image/country/uy.gif</imgurl>
+        <title>Uruguay</title>
+        <thread>https://boards.4chan.org/int/thread/197307745#p197322536</thread>
+        <board>int</board>
+        <pNo>197322536</pNo>
+        <time>1715782072</time>
+        <children>
+          <item>
+            <key>
+              <string>Maldonado Department</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Uruguay/Maldonado Department.png</imgurl>
+                <title>Maldonado Department</title>
+                <thread>https://boards.4chan.org/int/thread/197307745#p197322536</thread>
+                <board>int</board>
+                <pNo>197322536</pNo>
+                <time>1715782072</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Montevideo Department</string>
+            </key>
+            <value>
+              <RegionalFleg>
+                <isTrollFlag>false</isTrollFlag>
+                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Uruguay/Montevideo Department.png</imgurl>
+                <title>Montevideo Department</title>
+                <thread>https://boards.4chan.org/int/thread/197307745#p197320978</thread>
+                <board>int</board>
+                <pNo>197320978</pNo>
+                <time>1715779290</time>
+                <children />
+              </RegionalFleg>
+            </value>
+          </item>
+        </children>
+      </RegionalFleg>
+    </value>
+  </item>
+</dictionary>
