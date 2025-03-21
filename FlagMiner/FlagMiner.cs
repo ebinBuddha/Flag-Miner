@@ -16,6 +16,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using System.Net.Http;
+using System.Security.Policy;
 
 namespace FlagMiner
 {
@@ -439,15 +441,30 @@ namespace FlagMiner
         private int LoadArchive(string board, ref string rawResponse)
         {
             string boardUrl = baseUrl + board + catalogStr;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(boardUrl);
-            request.UserAgent = OptionsManager.OptionsInstance.userAgent;
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            
-            if (response.StatusCode != HttpStatusCode.OK)
-            { return 1; }
+            var handler = new HttpClientHandler
+            {
+                AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
+            };
+            HttpClient client = new HttpClient(handler);
+            client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+            client.DefaultRequestHeaders.Add("Accept-Language", "en-US,en;q=0.5");
+            client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate, br, zstd");
+            client.DefaultRequestHeaders.Add("User-Agent", OptionsManager.OptionsInstance.userAgent);
+            client.DefaultRequestHeaders.Add("Upgrade-Insecure-Requests", "1");
+            try
+            {
+                HttpResponseMessage response = client.GetAsync(boardUrl).GetAwaiter().GetResult();
 
-            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-            { rawResponse = reader.ReadToEnd(); }
+                // Ensure the request was successful
+                response.EnsureSuccessStatusCode();
+
+                // Read the response content
+                rawResponse = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            }
+            catch (Exception ex)
+            {
+                return 1;
+            }
 
             return 0;
         }

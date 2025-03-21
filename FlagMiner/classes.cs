@@ -121,7 +121,7 @@ namespace FlagMiner
             this.pNo = src.pNo;
             this.time = src.time;
         }
-	}
+    }
 
 
 	public enum PurgeEnum : int

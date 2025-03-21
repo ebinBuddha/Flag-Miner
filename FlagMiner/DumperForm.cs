@@ -10,12 +10,13 @@ using System.Xml.Serialization;
 namespace FlagMiner
 {
 
-    enum Boards
+    public enum Boards
     {
         None = 0,
         @int = 1,
         pol = 2,
         sp=3,
+        @external=4
     }
 
     public partial class DumperForm : Form
@@ -167,46 +168,12 @@ namespace FlagMiner
             statusLabel.Text = "Pasta generation started";
 
             var ATree = new SerializableDictionary<string, RegionalFleg>();
-            foreach (string fileName in dumperLists.groupA)
-            {
-                string currentFile = fileName;
-                try
-                {
-                    using (FileStream fs = new FileStream(currentFile, FileMode.Open))
-                    {
-                        XmlSerializer treeSerializer = new XmlSerializer(typeof(SerializableDictionary<string, RegionalFleg>));
-                        SerializableDictionary<string, RegionalFleg> temptree = (SerializableDictionary<string, RegionalFleg>)treeSerializer.Deserialize(fs);
-                        FlegOperations.MergeFlegs(temptree.Values.ToList(), ref ATree);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    statusLabel.Text = "Error processing file " + fileName;
-                    flagMiner.AppendText(DateTime.Now + " : " + "Error processing file " + fileName + " " + ex.ToString() + Environment.NewLine);
-                }
-            }
+            LoadGroupDumps(dumperLists.groupA, ref ATree);
 
             var BTree = new SerializableDictionary<string, RegionalFleg>();
             if (CompleteDump)
             {
-                foreach (string fileName in dumperLists.groupB)
-                {
-                    string currentFile = fileName;
-                    try
-                    {
-                        using (FileStream fs = new FileStream(currentFile, FileMode.Open))
-                        {
-                            XmlSerializer treeSerializer = new XmlSerializer(typeof(SerializableDictionary<string, RegionalFleg>));
-                            SerializableDictionary<string, RegionalFleg> temptree = (SerializableDictionary<string, RegionalFleg>)treeSerializer.Deserialize(fs);
-                            FlegOperations.MergeFlegs(temptree.Values.ToList(), ref BTree);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        statusLabel.Text = "Error processing file " + fileName;
-                        flagMiner.AppendText(DateTime.Now + " : " + "Error processing file " + fileName + " " + ex.ToString() + Environment.NewLine);
-                    }
-                }
+                LoadGroupDumps(dumperLists.groupB, ref BTree);
 
                 var TempTree = new SerializableDictionary<string, RegionalFleg>();
                 using (MemoryStream ms = new MemoryStream())
@@ -230,8 +197,7 @@ namespace FlagMiner
             if (ATree.Count > 0)
             {
                 var Apasta = new StringBuilder();
-                FlegOperations.AppendPasta(ATree, "", ref Apasta);
-                if ((Boards)boardComboBox.SelectedItem != Boards.None) { Apasta = Apasta.Replace(">>>/" + boardComboBox.SelectedItem.ToString() + "/", ">>"); }
+                FlegOperations.AppendPasta(ATree, "", ref Apasta, (Boards)boardComboBox.SelectedItem);
                 pasta.Append(Apasta);
                 pasta.AppendLine();
             }
@@ -246,8 +212,7 @@ namespace FlagMiner
                 if (BTree.Count > 0)
                 {
                     var Bpasta = new StringBuilder();
-                    FlegOperations.AppendPasta(BTree, "", ref Bpasta);
-                    if ((Boards)boardComboBox.SelectedItem != Boards.None) { Bpasta = Bpasta.Replace(">>>/" + boardComboBox.SelectedItem.ToString() + "/", ">>"); }
+                    FlegOperations.AppendPasta(BTree, "", ref Bpasta, (Boards)boardComboBox.SelectedItem);
                     pasta.Append(Bpasta);
                     pasta.AppendLine();
                 }
@@ -267,5 +232,26 @@ namespace FlagMiner
             { statusLabel.Text = "Nothing to copy to clipboard!"; }
         }
 
+        private void LoadGroupDumps(HashSet<string> group, ref SerializableDictionary<string, RegionalFleg> tree)
+        {
+            foreach (string fileName in group)
+            {
+                string currentFile = fileName;
+                try
+                {
+                    using (FileStream fs = new FileStream(currentFile, FileMode.Open))
+                    {
+                        XmlSerializer treeSerializer = new XmlSerializer(typeof(SerializableDictionary<string, RegionalFleg>));
+                        SerializableDictionary<string, RegionalFleg> temptree = (SerializableDictionary<string, RegionalFleg>)treeSerializer.Deserialize(fs);
+                        FlegOperations.MergeFlegs(temptree.Values.ToList(), ref tree);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    statusLabel.Text = "Error processing file " + fileName;
+                    flagMiner.AppendText(DateTime.Now + " : " + "Error processing file " + fileName + " " + ex.ToString() + Environment.NewLine);
+                }
+            }
+        }
     }
 }

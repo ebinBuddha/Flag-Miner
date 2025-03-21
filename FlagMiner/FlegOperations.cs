@@ -169,17 +169,33 @@ namespace FlagMiner
         /// <summary>
         /// Produces the flag dump text of the given tree
         /// </summary>
-        public static void AppendPasta(SerializableDictionary<string, RegionalFleg> dict, string str, ref StringBuilder pasta)
+        public static void AppendPasta(SerializableDictionary<string, RegionalFleg> dict, string suffix, ref StringBuilder pasta, Boards board)
         {
             foreach (KeyValuePair<string, RegionalFleg> ch in dict)
             {
                 RegionalFleg curFleg = ch.Value;
                 SerializableDictionary<string, RegionalFleg> curDict = curFleg.children;
-                string curString = String.IsNullOrEmpty(str) ? curFleg.title : (curFleg.title + ", " + str);
+                string curString = String.IsNullOrEmpty(suffix) ? curFleg.title : (curFleg.title + ", " + suffix);
+                // if I'm at a leaf, I've completed reading the entire name, I can write it.
                 if (curDict.Count == 0)
-                { pasta.AppendLine(">>>/" + curFleg.board + "/" + curFleg.pNo + " " + curString); }
+                {
+                    string line = "";
+                    switch (board)
+                    {
+                        case Boards.None:
+                        case Boards.@int:
+                        case Boards.pol:
+                        case Boards.sp:
+                            line = ((curFleg.board == board.ToString()) ? ">>" : ">>>/" + curFleg.board + "/") + curFleg.pNo + " " + curString;
+                            break;
+                        case Boards.external:
+                            line = curFleg.thread + " " + curString;
+                            break;
+                    }
+                    pasta.AppendLine(line);
+                }
                 else
-                { AppendPasta(curDict, curString, ref pasta); }
+                { AppendPasta(curDict, curString, ref pasta, board); }
             }
         }
 

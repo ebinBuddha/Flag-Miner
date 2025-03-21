@@ -32,7 +32,7 @@ namespace FlagMiner
             {
                 foreach (string st in options.backendServers)
                 {
-                    if (String.IsNullOrWhiteSpace(st))
+                    if (!String.IsNullOrWhiteSpace(st))
                     { this.BackendServersTextBox.Text += st + "\n"; }
                 }
             }
