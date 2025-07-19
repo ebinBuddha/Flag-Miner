@@ -27,6 +27,8 @@ namespace FlagMiner
         {
             var options = OptionsManager.OptionsInstance;
 
+            this.ArchiveUrlTextBox.Text = options.archiveUrl;
+
             this.BackendServersTextBox.Clear();
             if (options.backendServers != null)
             {
@@ -74,6 +76,8 @@ namespace FlagMiner
         private void OptionsForm_UpdateOpts()
         {
             var options = OptionsManager.OptionsInstance;
+
+            options.archiveUrl = this.ArchiveUrlTextBox.Text;
 
             options.backendServers = new List<string>();
             foreach (string st in this.BackendServersTextBox.Lines)
@@ -141,6 +145,16 @@ namespace FlagMiner
             }
         }
 
+        private void archiveUrl_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(ArchiveUrlTextBox.Text) || string.IsNullOrWhiteSpace(ArchiveUrlTextBox.Text))
+            {
+                MessageBox.Show("Insert a valid Url for the Archive or press Default", "Flag Miner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Cancel = true;
+                return;
+            }
+        }
+
         private void backendServers_Validating(object sender, CancelEventArgs e)
         {
             if (this.BackendServersTextBox.Lines.All(s => string.IsNullOrWhiteSpace(s)))
@@ -184,6 +198,16 @@ namespace FlagMiner
             selectLocalDestFolderButton.Enabled = EnableCheckCheckBox.Checked;
         }
 
+        private void defaultArchiveButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Restore default archive address?", "Flag Miner", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                this.ArchiveUrlTextBox.Clear();
+                // DEFAULT SERVERS
+                this.ArchiveUrlTextBox.Text = Properties.Resources.archiveBaseUrl;
+            }
+        }
+
         private void defaultBackendButton_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Restore default server address?", "Flag Miner", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -201,7 +225,7 @@ namespace FlagMiner
 
         public override bool ValidateChildren()
         {
-            foreach (Control control in new List<Control> { this.BackendServersTextBox, this.LocalRepoFolderTextBox, this.RepoUrlTextBox, this.UserAgentTextBox, this.LocalFlagSaveFolderTextBox })
+            foreach (Control control in new List<Control> { this.ArchiveUrlTextBox, this.BackendServersTextBox, this.LocalRepoFolderTextBox, this.RepoUrlTextBox, this.UserAgentTextBox, this.LocalFlagSaveFolderTextBox })
             {
                 control.Focus();
                 if (!Validate())

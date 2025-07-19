@@ -25,7 +25,6 @@ namespace FlagMiner
     public partial class FlagMiner : Form
     {
         private readonly string baseUrl = Properties.Resources.baseUrl;
-        private readonly string archiveBaseUrl = Properties.Resources.archiveBaseUrl;
         private readonly string imageBaseUrl = Properties.Resources.imageBaseUrl;
 
         private readonly string catalogStr = Properties.Resources.catalogStr;
@@ -33,6 +32,9 @@ namespace FlagMiner
 
         // the divider used in the back-end response
         private readonly string regionDivider = "||";
+
+        // archive url
+        string archiveUrl = "";
 
         // local repository
         string flegsBaseUrl = "";
@@ -136,13 +138,14 @@ namespace FlagMiner
                     long finalTime = DateTime.UtcNow.To4ChanTime();
 
                     ParallelOptions parallelOptions = new ParallelOptions();
-                    parallelOptions.MaxDegreeOfParallelism = 4;
+                    parallelOptions.MaxDegreeOfParallelism = 5;
                     CancellationTokenSource cts = new CancellationTokenSource();
                     parallelOptions.CancellationToken = cts.Token;
                     try
                     {
                         int currentCount = 0;
-                        Parallel.ForEach(Enumerable.Range(0, threads.Count), parallelOptions, (i) =>
+                        var chunks = threads.ChunkBy(20);
+                        Parallel.ForEach(Enumerable.Range(0, chunks.Count), parallelOptions, j =>
                         {
                             if (worker.CancellationPending)
                             {
@@ -152,7 +155,8 @@ namespace FlagMiner
                                 return;
                             }
 
-                            Interlocked.Increment(ref currentCount);
+                            //Interlocked.Increment(ref currentCount);
+                            var chunk = chunks[j];
                             worker.ReportProgress(currentCount, new WorkerUserState
                             {
                                 board = board,
@@ -161,71 +165,97 @@ namespace FlagMiner
                                 total = threads.Count
                             });
                             Thread.Sleep(400); // do not flood the server and get banned
-                            try
+                            List<Post> posts = new List<Post>();
+                            for (int i = 0; i < chunk.Count; i++)
                             {
-                                errorCode = LoadThread(board, threads[i], out string rawResponse);
-                                RaiseError(errorCode, ref statusFlag);
-
-                                List<Post> posts = new List<Post>();
                                 try
-                                { ParseThread(rawResponse, ref posts); }
+                                {
+
+                                    errorCode = LoadThread(board, chunk[i], out string rawResponse);
+                                    RaiseError(errorCode, ref statusFlag);
+
+                                    try
+                                    {
+                                        List<Post> thread_posts = new List<Post>();
+                                        ParseThread(rawResponse, ref thread_posts);
+                                        posts.AddRange(thread_posts);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        worker.ReportProgress(currentCount + i + 1,
+                                            new WorkerUserState
+                                            {
+                                                board = board,
+                                                current = chunk[i],
+                                                status = WorkerStatus.curruptJson,
+                                                progress = currentCount + i + 1,
+                                                total = threads.Count,
+                                                additionalString = ex.ToString()
+                                            });
+                                    }
+                                    // for inner loop catch it here bls
+                                }
                                 catch (Exception ex)
                                 {
-                                    worker.ReportProgress(i + 1,
-                                        new WorkerUserState
-                                        {
-                                            board = board,
-                                            current = threads[i],
-                                            status = WorkerStatus.curruptJson,
-                                            progress = i + 1,
-                                            total = threads.Count,
-                                            additionalString = ex.ToString()
-                                        });
-                                }
-
-                                if (posts.Count > 0)
-                                {
-                                    Post firstPost = posts[0];
-                                    finalTime = firstPost.archived_on;
-
-                                    if ((OptionsManager.OptionsInstance.exclusionByDate && finalTime > exclusionDateLong) || (!OptionsManager.OptionsInstance.exclusionByDate))
+                                    // check if this is due to a thread not being found.
+                                    if (ex is WebException webEx && (((HttpWebResponse)webEx.Response)?.StatusCode == HttpStatusCode.NotFound))
                                     {
-                                        List<Fleg> flegs = new List<Fleg>();
-                                        QueryExtraFlags(board, ref posts, ref flegs);
-
-                                        List<RegionalFleg> parsedFlegs = null;
-                                        ParseFlags(board, posts, ref flegs, ref parsedFlegs);
-
-                                        SerializableDictionary<string, RegionalFleg> flagTree = new SerializableDictionary<string, RegionalFleg>();
-                                        FlegOperations.MergeFlegs(parsedFlegs, ref flagTree);
-
-                                        rootManager.AddToStack(flagTree);
+                                        // if so skip this and save as exclusion for next time.
+                                        excludedThreads.TryAdd(chunk[i], finalTime);
+                                        markedForAbortion = false;
+                                        worker.ReportProgress(currentCount + i + 1,
+    new WorkerUserState
+    {
+        board = board,
+        current = chunk[i],
+        status = WorkerStatus.curruptJson,
+        progress = currentCount + i + 1,
+        total = threads.Count,
+        additionalString = ex.ToString()
+    });
+                                    }
+                                    else
+                                    {
+                                        worker.ReportProgress(currentCount + i + 1,
+                                            new WorkerUserState
+                                            {
+                                                board = board,
+                                                current = chunk[i],
+                                                status = WorkerStatus.cancelling,
+                                                progress = currentCount + i + 1,
+                                                total = threads.Count,
+                                                additionalString = ex.ToString()
+                                            });
+                                        markedForAbortion = true;
                                     }
                                 }
-                                excludedThreads.TryAdd(threads[i], finalTime);
+                            }
 
-                                // for inner loop catch it here bls
-                            }
-                            catch (Exception ex)
+                            if (posts.Count > 0)
                             {
-                                // check if this is due to a thread not being found.
-                                if (ex is WebException webEx && (((HttpWebResponse)webEx.Response)?.StatusCode == HttpStatusCode.NotFound))
+                                Post firstPost = posts[0];
+                                finalTime = firstPost.archived_on;
+
+                                if ((OptionsManager.OptionsInstance.exclusionByDate && finalTime > exclusionDateLong) || (!OptionsManager.OptionsInstance.exclusionByDate))
                                 {
-                                    // if so skip this and save as exclusion for next time.
-                                    excludedThreads.TryAdd(threads[i], finalTime);
+                                    List<Fleg> flegs = new List<Fleg>();
+                                    QueryExtraFlags(board, ref posts, ref flegs);
+
+                                    List<RegionalFleg> parsedFlegs = null;
+                                    ParseFlags(board, posts, ref flegs, ref parsedFlegs);
+
+                                    SerializableDictionary<string, RegionalFleg> flagTree = new SerializableDictionary<string, RegionalFleg>();
+                                    FlegOperations.MergeFlegs(parsedFlegs, ref flagTree);
+
+                                    rootManager.AddToStack(flagTree);
                                 }
-                                worker.ReportProgress(i + 1,
-                                    new WorkerUserState
-                                    {
-                                        board = board,
-                                        current = threads[i],
-                                        status = WorkerStatus.cancelling,
-                                        progress = i + 1,
-                                        total = threads.Count,
-                                        additionalString = ex.ToString()
-                                    });
-                                markedForAbortion = true;
                             }
+                            for (int i = 0; i < chunk.Count; i++)
+                            {
+                                excludedThreads.TryAdd(chunk[i], finalTime);
+                            }
+                            Interlocked.Add(ref currentCount, chunk.Count);
+
 
                             if (markedForAbortion)
                             {
@@ -440,7 +470,7 @@ namespace FlagMiner
 
         private int LoadArchive(string board, ref string rawResponse)
         {
-            string boardUrl = baseUrl + board + catalogStr;
+            string boardUrl = archiveUrl + board + catalogStr;
             var handler = new HttpClientHandler
             {
                 AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
@@ -555,12 +585,12 @@ namespace FlagMiner
 
             if (posts.Count > 0)
             {
-                List<List<long>> chunks = posts.Select(p => p.no).ChunkBy(400);
+                List<List<long>> chunks = posts.Select(p => p.no).ChunkBy(6500);
                 ConcurrentQueue<Fleg[]> concurrentQueue = new ConcurrentQueue<Fleg[]>();
                 Parallel.ForEach(chunks, (subList) =>
                 {
                     StringBuilder tempstr = subList.Aggregate(new StringBuilder(), (acc, p) => acc.Append("," + p.ToString()), (acc) => acc.Remove(0, 1));
-                    
+
                     // better if parallelized?
                     foreach (string st in OptionsManager.OptionsInstance.backendServers)
                     {
@@ -598,7 +628,7 @@ namespace FlagMiner
         {
             string boardUrl;
             if (fullpath == null)
-            { boardUrl = archiveBaseUrl + board + "/thread/" + thread.ToString() + ".json"; }
+            { boardUrl = archiveUrl + board + "/thread/" + thread.ToString() + ".json"; }
             else
             { boardUrl = fullpath + ".json"; }
 
@@ -651,7 +681,9 @@ namespace FlagMiner
             }
         }
 
-        public void ApplyLoadedOptions() {
+        public void ApplyLoadedOptions()
+        {
+            archiveUrl = OptionsManager.OptionsInstance.archiveUrl;
             ExclusionDatePicker.Value = OptionsManager.OptionsInstance.exclusionDate;
             intCheck.Checked = OptionsManager.OptionsInstance.intCheck;
             polCheck.Checked = OptionsManager.OptionsInstance.polCheck;
@@ -929,7 +961,7 @@ namespace FlagMiner
         {
             // copy links to clipboard
             StringBuilder pasta = new StringBuilder();
-            FlegOperations.AppendPasta(MainTree, "", ref pasta);
+            FlegOperations.AppendPasta(MainTree, "", ref pasta, Boards.None);
 
             if (pasta.Length > 0) { Clipboard.SetText(pasta.ToString()); }
         }
@@ -990,7 +1022,8 @@ namespace FlagMiner
                     string currentFile = fileName;
                     try
                     {
-                        using (FileStream fs = new FileStream(currentFile, FileMode.Open)) { 
+                        using (FileStream fs = new FileStream(currentFile, FileMode.Open))
+                        {
                             XmlSerializer treeSerializer = new XmlSerializer(typeof(SerializableDictionary<string, RegionalFleg>));
                             SerializableDictionary<string, RegionalFleg> temptree = (SerializableDictionary<string, RegionalFleg>)treeSerializer.Deserialize(fs);
                             FlegOperations.MergeFlegs(temptree.Values.ToList(), ref MainTree);

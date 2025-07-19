@@ -136,7 +136,8 @@ namespace FlagMiner
 	[Serializable()]
 	public struct Options
 	{
-        [XmlElement]
+		[XmlElement]
+		public string archiveUrl;
         public List<string> backendServers;
 
 		public bool intCheck;

@@ -69,6 +69,9 @@ namespace FlagMiner
             this.BackendServersTextBox = new System.Windows.Forms.TextBox();
             this.defaultBackendButton = new System.Windows.Forms.Button();
             this.GroupBox4 = new System.Windows.Forms.GroupBox();
+            this.defaultArchiveButton = new System.Windows.Forms.Button();
+            this.ArchiveUrlTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.GroupBox1.SuspendLayout();
             this.GroupBox2.SuspendLayout();
             this.Panel1.SuspendLayout();
@@ -79,7 +82,7 @@ namespace FlagMiner
             // Button1
             // 
             this.Button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button1.Location = new System.Drawing.Point(316, 533);
+            this.Button1.Location = new System.Drawing.Point(316, 583);
             this.Button1.Name = "Button1";
             this.Button1.Size = new System.Drawing.Size(75, 23);
             this.Button1.TabIndex = 0;
@@ -90,7 +93,7 @@ namespace FlagMiner
             // Button2
             // 
             this.Button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button2.Location = new System.Drawing.Point(397, 533);
+            this.Button2.Location = new System.Drawing.Point(397, 583);
             this.Button2.Name = "Button2";
             this.Button2.Size = new System.Drawing.Size(75, 23);
             this.Button2.TabIndex = 1;
@@ -100,13 +103,13 @@ namespace FlagMiner
             // 
             // GroupBox1
             // 
-            this.GroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.GroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox1.Controls.Add(this.EnableCheckCheckBox);
             this.GroupBox1.Controls.Add(this.selectLocalDestFolderButton);
             this.GroupBox1.Controls.Add(this.LocalFlagSaveFolderTextBox);
             this.GroupBox1.Controls.Add(this.Label1);
-            this.GroupBox1.Location = new System.Drawing.Point(12, 89);
+            this.GroupBox1.Location = new System.Drawing.Point(12, 139);
             this.GroupBox1.Name = "GroupBox1";
             this.GroupBox1.Size = new System.Drawing.Size(461, 83);
             this.GroupBox1.TabIndex = 2;
@@ -155,11 +158,11 @@ namespace FlagMiner
             // 
             // GroupBox2
             // 
-            this.GroupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.GroupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox2.Controls.Add(this.Panel1);
             this.GroupBox2.Controls.Add(this.EnablePurgeCheckBox);
-            this.GroupBox2.Location = new System.Drawing.Point(12, 178);
+            this.GroupBox2.Location = new System.Drawing.Point(12, 228);
             this.GroupBox2.Name = "GroupBox2";
             this.GroupBox2.Size = new System.Drawing.Size(461, 94);
             this.GroupBox2.TabIndex = 0;
@@ -299,7 +302,7 @@ namespace FlagMiner
             this.GroupBox3.Controls.Add(this.TreeSaveAndLoadFolderTextBox);
             this.GroupBox3.Controls.Add(this.UserAgentTextBox);
             this.GroupBox3.Controls.Add(this.Label3);
-            this.GroupBox3.Location = new System.Drawing.Point(12, 429);
+            this.GroupBox3.Location = new System.Drawing.Point(12, 479);
             this.GroupBox3.Name = "GroupBox3";
             this.GroupBox3.Size = new System.Drawing.Size(461, 98);
             this.GroupBox3.TabIndex = 7;
@@ -362,8 +365,10 @@ namespace FlagMiner
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 9);
+            this.label5.Location = new System.Drawing.Point(15, 59);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(154, 13);
             this.label5.TabIndex = 8;
@@ -371,7 +376,10 @@ namespace FlagMiner
             // 
             // BackendServersTextBox
             // 
-            this.BackendServersTextBox.Location = new System.Drawing.Point(12, 25);
+            this.BackendServersTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BackendServersTextBox.Location = new System.Drawing.Point(12, 75);
             this.BackendServersTextBox.Multiline = true;
             this.BackendServersTextBox.Name = "BackendServersTextBox";
             this.BackendServersTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -381,7 +389,9 @@ namespace FlagMiner
             // 
             // defaultBackendButton
             // 
-            this.defaultBackendButton.Location = new System.Drawing.Point(423, 25);
+            this.defaultBackendButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.defaultBackendButton.Location = new System.Drawing.Point(423, 75);
             this.defaultBackendButton.Name = "defaultBackendButton";
             this.defaultBackendButton.Size = new System.Drawing.Size(50, 23);
             this.defaultBackendButton.TabIndex = 12;
@@ -391,8 +401,7 @@ namespace FlagMiner
             // 
             // GroupBox4
             // 
-            this.GroupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.GroupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox4.Controls.Add(this.label6);
             this.GroupBox4.Controls.Add(this.defaultRepoUrlButton);
@@ -402,19 +411,53 @@ namespace FlagMiner
             this.GroupBox4.Controls.Add(this.LocalRepoFolderTextBox);
             this.GroupBox4.Controls.Add(this.UseLocalRepoRadioButton);
             this.GroupBox4.Controls.Add(this.UseRemoteRepoRadioButton);
-            this.GroupBox4.Location = new System.Drawing.Point(12, 278);
+            this.GroupBox4.Location = new System.Drawing.Point(12, 328);
             this.GroupBox4.Name = "GroupBox4";
             this.GroupBox4.Size = new System.Drawing.Size(461, 145);
             this.GroupBox4.TabIndex = 13;
             this.GroupBox4.TabStop = false;
             this.GroupBox4.Text = "Flag sources";
             // 
+            // defaultArchiveButton
+            // 
+            this.defaultArchiveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.defaultArchiveButton.Location = new System.Drawing.Point(423, 28);
+            this.defaultArchiveButton.Name = "defaultArchiveButton";
+            this.defaultArchiveButton.Size = new System.Drawing.Size(50, 23);
+            this.defaultArchiveButton.TabIndex = 16;
+            this.defaultArchiveButton.Text = "Default";
+            this.defaultArchiveButton.UseVisualStyleBackColor = true;
+            this.defaultArchiveButton.Click += new System.EventHandler(this.defaultArchiveButton_Click);
+            // 
+            // ArchiveUrlTextBox
+            // 
+            this.ArchiveUrlTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ArchiveUrlTextBox.Location = new System.Drawing.Point(12, 30);
+            this.ArchiveUrlTextBox.Name = "ArchiveUrlTextBox";
+            this.ArchiveUrlTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.ArchiveUrlTextBox.Size = new System.Drawing.Size(405, 20);
+            this.ArchiveUrlTextBox.TabIndex = 15;
+            this.ArchiveUrlTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.archiveUrl_Validating);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 14);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(86, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Archive base url:";
+            // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(484, 568);
+            this.ClientSize = new System.Drawing.Size(484, 618);
+            this.Controls.Add(this.defaultArchiveButton);
+            this.Controls.Add(this.ArchiveUrlTextBox);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.GroupBox4);
             this.Controls.Add(this.defaultBackendButton);
             this.Controls.Add(this.BackendServersTextBox);
@@ -478,5 +521,8 @@ namespace FlagMiner
         private Button defaultRepoUrlButton;
         private TextBox RepoUrlTextBox;
         private GroupBox GroupBox4;
+        private Button defaultArchiveButton;
+        private TextBox ArchiveUrlTextBox;
+        private Label label7;
     }
 }
