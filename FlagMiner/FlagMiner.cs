@@ -470,7 +470,7 @@ namespace FlagMiner
 
         private int LoadArchive(string board, ref string rawResponse)
         {
-            string boardUrl = archiveUrl + board + catalogStr;
+            string boardUrl = OptionsManager.OptionsInstance.archiveUrl + board + catalogStr;
             var handler = new HttpClientHandler
             {
                 AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
