@@ -15648,40 +15648,6 @@
                           </item>
                           <item>
                             <key>
-                              <string>Takhtamukayskoye</string>
-                            </key>
-                            <value>
-                              <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                                <isTrollFlag>false</isTrollFlag>
-                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Russian Federation/Adygea/Takhtamukaysky District/Takhtamukayskoye.png</imgurl>
-                                <title>Takhtamukayskoye</title>
-                                <thread>https://boards.4chan.org/int/thread/215939646#p215939646</thread>
-                                <board>int</board>
-                                <pNo>215939646</pNo>
-                                <time>1762309002</time>
-                                <children/>
-                              </RegionalFleg>
-                            </value>
-                          </item>
-                          <item>
-                            <key>
-                              <string>Yablonovskoye</string>
-                            </key>
-                            <value>
-                              <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                                <isTrollFlag>false</isTrollFlag>
-                                <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Russian Federation/Adygea/Takhtamukaysky District/Yablonovskoye.png</imgurl>
-                                <title>Yablonovskoye</title>
-                                <thread>https://boards.4chan.org/int/thread/215939610#p215939610</thread>
-                                <board>int</board>
-                                <pNo>215939610</pNo>
-                                <time>1762309002</time>
-                                <children/>
-                              </RegionalFleg>
-                            </value>
-                          </item>
-                          <item>
-                            <key>
                               <string>Yablonovsky</string>
                             </key>
                             <value>
@@ -16497,8 +16463,7 @@
                                     <value>
                                       <RegionalFleg xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                                         <isTrollFlag>false</isTrollFlag>
-                                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Russian Federation/Krasnodar Territory/Sochi/
-Khostinsky District/Matsesta.png</imgurl>
+                                        <imgurl>https://gitlab.com/flagtism/Extra-Flags-for-4chan/raw/master/flags/Russian Federation/Krasnodar Territory/Sochi/Khostinsky District/Matsesta.png</imgurl>
                                         <title>Matsesta</title>
                                         <thread>https://boards.4chan.org/int/thread/214751992#p214751992</thread>
                                         <board>int</board>
