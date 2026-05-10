@@ -101,6 +101,8 @@ namespace FlagMiner
 
             options.repoUrl = this.RepoUrlTextBox.Text;
 
+            options.orderByDate = this.saveOrdering.Checked;
+
             OptionsManager.OptionsInstance = options;
             OptionsManager.SaveOptions();
         }
@@ -234,5 +236,9 @@ namespace FlagMiner
             return true;
         }
 
+        private void BackendServersTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

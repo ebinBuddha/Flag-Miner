@@ -54,13 +54,14 @@ namespace FlagMiner
             this.defaultRepoUrlButton = new System.Windows.Forms.Button();
             this.RepoUrlTextBox = new System.Windows.Forms.TextBox();
             this.Label2 = new System.Windows.Forms.Label();
-            this.Button4 = new System.Windows.Forms.Button();
+            this.browseFlagsLocalSource = new System.Windows.Forms.Button();
             this.UseLocalRepoRadioButton = new System.Windows.Forms.RadioButton();
             this.UseRemoteRepoRadioButton = new System.Windows.Forms.RadioButton();
             this.FolderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.GroupBox3 = new System.Windows.Forms.GroupBox();
+            this.saveOrdering = new System.Windows.Forms.CheckBox();
             this.Label4 = new System.Windows.Forms.Label();
-            this.Button6 = new System.Windows.Forms.Button();
+            this.browseLocalTreeFolder = new System.Windows.Forms.Button();
             this.defaultUserAgentButton = new System.Windows.Forms.Button();
             this.TreeSaveAndLoadFolderTextBox = new System.Windows.Forms.TextBox();
             this.UserAgentTextBox = new System.Windows.Forms.TextBox();
@@ -82,7 +83,7 @@ namespace FlagMiner
             // Button1
             // 
             this.Button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button1.Location = new System.Drawing.Point(316, 583);
+            this.Button1.Location = new System.Drawing.Point(316, 612);
             this.Button1.Name = "Button1";
             this.Button1.Size = new System.Drawing.Size(75, 23);
             this.Button1.TabIndex = 0;
@@ -93,7 +94,7 @@ namespace FlagMiner
             // Button2
             // 
             this.Button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button2.Location = new System.Drawing.Point(397, 583);
+            this.Button2.Location = new System.Drawing.Point(397, 612);
             this.Button2.Name = "Button2";
             this.Button2.Size = new System.Drawing.Size(75, 23);
             this.Button2.TabIndex = 1;
@@ -133,7 +134,7 @@ namespace FlagMiner
             this.selectLocalDestFolderButton.Location = new System.Drawing.Point(368, 53);
             this.selectLocalDestFolderButton.Name = "selectLocalDestFolderButton";
             this.selectLocalDestFolderButton.Size = new System.Drawing.Size(50, 23);
-            this.selectLocalDestFolderButton.TabIndex = 3;
+            this.selectLocalDestFolderButton.TabIndex = 7;
             this.selectLocalDestFolderButton.Text = "...";
             this.selectLocalDestFolderButton.UseVisualStyleBackColor = true;
             this.selectLocalDestFolderButton.Click += new System.EventHandler(this.Button3_Click);
@@ -144,7 +145,8 @@ namespace FlagMiner
             this.LocalFlagSaveFolderTextBox.Name = "LocalFlagSaveFolderTextBox";
             this.LocalFlagSaveFolderTextBox.ReadOnly = true;
             this.LocalFlagSaveFolderTextBox.Size = new System.Drawing.Size(353, 20);
-            this.LocalFlagSaveFolderTextBox.TabIndex = 2;
+            this.LocalFlagSaveFolderTextBox.TabIndex = 7;
+            this.LocalFlagSaveFolderTextBox.TabStop = false;
             this.LocalFlagSaveFolderTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox1_Validating);
             // 
             // Label1
@@ -188,7 +190,7 @@ namespace FlagMiner
             this.DeleteChildFreeCheckBox.Location = new System.Drawing.Point(2, 26);
             this.DeleteChildFreeCheckBox.Name = "DeleteChildFreeCheckBox";
             this.DeleteChildFreeCheckBox.Size = new System.Drawing.Size(270, 17);
-            this.DeleteChildFreeCheckBox.TabIndex = 9;
+            this.DeleteChildFreeCheckBox.TabIndex = 10;
             this.DeleteChildFreeCheckBox.Text = "When purging purge national flags with no regionals";
             this.DeleteChildFreeCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -198,7 +200,7 @@ namespace FlagMiner
             this.MarkTrollCheckBox.Location = new System.Drawing.Point(2, 3);
             this.MarkTrollCheckBox.Name = "MarkTrollCheckBox";
             this.MarkTrollCheckBox.Size = new System.Drawing.Size(189, 17);
-            this.MarkTrollCheckBox.TabIndex = 7;
+            this.MarkTrollCheckBox.TabIndex = 9;
             this.MarkTrollCheckBox.Text = "When purging purge also troll flags";
             this.MarkTrollCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -208,7 +210,7 @@ namespace FlagMiner
             this.EnablePurgeCheckBox.Location = new System.Drawing.Point(6, 19);
             this.EnablePurgeCheckBox.Name = "EnablePurgeCheckBox";
             this.EnablePurgeCheckBox.Size = new System.Drawing.Size(427, 17);
-            this.EnablePurgeCheckBox.TabIndex = 0;
+            this.EnablePurgeCheckBox.TabIndex = 8;
             this.EnablePurgeCheckBox.Text = "Enable validation and purging (use this only if you keep the repository folder st" +
     "ructure)";
             this.EnablePurgeCheckBox.UseVisualStyleBackColor = true;
@@ -220,7 +222,8 @@ namespace FlagMiner
             this.LocalRepoFolderTextBox.Name = "LocalRepoFolderTextBox";
             this.LocalRepoFolderTextBox.ReadOnly = true;
             this.LocalRepoFolderTextBox.Size = new System.Drawing.Size(353, 20);
-            this.LocalRepoFolderTextBox.TabIndex = 5;
+            this.LocalRepoFolderTextBox.TabIndex = 12;
+            this.LocalRepoFolderTextBox.TabStop = false;
             this.LocalRepoFolderTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox2_Validating);
             // 
             // label6
@@ -238,7 +241,7 @@ namespace FlagMiner
             this.defaultRepoUrlButton.Location = new System.Drawing.Point(368, 115);
             this.defaultRepoUrlButton.Name = "defaultRepoUrlButton";
             this.defaultRepoUrlButton.Size = new System.Drawing.Size(50, 23);
-            this.defaultRepoUrlButton.TabIndex = 11;
+            this.defaultRepoUrlButton.TabIndex = 15;
             this.defaultRepoUrlButton.Text = "Default";
             this.defaultRepoUrlButton.UseVisualStyleBackColor = true;
             this.defaultRepoUrlButton.Click += new System.EventHandler(this.defaultRepoUrlButton_Click);
@@ -248,7 +251,7 @@ namespace FlagMiner
             this.RepoUrlTextBox.Location = new System.Drawing.Point(9, 117);
             this.RepoUrlTextBox.Name = "RepoUrlTextBox";
             this.RepoUrlTextBox.Size = new System.Drawing.Size(353, 20);
-            this.RepoUrlTextBox.TabIndex = 10;
+            this.RepoUrlTextBox.TabIndex = 14;
             this.RepoUrlTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.repoUrl_Validating);
             // 
             // Label2
@@ -260,15 +263,15 @@ namespace FlagMiner
             this.Label2.TabIndex = 8;
             this.Label2.Text = "Local folder (e.g. C:\\Extra-flags-for-4chan\\flags\\)";
             // 
-            // Button4
+            // browseFlagsLocalSource
             // 
-            this.Button4.Location = new System.Drawing.Point(368, 53);
-            this.Button4.Name = "Button4";
-            this.Button4.Size = new System.Drawing.Size(50, 23);
-            this.Button4.TabIndex = 6;
-            this.Button4.Text = "...";
-            this.Button4.UseVisualStyleBackColor = true;
-            this.Button4.Click += new System.EventHandler(this.Button4_Click);
+            this.browseFlagsLocalSource.Location = new System.Drawing.Point(368, 53);
+            this.browseFlagsLocalSource.Name = "browseFlagsLocalSource";
+            this.browseFlagsLocalSource.Size = new System.Drawing.Size(50, 23);
+            this.browseFlagsLocalSource.TabIndex = 12;
+            this.browseFlagsLocalSource.Text = "...";
+            this.browseFlagsLocalSource.UseVisualStyleBackColor = true;
+            this.browseFlagsLocalSource.Click += new System.EventHandler(this.Button4_Click);
             // 
             // UseLocalRepoRadioButton
             // 
@@ -276,7 +279,7 @@ namespace FlagMiner
             this.UseLocalRepoRadioButton.Location = new System.Drawing.Point(6, 19);
             this.UseLocalRepoRadioButton.Name = "UseLocalRepoRadioButton";
             this.UseLocalRepoRadioButton.Size = new System.Drawing.Size(155, 17);
-            this.UseLocalRepoRadioButton.TabIndex = 3;
+            this.UseLocalRepoRadioButton.TabIndex = 11;
             this.UseLocalRepoRadioButton.Text = "Use local copy of repository";
             this.UseLocalRepoRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -287,7 +290,7 @@ namespace FlagMiner
             this.UseRemoteRepoRadioButton.Location = new System.Drawing.Point(5, 81);
             this.UseRemoteRepoRadioButton.Name = "UseRemoteRepoRadioButton";
             this.UseRemoteRepoRadioButton.Size = new System.Drawing.Size(177, 17);
-            this.UseRemoteRepoRadioButton.TabIndex = 4;
+            this.UseRemoteRepoRadioButton.TabIndex = 13;
             this.UseRemoteRepoRadioButton.TabStop = true;
             this.UseRemoteRepoRadioButton.Text = "Use official repository image Urls";
             this.UseRemoteRepoRadioButton.UseVisualStyleBackColor = true;
@@ -296,18 +299,29 @@ namespace FlagMiner
             // 
             this.GroupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBox3.Controls.Add(this.saveOrdering);
             this.GroupBox3.Controls.Add(this.Label4);
-            this.GroupBox3.Controls.Add(this.Button6);
+            this.GroupBox3.Controls.Add(this.browseLocalTreeFolder);
             this.GroupBox3.Controls.Add(this.defaultUserAgentButton);
             this.GroupBox3.Controls.Add(this.TreeSaveAndLoadFolderTextBox);
             this.GroupBox3.Controls.Add(this.UserAgentTextBox);
             this.GroupBox3.Controls.Add(this.Label3);
             this.GroupBox3.Location = new System.Drawing.Point(12, 479);
             this.GroupBox3.Name = "GroupBox3";
-            this.GroupBox3.Size = new System.Drawing.Size(461, 98);
+            this.GroupBox3.Size = new System.Drawing.Size(461, 127);
             this.GroupBox3.TabIndex = 7;
             this.GroupBox3.TabStop = false;
             this.GroupBox3.Text = "Misc.";
+            // 
+            // saveOrdering
+            // 
+            this.saveOrdering.AutoSize = true;
+            this.saveOrdering.Location = new System.Drawing.Point(9, 98);
+            this.saveOrdering.Name = "saveOrdering";
+            this.saveOrdering.Size = new System.Drawing.Size(182, 17);
+            this.saveOrdering.TabIndex = 19;
+            this.saveOrdering.Text = "Chronological order for auto save";
+            this.saveOrdering.UseVisualStyleBackColor = true;
             // 
             // Label4
             // 
@@ -318,22 +332,22 @@ namespace FlagMiner
             this.Label4.TabIndex = 11;
             this.Label4.Text = "Save and Load tree folder";
             // 
-            // Button6
+            // browseLocalTreeFolder
             // 
-            this.Button6.Location = new System.Drawing.Point(368, 69);
-            this.Button6.Name = "Button6";
-            this.Button6.Size = new System.Drawing.Size(50, 23);
-            this.Button6.TabIndex = 10;
-            this.Button6.Text = "...";
-            this.Button6.UseVisualStyleBackColor = true;
-            this.Button6.Click += new System.EventHandler(this.Button6_Click);
+            this.browseLocalTreeFolder.Location = new System.Drawing.Point(368, 69);
+            this.browseLocalTreeFolder.Name = "browseLocalTreeFolder";
+            this.browseLocalTreeFolder.Size = new System.Drawing.Size(50, 23);
+            this.browseLocalTreeFolder.TabIndex = 18;
+            this.browseLocalTreeFolder.Text = "...";
+            this.browseLocalTreeFolder.UseVisualStyleBackColor = true;
+            this.browseLocalTreeFolder.Click += new System.EventHandler(this.Button6_Click);
             // 
             // defaultUserAgentButton
             // 
             this.defaultUserAgentButton.Location = new System.Drawing.Point(368, 30);
             this.defaultUserAgentButton.Name = "defaultUserAgentButton";
             this.defaultUserAgentButton.Size = new System.Drawing.Size(50, 23);
-            this.defaultUserAgentButton.TabIndex = 9;
+            this.defaultUserAgentButton.TabIndex = 17;
             this.defaultUserAgentButton.Text = "Default";
             this.defaultUserAgentButton.UseVisualStyleBackColor = true;
             this.defaultUserAgentButton.Click += new System.EventHandler(this.defaultUserAgentButton_Click);
@@ -344,14 +358,15 @@ namespace FlagMiner
             this.TreeSaveAndLoadFolderTextBox.Name = "TreeSaveAndLoadFolderTextBox";
             this.TreeSaveAndLoadFolderTextBox.ReadOnly = true;
             this.TreeSaveAndLoadFolderTextBox.Size = new System.Drawing.Size(353, 20);
-            this.TreeSaveAndLoadFolderTextBox.TabIndex = 9;
+            this.TreeSaveAndLoadFolderTextBox.TabIndex = 18;
+            this.TreeSaveAndLoadFolderTextBox.TabStop = false;
             // 
             // UserAgentTextBox
             // 
             this.UserAgentTextBox.Location = new System.Drawing.Point(9, 32);
             this.UserAgentTextBox.Name = "UserAgentTextBox";
             this.UserAgentTextBox.Size = new System.Drawing.Size(353, 20);
-            this.UserAgentTextBox.TabIndex = 8;
+            this.UserAgentTextBox.TabIndex = 16;
             this.UserAgentTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.userAgent_Validating);
             // 
             // Label3
@@ -384,17 +399,18 @@ namespace FlagMiner
             this.BackendServersTextBox.Name = "BackendServersTextBox";
             this.BackendServersTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.BackendServersTextBox.Size = new System.Drawing.Size(405, 58);
-            this.BackendServersTextBox.TabIndex = 9;
+            this.BackendServersTextBox.TabIndex = 4;
+            this.BackendServersTextBox.TextChanged += new System.EventHandler(this.BackendServersTextBox_TextChanged);
             this.BackendServersTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.backendServers_Validating);
             // 
             // defaultBackendButton
             // 
             this.defaultBackendButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.defaultBackendButton.Location = new System.Drawing.Point(423, 75);
+            this.defaultBackendButton.Location = new System.Drawing.Point(423, 104);
             this.defaultBackendButton.Name = "defaultBackendButton";
             this.defaultBackendButton.Size = new System.Drawing.Size(50, 23);
-            this.defaultBackendButton.TabIndex = 12;
+            this.defaultBackendButton.TabIndex = 5;
             this.defaultBackendButton.Text = "Default";
             this.defaultBackendButton.UseVisualStyleBackColor = true;
             this.defaultBackendButton.Click += new System.EventHandler(this.defaultBackendButton_Click);
@@ -407,7 +423,7 @@ namespace FlagMiner
             this.GroupBox4.Controls.Add(this.defaultRepoUrlButton);
             this.GroupBox4.Controls.Add(this.RepoUrlTextBox);
             this.GroupBox4.Controls.Add(this.Label2);
-            this.GroupBox4.Controls.Add(this.Button4);
+            this.GroupBox4.Controls.Add(this.browseFlagsLocalSource);
             this.GroupBox4.Controls.Add(this.LocalRepoFolderTextBox);
             this.GroupBox4.Controls.Add(this.UseLocalRepoRadioButton);
             this.GroupBox4.Controls.Add(this.UseRemoteRepoRadioButton);
@@ -424,7 +440,7 @@ namespace FlagMiner
             this.defaultArchiveButton.Location = new System.Drawing.Point(423, 28);
             this.defaultArchiveButton.Name = "defaultArchiveButton";
             this.defaultArchiveButton.Size = new System.Drawing.Size(50, 23);
-            this.defaultArchiveButton.TabIndex = 16;
+            this.defaultArchiveButton.TabIndex = 3;
             this.defaultArchiveButton.Text = "Default";
             this.defaultArchiveButton.UseVisualStyleBackColor = true;
             this.defaultArchiveButton.Click += new System.EventHandler(this.defaultArchiveButton_Click);
@@ -437,7 +453,7 @@ namespace FlagMiner
             this.ArchiveUrlTextBox.Name = "ArchiveUrlTextBox";
             this.ArchiveUrlTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.ArchiveUrlTextBox.Size = new System.Drawing.Size(405, 20);
-            this.ArchiveUrlTextBox.TabIndex = 15;
+            this.ArchiveUrlTextBox.TabIndex = 2;
             this.ArchiveUrlTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.archiveUrl_Validating);
             // 
             // label7
@@ -454,7 +470,7 @@ namespace FlagMiner
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(484, 618);
+            this.ClientSize = new System.Drawing.Size(484, 647);
             this.Controls.Add(this.defaultArchiveButton);
             this.Controls.Add(this.ArchiveUrlTextBox);
             this.Controls.Add(this.label7);
@@ -500,7 +516,7 @@ namespace FlagMiner
 		internal System.Windows.Forms.Panel Panel1;
 		internal System.Windows.Forms.Label Label2;
 		internal System.Windows.Forms.CheckBox MarkTrollCheckBox;
-		private System.Windows.Forms.Button Button4;
+		private System.Windows.Forms.Button browseFlagsLocalSource;
 		private System.Windows.Forms.TextBox LocalRepoFolderTextBox;
 		internal System.Windows.Forms.RadioButton UseLocalRepoRadioButton;
 		internal System.Windows.Forms.RadioButton UseRemoteRepoRadioButton;
@@ -511,7 +527,7 @@ namespace FlagMiner
 		internal System.Windows.Forms.Label Label3;
 		private System.Windows.Forms.Button defaultUserAgentButton;
 		internal System.Windows.Forms.Label Label4;
-		private System.Windows.Forms.Button Button6;
+		private System.Windows.Forms.Button browseLocalTreeFolder;
 		internal System.Windows.Forms.TextBox TreeSaveAndLoadFolderTextBox;
 		internal System.Windows.Forms.CheckBox DeleteChildFreeCheckBox;
         private Label label5;
@@ -524,5 +540,6 @@ namespace FlagMiner
         private Button defaultArchiveButton;
         private TextBox ArchiveUrlTextBox;
         private Label label7;
+        private CheckBox saveOrdering;
     }
 }

@@ -162,7 +162,8 @@ namespace FlagMiner
 		public string saveAndLoadFolder; // dafault folder for loading and saving the work tree
 
 		public string repoUrl;
-	}
+		public bool orderByDate;
+    }
 
     public enum WorkerStatus
     {

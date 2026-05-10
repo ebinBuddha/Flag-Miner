@@ -1312,9 +1312,22 @@ namespace FlagMiner
 
         private void AutoSaveImagesHandler(object sender, EventArgs e)
         {
-            foreach (object si in FlegTreeListView.SelectedObjects)
+            var selectedObjects = FlegTreeListView.SelectedObjects;
+            if (selectedObjects == null || selectedObjects.Count == 0) return;
+            var objectslist = selectedObjects.Cast<RegionalFleg>().ToList();
+
+            if (OptionsManager.OptionsInstance.orderByDate)
             {
-                RegionalFleg regFlag = (RegionalFleg)si;
+                objectslist.Sort((a, b) =>
+                {
+                    RegionalFleg flegA = (RegionalFleg)a;
+                    RegionalFleg flegB = (RegionalFleg)b;
+                    return flegA.time.CompareTo(flegB.time);
+                });
+            }
+
+            foreach (RegionalFleg regFlag in objectslist)
+            {
                 string flagPath = "";
                 try
                 {
