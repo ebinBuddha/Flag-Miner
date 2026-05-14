@@ -55,6 +55,8 @@ namespace FlagMiner
             this.TreeSaveAndLoadFolderTextBox.Text = options.saveAndLoadFolder;
 
             this.RepoUrlTextBox.Text = options.repoUrl;
+
+            this.saveOrdering.Checked = options.orderByDate;
         }
 
         private void Button2_Click(object sender, EventArgs e)
